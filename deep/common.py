@@ -44,13 +44,17 @@ def tb_verdict(cwd, design, tb, tag):
     return "pass" if PASS_RE.search(out) else "fail"
 
 def tb_verdict_verilator(cwd, design, tb, tag):
-    """Independent second simulator. Verilator 5 with --timing handles most RTLLM TBs."""
+    """Independent second simulator (top module parsed from the testbench;
+    RTLLM names vary: test_alu, t, tb...). Binary lands under -Mdir."""
+    m = re.search(r"module\s+(\w+)", open(os.path.join(cwd, tb)).read())
+    top = m.group(1) if m else "tb"
+    mdir = f"vlb_{tag}"
     rc, out = run(["verilator", "--binary", "--timing", "-Wno-fatal", "-Wno-WIDTHEXPAND",
                    "-Wno-WIDTHTRUNC", "-Wno-UNOPTFLAT", "-Wno-MULTIDRIVEN", "-Wno-lint",
-                   "--top-module", "tb", "-o", f"vSim_{tag}", design, tb], cwd, 180)
+                   "--top-module", top, "--Mdir", mdir, "-o", f"vSim_{tag}", design, tb], cwd, 180)
     if rc != 0:
         return "vl_compile_error"
-    rc, out = run([f"./vSim_{tag}"], cwd, 60)
+    rc, out = run([os.path.join(mdir, f"vSim_{tag}")], cwd, 60)
     if rc == "timeout":
         return "timeout"
     return "pass" if PASS_RE.search(out) else "fail"
@@ -177,11 +181,17 @@ mode {mode}
 
 def _unbounded_script(gold, gate, top):
     """sby [script] body: build gold/gate copies in-session (no netlist
-    round-trip), then the scaffolded wrapper on top."""
-    return (f"read_verilog -sv {gold}; hierarchy -top {top}; proc; flatten; memory -nomap; "
-            f"opt_clean; async2sync; rename {top} top_gold; design -stash gsrc;\n"
-            f"read_verilog -sv {gate}; hierarchy -top {top}; proc; flatten; memory -nomap; "
-            f"opt_clean; async2sync; rename {top} top_gate; design -stash tsrc;\n"
+    round-trip), then the scaffolded wrapper on top.
+
+    Initial-state policy (documented; soundness-checked by self-equivalence):
+    memories mapped to FFs, tri-state Z resolved to logic, every FF zero-init
+    (`setundef -zero -init`) so both copies start from the SAME state. Matches
+    the operational semantics of the official testbenches (no memory preload,
+    reset driven at start) and removes uncorrelated free initial bits, which
+    made even self-equivalence fail (RAM/ROM/alu before this fix)."""
+    pre = "proc; flatten; memory_map; tribuf -logic; opt_clean; async2sync; setundef -zero -init; "
+    return (f"read_verilog -sv {gold}; hierarchy -top {top}; {pre}rename {top} top_gold; design -stash gsrc;\n"
+            f"read_verilog -sv {gate}; hierarchy -top {top}; {pre}rename {top} top_gate; design -stash tsrc;\n"
             f"design -copy-from gsrc -as top_gold top_gold; design -copy-from tsrc -as top_gate top_gate;\n"
             f"read_verilog -sv wrap.sv; prep -top wrap")
 

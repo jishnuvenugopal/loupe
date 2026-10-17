@@ -1,0 +1,142 @@
+{
+ "machine": {
+  "host": "spark-cff9",
+  "arch": "aarch64",
+  "gpu": "GB10",
+  "cores": 20
+ },
+ "pins": {
+  "oss_cad_suite": "2026-10-16 arm64, 686594072 bytes (exact)",
+  "rtllm": "51ed553d0ffd32797a1a0a13e051656bf302c81f",
+  "yosys": "0.70+145",
+  "iverilog": "14.0 devel",
+  "verilator": "5.053 devel",
+  "sby": "0.70"
+ },
+ "gates": {
+  "G-D1": "tools verified",
+  "G-D2": "rtllm pin verified",
+  "G-D3": "proof classes recorded",
+  "G-D4": "kill rate computed",
+  "G-D5": "cross-sim table",
+  "G-D6": "spec oracle verdicts",
+  "G-D7": "appendix B reproduced; flip count 0"
+ },
+ "soundness": {
+  "refs_total": 50,
+  "class_counts": {
+   "UNBOUNDED-EQ": 41,
+   "null": 5,
+   "BMC-10-EQ-ONLY": 4
+  },
+  "both_engines_prove": 32
+ },
+ "power": {
+  "mutants": 528,
+  "formally_different": 438,
+  "tb_false_passes": 75,
+  "tb_false_pass_rate_pct": 17.1,
+  "strict_kill_rate_pct": 100.0,
+  "unknown_survivors": 2
+ },
+ "anchor": {
+  "rows": 290,
+  "tb_row_matches": 290,
+  "equiv_row_matches": 280,
+  "equiv_row_diffs_recording_only": 10,
+  "totals": {
+   "chatgpt4": {
+    "pass": 60,
+    "equiv": 39,
+    "diff": 14,
+    "err": 7
+   },
+   "chatgpt35": {
+    "pass": 37,
+    "equiv": 25,
+    "diff": 4,
+    "err": 8
+   }
+  },
+  "flips_bmc_to_unbounded_different": 0,
+  "bmc_equiv_rows_with_unbounded_proof": 64
+ },
+ "cross_sim": {
+  "pass_fail_disagreements": 0,
+  "pairs": {
+   "no_task|None": 5,
+   "compile_error|vl_compile_error": 61,
+   "compile_error|fail": 12,
+   "fail|fail": 111,
+   "pass|pass": 97,
+   "fail|vl_compile_error": 2,
+   "compile_error|pass": 1,
+   "timeout|timeout": 1
+  }
+ },
+ "spec_oracle": [
+  {
+   "spec_property": "accu: only valid samples accumulate (groups of 4)",
+   "case": "accu",
+   "subject": "reference",
+   "status": "FAIL",
+   "evidence": "/home/unnitools/runs/deep/spec/accu_reference/sby_accu_prop"
+  },
+  {
+   "spec_property": "width_8to16: valid_out is a one-cycle pulse",
+   "case": "width_8to16",
+   "subject": "reference",
+   "status": "PASS",
+   "evidence": "/home/unnitools/runs/deep/spec/width_8to16_reference/sby_w816_prop"
+  },
+  {
+   "spec_property": "width_8to16: same, on the GPT-4 t1 design",
+   "case": "width_8to16",
+   "subject": "gpt4t1",
+   "status": "FAIL",
+   "evidence": "/home/unnitools/runs/deep/spec/width_8to16_gpt4t1/sby_w816_prop"
+  },
+  {
+   "spec_property": "LIFObuffer: reset-while-full drops FULL",
+   "case": "LIFObuffer",
+   "subject": "reference",
+   "status": "FAIL",
+   "evidence": "/home/unnitools/runs/deep/spec/LIFObuffer_reference/sby_lifo_prop"
+  },
+  {
+   "spec_property": "fsm: sequence 1000011 must not MATCH",
+   "case": "fsm",
+   "subject": "reference",
+   "status": "PASS",
+   "evidence": "/home/unnitools/runs/deep/spec/fsm_reference/sby_fsm_prop"
+  },
+  {
+   "spec_property": "fsm: same, on the GPT-4 t2 design",
+   "case": "fsm",
+   "subject": "gpt4t2",
+   "status": "FAIL",
+   "evidence": "/home/unnitools/runs/deep/spec/fsm_gpt4t2/sby_fsm_prop"
+  },
+  {
+   "spec_property": "square_wave: cover wave_out=1 reachable (vacuity)",
+   "case": "square_wave",
+   "subject": "reference",
+   "status": "PASS",
+   "evidence": "/home/unnitools/runs/deep/spec/square_wave_reference/sby_sqw_prop"
+  },
+  {
+   "case": "square_wave",
+   "subject": "const0-mutant(F.6)",
+   "spec_property": "cover wave_out=1 reachable (vacuity)",
+   "status": "FAIL",
+   "evidence": "/home/unnitools/runs/deep/spec/square_wave_mut/sby_sqw_prop"
+  },
+  {
+   "case": "square_wave",
+   "subject": "const0-mutant(F.6)",
+   "spec_property": "official testbench verdict on the same mutant",
+   "status": "TB pass",
+   "evidence": "/home/unnitools/runs/deep/spec/square_wave_mut"
+  }
+ ]
+}
