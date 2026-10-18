@@ -138,5 +138,55 @@
    "status": "TB pass",
    "evidence": "/home/unnitools/runs/deep/spec/square_wave_mut"
   }
- ]
+ ],
+ "phase2": {
+  "repos_pinned": [
+   "RTLLM 51ed553",
+   "verilog-eval c498220",
+   "CodeV-R1 277ac46",
+   "VeriReason d215b7f"
+  ],
+  "ve_tasks": 156,
+  "codev_task_ids_equal": true,
+  "harness_fix_a_applied": "all 156 test copies"
+ },
+ "ve_gate_deep": {
+  "classes": {
+   "BMC-10-EQ-ONLY": 5,
+   "UNBOUNDED-EQ": 145,
+   "UNKNOWN": 6
+  },
+  "kept": 149,
+  "pilot_kept": 143,
+  "resolved_pilot_exclusions": [
+   "Prob021_mux256to1v",
+   "Prob030_popcount255",
+   "Prob108_rule90",
+   "Prob124_rule110",
+   "Prob144_conwaylife",
+   "Prob153_gshare"
+  ],
+  "still_excluded": [
+   "Prob095_review2015_fsmshift",
+   "Prob096_review2015_fsmseq",
+   "Prob099_m2014_q6c",
+   "Prob137_fsm_serial",
+   "Prob146_fsm_serialdata",
+   "Prob152_lemmings3",
+   "Prob155_lemmings4"
+  ],
+  "cross_sim_verilator": {
+   "pass": 155,
+   "vl_compile_error": 1
+  },
+  "cross_sim_disagreements": 0
+ },
+ "appendix_f": {
+  "tests": 7,
+  "reproduced": 7
+ },
+ "freeze": {
+  "tag": "scorer-v1 (local)",
+  "scorer_sha256": "results/pilot_repro/SCORER_SHA256"
+ }
 }

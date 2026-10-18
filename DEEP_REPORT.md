@@ -128,3 +128,35 @@ is now *proved per row* rather than bounded by a depth guess.
   `~/runs/deep/spec/spec_results.json`, all logs/traces under the same tree.
 - Local git history, one commit per gate (`git log` in `~/rtl-strict-eval`).
 - No evaluation sample was generated; nothing touches the pre-registration timeline.
+
+---
+
+# Addendum — continuation run (Phase 2 completion + Phase 3 deep + freeze)
+
+- **Phase 2 done**: verilog-eval `c498220`, CodeV-R1 `277ac46`, VeriReason `d215b7f`
+  cloned and pinned (`~/bench/PINS.txt`); 156/156/156 task files; CodeV task_ids ==
+  the VerilogEval set exactly; harness fix (a) applied to all 156 test copies.
+- **Deep VerilogEval gate**: classes across 156 tasks — 145 UNBOUNDED-EQ, 5 BMC-10-only,
+  6 read-errors. **Kept 149/156 vs the pilot's 143**: the pilot's six timeout/error
+  exclusions (`mux256to1v`, `popcount255`, `rule90`, `rule110`, `conwaylife`, `gshare`)
+  are now *proved* by PDR (five also by SMT-induction). Remaining exclusions match the
+  pilot's read-error set + `Prob099` (official TB does not compile; its self-equivalence
+  is nevertheless proved unbounded).
+- **Cross-simulator on VerilogEval**: 155 pass / 1 compile-error under Verilator;
+  **zero pass/fail disagreements** with Icarus. (Three bugs in my own Verilator wrapper
+  were found and fixed en route: top-module regex matching comments, missing `ref.sv`
+  in the compile, and Verilator's different pass-string.)
+- **`scorer/score.py`** frozen per brief §5 schema + proof classes; smoke-tested on
+  rtllm (pe t2 → UNBOUNDED-EQ; fsm t2 → DIFFERENT with counterexample VCD extracted)
+  and ve (Prob031_dff → UNBOUNDED-EQ). `depth.yaml` + `masks/` written.
+- **Appendix F**: all 7 directed tests reproduce their documented behaviour
+  (106/10; forbidden-sequence MATCH; held valid_out; rise+down together; 200/200 booth
+  pairs; const-0 square_wave passes the official TB; FULL stays high after reset).
+- **Freeze**: `results/pilot_repro/SCORER_SHA256`; local commit + tag `scorer-v1`
+  (push to the private REPO awaits the operator's `gh` sign-in, per rule 1).
+
+## What still blocks the parent brief on this machine (operator inputs needed)
+
+1. `gh` sign-in + REPO name → Phase 1b (push guard, first push) and pushing `scorer-v1`.
+2. sudo (or operator-run apt) → Phase 1 packages; docker group → containers (vLLM).
+3. Operator's `G0 approved` → Phase 8 generation (nothing generated until then).
