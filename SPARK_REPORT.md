@@ -5,19 +5,20 @@ Updated 18 Oct 2026, ~16:10 UTC. Machine `spark-cff9`. Repo
 
 ## 1. Status
 
-- Session completed: Phase 1b (koder scaffold), Phase 5 H0-b/c/d, Phase 6 step 5
-  (scoring-speed proxy), Phase 7 PREREG draft.
-- In progress (background): Phase 4 model downloads — the uplink to HF is
-  throttled (0.13–5 MB/s observed, ~1 MB/s typical); `models/fetch.sh` runs with
-  a 60 s retry loop, pid file `~/runs/fetch.pid`. Hash verification is scripted
-  (`models/verify_weights.py`) and reruns incrementally.
-- Blocked on operator: docker (user not in `docker` group, no passwordless
-  sudo) → Phase 1 apt bits, container pulls, **H0-a**, Phase 6 steps 1–4.
-- Last gates: G1-Spark passed (17 Oct, deep session: Appendix B reproduced
-  290/290 TB rows; deep upgrades recorded in `DEEP_REPORT.md`); H0 b/c/d passed
-  with evidence; **G0 not requested yet**.
+- Session completed: Phase 1b (koder scaffold), Phase 5 H0-b/c/d, Phase 6 step 4
+  (GRPO two-step trial, PASSED), Phase 6 step 5 (scoring-speed proxy), Phase 7
+  PREREG draft. **Phase 1 exit check PASSED** after the operator's docker fix.
+- In progress (background): Phase 4 model downloads (throttled uplink);
+  **H0-a watcher** (`h0/watch_h0a.sh`, pid `~/runs/h0a_watcher.pid`) fires in the
+  pinned PyTorch container as soon as the image + all four 3B checkpoints land,
+  commits and pushes `results/h0/h0a_weight_distance.json`.
+- Pending next interactive session: Phase 6 steps 1–3 shakedown generation
+  (harness ready: `shakedown/shakedown_run.py`; runs when 7B/3B weights land;
+  ~1–2 h GPU total), then PREREG "Measured before G0" refresh.
+- Last gates: G1-Spark passed; H0 b/c/d passed; GRPO trial lane green;
+  **G0 not requested yet**.
 - `STOP — waiting for operator review of PREREG.md and the message "G0 approved"`
-  (plus the operator inputs in §8).
+  (H0-a + shakedown numbers will land automatically/next session before that).
 
 ## 2. Machine
 
@@ -26,8 +27,11 @@ Updated 18 Oct 2026, ~16:10 UTC. Machine `spark-cff9`. Repo
 - EDA (pinned `oss-cad-suite-linux-arm64-20261016.tgz`, 686,594,072 bytes
   exact): Yosys 0.70+145, Icarus 14.0 (devel), Verilator 5.053 (devel),
   SymbiYosys 0.70.
-- Containers: docker 29.2.1 installed, daemon inaccessible to this user;
-  **no image pulled, no digests recorded** (Phase 1 step 4 pending).
+- Containers: docker 29.2.1, daemon accessible via `sg docker` (agent shells
+  predate the usermod). **vLLM image pulled**: `nvcr.io/nvidia/vllm@sha256:94e21552f644e0c1627464ba89d2f7a4ce7442e196f72afa0bb5d7fba23cbb03`
+  (20.4 GB). PyTorch `25.11-py3` pulling (digest recorded on arrival).
+  In-container stack: torch 2.12.0a0+5aff3928d8.nv26.05, vLLM 0.21.0+2325b6f0,
+  trl 1.15.0, peft 0.21.2.
 - Host venv `~/.venvs/host`: huggingface_hub 2.2.0, hf-xet 1.7.0, datasketch
   2.0.0, pyyaml 6.0.3, opentimestamps-client 0.7.2 (no apt needed — venv works
   without `python3-venv`; deviation recorded). `ots` CLI present for G0.
@@ -81,8 +85,9 @@ See `results/h0/H0.md` for the version with all file pointers.
 | item | value | evidence |
 |---|---|---|
 | scoring speed (proxy, 20 GPT-4 t1 designs, WORKERS=18) | 42.9 s total → 0.466 samples/s ≈ 2.1 s/sample; formal 96% of EDA time; mix 8 pass/8 fail/4 compile_error | `results/shakedown/scoring_speed.json`, `results/shakedown/README.md` |
-| 7B/3B generation throughput, cap hits, extraction rate | **not measured — docker blocked** | `results/shakedown/README.md` |
-| GRPO two-step | **not run — docker blocked** | — |
+| GRPO two-step (vLLM-container lane) | **PASSED**: trl 1.15.0 + peft 0.21.2 on vLLM 0.21.0; train 171.3 s (2 steps; 88.6/73.7 s per step); reward 17.1 s / 128 calls (~0.13 s/call); zero-advantage 0.812 (13/16 groups, matches TRL frac_reward_zero_std); mean reward 0.016→0.047; peak GPU 52.25 GiB | `results/shakedown/grpo_trial_S.json`, `grpo/train_grpo.py`, `grpo/reward.py` |
+| machinery smoke (gen_vllm.py, 1.5B, 2 prompts) | rows match §8 schema; seed + prompt_sha256 verified in-container | `~/runs/shakedown/machinery_smoke.jsonl` (deleted with phase) |
+| 7B/3B generation throughput, cap hits, extraction rate | pending weights (harness ready) | `shakedown/shakedown_run.py` |
 | overnight projection | cannot be pre-computed; adaptive check at Phase 8 step 4 proposed | `PREREG.md` §"Measured before G0" |
 
 ## 7. Deviations from the brief (each with reason)

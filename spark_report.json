@@ -7,7 +7,11 @@
     "ram_gb": 121,
     "gpu": "GB10",
     "disk_free_tb": 3.5,
-    "docker": {"version": "29.2.1", "daemon_accessible": false, "images_pulled": [], "digests": null},
+    "docker": {"version": "29.2.1", "daemon_accessible": true, "via": "sg docker (shells predate usermod)",
+              "images": {"vllm": "nvcr.io/nvidia/vllm@sha256:94e21552f644e0c1627464ba89d2f7a4ce7442e196f72afa0bb5d7fba23cbb03 (20.4GB)",
+                         "pytorch": "pulling (25.11-py3)"}},
+    "container_stack": {"torch": "2.12.0a0+5aff3928d8.nv26.05", "vllm": "0.21.0+2325b6f0",
+                         "trl": "1.15.0", "peft": "0.21.2"},
     "eda": {"suite": "oss-cad-suite-linux-arm64-20261016", "bytes": 686594072,
             "yosys": "0.70+145", "icarus": "14.0 (devel)", "verilator": "5.053 (devel)", "sby": "0.70"},
     "host_venv": {"python": "3.12.3", "huggingface_hub": "2.2.0", "hf_xet": "1.7.0",
@@ -42,7 +46,7 @@
     "datasets_downloaded": {"tb": "1149 rows @42823db", "tb_simple": "743 rows @61cc6a2"}
   },
   "h0": {
-    "a": {"status": "blocked_on_docker", "script": "h0/h0a_weight_distance.py",
+    "a": {"status": "watcher armed (pytorch image + 4x3B weights pending)", "script": "h0/h0a_weight_distance.py",
           "number": null},
     "b": {"status": "done", "where": "PREREG.md #Fidelity gate G1b"},
     "c": {"status": "done", "system_sha256_match": true,
@@ -58,23 +62,28 @@
                              "samples_per_s": 0.466, "s_per_sample": 2.1,
                              "formal_share_of_eda_time": 0.96,
                              "evidence": "results/shakedown/scoring_speed.json"},
-    "generation_throughput": null, "grpo_two_step": null,
-    "blocked_on": "docker group membership (operator)"
+    "grpo_two_step": {"lane": "vllm-container colocate", "passed": true,
+                       "trl": "1.15.0", "peft": "0.21.2", "vllm": "0.21.0+2325b6f0",
+                       "train_s": 171.3, "reward_wall_s": 17.1, "reward_calls": 128,
+                       "zero_advantage_fraction": 0.812, "peak_gpu_gib": 52.25,
+                       "evidence": "results/shakedown/grpo_trial_S.json"},
+    "machinery_smoke": "gen_vllm.py schema verified in-container",
+    "generation_throughput": "pending weights (harness ready)",
+    "blocked_on": "model downloads (uplink)"
   },
   "deviations": [
-    "apt/docker-group operator leftovers block containers (H0-a, Phase 6 steps 1-4)",
     "HF_HUB_ENABLE_HF_TRANSFER deprecated in hub 2.2.0; HF_XET_HIGH_PERFORMANCE stalls here; default xet used",
     "model fetch reordered smallest-first (pins unchanged)",
     "Phase 6 step 5 timed on RTLLM-shipped GPT-4 designs (timing proxy, not study-arm samples)",
     "VE gate 149/156 and RTLLM 40 used in PREREG per frozen deep results (was 143/38 in brief A14)",
     "koder/STATE.md initialised with current facts (Phases 2-3 already done)",
     "_simple dataset file is processed_entries.jsonl (rows/keys match pin)",
-    "h0/ and shakedown/ script dirs added to layout"
+    "h0/ and shakedown/ script dirs added to layout",
+    "trl pick: 1.16.0 declares vllm 0.22-0.31 (container has 0.21) -> trl 1.15.0 (0.21-0.31) per brief rule; max_prompt_length not offered in trl 1.15 so not set",
+    "agent shells predate usermod -> sg docker used; GRPO trial needed /bench and /root/eda container mounts (frozen code untouched)"
   ],
   "open_questions": [
-    "operator: docker group + apt packages (Phase 1)",
-    "G0 sequencing: shakedown before approval vs adaptive throughput check in Phase 8",
-    "H0-a fallback if docker stays blocked (torch-cpu in venv, or run on Halo)",
-    "Phase 4 completes in background; exit check = 8x verified in models.yaml"
+    "G0 sequencing: shakedown steps 1-3 run next session when weights land; then PREREG refresh before approval (or adaptive check in Phase 8)",
+    "Phase 4 completes in background; exit check = 8x verified in models.yaml; H0-a watcher auto-runs+pushes"
   ]
 }

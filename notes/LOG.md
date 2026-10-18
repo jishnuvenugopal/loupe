@@ -172,3 +172,12 @@
   Lane verdict: vLLM-container colocate WORKS; pytorch+trl==0.26.1 fallback not needed.
   Fixes en route (recorded): /bench + /root/eda mounts for in-container reward; GRPO_WORK_DIR
   resolution; conditional max_prompt_length.
+
+## 2026-10-18 18:55-19:00 — interim close after docker unblock
+- H0-a watcher armed (h0/watch_h0a.sh, pid ~/runs/h0a_watcher.pid): waits for the pytorch
+  image + all four 3B checkpoints, runs h0/h0a_weight_distance.py in the pinned container,
+  commits+pushes if the tree is otherwise clean. Log: ~/runs/h0a_watcher.log.
+- Remaining for next interactive session: shakedown steps 1-3 once 7B/3B-RL weights land
+  (shakedown/shakedown_run.py, ~1-2h GPU total), PREREG "Measured before G0" refresh,
+  pytorch image digest record, 8x weights verification.
+- SPARK_REPORT.md + spark_report.json updated (docker lane results, deviations, open items).
