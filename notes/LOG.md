@@ -492,3 +492,7 @@
 - 2026-10-19 00:51 — [chain] A18 §8 chain start (pid 270854, force_fail=C2, C2 deadline 09:00)
 - 2026-10-19 00:51 — [chain] C1 PASS: items 1-5+7 committed, pushed, PREREG sha256 final
 - 2026-10-19 00:51 — [chain] STOP — C2 failed: forced failure (dry run)
+- 2026-10-19 00:52 — [chain] A18 §8 chain start (pid 271081, force_fail=none, C2 deadline 09:00)
+- 2026-10-19 00:52 — [chain] C1 PASS: items 1-5+7 committed, pushed, PREREG sha256 final
+- 2026-10-19 00:52 — [chain] C2: waiting for 8/8 weight verification (cut-off 09:00)
+- 2026-10-19 00:52 — [chain] C2 PASS: all 8 weight sets hash-verified (8 of 8) at 2026-10-19 00:52
