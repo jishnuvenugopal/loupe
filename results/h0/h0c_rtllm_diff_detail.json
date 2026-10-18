@@ -1,0 +1,38 @@
+{
+ "alu": {
+  "n_change_blocks": 1,
+  "first": "replace: v2.1=[\"Inside the always block, a case statement is used to perform the appropriate operation based on the control signal (aluc). The result is assigned to the register (res) accordingly. For shift operations (SLL, SRL, SRA, SLLV, SRLV, SRAV), the shift amount is determined by the value of 'a' or 'a[4:0]'. For the LUI operation, the lower 16 bits of 'a' are concatenated with 16 zeros to form the result.\"] v2.0=[\"Inside the always block, a case statement is used to perform the appropriate operation based on the control signal (aluc). The result is assigned to the register (res) accordingly. For shift operations (SLL, SRL, SRA, SLLV, SRLV, SRAV), the shift amount is determined by the value of 'a' or 'a[4:0]'. For the LUI operation, the upper 16 bits of 'a' are concatenated with 16 zeros to form the result.\"]"
+ },
+ "barrel_shifter": {
+  "n_change_blocks": 4,
+  "first": "replace: v2.1=['    An 8-bit logical right barrel shifter. This barrel shifter takes an 8-bit input and shifts the bits to the right based on a 3-bit control signal. Vacated most-significant bit positions are filled with 0. No rotation is performed.'] v2.0=['    A barrel shifter for rotating bits efficiently. This 8-bit barrel shifter takes an 8-bit input and shifts or rotates the bits based on a 3-bit control signal.']"
+ },
+ "freq_divbyeven": {
+  "n_change_blocks": 3,
+  "first": "replace: v2.1=['    freq_divbyeven'] v2.0=['    freq_diveven']"
+ },
+ "freq_divbyfrac": {
+  "n_change_blocks": 1,
+  "first": "replace: v2.1=['The module performs fractional frequency division by counting clock cycles and generating intermediate divided clock signals. For 3.5x division:'] v2.0=['The module performs fractional frequency division by counting clock cycles and generating an intermediate divided clock signal. For 3.5x division:']"
+ },
+ "freq_divbyodd": {
+  "n_change_blocks": 2,
+  "first": "replace: v2.1=['Two counters, cnt1 and cnt2, are used for tracking the rising and falling edges of the clock. Each counter counts from 0 up to NUM_DIV - 1 and then wraps back to 0.'] v2.0=['Two counters, cnt1 and cnt2, are used for tracking the rising and falling edges of the clock. Each counter counts up to NUM_DIV - 1.']"
+ },
+ "radix2_div": {
+  "n_change_blocks": 2,
+  "first": "delete: v2.1=['    res_ready: 1-bit indicates that the result has been accepted.'] v2.0=[]"
+ },
+ "sequence_detector": {
+  "n_change_blocks": 2,
+  "first": "replace: v2.1=['    rst_n: Active-low reset signal to initialize the state machine.'] v2.0=['    reset_n: Reset signal to initialize the state machine.']"
+ },
+ "serial2parallel": {
+  "n_change_blocks": 2,
+  "first": "replace: v2.1=['Implement a series-parallel conversion circuit. It receives a serial input signal \"din_serial\" along with a control signal \"din_valid\" indicating the validity of the input data. The module operates on the rising edge of the clock signal \"clk\" and uses active-low reset. The input din_serial is a single-bit data, and after the module receives 8 input data, the output dout_parallel outputs the 8-bit data on the next clock cycle(The serial input values are sequentially placed in dout_parallel from the most significant bit to the least significant bit), and the dout_valid is set to 1. This output clock cycle is not counted as the first input of the next 8-bit group.'] v2.0=['Implement a series-parallel conversion circuit. It receives a serial input signal \"din_serial\" along with a control signal \"din_valid\" indicating the validity of the input data. The module operates on the rising edge of the clock signal \"clk\" and uses a synchronous design. The input din_serial is a single-bit data, and when the module receives 8 input data, the output dout_parallel outputs the 8-bit data(The serial input values are sequentially placed in dout_parallel from the most significant bit to the least significant bit), and the dout_valid is set to 1.']"
+ },
+ "signal_generator": {
+  "n_change_blocks": 3,
+  "first": "replace: v2.1=['Implement a Triangle Wave signal generator module that generates a waveform by incrementing and decrementing a 5-bit signal named \"wave\". The waveform cycles between 0 and 31, which is incremented or decremented by 1. The waveform holds one extra clock cycle at both 0 and 31 before changing direction.'] v2.0=['Implement a Triangle Wave signal generator module that generates a waveform by incrementing and decrementing a 5-bit signal named \"wave\". The waveform cycles between 0 and 31, which is incremented or decremented by 1.']"
+ }
+}

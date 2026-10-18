@@ -1,0 +1,23 @@
+{
+ "params": {
+  "ngram_words": 5,
+  "num_perm": 128,
+  "jaccard_threshold": 0.8,
+  "exact_rule": "whitespace-normalised equality"
+ },
+ "n_benchmark_specs": 206,
+ "datasets": {
+  "tb": {
+   "path": "/home/unnitools/hf/hub/datasets--Nellyw888--VeriReason-RTL-Coder_7b_reasoning_tb/snapshots/42823db968114c25da260dece0e4bea8ab20d573/train_tb_filtered.jsonl",
+   "n_rows": 1149,
+   "n_overlapping_rows": 0,
+   "overlaps": []
+  },
+  "tb_simple": {
+   "path": "/home/unnitools/hf/hub/datasets--Nellyw888--VeriReason-RTL-Coder_7b_reasoning_tb_simple/snapshots/61cc6a2a326dc96cb93bceb0e2040b953f0cb0a5/processed_entries.jsonl",
+   "n_rows": 743,
+   "n_overlapping_rows": 0,
+   "overlaps": []
+  }
+ }
+}

@@ -72,3 +72,38 @@
 - Machine note for later phases: docker daemon NOT accessible (user not in docker group; no
   passwordless sudo) -> H0-a and Phase 6 container steps blocked on operator. python3 -m venv works
   without apt python3-venv (tested in /tmp; pip 24.0). Disk 3.5T free.
+
+## 2026-10-18 15:05-15:30 — Phase 4 (models) started; network is the bottleneck
+- Host venv built without apt (python3 -m venv works; pip 24.0): huggingface_hub 2.2.0 +
+  hf_transfer 0.1.9 + hf-xet 1.7.0 + pyyaml + datasketch 2.0.0 + opentimestamps-client 0.7.2.
+  HF_HOME=~/hf set in ~/.bashrc. NOTE: HF_HUB_ENABLE_HF_TRANSFER is a no-op in hub 2.2.0
+  (deprecated); high-performance xet (HF_XET_HIGH_PERFORMANCE=1) STALLS on this network
+  (0-byte incompletes); default xet is the working config.
+- Throughput measured: single stream 0.13-0.4 MB/s (HF + GitHub); parallel streams do NOT
+  aggregate (16x8MB curl test = 0.35 MB/s total); earlier runs peaked ~5 MB/s. Link fluctuates.
+- models/fetch.sh: sequential resumable fetch of all 8 pinned revisions, smallest-first
+  (1.5B, 3B, 3B-Instruct, 3B RL, 3B SFT, 7B base, 7B Distill, 7B RL), 60s retry loop.
+  Operational ordering choice only; pins unchanged. Running as pid file ~/runs/fetch.pid.
+- Incident: a dlbench child process survived its kill and a second fetch loop ran concurrently
+  15:16-15:29 (split bandwidth, shared log); all fetchers killed by explicit PID at 15:29,
+  single fetcher restarted. Blobs use atomic renames; every file will be sha256-verified vs
+  the ?blobs=true API regardless, so no integrity risk carries forward.
+- Both GRPO datasets downloaded at pinned revisions (1149 + 743 rows; _simple's file is
+  processed_entries.jsonl, not train_tb_filtered.jsonl - recorded).
+
+## 2026-10-18 15:25-15:45 — Phase 5: H0-b/c/d done; H0-a blocked on docker
+- H0-c (prompts/build_prompts.py): system prompt sha256s recomputed from pinned sources MATCH
+  Appendix D1/D2 exactly. Built prompts/built/{codev,verireason}_{ve,rtllm}.jsonl (156+50 rows
+  each, prompt_sha256 per row) + prompts/SHA256SUMS. RTLLM v2.1 vs CodeV v2.0: 41/50 identical,
+  9 differ (alu, barrel_shifter, freq_divbyeven, freq_divbyfrac, freq_divbyodd, radix2_div,
+  sequence_detector, serial2parallel, signal_generator) -> results/h0/h0c_rtllm_diff.json.
+- H0-d oracle (h0/h0d_oracle.py): 30 seeded rows (random.Random(0)), CodeV extractor + Icarus:
+  30/30 reproduce tb_result byte-exactly -> tb_result is a valid reward oracle.
+  results/h0/h0d_oracle.json; per-row evidence ~/runs/h0d_oracle/.
+- H0-d contamination (h0/h0d_contamination.py): MinHash 5-gram/128perm/J>=0.8 + normalized
+  exact, both datasets vs 206 specs; positive control green; 0 overlaps in both datasets;
+  closest pair J < 0.3. results/h0/h0d_contamination.json + h0d_closest_pairs.json.
+- H0-a: BLOCKED - docker daemon inaccessible (user not in docker group; no passwordless sudo;
+  Phase 1 operator leftover). Script h0/h0a_weight_distance.py is written and ready; it runs in
+  the pinned pytorch container. No H0-a number exists yet. results/h0/H0.md records all four
+  answers with file pointers.

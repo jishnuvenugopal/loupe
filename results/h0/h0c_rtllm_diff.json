@@ -1,0 +1,55 @@
+{
+ "rtllm_v21_commit": "51ed553d0ffd32797a1a0a13e051656bf302c81f",
+ "codev_rtllm2_jsonl": "CodeV-R1@277ac46 test/testbench/RTLLM_v2.0/rtllm2.jsonl",
+ "n_designs": 50,
+ "exact_equal": 41,
+ "equal_after_whitespace_strip": 0,
+ "different_count": 9,
+ "different": [
+  {
+   "task_id": "alu",
+   "v21_len": 2753,
+   "codev_v20_len": 2752
+  },
+  {
+   "task_id": "barrel_shifter",
+   "v21_len": 1780,
+   "codev_v20_len": 1490
+  },
+  {
+   "task_id": "freq_divbyeven",
+   "v21_len": 1346,
+   "codev_v20_len": 1266
+  },
+  {
+   "task_id": "freq_divbyfrac",
+   "v21_len": 1489,
+   "codev_v20_len": 1329
+  },
+  {
+   "task_id": "freq_divbyodd",
+   "v21_len": 1402,
+   "codev_v20_len": 1105
+  },
+  {
+   "task_id": "radix2_div",
+   "v21_len": 2176,
+   "codev_v20_len": 2096
+  },
+  {
+   "task_id": "sequence_detector",
+   "v21_len": 1437,
+   "codev_v20_len": 1429
+  },
+  {
+   "task_id": "serial2parallel",
+   "v21_len": 1671,
+   "codev_v20_len": 1369
+  },
+  {
+   "task_id": "signal_generator",
+   "v21_len": 1764,
+   "codev_v20_len": 1587
+  }
+ ]
+}

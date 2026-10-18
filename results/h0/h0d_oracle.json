@@ -1,0 +1,343 @@
+{
+ "dataset": "Nellyw888/VeriReason-RTL-Coder_7b_reasoning_tb@42823db968114c25da260dece0e4bea8ab20d573",
+ "n_rows": 1149,
+ "seed": 0,
+ "sampled_rows": [
+  82,
+  151,
+  194,
+  202,
+  206,
+  285,
+  286,
+  300,
+  418,
+  447,
+  513,
+  530,
+  577,
+  621,
+  635,
+  647,
+  676,
+  724,
+  733,
+  788,
+  829,
+  861,
+  889,
+  966,
+  976,
+  995,
+  1033,
+  1047,
+  1090,
+  1146
+ ],
+ "tally": {
+  "reproduce": 30
+ },
+ "exact_reproduce": 30,
+ "verdicts": [
+  {
+   "id": "90",
+   "row": 82,
+   "extracted_chars": 133,
+   "verdict": "reproduce",
+   "exact": true,
+   "normalized": true,
+   "got_lines": 101,
+   "want_lines": 101
+  },
+  {
+   "id": "170",
+   "row": 151,
+   "extracted_chars": 686,
+   "verdict": "reproduce",
+   "exact": true,
+   "normalized": true,
+   "got_lines": 512,
+   "want_lines": 512
+  },
+  {
+   "id": "218",
+   "row": 194,
+   "extracted_chars": 139,
+   "verdict": "reproduce",
+   "exact": true,
+   "normalized": true,
+   "got_lines": 100,
+   "want_lines": 100
+  },
+  {
+   "id": "227",
+   "row": 202,
+   "extracted_chars": 145,
+   "verdict": "reproduce",
+   "exact": true,
+   "normalized": true,
+   "got_lines": 100,
+   "want_lines": 100
+  },
+  {
+   "id": "234",
+   "row": 206,
+   "extracted_chars": 224,
+   "verdict": "reproduce",
+   "exact": true,
+   "normalized": true,
+   "got_lines": 100,
+   "want_lines": 100
+  },
+  {
+   "id": "321",
+   "row": 285,
+   "extracted_chars": 1471,
+   "verdict": "reproduce",
+   "exact": true,
+   "normalized": true,
+   "got_lines": 100,
+   "want_lines": 100
+  },
+  {
+   "id": "322",
+   "row": 286,
+   "extracted_chars": 189,
+   "verdict": "reproduce",
+   "exact": true,
+   "normalized": true,
+   "got_lines": 100,
+   "want_lines": 100
+  },
+  {
+   "id": "340",
+   "row": 300,
+   "extracted_chars": 382,
+   "verdict": "reproduce",
+   "exact": true,
+   "normalized": true,
+   "got_lines": 102,
+   "want_lines": 102
+  },
+  {
+   "id": "473",
+   "row": 418,
+   "extracted_chars": 204,
+   "verdict": "reproduce",
+   "exact": true,
+   "normalized": true,
+   "got_lines": 100,
+   "want_lines": 100
+  },
+  {
+   "id": "504",
+   "row": 447,
+   "extracted_chars": 159,
+   "verdict": "reproduce",
+   "exact": true,
+   "normalized": true,
+   "got_lines": 180,
+   "want_lines": 180
+  },
+  {
+   "id": "582",
+   "row": 513,
+   "extracted_chars": 232,
+   "verdict": "reproduce",
+   "exact": true,
+   "normalized": true,
+   "got_lines": 100,
+   "want_lines": 100
+  },
+  {
+   "id": "601",
+   "row": 530,
+   "extracted_chars": 402,
+   "verdict": "reproduce",
+   "exact": true,
+   "normalized": true,
+   "got_lines": 101,
+   "want_lines": 101
+  },
+  {
+   "id": "654",
+   "row": 577,
+   "extracted_chars": 242,
+   "verdict": "reproduce",
+   "exact": true,
+   "normalized": true,
+   "got_lines": 100,
+   "want_lines": 100
+  },
+  {
+   "id": "702",
+   "row": 621,
+   "extracted_chars": 176,
+   "verdict": "reproduce",
+   "exact": true,
+   "normalized": true,
+   "got_lines": 100,
+   "want_lines": 100
+  },
+  {
+   "id": "718",
+   "row": 635,
+   "extracted_chars": 497,
+   "verdict": "reproduce",
+   "exact": true,
+   "normalized": true,
+   "got_lines": 100,
+   "want_lines": 100
+  },
+  {
+   "id": "730",
+   "row": 647,
+   "extracted_chars": 125,
+   "verdict": "reproduce",
+   "exact": true,
+   "normalized": true,
+   "got_lines": 100,
+   "want_lines": 100
+  },
+  {
+   "id": "764",
+   "row": 676,
+   "extracted_chars": 68,
+   "verdict": "reproduce",
+   "exact": true,
+   "normalized": true,
+   "got_lines": 100,
+   "want_lines": 100
+  },
+  {
+   "id": "820",
+   "row": 724,
+   "extracted_chars": 465,
+   "verdict": "reproduce",
+   "exact": true,
+   "normalized": true,
+   "got_lines": 100,
+   "want_lines": 100
+  },
+  {
+   "id": "834",
+   "row": 733,
+   "extracted_chars": 418,
+   "verdict": "reproduce",
+   "exact": true,
+   "normalized": true,
+   "got_lines": 100,
+   "want_lines": 100
+  },
+  {
+   "id": "898",
+   "row": 788,
+   "extracted_chars": 117,
+   "verdict": "reproduce",
+   "exact": true,
+   "normalized": true,
+   "got_lines": 100,
+   "want_lines": 100
+  },
+  {
+   "id": "945",
+   "row": 829,
+   "extracted_chars": 405,
+   "verdict": "reproduce",
+   "exact": true,
+   "normalized": true,
+   "got_lines": 100,
+   "want_lines": 100
+  },
+  {
+   "id": "984",
+   "row": 861,
+   "extracted_chars": 207,
+   "verdict": "reproduce",
+   "exact": true,
+   "normalized": true,
+   "got_lines": 100,
+   "want_lines": 100
+  },
+  {
+   "id": "1021",
+   "row": 889,
+   "extracted_chars": 255,
+   "verdict": "reproduce",
+   "exact": true,
+   "normalized": true,
+   "got_lines": 100,
+   "want_lines": 100
+  },
+  {
+   "id": "1107",
+   "row": 966,
+   "extracted_chars": 701,
+   "verdict": "reproduce",
+   "exact": true,
+   "normalized": true,
+   "got_lines": 211,
+   "want_lines": 211
+  },
+  {
+   "id": "1117",
+   "row": 976,
+   "extracted_chars": 341,
+   "verdict": "reproduce",
+   "exact": true,
+   "normalized": true,
+   "got_lines": 100,
+   "want_lines": 100
+  },
+  {
+   "id": "1138",
+   "row": 995,
+   "extracted_chars": 445,
+   "verdict": "reproduce",
+   "exact": true,
+   "normalized": true,
+   "got_lines": 103,
+   "want_lines": 103
+  },
+  {
+   "id": "1179",
+   "row": 1033,
+   "extracted_chars": 207,
+   "verdict": "reproduce",
+   "exact": true,
+   "normalized": true,
+   "got_lines": 200,
+   "want_lines": 200
+  },
+  {
+   "id": "1195",
+   "row": 1047,
+   "extracted_chars": 166,
+   "verdict": "reproduce",
+   "exact": true,
+   "normalized": true,
+   "got_lines": 100,
+   "want_lines": 100
+  },
+  {
+   "id": "1246",
+   "row": 1090,
+   "extracted_chars": 230,
+   "verdict": "reproduce",
+   "exact": true,
+   "normalized": true,
+   "got_lines": 110,
+   "want_lines": 110
+  },
+  {
+   "id": "1306",
+   "row": 1146,
+   "extracted_chars": 271,
+   "verdict": "reproduce",
+   "exact": true,
+   "normalized": true,
+   "got_lines": 326,
+   "want_lines": 326
+  }
+ ]
+}
