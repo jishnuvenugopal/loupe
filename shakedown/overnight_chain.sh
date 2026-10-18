@@ -66,7 +66,7 @@ for f in scoring/extract.py scoring/stats.py scoring/run_scoring.py \
     log "C1 mismatch: $f prereg=$want disk=$got"; bad=1
   fi
 done
-[ -n "$(git status --porcelain)" ] && { log "C1: working tree not clean"; bad=1; }
+[ -n "$(git status --porcelain -- . ':!notes/LOG.md')" ] && { log "C1: working tree not clean (excluding notes/LOG.md, which this chain writes)"; bad=1; }
 git fetch origin spark >/dev/null 2>&1
 [ "$(git rev-parse HEAD)" = "$(git rev-parse origin/spark)" ] || { log "C1: HEAD != origin/spark"; bad=1; }
 [ "$bad" = 0 ] || stop C1 "code/PREREG/push consistency check failed (see log above)"
