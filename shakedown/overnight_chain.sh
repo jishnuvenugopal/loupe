@@ -20,6 +20,7 @@ set -uo pipefail
 REPO=~/rtl-strict-eval
 PY=$HOME/.venvs/host/bin/python
 PY3=python3
+OTS=$(command -v ots || echo "$HOME/.venvs/host/bin/ots")
 cd "$REPO"
 LOGF=notes/LOG.md
 FORCE_FAIL=${CHAIN_FORCE_FAIL:-none}
@@ -144,7 +145,7 @@ lsr=$(git ls-remote origin refs/tags/g0-prereg)
 echo "$lsr" | grep -q "$tagsha" || stop G0TAG "ls-remote does not show $tagsha for g0-prereg"
 log "G0 step 1 PASS: tag g0-prereg = $tagsha pushed and visible via ls-remote"
 date +%s > ~/runs/ots_stamp_time.txt
-if ! ots stamp PREREG.md; then
+if ! "$OTS" stamp PREREG.md; then
   stop OTS "ots stamp PREREG.md failed"
 fi
 [ -f PREREG.md.ots ] || stop OTS "ots stamp produced no PREREG.md.ots"
@@ -153,7 +154,7 @@ push_all "A18 G0 steps: tag g0-prereg pushed (ls-remote verified) + PREREG.md.ot
 
 # ots upgrade ~6 h after the stamp, independent of the rest of the chain
 ( sleep $((6*3600 - ($(date +%s) - $(cat ~/runs/ots_stamp_time.txt)) )); \
-  cd "$REPO" && ots upgrade PREREG.md.ots && git add PREREG.md.ots && \
+  cd "$REPO" && "$OTS" upgrade PREREG.md.ots && git add PREREG.md.ots && \
   git commit -qm "A18: ots upgrade PREREG.md.ots (T_stamp+6h)" && \
   git push origin spark && echo "- $(date '+%Y-%m-%d %H:%M') — [chain] ots upgrade committed and pushed" >> "$LOGF" ) \
   > ~/runs/ots_upgrade.log 2>&1 &
