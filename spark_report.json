@@ -284,9 +284,9 @@
   }
  ],
  "chain": {
-  "last_update": "2026-10-19 00:51:32",
-  "phase": "C2",
-  "status": "FAILED: forced failure (dry run)",
-  "stop": "STOP \u2014 C2 failed: forced failure (dry run)"
+  "last_update": "dry run complete (forced C2): stop+log+push verified",
+  "phase": "launch",
+  "status": "real chain starting in tmux",
+  "stop": null
  }
 }
