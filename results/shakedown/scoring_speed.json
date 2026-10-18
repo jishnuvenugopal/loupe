@@ -1,0 +1,663 @@
+{
+ "note": "timing proxy on RTLLM-shipped GPT-4 t1 designs (see module docstring)",
+ "n_samples": 20,
+ "workers": 18,
+ "total_wall_s": 42.9,
+ "per_sample_wall_s": {
+  "mean": 2.49,
+  "p50": 0.17,
+  "p95": 1.46,
+  "max": 42.87
+ },
+ "aggregate_stage_s": {
+  "testbench": 0.5,
+  "formal": 47.4,
+  "synth_lint": 1.1,
+  "other": 0.0
+ },
+ "throughput_samples_per_s_at_workers": 0.4664,
+ "verdict_tally": {
+  "pass": 8,
+  "fail": 8,
+  "compile_error": 4,
+  "timeout": 0,
+  "no_task": 0
+ },
+ "samples": [
+  {
+   "i": 0,
+   "task": "JC_counter",
+   "wall_s": 0.11,
+   "rc": 0,
+   "verdict": {
+    "task": "JC_counter",
+    "bench": "rtllm",
+    "module_name_ok": true,
+    "tb": "fail",
+    "nonvacuous": false,
+    "extract_ok": true,
+    "lint_warnings": 2,
+    "synth": {
+     "latch": false
+    },
+    "equiv": "skipped",
+    "depth": 10,
+    "reset": null,
+    "scorer_sha256": "14d39dfdad52ffd57aec628355b9cee2d09001e330096dbe0c8cf8986977df52"
+   },
+   "stages": {
+    "testbench": 0.020111194986384362,
+    "formal": 0.010517760005313903,
+    "synth_lint": 0.047229631993104704,
+    "other": 0.0,
+    "calls": 5
+   }
+  },
+  {
+   "i": 1,
+   "task": "RAM",
+   "wall_s": 0.21,
+   "rc": 0,
+   "verdict": {
+    "task": "RAM",
+    "bench": "rtllm",
+    "module_name_ok": true,
+    "tb": "fail",
+    "nonvacuous": false,
+    "extract_ok": true,
+    "lint_warnings": 2,
+    "synth": {
+     "latch": false
+    },
+    "equiv": "skipped",
+    "depth": 10,
+    "reset": null,
+    "scorer_sha256": "14d39dfdad52ffd57aec628355b9cee2d09001e330096dbe0c8cf8986977df52"
+   },
+   "stages": {
+    "testbench": 0.04153444200346712,
+    "formal": 0.010201373996096663,
+    "synth_lint": 0.12563470499299,
+    "other": 0.0,
+    "calls": 5
+   }
+  },
+  {
+   "i": 2,
+   "task": "accu",
+   "wall_s": 0.7,
+   "rc": 0,
+   "verdict": {
+    "task": "accu",
+    "bench": "rtllm",
+    "module_name_ok": true,
+    "tb": "pass",
+    "nonvacuous": true,
+    "extract_ok": true,
+    "lint_warnings": 2,
+    "synth": {
+     "latch": false
+    },
+    "reset": {
+     "reset": "rst_n",
+     "active": 0
+    },
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT",
+    "equiv": "different",
+    "depth": 10,
+    "cex": "/home/unnitools/runs/shakedown_timing/02_accu/cex",
+    "scorer_sha256": "14d39dfdad52ffd57aec628355b9cee2d09001e330096dbe0c8cf8986977df52"
+   },
+   "stages": {
+    "testbench": 0.022857632997329347,
+    "formal": 0.5708325910090934,
+    "synth_lint": 0.04890136601170525,
+    "other": 0.0,
+    "calls": 8
+   }
+  },
+  {
+   "i": 3,
+   "task": "adder_16bit",
+   "wall_s": 1.46,
+   "rc": 0,
+   "verdict": {
+    "task": "adder_16bit",
+    "bench": "rtllm",
+    "module_name_ok": true,
+    "tb": "pass",
+    "nonvacuous": true,
+    "extract_ok": true,
+    "lint_warnings": 2,
+    "synth": {
+     "latch": false
+    },
+    "reset": {
+     "reset": null
+    },
+    "bmc": "equivalent",
+    "pdr": "equivalent",
+    "tind": "equivalent",
+    "class": "UNBOUNDED-EQ",
+    "equiv": "equivalent",
+    "depth": 10,
+    "cex": null,
+    "scorer_sha256": "14d39dfdad52ffd57aec628355b9cee2d09001e330096dbe0c8cf8986977df52"
+   },
+   "stages": {
+    "testbench": 0.030481680994853377,
+    "formal": 1.355021946990746,
+    "synth_lint": 0.043996525011607446,
+    "other": 0.0,
+    "calls": 8
+   }
+  },
+  {
+   "i": 4,
+   "task": "adder_32bit",
+   "wall_s": 0.1,
+   "rc": 0,
+   "verdict": {
+    "task": "adder_32bit",
+    "bench": "rtllm",
+    "module_name_ok": true,
+    "tb": "compile_error",
+    "nonvacuous": false,
+    "extract_ok": true,
+    "lint_warnings": 2,
+    "synth": null,
+    "equiv": "skipped",
+    "depth": 10,
+    "reset": null,
+    "scorer_sha256": "14d39dfdad52ffd57aec628355b9cee2d09001e330096dbe0c8cf8986977df52"
+   },
+   "stages": {
+    "testbench": 0.01025100500555709,
+    "formal": 0.012913590995594859,
+    "synth_lint": 0.047414775006473064,
+    "other": 0.0,
+    "calls": 4
+   }
+  },
+  {
+   "i": 5,
+   "task": "adder_8bit",
+   "wall_s": 0.69,
+   "rc": 0,
+   "verdict": {
+    "task": "adder_8bit",
+    "bench": "rtllm",
+    "module_name_ok": true,
+    "tb": "pass",
+    "nonvacuous": true,
+    "extract_ok": true,
+    "lint_warnings": 2,
+    "synth": {
+     "latch": false
+    },
+    "reset": {
+     "reset": null
+    },
+    "bmc": "equivalent",
+    "pdr": "equivalent",
+    "tind": "equivalent",
+    "class": "UNBOUNDED-EQ",
+    "equiv": "equivalent",
+    "depth": 10,
+    "cex": null,
+    "scorer_sha256": "14d39dfdad52ffd57aec628355b9cee2d09001e330096dbe0c8cf8986977df52"
+   },
+   "stages": {
+    "testbench": 0.02454642301017884,
+    "formal": 0.5693946550018154,
+    "synth_lint": 0.04708621298777871,
+    "other": 0.0,
+    "calls": 8
+   }
+  },
+  {
+   "i": 6,
+   "task": "adder_pipe_64bit",
+   "wall_s": 0.13,
+   "rc": 0,
+   "verdict": {
+    "task": "adder_pipe_64bit",
+    "bench": "rtllm",
+    "module_name_ok": true,
+    "tb": "compile_error",
+    "nonvacuous": false,
+    "extract_ok": true,
+    "lint_warnings": 2,
+    "synth": {
+     "latch": false
+    },
+    "equiv": "error",
+    "depth": 10,
+    "scorer_sha256": "14d39dfdad52ffd57aec628355b9cee2d09001e330096dbe0c8cf8986977df52"
+   },
+   "stages": {
+    "testbench": 0.014467809989582747,
+    "formal": 0.007450968012562953,
+    "synth_lint": 0.04731327499030158,
+    "other": 0.0,
+    "calls": 4
+   }
+  },
+  {
+   "i": 7,
+   "task": "alu",
+   "wall_s": 0.12,
+   "rc": 0,
+   "verdict": {
+    "task": "alu",
+    "bench": "rtllm",
+    "module_name_ok": true,
+    "tb": "fail",
+    "nonvacuous": false,
+    "extract_ok": true,
+    "lint_warnings": 2,
+    "synth": {
+     "latch": false
+    },
+    "equiv": "skipped",
+    "depth": 10,
+    "reset": null,
+    "scorer_sha256": "14d39dfdad52ffd57aec628355b9cee2d09001e330096dbe0c8cf8986977df52"
+   },
+   "stages": {
+    "testbench": 0.02479412400862202,
+    "formal": 0.011481702007586136,
+    "synth_lint": 0.04826563298411202,
+    "other": 0.0,
+    "calls": 5
+   }
+  },
+  {
+   "i": 8,
+   "task": "asyn_fifo",
+   "wall_s": 0.1,
+   "rc": 0,
+   "verdict": {
+    "task": "asyn_fifo",
+    "bench": "rtllm",
+    "module_name_ok": true,
+    "tb": "compile_error",
+    "nonvacuous": false,
+    "extract_ok": true,
+    "lint_warnings": 2,
+    "synth": null,
+    "equiv": "skipped",
+    "depth": 10,
+    "reset": null,
+    "scorer_sha256": "14d39dfdad52ffd57aec628355b9cee2d09001e330096dbe0c8cf8986977df52"
+   },
+   "stages": {
+    "testbench": 0.011150852995342575,
+    "formal": 0.010535760011407547,
+    "synth_lint": 0.05053777399007231,
+    "other": 0.0,
+    "calls": 4
+   }
+  },
+  {
+   "i": 9,
+   "task": "calendar",
+   "wall_s": 0.7,
+   "rc": 0,
+   "verdict": {
+    "task": "calendar",
+    "bench": "rtllm",
+    "module_name_ok": true,
+    "tb": "pass",
+    "nonvacuous": true,
+    "extract_ok": true,
+    "lint_warnings": 2,
+    "synth": {
+     "latch": false
+    },
+    "reset": {
+     "reset": "RST",
+     "active": 1
+    },
+    "bmc": "equivalent",
+    "pdr": "equivalent",
+    "tind": "equivalent",
+    "class": "UNBOUNDED-EQ",
+    "equiv": "equivalent",
+    "depth": 10,
+    "cex": null,
+    "scorer_sha256": "14d39dfdad52ffd57aec628355b9cee2d09001e330096dbe0c8cf8986977df52"
+   },
+   "stages": {
+    "testbench": 0.026377989997854456,
+    "formal": 0.5794149180001114,
+    "synth_lint": 0.04606499399233144,
+    "other": 0.0,
+    "calls": 8
+   }
+  },
+  {
+   "i": 10,
+   "task": "counter_12",
+   "wall_s": 0.55,
+   "rc": 0,
+   "verdict": {
+    "task": "counter_12",
+    "bench": "rtllm",
+    "module_name_ok": true,
+    "tb": "pass",
+    "nonvacuous": true,
+    "extract_ok": true,
+    "lint_warnings": 2,
+    "synth": {
+     "latch": false
+    },
+    "reset": {
+     "reset": "rst_n",
+     "active": 0
+    },
+    "bmc": "equivalent",
+    "pdr": "equivalent",
+    "tind": "equivalent",
+    "class": "UNBOUNDED-EQ",
+    "equiv": "equivalent",
+    "depth": 10,
+    "cex": null,
+    "scorer_sha256": "14d39dfdad52ffd57aec628355b9cee2d09001e330096dbe0c8cf8986977df52"
+   },
+   "stages": {
+    "testbench": 0.019486405013594776,
+    "formal": 0.4403061190096196,
+    "synth_lint": 0.06263813500117976,
+    "other": 0.0,
+    "calls": 8
+   }
+  },
+  {
+   "i": 11,
+   "task": "div_16bit",
+   "wall_s": 42.87,
+   "rc": 0,
+   "verdict": {
+    "task": "div_16bit",
+    "bench": "rtllm",
+    "module_name_ok": true,
+    "tb": "pass",
+    "nonvacuous": true,
+    "extract_ok": true,
+    "lint_warnings": 2,
+    "synth": {
+     "latch": false
+    },
+    "reset": {
+     "reset": null
+    },
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT",
+    "equiv": "different",
+    "depth": 10,
+    "cex": "/home/unnitools/runs/shakedown_timing/11_div_16bit/cex",
+    "scorer_sha256": "14d39dfdad52ffd57aec628355b9cee2d09001e330096dbe0c8cf8986977df52"
+   },
+   "stages": {
+    "testbench": 0.02007226699788589,
+    "formal": 42.76082531501015,
+    "synth_lint": 0.05256081999687012,
+    "other": 0.0,
+    "calls": 8
+   }
+  },
+  {
+   "i": 12,
+   "task": "edge_detect",
+   "wall_s": 0.58,
+   "rc": 0,
+   "verdict": {
+    "task": "edge_detect",
+    "bench": "rtllm",
+    "module_name_ok": true,
+    "tb": "pass",
+    "nonvacuous": true,
+    "extract_ok": true,
+    "lint_warnings": 2,
+    "synth": {
+     "latch": false
+    },
+    "reset": {
+     "reset": "rst_n",
+     "active": 0
+    },
+    "bmc": "equivalent",
+    "pdr": "equivalent",
+    "tind": "equivalent",
+    "class": "UNBOUNDED-EQ",
+    "equiv": "equivalent",
+    "depth": 10,
+    "cex": null,
+    "scorer_sha256": "14d39dfdad52ffd57aec628355b9cee2d09001e330096dbe0c8cf8986977df52"
+   },
+   "stages": {
+    "testbench": 0.023008281015791,
+    "formal": 0.4279190500092227,
+    "synth_lint": 0.06854349200148135,
+    "other": 0.0,
+    "calls": 8
+   }
+  },
+  {
+   "i": 13,
+   "task": "freq_div",
+   "wall_s": 0.72,
+   "rc": 0,
+   "verdict": {
+    "task": "freq_div",
+    "bench": "rtllm",
+    "module_name_ok": true,
+    "tb": "pass",
+    "nonvacuous": true,
+    "extract_ok": true,
+    "lint_warnings": 2,
+    "synth": {
+     "latch": false
+    },
+    "reset": {
+     "reset": "RST",
+     "active": 1
+    },
+    "bmc": "equivalent",
+    "pdr": "equivalent",
+    "tind": "unknown",
+    "class": "UNBOUNDED-EQ",
+    "equiv": "equivalent",
+    "depth": 10,
+    "cex": null,
+    "scorer_sha256": "14d39dfdad52ffd57aec628355b9cee2d09001e330096dbe0c8cf8986977df52"
+   },
+   "stages": {
+    "testbench": 0.025494173998595215,
+    "formal": 0.5841994760121452,
+    "synth_lint": 0.04949133899935987,
+    "other": 0.0,
+    "calls": 8
+   }
+  },
+  {
+   "i": 14,
+   "task": "fsm",
+   "wall_s": 0.12,
+   "rc": 0,
+   "verdict": {
+    "task": "fsm",
+    "bench": "rtllm",
+    "module_name_ok": true,
+    "tb": "compile_error",
+    "nonvacuous": false,
+    "extract_ok": true,
+    "lint_warnings": 2,
+    "synth": {
+     "latch": false
+    },
+    "equiv": "skipped",
+    "depth": 10,
+    "reset": null,
+    "scorer_sha256": "14d39dfdad52ffd57aec628355b9cee2d09001e330096dbe0c8cf8986977df52"
+   },
+   "stages": {
+    "testbench": 0.014342488007969223,
+    "formal": 0.011542627005837858,
+    "synth_lint": 0.04592760800733231,
+    "other": 0.0,
+    "calls": 4
+   }
+  },
+  {
+   "i": 15,
+   "task": "multi_16bit",
+   "wall_s": 0.17,
+   "rc": 0,
+   "verdict": {
+    "task": "multi_16bit",
+    "bench": "rtllm",
+    "module_name_ok": true,
+    "tb": "fail",
+    "nonvacuous": false,
+    "extract_ok": true,
+    "lint_warnings": 2,
+    "synth": {
+     "latch": false
+    },
+    "equiv": "skipped",
+    "depth": 10,
+    "reset": null,
+    "scorer_sha256": "14d39dfdad52ffd57aec628355b9cee2d09001e330096dbe0c8cf8986977df52"
+   },
+   "stages": {
+    "testbench": 0.03186179600015748,
+    "formal": 0.011075047994381748,
+    "synth_lint": 0.0670099599956302,
+    "other": 0.0,
+    "calls": 5
+   }
+  },
+  {
+   "i": 16,
+   "task": "multi_booth_8bit",
+   "wall_s": 0.11,
+   "rc": 0,
+   "verdict": {
+    "task": "multi_booth_8bit",
+    "bench": "rtllm",
+    "module_name_ok": true,
+    "tb": "fail",
+    "nonvacuous": false,
+    "extract_ok": true,
+    "lint_warnings": 2,
+    "synth": {
+     "latch": false
+    },
+    "equiv": "skipped",
+    "depth": 10,
+    "reset": null,
+    "scorer_sha256": "14d39dfdad52ffd57aec628355b9cee2d09001e330096dbe0c8cf8986977df52"
+   },
+   "stages": {
+    "testbench": 0.01807696399919223,
+    "formal": 0.012434300006134436,
+    "synth_lint": 0.04538184001285117,
+    "other": 0.0,
+    "calls": 5
+   }
+  },
+  {
+   "i": 17,
+   "task": "multi_pipe_4bit",
+   "wall_s": 0.13,
+   "rc": 0,
+   "verdict": {
+    "task": "multi_pipe_4bit",
+    "bench": "rtllm",
+    "module_name_ok": true,
+    "tb": "fail",
+    "nonvacuous": false,
+    "extract_ok": true,
+    "lint_warnings": 2,
+    "synth": {
+     "latch": false
+    },
+    "equiv": "error",
+    "depth": 10,
+    "scorer_sha256": "14d39dfdad52ffd57aec628355b9cee2d09001e330096dbe0c8cf8986977df52"
+   },
+   "stages": {
+    "testbench": 0.019066487991949543,
+    "formal": 0.010376870995969512,
+    "synth_lint": 0.06861825699161272,
+    "other": 0.0,
+    "calls": 5
+   }
+  },
+  {
+   "i": 18,
+   "task": "multi_pipe_8bit",
+   "wall_s": 0.16,
+   "rc": 0,
+   "verdict": {
+    "task": "multi_pipe_8bit",
+    "bench": "rtllm",
+    "module_name_ok": true,
+    "tb": "fail",
+    "nonvacuous": false,
+    "extract_ok": true,
+    "lint_warnings": 2,
+    "synth": {
+     "latch": false
+    },
+    "equiv": "skipped",
+    "depth": 10,
+    "reset": null,
+    "scorer_sha256": "14d39dfdad52ffd57aec628355b9cee2d09001e330096dbe0c8cf8986977df52"
+   },
+   "stages": {
+    "testbench": 0.04830209600913804,
+    "formal": 0.014174863012158312,
+    "synth_lint": 0.05749754702264909,
+    "other": 0.0,
+    "calls": 5
+   }
+  },
+  {
+   "i": 19,
+   "task": "parallel2serial",
+   "wall_s": 0.11,
+   "rc": 0,
+   "verdict": {
+    "task": "parallel2serial",
+    "bench": "rtllm",
+    "module_name_ok": true,
+    "tb": "fail",
+    "nonvacuous": false,
+    "extract_ok": true,
+    "lint_warnings": 2,
+    "synth": {
+     "latch": false
+    },
+    "equiv": "skipped",
+    "depth": 10,
+    "reset": null,
+    "scorer_sha256": "14d39dfdad52ffd57aec628355b9cee2d09001e330096dbe0c8cf8986977df52"
+   },
+   "stages": {
+    "testbench": 0.020706206996692345,
+    "formal": 0.011227777009480633,
+    "synth_lint": 0.048570786995696835,
+    "other": 0.0,
+    "calls": 5
+   }
+  }
+ ]
+}

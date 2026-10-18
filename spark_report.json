@@ -1,0 +1,80 @@
+{
+  "machine": {
+    "host": "spark-cff9",
+    "kernel": "7.0.0-1019-nvidia",
+    "arch": "aarch64",
+    "cores": 20,
+    "ram_gb": 121,
+    "gpu": "GB10",
+    "disk_free_tb": 3.5,
+    "docker": {"version": "29.2.1", "daemon_accessible": false, "images_pulled": [], "digests": null},
+    "eda": {"suite": "oss-cad-suite-linux-arm64-20261016", "bytes": 686594072,
+            "yosys": "0.70+145", "icarus": "14.0 (devel)", "verilator": "5.053 (devel)", "sby": "0.70"},
+    "host_venv": {"python": "3.12.3", "huggingface_hub": "2.2.0", "hf_xet": "1.7.0",
+                  "datasketch": "2.0.0", "pyyaml": "6.0.3", "opentimestamps_client": "0.7.2"}
+  },
+  "pins": {
+    "repo": "jishnuvenugopal/rte-strict-eval", "branch": "spark",
+    "scorer_v1_commit": "4e49950ab8a6e9c0e042bb6d91917152b5d7ad57",
+    "scorer_sha256_file": "3428447f263d36e741a00d8d8a6bb50c4929a32b033b5e080ce43eb1f76d484e",
+    "rtllm": "51ed553d0ffd32797a1a0a13e051656bf302c81f",
+    "verilog_eval": "c498220d0a52248f8e3fdffe279075215bde2da6",
+    "codev_r1": "277ac46e3b193aa238e7d9af5a150659e482c5e7",
+    "verireason": "d215b7fe1b3db6dd4ca725f7d9399c49414c7531",
+    "prompts_sha256sums": "a0d465913ab1ca7e772002a4ca90ccdb61084dccf856452181dfcb83abae6f3c"
+  },
+  "g1_spark": {
+    "rows_total": 290, "tb_rows_matching_appendix_b": 290,
+    "equiv_rows_matching": 280, "equiv_rows_recording_only_diff": 10,
+    "totals_gpt4": {"tb_pass": 60, "equivalent": 39, "different": 14, "error": 7},
+    "totals_gpt35": {"tb_pass": 37, "equivalent": 25, "different": 4, "error": 8},
+    "deep": {"mutants": 528, "formally_different": 438, "strict_kill_rate": 1.0,
+             "tb_false_pass_share": 0.171, "flips": 0,
+             "ve_gate_kept": 149, "ve_gate_total": 156,
+             "rtllm_usable": 40},
+    "evidence": ["~/runs/deep/gpt_summary.json", "~/runs/deep/mut/mut_summary.json",
+                 "results/pilot_repro/ve_gate_summary.json", "~/runs/deep/refs_summary.json"]
+  },
+  "models": {
+    "status": "downloads running (throttled uplink ~1 MB/s typical)",
+    "fetch_log": "~/runs/model_fetch.log", "verifier": "models/verify_weights.py",
+    "arms": 8, "verified_arms": 0, "tsv": "results/h0/weights_sha256.tsv",
+    "datasets_downloaded": {"tb": "1149 rows @42823db", "tb_simple": "743 rows @61cc6a2"}
+  },
+  "h0": {
+    "a": {"status": "blocked_on_docker", "script": "h0/h0a_weight_distance.py",
+          "number": null},
+    "b": {"status": "done", "where": "PREREG.md #Fidelity gate G1b"},
+    "c": {"status": "done", "system_sha256_match": true,
+          "built_rows": {"codev_ve": 156, "codev_rtllm": 50, "verireason_ve": 156, "verireason_rtllm": 50},
+          "rtllm_v21_vs_codev_v20": {"identical": 41, "different": 9},
+          "evidence": ["prompts/SHA256SUMS", "results/h0/h0c_rtllm_diff.json"]},
+    "d": {"status": "done", "oracle_reproduced": "30/30",
+          "contamination": {"tb": 0, "tb_simple": 0, "closest_jaccard_lt": 0.3},
+          "evidence": ["results/h0/h0d_oracle.json", "results/h0/h0d_contamination.json"]}
+  },
+  "shakedown": {
+    "scoring_speed_proxy": {"n": 20, "workers": 18, "total_wall_s": 42.9,
+                             "samples_per_s": 0.466, "s_per_sample": 2.1,
+                             "formal_share_of_eda_time": 0.96,
+                             "evidence": "results/shakedown/scoring_speed.json"},
+    "generation_throughput": null, "grpo_two_step": null,
+    "blocked_on": "docker group membership (operator)"
+  },
+  "deviations": [
+    "apt/docker-group operator leftovers block containers (H0-a, Phase 6 steps 1-4)",
+    "HF_HUB_ENABLE_HF_TRANSFER deprecated in hub 2.2.0; HF_XET_HIGH_PERFORMANCE stalls here; default xet used",
+    "model fetch reordered smallest-first (pins unchanged)",
+    "Phase 6 step 5 timed on RTLLM-shipped GPT-4 designs (timing proxy, not study-arm samples)",
+    "VE gate 149/156 and RTLLM 40 used in PREREG per frozen deep results (was 143/38 in brief A14)",
+    "koder/STATE.md initialised with current facts (Phases 2-3 already done)",
+    "_simple dataset file is processed_entries.jsonl (rows/keys match pin)",
+    "h0/ and shakedown/ script dirs added to layout"
+  ],
+  "open_questions": [
+    "operator: docker group + apt packages (Phase 1)",
+    "G0 sequencing: shakedown before approval vs adaptive throughput check in Phase 8",
+    "H0-a fallback if docker stays blocked (torch-cpu in venv, or run on Halo)",
+    "Phase 4 completes in background; exit check = 8x verified in models.yaml"
+  ]
+}

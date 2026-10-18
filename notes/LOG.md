@@ -107,3 +107,21 @@
   Phase 1 operator leftover). Script h0/h0a_weight_distance.py is written and ready; it runs in
   the pinned pytorch container. No H0-a number exists yet. results/h0/H0.md records all four
   answers with file pointers.
+
+## 2026-10-18 15:45-16:05 — Phase 6 (partial) + Phase 7 (PREREG draft)
+- Phase 6 steps 1-4: BLOCKED on docker (see above). Step 5 scoring speed measured via timing
+  proxy (DEVIATION): shakedown/run_score_timed.py wraps score.py with a per-EDA-command timing
+  classifier; shakedown/score_timing.py ran the first 20 sorted RTLLM GPT-4 t1 designs at
+  WORKERS=18: 42.9s wall -> 0.466 samples/s (~2.1 s/sample); formal = 96% of EDA time; verdict
+  mix 8/8/4. results/shakedown/scoring_speed.json + README.md. These are pilot inputs, NOT
+  study-arm samples, never scored as results.
+- models/verify_weights.py written and run (incremental): safetensors sha256 vs ?blobs=true,
+  card copies, models.yaml, results/h0/weights_sha256.tsv. Currently 0/8 verified (downloads
+  running); statuses update per arm as shards land.
+- Phase 7: PREREG.md drafted from Appendix E with: arms + pending H0-a bracket, tasks = A14
+  with gate counts updated to the FROZEN deep results (VE 149/156; RTLLM 40 = pilot 38 +
+  multi_8bit + multi_pipe_8bit; div_16bit stays out), prompt/sampling sections with measured
+  hashes (system prompts = Appendix D1/D2; prompts/SHA256SUMS a0d46591...), scorer-v1 evidence
+  (290/290, kill 438/438, TB false-pass 17.1%), contamination 0, shakedown status incl. the
+  docker-blocked generation throughput and the two operator options at G0.
+- SPARK_REPORT.md + spark_report.json written per §8 (8 sections / 8 keys). STOP line at end.

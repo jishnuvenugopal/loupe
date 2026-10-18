@@ -1,0 +1,2 @@
+arm	repo_id	revision	file	size_bytes	expected_sha256	actual_sha256	match
+7b-rl	zhuyaoyu/CodeV-R1-RL-Qwen-7B	286cf433f596f1b8525529c1163eb81c19425c22	model-00004-of-00004.safetensors	554188944	90cfbc3bbb5b6666af4e30afe31b6ab00847d30060ba1cf226679e76f78bb911	90cfbc3bbb5b6666af4e30afe31b6ab00847d30060ba1cf226679e76f78bb911	True
