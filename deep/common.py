@@ -43,21 +43,30 @@ def tb_verdict(cwd, design, tb, tag):
         return "timeout"
     return "pass" if PASS_RE.search(out) else "fail"
 
-def tb_verdict_verilator(cwd, design, tb, tag):
+def tb_verdict_verilator(cwd, design, tb, tag, extra_src=None):
     """Independent second simulator (top module parsed from the testbench;
     RTLLM names vary: test_alu, t, tb...). Binary lands under -Mdir."""
-    m = re.search(r"module\s+(\w+)", open(os.path.join(cwd, tb)).read())
-    top = m.group(1) if m else "tb"
+    mods = re.findall(r"^\s*module\s+(\w+)", open(os.path.join(cwd, tb)).read(), re.M)
+    top = "tb" if "tb" in mods else (mods[-1] if mods else "tb")
     mdir = f"vlb_{tag}"
     rc, out = run(["verilator", "--binary", "--timing", "-Wno-fatal", "-Wno-WIDTHEXPAND",
                    "-Wno-WIDTHTRUNC", "-Wno-UNOPTFLAT", "-Wno-MULTIDRIVEN", "-Wno-lint",
-                   "--top-module", top, "--Mdir", mdir, "-o", f"vSim_{tag}", design, tb], cwd, 180)
+                   "--top-module", top, "--Mdir", mdir, "-o", f"vSim_{tag}", design, tb]
+                   + ([extra_src] if extra_src else []), cwd, 180)
     if rc != 0:
         return "vl_compile_error"
     rc, out = run([os.path.join(mdir, f"vSim_{tag}")], cwd, 60)
     if rc == "timeout":
         return "timeout"
-    return "pass" if PASS_RE.search(out) else "fail"
+    if PASS_RE.search(out):
+        return "pass"
+    m = re.search(r"Mismatches: (\d+) in (\d+) samples", out or "")
+    if m:
+        return "pass" if (m.group(1) == "0" and int(m.group(2)) >= 1) else "fail"
+    m = re.search(r"Total mismatched samples is (\d+) out of (\d+) samples", out or "")
+    if m:
+        return "pass" if (m.group(1) == "0" and int(m.group(2)) >= 1) else "fail"
+    return "fail"
 
 def ports(cwd, ref, top):
     rc, out = run(["yosys", "-q", "-p",

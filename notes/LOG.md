@@ -27,3 +27,20 @@
   fsm GPT FAIL, square_wave const0 cover unreachable + official TB passes it. All with traces.
   Cover instrumentation caught two vacuous-property bugs during development (stuck counter; misaligned sequence).
 - DEEP_REPORT.md + deep_report.json written; committed per gate.
+
+## 2026-10-17 21:15-22:10 — continuation: Phase 2 completion + Phase 3 (deep) + freeze
+- Phase 2: verilog-eval @c498220, CodeV-R1 @277ac46, VeriReason @d215b7f cloned; PINS.txt written.
+  Exit check: 156/156/156 task files; 156 CodeV task_ids == VE set exactly; rtllm2.jsonl 50 rows. PASS.
+- Harness fix (a) applied to test copies (all 156 need the tb_mismatch patch).
+- Deep VE gate (156 tasks): 145 UNBOUNDED-EQ + 5 BMC-only + 6 read-errors (UNKNOWN).
+  Pilot's 6 timeout/error exclusions (Prob021, 030, 108, 124, 144, 153) now PROVED by PDR
+  (5 also by SMT-induction). Deep gate keeps 149/156 vs pilot 143. Prob099 still out (TB
+  compile_error; its self-equivalence is nevertheless proven).
+- Cross-sim VE: after fixing top-module detection (comments!) and the ref.sv argument and
+  the Verilator pass-string, 155 pass / 1 compile-error; ZERO pass/fail disagreements.
+- score.py (rtllm+ve) smoke-tested: pe t2 UNBOUNDED-EQ; fsm t2 DIFFERENT with cex VCD;
+  Prob031_dff UNBOUNDED-EQ. depth.yaml + masks/ written.
+- Appendix F directed tests: all 7 reproduce documented behaviour
+  (F.1 106/10; F.2 gate MATCH; F.3 held valid_out; F.4 rise+down; F.5 200/200; F.6 TB passes
+  const-0; F.7 FULL stays 1).
+- Freeze: SCORER_SHA256 written; commit + local tag scorer-v1 (push awaits operator repo).

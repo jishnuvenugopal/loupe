@@ -1,0 +1,21 @@
+# depth.yaml — BMC depth overrides (pilot Appendix C) with deep-engine status.
+# With the frozen deep scorer, PDR/SMT-induction runs first; depth applies only
+# to the BMC fallback column (pilot compatibility).
+defaults:
+  depth: 10
+
+designs:
+  JC_counter: {depth: 20, deep_class: UNBOUNDED-EQ}
+  asyn_fifo: {depth: 20, deep_class: UNBOUNDED-EQ}
+  calendar: {depth: 20, deep_class: UNBOUNDED-EQ}
+  counter_12: {depth: 20, deep_class: UNBOUNDED-EQ}
+  fixed_point_adder: {depth: 20, deep_class: UNBOUNDED-EQ}
+  freq_div: {depth: 20, deep_class: UNBOUNDED-EQ}
+  freq_divbyfrac: {depth: 20, deep_class: BMC-10-EQ-ONLY}
+  freq_divbyodd: {depth: 20, deep_class: BMC-10-EQ-ONLY}
+  multi_16bit: {depth: 20, deep_class: UNBOUNDED-EQ}
+  multi_booth_8bit: {depth: 20, deep_class: UNBOUNDED-EQ}
+  pe: {depth: 20, deep_class: UNBOUNDED-EQ}
+  serial2parallel: {depth: 20, deep_class: UNBOUNDED-EQ}
+  signal_generator: {depth: 20, deep_class: UNBOUNDED-EQ}
+  traffic_light: {depth: 20, deep_class: UNBOUNDED-EQ}
