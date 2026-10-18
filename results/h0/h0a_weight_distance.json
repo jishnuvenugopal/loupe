@@ -1,0 +1,67 @@
+{
+ "pairs": {
+  "RL<->SFT": {
+   "shared_tensors": 434,
+   "median": 0.00450003443040063,
+   "p95": 0.0057992269622885164,
+   "mean": 0.003102315493187013
+  },
+  "RL<->3B-Instruct": {
+   "shared_tensors": 434,
+   "median": 0.0034515248110189847,
+   "p95": 0.004549825713573988,
+   "mean": 0.0024257073025251655
+  },
+  "RL<->3B": {
+   "shared_tensors": 434,
+   "median": 0.020558080929592465,
+   "p95": 0.027469709410027333,
+   "mean": 0.015147859290233021
+  },
+  "SFT<->3B-Instruct": {
+   "shared_tensors": 434,
+   "median": 0.0030921868304367205,
+   "p95": 0.004125707118375931,
+   "mean": 0.0021398877751745214
+  },
+  "SFT<->3B": {
+   "shared_tensors": 434,
+   "median": 0.0204814155178276,
+   "p95": 0.027403854413195844,
+   "mean": 0.015110520802748812
+  }
+ },
+ "tensor_counts": {
+  "RL": 434,
+  "SFT": 434,
+  "3B-Instruct": 434,
+  "3B": 434
+ },
+ "decision": {
+  "sft_confirmed_as_rl_parent": false,
+  "sft_nearer_to": "3B-Instruct",
+  "rule": "median RL<->SFT <= 0.1 * median RL<->(each Qwen 3B)"
+ },
+ "tokenizer": {
+  "RL": {
+   "tokenizer_config_sha256": "f06d54777a4c59c23ed608b2529c49f6a66853df9bc8a254d52eeb3b99d7c827",
+   "chat_template_present": false,
+   "tokenizer_json_sha256": "5eee858c5123a4279c3e1f7b81247343f356ac767940b2692a928ad929543214"
+  },
+  "SFT": {
+   "tokenizer_config_sha256": "283ec39d07ebfd1904aa2dee3c7d73524ed96c489fdb3915629900d3ab3ac319",
+   "chat_template_present": true,
+   "tokenizer_json_sha256": "c0382117ea329cdf097041132f6d735924b697924d6f6fc3945713e96ce87539"
+  },
+  "3B-Instruct": {
+   "tokenizer_config_sha256": "959e7f1d9a1b7641a6d6ce05ca97b75c7894fcb66cbe5a040406458fb1128ee4",
+   "chat_template_present": true,
+   "tokenizer_json_sha256": "c0382117ea329cdf097041132f6d735924b697924d6f6fc3945713e96ce87539"
+  },
+  "3B": {
+   "tokenizer_config_sha256": "283ec39d07ebfd1904aa2dee3c7d73524ed96c489fdb3915629900d3ab3ac319",
+   "chat_template_present": true,
+   "tokenizer_json_sha256": "c0382117ea329cdf097041132f6d735924b697924d6f6fc3945713e96ce87539"
+  }
+ }
+}

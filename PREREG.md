@@ -15,13 +15,15 @@ CodeV family: `Qwen/Qwen2.5-Coder-7B-Instruct@c03e6d3` →
 `zhuyaoyu/CodeV-R1-RL-Qwen-7B@286cf43`.
 VeriReason family: `Qwen/Qwen2.5-Coder-3B-Instruct@488639f` (declared SFT base;
 the GRPO card names `Qwen/Qwen2.5-Coder-3B@09d9bc5`) →
-`Nellyw888/Qwen2.5-3b-sft-reasoning@1f0b7fa` **[H0-a pending — docker blocked;
-decision rule pre-registered below]** →
+`Nellyw888/Qwen2.5-3b-sft-reasoning@1f0b7fa` **[H0-a: DROPPED — not confirmed as the
+RL parent; median RL↔SFT 4.50e-3 vs RL↔3B-Instruct 3.45e-3 (rule required 10×
+smaller); `results/h0/h0a_weight_distance.json`]** →
 `Nellyw888/VeriReason-Qwen2.5-3b-RTLCoder-Verilog-GRPO-reasoning-tb@3b93ce1`.
-H0-a rule: the SFT checkpoint is the RL model's parent iff the median RL↔SFT
-relative tensor distance is ≤ 10× smaller than RL↔(each Qwen 3B); otherwise the
-3B family drops its SFT arm and the 3B contrast becomes SFT+RL vs Instruct.
-Script: `h0/h0a_weight_distance.py`; no number exists yet.
+H0-a rule (pre-registered, executed 18 Oct): the SFT checkpoint is the RL model's
+parent iff the median RL↔SFT relative tensor distance is ≤ 10× smaller than RL↔(each
+Qwen 3B); otherwise the 3B family drops its SFT arm and the 3B contrast becomes
+SFT+RL vs Instruct. Outcome: dropped. 3B arms scored: 3B-RL and 3B-Instruct
+(base); the fp32 SFT checkpoint is still downloaded + verified but not scored.
 Cut order under time pressure: (1) VerilogEval seeded subset of 60, (2) n 3 → 2,
 (3) raw-base arm. Never max tokens, never the SFT arm.
 

@@ -217,3 +217,17 @@
   first VE number 66.8 tok/s was sequential-mode -> superseded); shakedown subset writers
   emitted JSON arrays where the driver reads JSONL -> now JSONL; sample inputs moved outside
   score.py --out (it rmtree's the dir). All fixes verified by re-run.
+
+## 2026-10-18 19:30-19:50 — H0-a DONE (SFT arm dropped); Phase 5 complete; 6/8 weights verified
+- PyTorch image landed: nvcr.io/nvidia/pytorch@sha256:417cbf33f87b...dff21.
+- Watcher fired at 19:22 but the H0-a run was OOM-killed (137): it overlapped the 3B-RL
+  vLLM shakedown holding 85% of unified GB10 memory. Lesson recorded: no CPU-heavy container
+  work while vLLM holds the GPU. Re-ran with GPU idle: SUCCESS.
+- H0-a (pinned container, CPU fp32, 434 tensors): median RL<->SFT 4.50e-3 is NOT <= 0.1x
+  median RL<->3B-Instruct 3.45e-3 -> NOT CONFIRMED -> 3B family DROPS the SFT arm
+  (pre-registered consequence); contrast becomes SFT+RL vs Instruct. SFT nearer to
+  3B-Instruct (matches SFT YAML) but tokenizer groups are {RL}, {SFT, 3B raw}, {3B-Instruct}.
+  results/h0/h0a_weight_distance.json; H0.md + PREREG.md updated with the bracket resolved.
+- Weights verified 6/8: 1.5B, 3B raw, 3B-Instruct, 3B-RL, 3B-SFT(fp32 3/3) + grpo-base.
+  Only the three 7Bs remain (7B-RL at 1/4 shards; ~7h at current uplink).
+- PHASE 5 EXIT CHECK: all four H0 answers written with evidence (results/h0/H0.md).

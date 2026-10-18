@@ -5,20 +5,19 @@ Updated 18 Oct 2026, ~16:10 UTC. Machine `spark-cff9`. Repo
 
 ## 1. Status
 
-- Session completed: Phase 1b (koder scaffold), Phase 5 H0-b/c/d, Phase 6 step 4
-  (GRPO two-step trial, PASSED), Phase 6 step 5 (scoring-speed proxy), Phase 7
-  PREREG draft. **Phase 1 exit check PASSED** after the operator's docker fix.
-- In progress (background): Phase 4 model downloads (throttled uplink);
-  **H0-a watcher** (`h0/watch_h0a.sh`, pid `~/runs/h0a_watcher.pid`) fires in the
-  pinned PyTorch container as soon as the image + all four 3B checkpoints land,
-  commits and pushes `results/h0/h0a_weight_distance.json`.
-- Pending next interactive session: Phase 6 steps 1–3 shakedown generation
-  (harness ready: `shakedown/shakedown_run.py`; runs when 7B/3B weights land;
-  ~1–2 h GPU total), then PREREG "Measured before G0" refresh.
-- Last gates: G1-Spark passed; H0 b/c/d passed; GRPO trial lane green;
+- Session completed: Phase 1b (koder scaffold), **Phase 5 complete (H0 a–d)**,
+  Phase 6 step 4 (GRPO trial, PASSED), step 3 first half (3B-RL lane, DONE),
+  step 5 (scoring-speed proxy), Phase 7 PREREG draft (updated for H0-a).
+  **Phase 1 exit check PASSED** after the operator's docker fix.
+- In progress (background): the three 7B downloads (last in queue, ~7 h at the
+  current uplink; 7B-RL at 1/4 shards); hash verification is scripted.
+- Pending next interactive session: 7B shakedown steps 1–2 when the 7Bs land
+  (harness proven on the 3B-RL lane), 3B-SFT-loaded-as-bf16 throughput check
+  (weights already verified), PREREG "Measured before G0" refresh.
+- Last gates: G1-Spark passed; **H0 complete**; GRPO trial lane green;
   **G0 not requested yet**.
 - `STOP — waiting for operator review of PREREG.md and the message "G0 approved"`
-  (H0-a + shakedown numbers will land automatically/next session before that).
+  (7B shakedown numbers land tomorrow morning, before any approval need).
 
 ## 2. Machine
 
@@ -29,7 +28,8 @@ Updated 18 Oct 2026, ~16:10 UTC. Machine `spark-cff9`. Repo
   SymbiYosys 0.70.
 - Containers: docker 29.2.1, daemon accessible via `sg docker` (agent shells
   predate the usermod). **vLLM image pulled**: `nvcr.io/nvidia/vllm@sha256:94e21552f644e0c1627464ba89d2f7a4ce7442e196f72afa0bb5d7fba23cbb03`
-  (20.4 GB). PyTorch `25.11-py3` pulling (digest recorded on arrival).
+  (20.4 GB). PyTorch image pulled:
+  `nvcr.io/nvidia/pytorch@sha256:417cbf33f87b5378849df37983552cd1f8bc8b62fe1ceabe004de816a55dff21`.
   In-container stack: torch 2.12.0a0+5aff3928d8.nv26.05, vLLM 0.21.0+2325b6f0,
   trl 1.15.0, peft 0.21.2.
 - Host venv `~/.venvs/host`: huggingface_hub 2.2.0, hf-xet 1.7.0, datasketch
@@ -66,9 +66,13 @@ Updated 18 Oct 2026, ~16:10 UTC. Machine `spark-cff9`. Repo
 
 See `results/h0/H0.md` for the version with all file pointers.
 
-- **H0-a (3B SFT parent)**: PENDING — needs the pinned PyTorch container;
-  docker blocked. Script ready (`h0/h0a_weight_distance.py`), pre-registered
-  decision rule included. No number computed.
+- **H0-a (3B SFT parent)**: **DONE — NOT CONFIRMED; SFT arm dropped** per the
+  pre-registered rule. Medians over 434 shared tensors (fp32, CPU, pinned
+  pytorch container): RL↔SFT 4.50e-3, RL↔3B-Instruct 3.45e-3, RL↔3B 2.06e-2,
+  SFT↔3B-Instruct 3.09e-3, SFT↔3B 2.05e-2. Tokenizer groups `{RL}`, `{SFT, 3B
+  raw}`, `{3B-Instruct}`. Evidence: `results/h0/h0a_weight_distance.json`,
+  `results/h0/H0.md`. (First watcher attempt OOM-killed by overlap with the
+  vLLM shakedown on unified memory — recorded; successful run with GPU idle.)
 - **H0-b (CodeV protocol)**: copied into `PREREG.md` §"Fidelity gate G1b" with
   source URLs and the runner-conflict note.
 - **H0-c (prompts)**: system-prompt sha256s recomputed from pinned sources —
@@ -87,7 +91,8 @@ See `results/h0/H0.md` for the version with all file pointers.
 | scoring speed (proxy, 20 GPT-4 t1 designs, WORKERS=18) | 42.9 s total → 0.466 samples/s ≈ 2.1 s/sample; formal 96% of EDA time; mix 8 pass/8 fail/4 compile_error | `results/shakedown/scoring_speed.json`, `results/shakedown/README.md` |
 | GRPO two-step (vLLM-container lane) | **PASSED**: trl 1.15.0 + peft 0.21.2 on vLLM 0.21.0; train 171.3 s (2 steps; 88.6/73.7 s per step); reward 17.1 s / 128 calls (~0.13 s/call); zero-advantage 0.812 (13/16 groups, matches TRL frac_reward_zero_std); mean reward 0.016→0.047; peak GPU 52.25 GiB | `results/shakedown/grpo_trial_S.json`, `grpo/train_grpo.py`, `grpo/reward.py` |
 | machinery smoke (gen_vllm.py, 1.5B, 2 prompts) | rows match §8 schema; seed + prompt_sha256 verified in-container | `~/runs/shakedown/machinery_smoke.jsonl` (deleted with phase) |
-| 7B/3B generation throughput, cap hits, extraction rate | pending weights (harness ready) | `shakedown/shakedown_run.py` |
+| 3B-RL lane (step 3 first half) | 16 seeded tasks n=1: tokens mean 812 / p95 1930, cap 1/16; extraction 15/16, name 15/16; TB 8 pass/3 fail/5 compile_error; strict on passes 5 UNBOUNDED-EQ / 2 DIFFERENT / 1 UNKNOWN; throughput (batched, 66 concurrent) VE 182 tok/s, RTLLM 354 tok/s | `results/shakedown/3b-rl.json` |
+| 7B generation throughput, cap hits, extraction rate | pending 7B weights (harness proven on 3B lane) | `shakedown/shakedown_run.py` |
 | overnight projection | cannot be pre-computed; adaptive check at Phase 8 step 4 proposed | `PREREG.md` §"Measured before G0" |
 
 ## 7. Deviations from the brief (each with reason)

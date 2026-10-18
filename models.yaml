@@ -91,12 +91,12 @@ id: "Nellyw888/Qwen2.5-3b-sft-reasoning"
 revision: "1f0b7fac9c057b32cba9107a854518be92e45c91"
 dtype: "float32"
 size_gb: 12.4
-status: "incomplete"
+status: "verified"
 declared_base: "unconfirmed (H0-a); config _name_or_path=/workspace/LLaMA-Factory/outputs/Qwen2.5-Coder-3B/SFT"
 licence_evidence: "empty card; Qwen Research License applies via base"
 hf_tags: []
 n_safetensors_remote: 3
-n_safetensors_local: 0
+n_safetensors_local: 3
 hash_mismatches: []
 card_files_copied: ["README.md", "config.json", "generation_config.json", "tokenizer_config.json"]
 chat_template_sha256: "06d9597b76804e7ec3014f7fa84bf176654ac3695d6c604fe70deb062d724ede"
