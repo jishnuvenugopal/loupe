@@ -1,0 +1,518 @@
+{
+ "arm": "3b-rl",
+ "model": "Nellyw888/VeriReason-Qwen2.5-3b-RTLCoder-Verilog-GRPO-reasoning-tb",
+ "revision": "3b93ce1bd7e5d90dae8761363a9c6862d0ed583a",
+ "T": 0.2,
+ "max_tokens": 2048,
+ "shakedown_tasks": {
+  "ve": [
+   "Prob007_wire",
+   "Prob027_fadd",
+   "Prob029_m2014_q4g",
+   "Prob036_ringer",
+   "Prob058_alwaysblock2",
+   "Prob063_review2015_shiftcount",
+   "Prob071_always_casez",
+   "Prob144_conwaylife"
+  ],
+  "rtllm": [
+   "LFSR",
+   "accu",
+   "adder_16bit",
+   "adder_32bit",
+   "adder_8bit",
+   "comparator_3bit",
+   "comparator_4bit",
+   "edge_detect"
+  ]
+ },
+ "completion_tokens": {
+  "mean": 812,
+  "p95": 1930,
+  "max": 2048,
+  "cap_hits": 1
+ },
+ "extraction_ok": 15,
+ "module_name_ok": 15,
+ "verdicts": {
+  "pass": 8,
+  "fail": 3,
+  "compile_error": 5,
+  "timeout": 0
+ },
+ "strict": {
+  "DIFFERENT": 2,
+  "UNBOUNDED-EQ": 5,
+  "BMC-10-EQ-ONLY": 0,
+  "UNKNOWN": 1
+ },
+ "per_sample": [
+  {
+   "task_id": "Prob007_wire",
+   "bench": "ve",
+   "sample_idx": 0,
+   "n_completion_tokens": 230,
+   "finish_reason": "stop",
+   "extract_ok": true,
+   "module_name_ok": true,
+   "score": {
+    "task": "Prob007_wire",
+    "bench": "ve",
+    "module_name_ok": true,
+    "tb": "pass",
+    "samples": 120,
+    "nonvacuous": true,
+    "extract_ok": true,
+    "lint_warnings": 1,
+    "synth": {
+     "latch": false
+    },
+    "reset": {
+     "reset": null
+    },
+    "bmc": "equivalent",
+    "pdr": "equivalent",
+    "tind": "equivalent",
+    "class": "UNBOUNDED-EQ",
+    "equiv": "equivalent",
+    "depth": 10,
+    "cex": null,
+    "scorer_sha256": "14d39dfdad52ffd57aec628355b9cee2d09001e330096dbe0c8cf8986977df52"
+   }
+  },
+  {
+   "task_id": "Prob027_fadd",
+   "bench": "ve",
+   "sample_idx": 0,
+   "n_completion_tokens": 405,
+   "finish_reason": "stop",
+   "extract_ok": true,
+   "module_name_ok": true,
+   "score": {
+    "task": "Prob027_fadd",
+    "bench": "ve",
+    "module_name_ok": true,
+    "tb": "pass",
+    "samples": 214,
+    "nonvacuous": true,
+    "extract_ok": true,
+    "lint_warnings": 1,
+    "synth": {
+     "latch": false
+    },
+    "reset": {
+     "reset": null
+    },
+    "bmc": "equivalent",
+    "pdr": "equivalent",
+    "tind": "equivalent",
+    "class": "UNBOUNDED-EQ",
+    "equiv": "equivalent",
+    "depth": 10,
+    "cex": null,
+    "scorer_sha256": "14d39dfdad52ffd57aec628355b9cee2d09001e330096dbe0c8cf8986977df52"
+   }
+  },
+  {
+   "task_id": "Prob029_m2014_q4g",
+   "bench": "ve",
+   "sample_idx": 0,
+   "n_completion_tokens": 429,
+   "finish_reason": "stop",
+   "extract_ok": true,
+   "module_name_ok": true,
+   "score": {
+    "task": "Prob029_m2014_q4g",
+    "bench": "ve",
+    "module_name_ok": true,
+    "tb": "pass",
+    "samples": 100,
+    "nonvacuous": true,
+    "extract_ok": true,
+    "lint_warnings": 1,
+    "synth": {
+     "latch": false
+    },
+    "reset": {
+     "reset": null
+    },
+    "bmc": "equivalent",
+    "pdr": "equivalent",
+    "tind": "equivalent",
+    "class": "UNBOUNDED-EQ",
+    "equiv": "equivalent",
+    "depth": 10,
+    "cex": null,
+    "scorer_sha256": "14d39dfdad52ffd57aec628355b9cee2d09001e330096dbe0c8cf8986977df52"
+   }
+  },
+  {
+   "task_id": "Prob036_ringer",
+   "bench": "ve",
+   "sample_idx": 0,
+   "n_completion_tokens": 584,
+   "finish_reason": "stop",
+   "extract_ok": true,
+   "module_name_ok": true,
+   "score": {
+    "task": "Prob036_ringer",
+    "bench": "ve",
+    "module_name_ok": true,
+    "tb": "fail",
+    "samples": 19,
+    "nonvacuous": true,
+    "extract_ok": true,
+    "lint_warnings": 1,
+    "synth": {
+     "latch": false
+    },
+    "equiv": "skipped",
+    "depth": 10,
+    "reset": null,
+    "scorer_sha256": "14d39dfdad52ffd57aec628355b9cee2d09001e330096dbe0c8cf8986977df52"
+   }
+  },
+  {
+   "task_id": "Prob058_alwaysblock2",
+   "bench": "ve",
+   "sample_idx": 0,
+   "n_completion_tokens": 576,
+   "finish_reason": "stop",
+   "extract_ok": true,
+   "module_name_ok": true,
+   "score": {
+    "task": "Prob058_alwaysblock2",
+    "bench": "ve",
+    "module_name_ok": true,
+    "tb": "pass",
+    "samples": 219,
+    "nonvacuous": true,
+    "extract_ok": true,
+    "lint_warnings": 1,
+    "synth": {
+     "latch": false
+    },
+    "reset": {
+     "reset": null
+    },
+    "bmc": "equivalent",
+    "pdr": "equivalent",
+    "tind": "equivalent",
+    "class": "UNBOUNDED-EQ",
+    "equiv": "equivalent",
+    "depth": 10,
+    "cex": null,
+    "scorer_sha256": "14d39dfdad52ffd57aec628355b9cee2d09001e330096dbe0c8cf8986977df52"
+   }
+  },
+  {
+   "task_id": "Prob063_review2015_shiftcount",
+   "bench": "ve",
+   "sample_idx": 0,
+   "n_completion_tokens": 604,
+   "finish_reason": "stop",
+   "extract_ok": true,
+   "module_name_ok": true,
+   "score": {
+    "task": "Prob063_review2015_shiftcount",
+    "bench": "ve",
+    "module_name_ok": true,
+    "tb": "fail",
+    "samples": 2071,
+    "nonvacuous": true,
+    "extract_ok": true,
+    "lint_warnings": 1,
+    "synth": {
+     "latch": false
+    },
+    "equiv": "skipped",
+    "depth": 10,
+    "reset": null,
+    "scorer_sha256": "14d39dfdad52ffd57aec628355b9cee2d09001e330096dbe0c8cf8986977df52"
+   }
+  },
+  {
+   "task_id": "Prob071_always_casez",
+   "bench": "ve",
+   "sample_idx": 0,
+   "n_completion_tokens": 457,
+   "finish_reason": "stop",
+   "extract_ok": true,
+   "module_name_ok": true,
+   "score": {
+    "task": "Prob071_always_casez",
+    "bench": "ve",
+    "module_name_ok": true,
+    "tb": "pass",
+    "samples": 346,
+    "nonvacuous": true,
+    "extract_ok": true,
+    "lint_warnings": 1,
+    "synth": null,
+    "reset": {
+     "reset": null
+    },
+    "bmc": "error",
+    "pdr": "unknown",
+    "tind": "unknown",
+    "class": "UNKNOWN",
+    "equiv": "error",
+    "depth": 10,
+    "cex": null,
+    "scorer_sha256": "14d39dfdad52ffd57aec628355b9cee2d09001e330096dbe0c8cf8986977df52"
+   }
+  },
+  {
+   "task_id": "Prob144_conwaylife",
+   "bench": "ve",
+   "sample_idx": 0,
+   "n_completion_tokens": 1754,
+   "finish_reason": "stop",
+   "extract_ok": true,
+   "module_name_ok": true,
+   "score": {
+    "task": "Prob144_conwaylife",
+    "bench": "ve",
+    "module_name_ok": true,
+    "tb": "compile_error",
+    "nonvacuous": false,
+    "extract_ok": true,
+    "lint_warnings": 1,
+    "synth": null,
+    "equiv": "skipped",
+    "depth": 10,
+    "reset": null,
+    "scorer_sha256": "14d39dfdad52ffd57aec628355b9cee2d09001e330096dbe0c8cf8986977df52"
+   }
+  },
+  {
+   "task_id": "LFSR",
+   "bench": "rtllm",
+   "sample_idx": 0,
+   "n_completion_tokens": 437,
+   "finish_reason": "stop",
+   "extract_ok": true,
+   "module_name_ok": true,
+   "score": {
+    "task": "LFSR",
+    "bench": "rtllm",
+    "module_name_ok": true,
+    "tb": "pass",
+    "nonvacuous": true,
+    "extract_ok": true,
+    "lint_warnings": 1,
+    "synth": {
+     "latch": false
+    },
+    "reset": {
+     "reset": "rst",
+     "active": 1
+    },
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT",
+    "equiv": "different",
+    "depth": 10,
+    "cex": "/home/unnitools/runs/shakedown/score_3b-rl/rtllm_LFSR_0/cex",
+    "scorer_sha256": "14d39dfdad52ffd57aec628355b9cee2d09001e330096dbe0c8cf8986977df52"
+   }
+  },
+  {
+   "task_id": "accu",
+   "bench": "rtllm",
+   "sample_idx": 0,
+   "n_completion_tokens": 734,
+   "finish_reason": "stop",
+   "extract_ok": true,
+   "module_name_ok": true,
+   "score": {
+    "task": "accu",
+    "bench": "rtllm",
+    "module_name_ok": true,
+    "tb": "compile_error",
+    "nonvacuous": false,
+    "extract_ok": true,
+    "lint_warnings": 1,
+    "synth": null,
+    "equiv": "skipped",
+    "depth": 10,
+    "reset": null,
+    "scorer_sha256": "14d39dfdad52ffd57aec628355b9cee2d09001e330096dbe0c8cf8986977df52"
+   }
+  },
+  {
+   "task_id": "adder_16bit",
+   "bench": "rtllm",
+   "sample_idx": 0,
+   "n_completion_tokens": 777,
+   "finish_reason": "stop",
+   "extract_ok": true,
+   "module_name_ok": true,
+   "score": {
+    "task": "adder_16bit",
+    "bench": "rtllm",
+    "module_name_ok": true,
+    "tb": "compile_error",
+    "nonvacuous": false,
+    "extract_ok": true,
+    "lint_warnings": 1,
+    "synth": {
+     "latch": false
+    },
+    "equiv": "skipped",
+    "depth": 10,
+    "reset": null,
+    "scorer_sha256": "14d39dfdad52ffd57aec628355b9cee2d09001e330096dbe0c8cf8986977df52"
+   }
+  },
+  {
+   "task_id": "adder_32bit",
+   "bench": "rtllm",
+   "sample_idx": 0,
+   "n_completion_tokens": 1930,
+   "finish_reason": "stop",
+   "extract_ok": true,
+   "module_name_ok": true,
+   "score": {
+    "task": "adder_32bit",
+    "bench": "rtllm",
+    "module_name_ok": true,
+    "tb": "compile_error",
+    "nonvacuous": false,
+    "extract_ok": true,
+    "lint_warnings": 0,
+    "synth": null,
+    "equiv": "skipped",
+    "depth": 10,
+    "reset": null,
+    "scorer_sha256": "14d39dfdad52ffd57aec628355b9cee2d09001e330096dbe0c8cf8986977df52"
+   }
+  },
+  {
+   "task_id": "adder_8bit",
+   "bench": "rtllm",
+   "sample_idx": 0,
+   "n_completion_tokens": 805,
+   "finish_reason": "stop",
+   "extract_ok": true,
+   "module_name_ok": true,
+   "score": {
+    "task": "adder_8bit",
+    "bench": "rtllm",
+    "module_name_ok": true,
+    "tb": "pass",
+    "nonvacuous": true,
+    "extract_ok": true,
+    "lint_warnings": 1,
+    "synth": {
+     "latch": false
+    },
+    "reset": {
+     "reset": null
+    },
+    "bmc": "equivalent",
+    "pdr": "equivalent",
+    "tind": "equivalent",
+    "class": "UNBOUNDED-EQ",
+    "equiv": "equivalent",
+    "depth": 10,
+    "cex": null,
+    "scorer_sha256": "14d39dfdad52ffd57aec628355b9cee2d09001e330096dbe0c8cf8986977df52"
+   }
+  },
+  {
+   "task_id": "comparator_3bit",
+   "bench": "rtllm",
+   "sample_idx": 0,
+   "n_completion_tokens": 2048,
+   "finish_reason": "length",
+   "extract_ok": false,
+   "module_name_ok": false,
+   "score": {
+    "task": "comparator_3bit",
+    "bench": "rtllm",
+    "module_name_ok": false,
+    "tb": "compile_error",
+    "nonvacuous": false,
+    "extract_ok": false,
+    "lint_warnings": 0,
+    "synth": null,
+    "equiv": "skipped",
+    "depth": 10,
+    "reset": null,
+    "scorer_sha256": "14d39dfdad52ffd57aec628355b9cee2d09001e330096dbe0c8cf8986977df52"
+   }
+  },
+  {
+   "task_id": "comparator_4bit",
+   "bench": "rtllm",
+   "sample_idx": 0,
+   "n_completion_tokens": 557,
+   "finish_reason": "stop",
+   "extract_ok": true,
+   "module_name_ok": true,
+   "score": {
+    "task": "comparator_4bit",
+    "bench": "rtllm",
+    "module_name_ok": true,
+    "tb": "fail",
+    "nonvacuous": false,
+    "extract_ok": true,
+    "lint_warnings": 1,
+    "synth": {
+     "latch": false
+    },
+    "equiv": "skipped",
+    "depth": 10,
+    "reset": null,
+    "scorer_sha256": "14d39dfdad52ffd57aec628355b9cee2d09001e330096dbe0c8cf8986977df52"
+   }
+  },
+  {
+   "task_id": "edge_detect",
+   "bench": "rtllm",
+   "sample_idx": 0,
+   "n_completion_tokens": 663,
+   "finish_reason": "stop",
+   "extract_ok": true,
+   "module_name_ok": true,
+   "score": {
+    "task": "edge_detect",
+    "bench": "rtllm",
+    "module_name_ok": true,
+    "tb": "pass",
+    "nonvacuous": true,
+    "extract_ok": true,
+    "lint_warnings": 1,
+    "synth": {
+     "latch": false
+    },
+    "reset": {
+     "reset": "rst_n",
+     "active": 0
+    },
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT",
+    "equiv": "different",
+    "depth": 10,
+    "cex": "/home/unnitools/runs/shakedown/score_3b-rl/rtllm_edge_detect_0/cex",
+    "scorer_sha256": "14d39dfdad52ffd57aec628355b9cee2d09001e330096dbe0c8cf8986977df52"
+   }
+  }
+ ],
+ "throughput": {
+  "ve": {
+   "wall_s": 154.3,
+   "tokens": 28087,
+   "tok_per_s": 182.1
+  },
+  "rtllm": {
+   "wall_s": 161.7,
+   "tokens": 57264,
+   "tok_per_s": 354.1
+  }
+ }
+}

@@ -10,22 +10,34 @@ For each released checkpoint, what share of its official-testbench passes is
 not functionally correct under strict scoring?
 
 ## Arms
+Engine for every arm: **vLLM 0.21.0+2325b6f0.nvinternal.26.05.post1, container
+nvcr.io/nvidia/vllm@sha256:94e21552f644e0c1627464ba89d2f7a4ce7442e196f72afa0bb5d7fba23cbb03,
+one DGX Spark (arm64)** (A16: single machine; no second engine, no Halo block).
+Overnight generation order (A16 §3 step 4): CodeV RL → CodeV Distill → 3B RL →
+3B base → Qwen 7B base (base arms last because they are cut first).
 CodeV family: `Qwen/Qwen2.5-Coder-7B-Instruct@c03e6d3` →
 `zhuyaoyu/CodeV-R1-Distill-Qwen-7B@8fdb92e` →
 `zhuyaoyu/CodeV-R1-RL-Qwen-7B@286cf43`.
-VeriReason family: `Qwen/Qwen2.5-Coder-3B-Instruct@488639f` (declared SFT base;
-the GRPO card names `Qwen/Qwen2.5-Coder-3B@09d9bc5`) →
-`Nellyw888/Qwen2.5-3b-sft-reasoning@1f0b7fa` **[H0-a: DROPPED — not confirmed as the
+VeriReason family: `Qwen/Qwen2.5-Coder-3B-Instruct@488639f` (3B base arm; the
+raw `Qwen/Qwen2.5-Coder-3B@09d9bc5` is an H0 reference only, never generated)
+→ `Nellyw888/Qwen2.5-3b-sft-reasoning@1f0b7fa` **[H0-a: DROPPED — not confirmed as the
 RL parent; median RL↔SFT 4.50e-3 vs RL↔3B-Instruct 3.45e-3 (rule required 10×
-smaller); `results/h0/h0a_weight_distance.json`]** →
+smaller); `results/h0/h0a_weight_distance.json`; the checkpoint is fp32 on the
+hub and would be loaded cast to bfloat16 — recorded for completeness, not
+scored]** →
 `Nellyw888/VeriReason-Qwen2.5-3b-RTLCoder-Verilog-GRPO-reasoning-tb@3b93ce1`.
 H0-a rule (pre-registered, executed 18 Oct): the SFT checkpoint is the RL model's
 parent iff the median RL↔SFT relative tensor distance is ≤ 10× smaller than RL↔(each
 Qwen 3B); otherwise the 3B family drops its SFT arm and the 3B contrast becomes
 SFT+RL vs Instruct. Outcome: dropped. 3B arms scored: 3B-RL and 3B-Instruct
 (base); the fp32 SFT checkpoint is still downloaded + verified but not scored.
-Cut order under time pressure: (1) VerilogEval seeded subset of 60, (2) n 3 → 2,
-(3) raw-base arm. Never max tokens, never the SFT arm.
+3B lane settings (A16 §3 step 3): same container, `dtype="bfloat16"`,
+`generation_config="vllm"`, `seed=0`, `enable_prefix_caching=True`,
+`max_model_len=4096` (= largest rendered 3B prompt 1,279 tok + 2,048 + 64 →
+3,584 → floored up to the 4,096 minimum; both 3B tokenizers agree).
+Cut order under time pressure (A16 §3 step 5): (1) VerilogEval seeded subset of
+60, (2) n 3 → 2, (3) drop base arms, 7B base first, then 3B base. Never max
+tokens, never an SFT arm.
 
 ## Tasks [A14, accepted 17 Oct 2026; gate counts updated 18 Oct 2026 per the
 frozen deep-scorer results, operator instruction]
@@ -61,13 +73,14 @@ RAM, square_wave (tracked, #16/#23).
 - Extraction: CodeV-R1's extractor (`test/utils/verilog_extractor.py` @ `277ac46`);
   module must be `TopModule` (VE) or the task name (RTLLM). Gate G2 ≥ 95%.
 
-## Sampling [A13, accepted 17 Oct 2026]
+## Sampling [A13, accepted 17 Oct 2026; A16: all arms on vLLM]
 Each CodeV checkpoint at its authors' published protocol (arXiv 2505.24183 v5):
 base T 1.0; Distill T 0.6; RL T 1.0. VeriReason 3B arms at T 0.2 (model card).
 top_p: VE 1.0, RTLLM 0.95 (CodeV paper), VeriReason 0.95 both. max new tokens
 16,384 (7B) / 2,048 (3B). n = 3 per task (n = 5 on RTLLM only if the night
 allows). `top_k=-1`, `min_p=0.0`, `repetition_penalty=1.0` everywhere; fixed
-per-task seed `seed = int(sha256(task_id)[:8], 16)`; `generation_config="vllm"`
+per-task seed `seed = int(sha256(task_id)[:8], 16)` — **the same seed rule for
+the VeriReason rows as for the CodeV rows**; `generation_config="vllm"`
 passed to `LLM(...)` and every sampling field set explicitly (Distill's
 `generation_config.json` carries `repetition_penalty 1.1, top_k 20, top_p 0.8,
 temperature 0.7` — recorded in `models.yaml`, NOT used).
@@ -116,10 +129,60 @@ RTLLM v2: 36.1 / 57.2 / 68.0, loose check only (their v2.0 with VCS; ours v2.1
 with Icarus — 9 of 50 spec texts differ between the versions, see Prompts).
 No anchor exists for the VeriReason family.
 
-## Classification
-Dedup (exact + AST-normalised) before classification. Blind labels on a seeded
-stratified sample of 40 disagreements. The automatic "formally different within
-depth d" (proof classes from the deep engines) is the headline column.
+## Analysis code (A16 §3 step 8 — frozen before G0)
+All under `scoring/`, committed <COMMIT-PLACEHOLDER>:
+- `scoring/extract.py` sha256 `<PLACEHOLDER>` — CodeV-R1 `extract_verilog_code`
+  @ `277ac46` verbatim (defaults) + the module-name check.
+- `scoring/stats.py` sha256 `<PLACEHOLDER>` — the statistics below; tested on the
+  pilot's 290 verdicts and the shakedown verdicts (`/tmp` smoke runs, 18 Oct;
+  re-verified at pin time).
+- `scoring/run_scoring.py` sha256 `<PLACEHOLDER>` — drives `scorer/score.py` over
+  `~/runs/gen/<arm>.jsonl` → `scores/<arm>.jsonl`, resumable, scorer commit +
+  sha256 recorded in every row.
+- `scoring/showcex.py` sha256 `<PLACEHOLDER>` — brief Appendix A.8 verbatim
+  (counterexample tables; homed in `scoring/` so the frozen `scorer/` tree stays
+  byte-identical to tag `scorer-v1`).
+
+## Analysis plan (A16 §6 steps 3–7, short form)
+- **Extraction gate G2**: `scoring/extract.py` over every arm; pass iff ≥ 95% of
+  each arm's samples extract a module with the right name (`TopModule` /
+  task name). On failure: stop for that arm, show 10 failing samples, operator
+  decides the glue fix. Prompts never change.
+- **Strict-correct** = `tb` pass AND non-vacuous AND `equivalent`. Classes of an
+  official pass that is not strict-correct: `different`, `vacuous`, `timeout`
+  (reported, never counted as equivalent), `error`.
+- **False-pass share** = (official passes not strict-correct) / (official
+  passes), ratio of sums over tasks. Headline "formally different within depth
+  d" share from the proof classes.
+- **RTLLM headline tables**: the 34 designs other than `accu`, `LIFObuffer`,
+  `RAM`, `square_wave` (reported apart in their own table); sensitivity row for
+  all 38 usable designs.
+- **Dedup before classification** (within arm × task): exact duplicates by
+  sha256 of extracted code with comments/whitespace removed; normalised
+  duplicates by sha256 of `yosys -p "read_verilog -sv; hierarchy -top; proc;
+  opt_clean; rename -enumerate; write_rtlil"` output with `attribute \src`
+  lines removed. Unique-design counts + per-unique-design false-pass share as a
+  sensitivity row; the primary metric stays per sample.
+- **Contamination**: five datasets at pinned revisions (CodeV-R1-dataset
+  `9ab06ff`, RTL-Coder_small `801eea7`, RTL-Coder_7b_reasoning `528eb9b`,
+  VeriReason tb `42823db` 1,149 rows, tb_simple `61cc6a2` 743 rows), MinHash
+  5-gram/128-perm LSH@0.8 + exact Jaccard ≥ 0.8 + whitespace-collapsed exact
+  match, statements vs specs primary, code vs references secondary;
+  `results/main/contamination/overlaps.csv`; secondary contrasts rerun without
+  overlapping tasks.
+- **Statistics**: `scoring/stats.py` (above). Task-clustered bootstrap, 10,000
+  resamples, `numpy.random.default_rng(0)`, percentile 95%. Per arm × benchmark:
+  tasks, samples, official pass@1, strict pass@1, official-pass count, false-pass
+  share, formally-different share, class counts. H1/H2 paired on the same task
+  draws; interval ∋ 0 → "not resolved". Sensitivity rows: without contaminated
+  tasks; per unique design; all 38 RTLLM designs.
+- **Blind sample of 40**: population = unique official-pass strict-fail designs
+  of class `different`/`vacuous`, all arms, excluding the four reported-apart
+  designs; stratified by arm × benchmark, proportional largest-remainder
+  allocation, `random.Random(0)`; packets blind to arm/model/family/index; key
+  outside the repo (sha256 committed); operator labels `real bug` / `reference
+  wrong` / `allowed by spec` / `unclear` / `scorer artefact`; class shares with
+  Wilson 95% intervals, overall and per family.
 
 ## Contamination
 MinHash (5-gram word shingles, 128 permutations, J ≥ 0.8) + normalised exact
@@ -135,13 +198,31 @@ GRPO reward oracle.
 - Scoring speed (timing proxy on RTLLM-shipped GPT-4 designs, not study-arm
   samples): 0.466 samples/s at WORKERS=18 (≈2.1 s/sample); formal dominates
   (96% of EDA time) — `results/shakedown/scoring_speed.json`.
-- Generation throughput per arm: **NOT MEASURED — docker blocked on this
-  machine** (user not in docker group; Phase 1 operator leftover). The
-  overnight projection (tokens / measured tok/s vs the 21:00–07:00 window) and
-  the cut-order decision therefore cannot be pre-computed. Operator options at
-  G0 review: (a) fix docker, run Phase 6 steps 1–3 before approving G0
-  (preferred); (b) approve G0 with the projection taken adaptively at the
-  30-minute throughput check in Phase 8 step 4.
+- **Scoring-time projection (A16 §3 step 6)**: (156+50)×3×5 = 3,090 official-TB
+  runs, of which (143+38)×3×5 = 2,715 formal-eligible; measured-rate estimate
+  **1.84 h**, pessimistic all-pass bound 0.26 h(+), vs the 4.5 h morning window
+  → fits. RTLLM n=5 option: 3,590 runs → 2.14 h → fits. Nothing cut for
+  scoring time (`shakedown/projection.py`).
+- Generation throughput, 3B lane (A16 settings, 64 concurrent, wall includes
+  model load): 3B-RL VE 167 / RTLLM 378 tok/s; 3B base VE 194 / RTLLM 316 tok/s
+  (`results/shakedown/{3b-rl,3b-base}.json`). 3B generation projection ≈ 1.3 h.
+  Note: re-generating the 3B-RL shakedown at `max_model_len` 4096 (vs the first
+  run's 20480) changed completions slightly — vLLM per-request seeds are not
+  bitwise-deterministic across settings; determinism holds at the pinned
+  settings only.
+- Generation throughput, 7B lane: **PENDING — weights still downloading at
+  18 Oct 20:00** (7B-Instruct ~2.7/15.2 GB; Distill ~0; RL 1/4 shards). The
+  overnight projection completes when the 7B shakedown runs; the projection
+  script is `shakedown/projection.py` (cut ladder coded).
+- Overlap probe (A16 §3 step 7): PENDING — needs a 7B arm generating at 64
+  concurrent; decides only whether finished arms may be scored with WORKERS=8
+  during generation.
+
+## Deviations
+- Single machine (A16): "The x86-64 reproduction of the scorer planned for a
+  second machine was not run." Everything (generation, official + strict
+  scoring, dedup, contamination, statistics, blind packet, tables, GRPO) runs
+  on the one DGX Spark; the operator labels the blind sample elsewhere.
 
 ## Licences
 7B and 1.5B Qwen bases: Apache-2.0. Qwen2.5-Coder-3B family: Qwen Research

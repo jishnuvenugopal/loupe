@@ -53,7 +53,16 @@ ARMS = {
               "3b93ce1bd7e5d90dae8761363a9c6862d0ed583a", "verireason", 0.2, 2048),
     "3b-sft": ("Nellyw888/Qwen2.5-3b-sft-reasoning",
                "1f0b7fac9c057b32cba9107a854518be92e45c91", "verireason", 0.2, 2048),
+    # A16 §3 step 3: 3B base = Qwen2.5-Coder-3B-Instruct (never the raw 3B).
+    # 3b-sft is KEPT FOR THE RECORD ONLY: H0-a dropped the arm (PREREG), A16 §3
+    # step 3 says "3B SFT unless H0-a dropped it" -> do not run it.
+    "3b-base": ("Qwen/Qwen2.5-Coder-3B-Instruct",
+                "488639f1ff808d1d3d0ba301aef8c11461451ec5", "verireason", 0.2, 2048),
 }
+# A16 §3 step 3: max_model_len = largest rendered 3B prompt (1279 tok, rtllm
+# asyn_fifo, both 3B tokenizers) + 2048 + 64 = 3391 -> roundup256 = 3584 ->
+# floor at 4096. Computed 18 Oct 2026, prompts/SHA256SUMS state.
+MAX_MODEL_LEN_3B = 4096
 TOP_P = {"ve": 1.0, "rtllm": 0.95}  # VeriReason 0.95 both (§6.2)
 
 
@@ -80,8 +89,10 @@ def shakedown_tasks():
 def docker_gen(arm, model_path, rev, family, prompt_file, out_file, n, max_tokens, temperature, extra_env=""):
     if family == "verireason":
         top_p_note = 0.95  # §6.2: VeriReason arms top_p 0.95 on both benchmarks
+        mml = MAX_MODEL_LEN_3B  # A16 §3 step 3 pinned value
     else:
         top_p_note = TOP_P["ve"] if "_ve" in os.path.basename(prompt_file) else TOP_P["rtllm"]
+        mml = 20480
     hf_dir = os.path.expanduser("~/hf")
     cmd = (f"sg docker -c 'docker run --rm --gpus all --ipc=host "
            f"--ulimit memlock=-1 --ulimit stack=67108864 "
@@ -90,6 +101,8 @@ def docker_gen(arm, model_path, rev, family, prompt_file, out_file, n, max_token
            f"python3 /work/gen/gen_vllm.py --arm {arm} --model {model_path} --revision {rev} "
            f"--prompts {prompt_file} --system /work/prompts/system_prompts/{family}.txt "
            f"--n {n} --max-tokens {max_tokens} --temperature {temperature} --top-p {top_p_note} "
+           f"--max-model-len {mml} "
+           f"--log-effective-params /runs/{arm}_effective_params.json "
            f"--out {out_file}'")
     return subprocess.run(["bash", "-c", cmd], capture_output=True, text=True)
 
@@ -190,7 +203,7 @@ def main():
         # 22 prompts x n = 3 from the same built prompt files (first 22 tasks)
         for bench in ("ve", "rtllm"):
             src = os.path.join(REPO, f"prompts/built/{family}_{bench}.jsonl")
-            rows = [json.loads(l) for l in open(src)][:22]
+            rows = [json.loads(l) for l in open(src)][:32]  # A16: 32 tasks x n=2 = 64 concurrent
             with open(os.path.join(RUNS, f"prompts/{family}_{bench}_tp.jsonl"), "w") as f:
                 for r in rows:
                     f.write(json.dumps(r, ensure_ascii=False) + "\n")
@@ -198,8 +211,12 @@ def main():
         for bench in ("ve", "rtllm"):
             pf = f"/runs/prompts/{family}_{bench}_tp.jsonl"
             of = f"/runs/{args.arm}_tp_{bench}.jsonl"
+            # throughput must NEVER resume: stale rows would inflate tokens while
+            # wall covers only the new batch (bug found 18 Oct, A16 re-run)
+            if os.path.isfile(os.path.join(RUNS, f"{args.arm}_tp_{bench}.jsonl")):
+                os.remove(os.path.join(RUNS, f"{args.arm}_tp_{bench}.jsonl"))
             t0 = time.time()
-            p = docker_gen(args.arm, model_path, rev, family, pf, of, 3, maxtok, T)
+            p = docker_gen(args.arm, model_path, rev, family, pf, of, 2, maxtok, T)
             wall = time.time() - t0
             ntok = 0
             f = os.path.join(RUNS, f"{args.arm}_tp_{bench}.jsonl")

@@ -118,16 +118,49 @@ See `results/h0/H0.md` for the version with all file pointers.
 
 ## 8. Open questions for the operator
 
-1. **docker group + apt** (Phase 1): needed for H0-a, Phase 6 steps 1–4, and
-   Phase 8. `sudo usermod -aG docker unnitools` + the apt list in Phase 1 §1.
-2. **G0 sequencing** (see PREREG "Measured before G0"): fix docker and run the
-   generation shakedown before approving G0, or approve G0 with the adaptive
-   throughput check in Phase 8 step 4?
-3. **H0-a timing**: if docker stays blocked, authorise torch-cpu in the host
-   venv as a substitute for the pinned PyTorch container, or run H0-a later on
-   the Halo (the decision rule is pre-registered either way).
-4. **Phase 4 completion**: downloads will finish after this STOP;
+1. **G0 sequencing** (see PREREG "Measured before G0"): the 7B shakedown +
+   overlap probe complete when the three 7B downloads land (~overnight); G0
+   review can follow in the morning. (docker/apt and H0-a are RESOLVED.)
+2. **Phase 4 completion**: downloads will finish after this STOP;
    `models/verify_weights.py` reruns and the exit check is "8×verified" in
    `models.yaml`. No operator action needed unless a hash mismatches.
 
-STOP — waiting for operator review of PREREG.md and the message "G0 approved" (plus docker/apt from §8)
+## 9. Generation (A16 §7 — filled by Phase 8)
+
+Manifests, 30-minute throughput checks, any cut applied: pending G0 and the
+overnight run. Order (A16 §3 step 4): CodeV RL → Distill → 3B RL → 3B base →
+Qwen 7B base. No rsync step (single machine).
+
+## 10. Build day (A16 §7 — filled by Phase 10)
+
+G2, G1b, the primary false-pass table, secondary contrasts, dedup,
+contamination, blind sample: pending. Analysis code pinned pre-G0 under
+`scoring/` (see PREREG "Analysis code").
+
+## 11. Amendment A16
+
+- **When**: 18 Oct 2026, ~19:50 +08, during Phase 6 (3B-SFT-as-bf16 lane had
+  just been started; killed — the arm was dropped by H0-a and A16 §3 step 3
+  says "3B SFT unless H0-a dropped it").
+- **Phase then**: Phase 6 of 9; Phases 0–5 exit-checked; STOP for PREREG review
+  maintained; G0 not reached (no evaluation sample exists — §0.5 clean).
+- **What was redone**: (a) guard self-tests re-run per §2 — six tests, one
+  FRESH scratch repo per test, 6/6 with the correct refusal reason (the old
+  run had stacked the four content commits in one repo, so tests 2–3 were
+  refused for `koder/x.md` and not their own reason; the old `mk()` helper had
+  also clobbered the 60 MB blob to 2 bytes, making "60MB refused" vacuous —
+  both recorded next to the old results in `notes/LOG.md`);
+  (b) 3B lane re-run at the pinned A16 settings (`max_model_len=4096`, 64
+  concurrent): 3B-RL superseded (`3b-rl.pre-a16.json` kept beside), 3B base
+  (Qwen2.5-Coder-3B-Instruct) run for the first time as a primary arm;
+  (c) `scoring/{extract,stats,run_scoring,showcex}.py` written and pinned
+  (§3 step 8); (d) PREREG arms/sampling/analysis sections updated (§4);
+  `gen/run_overnight.sh` and `gen/README.md` de-Halo'd (§1/§5).
+- **Still pending under A16**: 7B shakedown (steps 1–2) + overlap probe (step 7)
+  + full overnight projection (step 5) once the three 7B weights land.
+
+Messages waited for (exactly): `G0 approved`; `RTLLM n = 5` or `cut <step>`
+(pre-G0 only); `hold` (optional, pauses before Phase 10); `blind labels in`;
+`G3 pass, start GRPO`. (`Spark runs 3B` retired — standing per A16.)
+
+STOP — waiting for operator review of PREREG.md and the message "G0 approved"

@@ -231,3 +231,93 @@
 - Weights verified 6/8: 1.5B, 3B raw, 3B-Instruct, 3B-RL, 3B-SFT(fp32 3/3) + grpo-base.
   Only the three 7Bs remain (7B-RL at 1/4 shards; ~7h at current uplink).
 - PHASE 5 EXIT CHECK: all four H0 answers written with evidence (results/h0/H0.md).
+
+## 2026-10-18 19:50 — AMENDMENT A16 received (Spark-only lane); applied
+- Operator issued A16 (no second machine; Spark does generation+scoring+stats+blind
+  packet+GRPO; `Spark runs 3B` standing; messages list trimmed). Copied verbatim to
+  `koder/docs/brief-spark-addendum-A16.md`. Phase at receipt: 6 of 9 (Phases 0-5 exit
+  checks passed; STOP for PREREG review maintained). §0.5 check: G0 NOT reached, zero
+  evaluation samples exist -> clean apply, no stop-and-report.
+- Conflicts found & resolved: (1) 3B-SFT-as-bf16 shakedown had just been started under
+  the old brief's "machinery check even though dropped" reading -> killed (log empty,
+  no results); A16 §3 step 3 skips it because H0-a dropped the arm. (2) The completed
+  3B-RL shakedown had run at max_model_len=20480 (driver default) and 66-concurrent
+  throughput -> superseded; re-run below at the A16-pinned settings, old JSON kept as
+  `results/shakedown/3b-rl.pre-a16.json`. (3) PREREG cut order said "raw-base arm";
+  A16 ladder is "drop base arms, 7B base first, then 3B base" -> updated. (4) 3B base
+  redefined = Qwen2.5-Coder-3B-Instruct@488639f (raw 3B stays H0-reference only).
+
+## 2026-10-18 20:00-20:10 — A16 §2: guard self-tests re-run (one fresh scratch repo per test)
+- Old run (17 Oct) stacked the four content commits in ONE scratch repo, so the 60MB and
+  safetensors tests were refused with `koder/x.md` present in the pushed tree (wrong
+  reason), and its `mk()` helper had clobbered big.bin to 2 bytes ("60MB refused" was
+  vacuous). Re-run: 6/6 in ~/runs/guard_selftest_a16/, each test in its own fresh repo —
+  T1 koder/x.md -> "contains koder/x.md"; T2 REAL 62,914,560-byte blob -> "blob over
+  50 MB"; T3 w.safetensors -> "contains w.safetensors"; T4 text-only -> exit 0;
+  T5 refs/heads/main -> "remote ref not allowed"; T6 wrong URL -> "remote URL ... is
+  not ...". (One transient `gh` visibility 'unknown' on T1's first attempt — re-ran clean.)
+
+## 2026-10-18 20:05-20:35 — A16 §3 step 3: 3B lane (primary); §3 step 8: analysis code pinned
+- max_model_len computed per A16 formula: largest rendered 3B prompt = 1,279 tok
+  (rtllm asyn_fifo; both 3B tokenizers agree, chat template applied) + 2,048 + 64 =
+  3,391 -> roundup256 = 3,584 -> floored at the 4,096 minimum -> **4096** pinned in
+  shakedown_run.py (MAX_MODEL_LEN_3B).
+- shakedown_run.py: 3b-base arm added (Qwen/Qwen2.5-Coder-3B-Instruct@488639f,
+  VeriReason protocol); docker_gen now passes --max-model-len (4096 for 3B, 20480 for
+  7B) and --log-effective-params; throughput changed 22x3=66 -> 32x2 = exactly 64
+  concurrent; BUG FIX: throughput out files are now deleted before each run (resume
+  mixed stale rows into the batch and divided old+new tokens by the new batch's wall —
+  found via the first polluted 3b-rl re-run, numbers superseded).
+- 3b-base (new primary arm): mean 793 tok / p95 2048 / cap hits 2; extraction+name
+  14/16; official TB 4 pass / 3 fail / 9 compile_error; strict on passes 2 UNBOUNDED-EQ
+  + 2 BMC-10-EQ-ONLY; VE 193.9 / RTLLM 315.8 tok/s at 64 concurrent; effective
+  SamplingParams logged (T 0.2, top_p 0.95, max_tokens 2048, n=1, per-task seed).
+- 3b-rl re-run clean at pinned settings: completions byte-identical to the first run
+  (deterministic per-task seeds — recorded as a reproducibility check); verdicts
+  unchanged (8/3/5; 5 UNBOUNDED-EQ, 2 DIFFERENT, 1 UNKNOWN); throughput at 4096 +
+  64-concurrent: VE 363.2 / RTLLM 500.0 tok/s (supersedes 182/354).
+- Pinned analysis code (§3 step 8), committed this session:
+  - scoring/extract.py: CodeV-R1 extract_verilog_code @277ac46 vendored VERBATIM
+    (file sha256 7c52795e...) + module-name check (TopModule/task) + G2 CLI.
+  - scoring/stats.py: task-clustered bootstrap (10k, default_rng(0), percentile 95),
+    false-pass share as ratio of sums, a16 classes, H1/H2 paired on shared task
+    draws, wilson(); adapters for scores/ + pilot + shakedown. TESTED on the pilot's
+    290 verdicts (GPT-4: op 53 / strict 40 / FP 24.5% [8 different, 5 error];
+    GPT-3.5: op 34 / strict 25 / FP 26.5%; H1/H2 run, both "not resolved") and on the
+    3b-rl shakedown verdicts (VE 5/4/20%, RTLLM 3/1/67% — matches the LOG tally).
+  - scoring/run_scoring.py: resumable driver over ~/runs/gen/<arm>.jsonl ->
+    scores/<arm>.jsonl, scorer-v1 commit + sha256 in every row, WORKERS/SAT_TIMEOUT
+    env, cex tables via scoring/showcex.py (VCDs stay in ~/runs). 1-sample smoke OK;
+    resume verified (already_done=1 todo=0).
+  - scoring/showcex.py: brief Appendix A.8 VERBATIM, homed in scoring/ so scorer/
+    stays byte-identical to tag scorer-v1 (Phase 10 freeze checks depend on that).
+- shakedown/projection.py (§3 steps 5-6 machinery): 3B half measured (3B-RL 0.36 h +
+  3B base 0.64 h at n=3; RTLLM n=5 option +0.12 h); scoring projection (156+50)x3x5
+  = 3,090 TB runs of which (143+38)x3x5 = 2,715 formal -> 1.84 h measured-rate vs the
+  4.5 h morning window (RTLLM n=5: 2.14 h). 7B generation numbers pending weights.
+
+## 2026-10-18 20:35 — A16 §4/§5/§7: PREREG + reports + overnight runner
+- PREREG.md: engine line (vLLM 0.21.0+2325b6f0.nvinternal.26.05.post1, container
+  nvcr.io/nvidia/vllm@sha256:94e2155..., one DGX Spark arm64); overnight arm order +
+  A16 cut ladder; VeriReason-on-vLLM sampling note (same seed rule); 3B lane settings
+  incl. max_model_len=4096; SFT fp32->bf16 cast recorded on the dropped entry; new
+  "Analysis code" (sha256 at commit) + "Analysis plan" sections; "Measured before G0"
+  refreshed (scoring projection, 3B tok/s; 7B + overlap probe marked PENDING);
+  Deviations: single-machine note. No Halo block.
+- gen/run_overnight.sh: A16 order (7b-rl, 7b-sft, 3b-rl, 3b-base, 7b-base) with the
+  VeriReason protocol rows for the 3B arms (T 0.2, top_p 0.95, max 2048, mml 4096);
+  gen/README.md: rsync section replaced by the A16 no-transfer note.
+- SPARK_REPORT.md: sections 9-11 added (Generation / Build day / Amendment A16 with
+  what-was-redone), stale docker/apt open questions closed, STOP line + exact message
+  list updated (Spark runs 3B retired). spark_report.json: keys generation/g1b/g2/
+  results/contamination/blind40/amendments added.
+- CORRECTION (20:55): the 20:05 "polluted" 3b-rl re-run had todo=0 — it REUSED the
+  original 20480 rows, which is why its verdicts matched; that was not a determinism
+  result. The clean 4096 re-generation differs: mean 709 (vs 812), verdicts 8 pass /
+  6 fail / 2 compile_error (vs 8/3/5), strict 6 UNBOUNDED-EQ / 1 DIFFERENT / 1 UNKNOWN
+  (vs 5/2/1). Lesson recorded: vLLM per-request seeds do NOT give bitwise determinism
+  across max_model_len / kernel-shape changes (fp associativity); determinism holds
+  only at fixed settings, which is what G0 pins. Operative numbers are the 4096 ones.
+- 3b-rl final (A16 settings): throughput VE 167.0 / RTLLM 378.2 tok/s at 64
+  concurrent (32x2, fresh files; wall includes model load). 3B projection refreshed:
+  3B-RL ~0.63 h + 3B base ~0.64 h at n=3.
