@@ -191,14 +191,15 @@ RTLLM v2: 36.1 / 57.2 / 68.0, loose check only (their v2.0 with VCS; ours v2.1
 with Icarus — 9 of 50 spec texts differ between the versions, see Prompts).
 No anchor exists for the VeriReason family.
 
-## Analysis code (A16 §3 step 8 — frozen before G0)
-All under `scoring/`, commit `bc02bb9`:
+## Analysis code (A16 §3 step 8 — frozen before G0; revised by A17 items 1–4)
+All under `scoring/`, commit `c336f68` (A17 revision; A16 originals in history at `bc02bb9`):
 - `scoring/extract.py` sha256 `e36b36e78fde106d02d4dd38a22237ed8a4a0d77dd787fe4c2fed5f0811aa195` — CodeV-R1 `extract_verilog_code`
   @ `277ac46` verbatim (defaults) + the module-name check.
-- `scoring/stats.py` sha256 `69f22f6b4edf9b6460a1c2cf1ed8b05d6bd81aef0ee7b3a6bae03ea75d76edc6` — the statistics below; tested on the
-  pilot's 290 verdicts and the shakedown verdicts (`/tmp` smoke runs, 18 Oct;
-  re-verified at pin time).
-- `scoring/run_scoring.py` sha256 `0dbeb026857dd40919569af5d447468a168e9cd8fe596cc2cb53dcdd2d64bd24` — drives `scorer/score.py` over
+- `scoring/stats.py` sha256 `52835994f79c0219adfd66a9c62ab9378ac1a7e62260d5e8876ee4b40b93ee3d` — the statistics below; tested on the
+  pilot's 290 verdicts and the shakedown verdicts (A17 item 2 re-run on the new
+  gates: pilot GPT-4 14.89% / GPT-3.5 13.79% not-proved-correct; 3b-rl 20%/33.3%;
+  3b-base 50%/50% with bounded-only 1 of 2 passes each — see notes/LOG.md 21:30).
+- `scoring/run_scoring.py` sha256 `2ea7f37583db9320627510dade425545216cb90c31ea7f04832cf45020f4268a` — drives `scorer/score.py` over
   `~/runs/gen/<arm>.jsonl` → `scores/<arm>.jsonl`, resumable, scorer commit +
   sha256 recorded in every row.
 - `scoring/showcex.py` sha256 `51d4b2cbabe7127b7de56a2ef68552222f8a42294938dc4ed1b45e56e9ef058f` — brief Appendix A.8 verbatim
