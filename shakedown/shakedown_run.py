@@ -83,7 +83,8 @@ def docker_gen(arm, model_path, rev, family, prompt_file, out_file, n, max_token
     else:
         top_p_note = TOP_P["ve"] if "_ve" in os.path.basename(prompt_file) else TOP_P["rtllm"]
     hf_dir = os.path.expanduser("~/hf")
-    cmd = (f"sg docker -c 'docker run --rm --gpus all "
+    cmd = (f"sg docker -c 'docker run --rm --gpus all --ipc=host "
+           f"--ulimit memlock=-1 --ulimit stack=67108864 "
            f"-v {hf_dir}:/models-hf "
            f"-v {REPO}:/work -v {RUNS}:/runs {extra_env} {IMAGE} "
            f"python3 /work/gen/gen_vllm.py --arm {arm} --model {model_path} --revision {rev} "

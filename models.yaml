@@ -98,19 +98,22 @@ hf_tags: []
 n_safetensors_remote: 3
 n_safetensors_local: 0
 hash_mismatches: []
-card_files_copied: []
+card_files_copied: ["README.md", "config.json", "generation_config.json", "tokenizer_config.json"]
+chat_template_sha256: "06d9597b76804e7ec3014f7fa84bf176654ac3695d6c604fe70deb062d724ede"
+config_name_or_path: "/workspace/LLaMA-Factory/outputs/Qwen2.5-Coder-3B/SFT"
+generation_config: {"bos_token_id": 151643, "do_sample": true, "eos_token_id": [151645, 151643], "pad_token_id": 151643, "repetition_penalty": 1.05, "temperature": 0.7, "top_k": 20, "top_p": 0.8, "transformers_version": "4.49.0"}
 
 arm: 3b-rl
 id: "Nellyw888/VeriReason-Qwen2.5-3b-RTLCoder-Verilog-GRPO-reasoning-tb"
 revision: "3b93ce1bd7e5d90dae8761363a9c6862d0ed583a"
 dtype: "bfloat16"
 size_gb: 6.2
-status: "incomplete"
+status: "verified"
 declared_base: "Nellyw888/Qwen2.5-3b-sft-reasoning (unconfirmed until H0-a)"
 licence_evidence: "no tag; card base_model: Qwen/Qwen2.5-Coder-3B"
 hf_tags: []
 n_safetensors_remote: 2
-n_safetensors_local: 1
+n_safetensors_local: 2
 hash_mismatches: []
 card_files_copied: ["README.md", "config.json", "tokenizer_config.json"]
 chat_template_sha256: "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126"
