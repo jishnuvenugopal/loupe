@@ -130,16 +130,16 @@ with Icarus — 9 of 50 spec texts differ between the versions, see Prompts).
 No anchor exists for the VeriReason family.
 
 ## Analysis code (A16 §3 step 8 — frozen before G0)
-All under `scoring/`, committed <COMMIT-PLACEHOLDER>:
-- `scoring/extract.py` sha256 `<PLACEHOLDER>` — CodeV-R1 `extract_verilog_code`
+All under `scoring/`, commit `bc02bb9`:
+- `scoring/extract.py` sha256 `e36b36e78fde106d02d4dd38a22237ed8a4a0d77dd787fe4c2fed5f0811aa195` — CodeV-R1 `extract_verilog_code`
   @ `277ac46` verbatim (defaults) + the module-name check.
-- `scoring/stats.py` sha256 `<PLACEHOLDER>` — the statistics below; tested on the
+- `scoring/stats.py` sha256 `69f22f6b4edf9b6460a1c2cf1ed8b05d6bd81aef0ee7b3a6bae03ea75d76edc6` — the statistics below; tested on the
   pilot's 290 verdicts and the shakedown verdicts (`/tmp` smoke runs, 18 Oct;
   re-verified at pin time).
-- `scoring/run_scoring.py` sha256 `<PLACEHOLDER>` — drives `scorer/score.py` over
+- `scoring/run_scoring.py` sha256 `0dbeb026857dd40919569af5d447468a168e9cd8fe596cc2cb53dcdd2d64bd24` — drives `scorer/score.py` over
   `~/runs/gen/<arm>.jsonl` → `scores/<arm>.jsonl`, resumable, scorer commit +
   sha256 recorded in every row.
-- `scoring/showcex.py` sha256 `<PLACEHOLDER>` — brief Appendix A.8 verbatim
+- `scoring/showcex.py` sha256 `51d4b2cbabe7127b7de56a2ef68552222f8a42294938dc4ed1b45e56e9ef058f` — brief Appendix A.8 verbatim
   (counterexample tables; homed in `scoring/` so the frozen `scorer/` tree stays
   byte-identical to tag `scorer-v1`).
 
