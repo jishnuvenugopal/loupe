@@ -1,74 +1,71 @@
-# HANDOFF — continuation notes for the next session (17 Oct 2026, evening)
+# HANDOFF — continuation notes for the next session (19 Oct 2026, night)
 
 You are the engineering agent on this DGX Spark (`spark-cff9`, aarch64, GB10, 128 GB).
-Master brief: `~/Downloads/pi/halo/spark-agent-brief.md` — its §2 hard rules apply to you
-unchanged. Deepening brief + results: `~/Downloads/pi/halo/deep-oracle-brief.md`,
-`~/rtl-strict-eval/DEEP_REPORT.md` (also on the remote). Read all three before acting.
+Master brief: `~/Downloads/pi/halo/spark-agent-brief.md` + addenda A16/A17/A18
+(`koder/docs/brief-spark-addendum-A*.md`, verbatim). Read A18 §8 first — it is the
+operator's G0 approval, conditional on C1–C5, and it is being executed tonight by
+`shakedown/overnight_chain.sh` under tmux (`tmux attach -t overnight`).
 
-## Machine state (verified this evening)
+## Machine state (19 Oct ~01:00 +08)
 
-- git repo `~/rtl-strict-eval`, branch `spark`, remote `origin` =
-  `jishnuvenugopal/rte-strict-eval` (PRIVATE; the only private repo on the account).
-  Tag `scorer-v1` pushed. Pre-push guard (Appendix G4) installed in `.git/hooks/pre-push`,
-  tested 6/6. gh signed in (operator). `gh auth setup-git` done.
-- `~/bench`: RTLLM `51ed553`, verilog-eval `c498220`, CodeV-R1 `277ac46`, VeriReason
-  `d215b7f` — all pin-verified, see `~/bench/PINS.txt`.
-- `~/eda/oss-cad-suite` (pinned 2026-10-16 arm64, byte-size verified): Yosys 0.70+145,
-  Icarus 14.0, Verilator 5.053, sby 0.70. `export PATH=~/eda/oss-cad-suite/bin:$PATH`.
-- Evidence trees under `~/runs/deep/` (refs, gpt, mut, spec, ve), `~/runs/pilot`,
-  `~/runs/directed`, `~/runs/score_smoke`. Keep `notes/LOG.md` current (one timestamped
-  entry per step) and push at every STOP.
+- **The A18 §8 chain is running autonomously in tmux session `overnight`**:
+  C1 PASS (items 1–5+7 committed `c83f842`+`138c293`, pushed, PREREG sha256 final),
+  C2 PASS (8/8 weights hash-verified 19 Oct 00:52; the "stuck 7B download" was
+  root-caused — see §12 of SPARK_REPORT.md and notes/LOG.md 23:52–00:05), then
+  C3 7B shakedowns → C4 steady-state projection + cut ladder (≤9 h) → C5 PREREG
+  final → G0 steps (tag `g0-prereg`, push, ls-remote, `ots stamp`) → Phase 8
+  generation (docker-driven, cuts only from `gen/cut.txt`) → Phase 10
+  (`scoring/phase10.py`) → STOP waiting for `G3 pass, start GRPO` + `blind labels in`.
+  `ots upgrade` runs at T_stamp+6h as a detached job.
+- Chain log: `~/runs/overnight_chain.log` + `notes/LOG.md` (every check).
+  Dry run was verified before launch (forced C2 failure → stop+log+push, commit `e242afb`).
+- Dead background jobs from the crashed 18 Oct session were removed (idle
+  `grpo-trial` container, old A16 watcher). No stray downloads: all 8 weight sets
+  are complete and verified.
 
-## What is already done (do not redo)
+## What A18 changed (all tested; `tests/test_a18_*.py` green)
 
-- Deep oracle runs: soundness (41/50 refs UNBOUNDED-EQ; pilot's 6 VE timeouts proved),
-  power (528 mutants: TB false-pass 17.1%, strict kill 100.0%), anchor (290/290 TB rows,
-  0 flips), spec oracle (accu/LIFObuffer reference bugs + width_8to16/fsm GPT bugs +
-  square_wave vacuity, all machine-checked with traces).
-- Phase 2 complete (incl. VE harness fix (a), CodeV task-id equality).
-- Phase 3 deep complete: `scorer/score.py` frozen + `depth.yaml` + `masks/`, Appendix F
-  suite 7/7 green. Tagged `scorer-v1`.
-- Phase 1b push side done (remote, guard, first push). koder scaffold NOT created — that
-  part of Phase 1b is yours.
+1. `scoring/stats.py`: `ci95_all_tasks` (all-task bootstrap for G1b), vacuous as a
+   flag (`vacuous_passes`; class counts add up), gate files hard-required, dedup
+   `str(sample_idx)` keys + collapse report + no-match error, H2 paired contrast.
+2. New pinned scripts (sha256 in PREREG "Analysis code"): `scoring/dedup.py`,
+   `scoring/blind40.py`, `scoring/contamination.py` (machinery run: 0 overlaps,
+   positive controls green; re-runs in Phase 10).
+3. `shakedown/shakedown_run.py` records `official_passes_from_length` (A18 item 7);
+   throughput runs now carry `load_s`/`steady_tok_per_s`.
+4. Chain helpers: `shakedown/{c3_check,projection,prereg_finalize,report_status}.py`,
+   `gen/run_overnight.py` (+`.sh`), `shakedown/overnight_chain.sh`.
+   `gen/ve_subset60.txt` pins the cut-1 VE subset (`random.Random(0).sample`).
 
-## Results that change later phases (use these, not Appendix C verbatim)
+## If you wake up and the chain has STOPped
 
-- VerilogEval gate keeps **149/156** (not 143): `results/pilot_repro/ve_gate_summary.json`.
-  Still excluded: Prob095, 096, 137, 146, 152, 155 (Yosys read errors) + Prob099 (official
-  TB does not compile; self-eq nevertheless proved).
-- RTLLM usable set: pilot's 38 **plus** `multi_8bit`, `multi_pipe_8bit` (proved unbounded);
-  still out: the pilot's 12 minus nothing new, but re-derive from
-  `~/runs/deep/refs_summary.json` if in doubt.
-- Initial-state policy for the formal engines (documented in `deep/common.py`):
-  memories mapped, Z resolved, FFs zero-initialised in BOTH copies; matches official-TB
-  operational semantics. Do not change it without re-running the self-equivalence gate.
+- `STOP — <condition> failed: <why>` is the last line of SPARK_REPORT.md and
+  `~/runs/overnight_chain.log`; the failure is also in notes/LOG.md with context.
+  Fix the cause, then re-run `bash shakedown/overnight_chain.sh` inside the tmux
+  session — every step is resumable (scoring rows, generation rows) and
+  C1–C5 re-verify cheaply. Do NOT bypass a condition.
+- If it stopped at `ots stamp`: network/calendar issue; retry `ots stamp
+  PREREG.md` manually, then continue the chain (it re-runs from the G0 steps only
+  if you comment nothing — the tag push is idempotent, `ots stamp` is not; check
+  whether PREREG.md.ots exists first).
+- If Phase 8 partially ran: `~/runs/gen/<arm>_<bench>.jsonl` rows are resumed, not
+  regenerated; `gen/cut.txt` holds the applied cut.
 
-## What remains (parent brief order)
+## Messages the run may be waiting for (exactly)
 
-1. Phase 1 leftovers: apt packages + docker group need the operator (no passwordless sudo
-   here). docker binary exists; `docker run --gpus all` untested. pip + venv work.
-2. Phase 1b: koder scaffold (Appendix G) + adapter symlinks + `.git/info/exclude`
-   (`koder/ AGENTS.md CLAUDE.md .claude/ .agents/ .pi/`), koder's own local git. Commit the
-   brief copy to `koder/docs/brief-spark-v1.md`.
-3. Phase 4: 8 models (~80 GB) per §3.2, verify every safetensors sha256 against
-   `?blobs=true`, write `models.yaml`, `results/h0/weights_sha256.tsv`. HF needs no token.
-4. Phase 5 H0: H0-a in the pytorch container (once docker works); H0-b copy §3.4; H0-c build
-   prompts (`prompts/`) + sha256 vs Appendix D (sources already cloned); H0-d dataset check
-   + MinHash contamination (datasketch not installed — pip install --user or pure python).
-5. Phase 6 shakedown (vLLM container), Phase 7 PREREG draft → **STOP — waiting for operator
-   review and "G0 approved"**. Nothing may generate a sample before that (rule 3).
-6. Phase 8/9 only on the operator's exact messages.
+`G3 pass, start GRPO`; `blind labels in` (either order; Phase 9 only after G3 AND
+never while Phase 10 scoring runs). The blind-40 key is `~/runs/blind40_key.json`
+(outside the repo; only its sha256 is committed as `results/main/blind40/KEY_SHA256`).
 
-## Standing cautions
+## Standing cautions (unchanged)
 
-- Rules §2 of the master brief are absolute: no force-push/ref deletion/repo changes; no
-  koder/ or weights in the pushed repo; no numbers without file pointers; pin mismatches
-  get reported, never silently substituted.
-- If a VE/RTLLM gate verdict surprises you, cross-check with the second simulator
-  (`deep/common.py: tb_verdict_verilator`) and the unbounded engines before suspecting
-  the design.
-- Verilator wrapper gotchas already fixed in `deep/common.py` (top-module regex anchored,
-  `extra_src` for `ref.sv`, Verilator's own pass-string) — reuse it, don't rewrite it.
+- Rules §2 absolute: no force-push/ref deletion; no koder/ or weights in the repo;
+  no numbers without file pointers; pin mismatches reported, never substituted.
+- Freeze checks before every scoring run: `git diff --quiet scorer-v1 -- scorer
+  tests ':(exclude)scorer/__pycache__'` AND `sha256sum -c results/pilot_repro/SCORER_SHA256`.
+- scorer/ and prompts/ are frozen; the pinned analysis code is frozen at the
+  sha256s in PREREG "Analysis code".
 
 First command to orient yourself:
-  cd ~/rtl-strict-eval && git status && git log --oneline -3 && tail -30 notes/LOG.md
+  tmux attach -t overnight   # (detach: Ctrl-b d)
+  tail -30 ~/runs/overnight_chain.log && tail -40 notes/LOG.md
