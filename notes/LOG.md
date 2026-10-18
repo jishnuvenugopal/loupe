@@ -496,3 +496,6 @@
 - 2026-10-19 00:52 — [chain] C1 PASS: items 1-5+7 committed, pushed, PREREG sha256 final
 - 2026-10-19 00:52 — [chain] C2: waiting for 8/8 weight verification (cut-off 09:00)
 - 2026-10-19 00:52 — [chain] C2 PASS: all 8 weight sets hash-verified (8 of 8) at 2026-10-19 00:52
+- 2026-10-19 00:53 — [chain] pushed: A18 C2: 8/8 weights verified at 2026-10-19 00:52
+- 2026-10-19 00:53 — [chain] C3: shakedown 7b-rl (Phase 6 step 1)
+- 2026-10-19 00:55 — [chain-fix] run_overnight.py: container path mapping made explicit (REPO->/work, ~/runs/gen->/runs); the cut-subset prompt file lives under ~/runs/gen and the old /work-relative join produced the wrong in-container path. Unit-checked both mappings. run_overnight.py is machinery, not in the PREREG 'Analysis code' pin list.

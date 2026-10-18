@@ -77,6 +77,15 @@ def ve_prompts_file(family, cut_step):
     return src, 156
 
 
+def in_container(path):
+    """Map a host path to the container view: REPO->/work, ~/runs/gen->/runs."""
+    if path.startswith(REPO):
+        return "/work/" + os.path.relpath(path, REPO)
+    if path.startswith(RUNS):
+        return "/runs/" + os.path.relpath(path, RUNS)
+    raise SystemExit(f"path not mounted in container: {path}")
+
+
 def gen_arm_bench(arm, bench, n):
     family = "codev" if arm.startswith("7b") else "verireason"
     top_p = 0.95 if family == "verireason" else TOP_P[bench]
@@ -93,7 +102,7 @@ def gen_arm_bench(arm, bench, n):
            "--ulimit memlock=-1 --ulimit stack=67108864 "
            f"-v {HF}:/models-hf -v {REPO}:/work -v {RUNS}:/runs {IMAGE} "
            f"python3 /work/gen/gen_vllm.py --arm {arm} --model {model} --revision {REV[arm]} "
-           f"--prompts /work/{os.path.relpath(prompts, REPO)} --system {sysp} "
+           f"--prompts {in_container(prompts)} --system {sysp} "
            f"--n {n} --max-tokens {MAXTOK[arm]} --temperature {TEMP[arm]} --top-p {top_p} "
            f"--max-model-len {MML[arm]} "
            f"--log-effective-params /runs/{arm}_{bench}_effective_params.json "
