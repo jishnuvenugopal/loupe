@@ -1,10 +1,11 @@
 # SPARK REPORT — strict re-scoring, DGX Spark lane
 
-Updated 19 Oct 2026, ~01:50 +08 (A18 session). Machine `spark-cff9`. Repo
+Updated 19 Oct 2026, 00:51 UTC+08 (A18 overnight chain).
 `jishnuvenugopal/rte-strict-eval` (PRIVATE), branch `spark`, tag `scorer-v1` pushed.
 
 ## 1. Status
 
+- [00:51] C1: FAILED: code/PREREG/push consistency check failed (see log above)
 - Session completed: Phase 1b (koder scaffold), **Phase 5 complete (H0 a–d)**,
   Phase 6 step 4 (GRPO trial, PASSED), step 3 first half (3B-RL lane, DONE),
   step 5 (scoring-speed proxy), Phase 7 PREREG draft (updated for H0-a).
@@ -204,3 +205,5 @@ STOP — waiting for operator review of PREREG.md and the message "G0 approved"
   pushes. Dry-run with a forced failure verified before the real launch.
 - Dead background jobs from the crashed session were removed (idle
   `grpo-trial` container, old A16 watcher).
+
+STOP — C1 failed: code/PREREG/push consistency check failed (see log above)

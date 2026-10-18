@@ -486,3 +486,6 @@
   under tmux; hard checks logged to notes/LOG.md; every stop path writes
   SPARK_REPORT.md via shakedown/report_status.py and pushes; CHAIN_FORCE_FAIL=<C>
   for the dry run; ots upgrade scheduled at T_stamp+6h as a detached job.
+- 2026-10-19 00:51 — [chain] A18 §8 chain start (pid 270642, force_fail=C2, C2 deadline 09:00)
+- 2026-10-19 00:51 — [chain] C1: working tree not clean
+- 2026-10-19 00:51 — [chain] STOP — C1 failed: code/PREREG/push consistency check failed (see log above)

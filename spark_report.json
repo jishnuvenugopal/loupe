@@ -282,5 +282,11 @@
     "7B shakedown + overlap probe + projection (A17 item 10 reporting: steady-state tok/s separate from load; no-cut only if <=9h steady-state)"
    ]
   }
- ]
+ ],
+ "chain": {
+  "last_update": "2026-10-19 00:51:02",
+  "phase": "C1",
+  "status": "FAILED: code/PREREG/push consistency check failed (see log above)",
+  "stop": "STOP \u2014 C1 failed: code/PREREG/push consistency check failed (see log above)"
+ }
 }
