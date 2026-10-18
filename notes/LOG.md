@@ -321,3 +321,60 @@
 - 3b-rl final (A16 settings): throughput VE 167.0 / RTLLM 378.2 tok/s at 64
   concurrent (32x2, fresh files; wall includes model load). 3B projection refreshed:
   3B-RL ~0.63 h + 3B base ~0.64 h at n=3.
+
+## 2026-10-18 21:30 — AMENDMENT A17 received (analysis-code + PREREG fixes pre-G0)
+- G0 stays blocked. scorer/ + prompts + pins untouched. Copy at
+  `koder/docs/brief-spark-addendum-A17.md`. Items 1-9 done this session; item 10
+  instructions attached to the 7B shakedown; item 11: power analysis only as the MDE
+  line, canaries rejected (limitation "blind labels: single rater, the study author"
+  added instead), bias terms covered by the nested shares.
+- Item 2 gates (rule applied to evidence, divergence checked): VE 145 UNBOUNDED-EQ
+  refs − Prob099 (its own TB does not compile) = **144**; removed Prob001_zero,
+  Prob002_m2014_q4i, Prob003_step_one, Prob046_dff8p, Prob078_dualedge (BMC-10-only).
+  RTLLM usable-40 − alu, freq_divbyfrac, freq_divbyodd = **37**; headline 33.
+  DIVERGENCE FOUND & RESOLVED: refs_summary.json lists a 4th BMC-only design,
+  `clkgenerator`, but it was already outside the usable-40 (its reference FAILS its
+  own Icarus testbench) — removal set is the expected 3. Gate lists committed with
+  sha256 in PREREG; wide_bmc.txt (5+3) for the 149/40 companion sensitivity.
+- Item 1/3/4 (stats.py rewritten, run_scoring.py class import updated): classes read
+  the frozen verdict["class"] (UNBOUNDED-EQ / BMC-N-EQ-ONLY / DIFFERENT / UNKNOWN;
+  equiv "error" stays from port/read failures; score.py mapping BMC-only→equiv
+  "error" KEPT and now stated in PREREG); proved correct / correct-within-d /
+  proved-wrong definitions; three nested shares with official-pass denominators in
+  the point estimate AND the bootstrap draws; vacuous as a flag-class; dedup keyed
+  (arm, bench, task, sample_idx); --rtllm-all38 renamed --rtllm-all37; --wide-gate
+  added; official pass@1 computed on all tasks, strict metrics gate-filtered.
+- Item 2 re-run smokes on the new gates (33-design headline):
+    pilot GPT-4:  op 47, npc 14.89% CI[2.13,33.33] (7 different), ncwd=pw=14.89%
+    pilot GPT-3.5: op 29, npc 13.79% CI[0,29.41] (4 different), ncwd=pw=13.79%
+    (old 24.5%/26.5% included synchronizer's 5 error passes — now outside the gate;
+     pilot failures are all DIFFERENT, so floor=companion=primary there)
+    3b-rl: VE op 5 npc 20% (1 error) | RTLLM op 3 npc 33.3% (1 different)
+    3b-base: VE op 2, RTLLM op 2 — npc 50%, ncwd 0%, pw 0% (1 bounded-only each:
+     the primary/companion step made visible on real data)
+  Nesting pw ≤ ncwd ≤ npc verified in every cell. H1 pilot (primary) +1.4pp
+  "not resolved"; floor contrast +1.3pp "not resolved".
+- Item 5: projection GATED 144/37 ((144+37)×3×5 = 2,715 formal — number unchanged,
+  1.84 h); Tasks/analysis-plan/flag/MDE made consistent; MDE line replaced by the
+  underpowering sentence; H1/H2 marked CodeV-family-only, VeriReason descriptive.
+- Item 6: freeze check verified live — plain git diff rc=1 (__pycache__), the
+  ':(exclude)scorer/__pycache__' form rc=0, SCORER_SHA256 all-OK; exact commands in
+  PREREG Scorer section.
+- Item 7: results/deep/{gpt_summary,refs_summary,mut/mut_summary,spec/
+  spec_results}.json committed; PREREG citations repointed.
+- Item 8: six deviations added (deep scorer, gate change, A17 definitions, Phase 4
+  6/8 + watcher timestamp at G0, anchor synchronizer detail).
+- Item 9: scorer section reworded (strict kill 438/438 true-by-construction, NOT
+  cited as power; 75/438 = 17.1% official-TB false passes is the power result;
+  independent checks = 290-row anchor + cross-simulator agreement); H0-a "at least
+  10× smaller"; template provenance recorded (3B-RL ships chat_template.jinja;
+  3B base/SFT/raw + 1.5B embed in tokenizer_config.json; 7Bs at verification).
+- Item 10 (3B parts done now): 3b-base's 9/16 compile errors investigated — 7/9 are
+  finish=stop with an UNCLOSED <think> and no ```verilog fence (the extractor's
+  module-regex fallback then lifts draft module text out of the reasoning region);
+  2/9 are genuine 2048-token cap hits mid-think. Nothing changed (operator decides
+  at G2 if it ever matters there). Bounded-only share of shakedown passes:
+  3b-base 2/4 = 50%; 3b-rl 0/8. Steady-state vs load split + "no cut only if
+  ≤9 h steady-state" + release-of-generations note attached to the 7B shakedown
+  instructions (PREREG "Measured before G0" updated accordingly; the untested
+  "determinism holds at the pinned settings" sentence removed).

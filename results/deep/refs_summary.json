@@ -1,0 +1,928 @@
+[
+ {
+  "run": "ref",
+  "design": "JC_counter",
+  "tb_icarus": "pass",
+  "tb_verilator": "pass",
+  "reset": {
+   "reset": "rst_n",
+   "active": 0
+  },
+  "bmc": "equivalent",
+  "pdr": "equivalent",
+  "tind": "equivalent",
+  "class": "UNBOUNDED-EQ",
+  "witnesses": {
+   "pdr": "equivalent",
+   "tind": "equivalent",
+   "bmc": "equivalent"
+  },
+  "pdr_dir": "/home/unnitools/runs/deep/refs/JC_counter/sby_self_prove_abc"
+ },
+ {
+  "run": "ref",
+  "design": "LFSR",
+  "tb_icarus": "pass",
+  "tb_verilator": "pass",
+  "reset": {
+   "reset": "rst",
+   "active": 1
+  },
+  "bmc": "equivalent",
+  "pdr": "equivalent",
+  "tind": "equivalent",
+  "class": "UNBOUNDED-EQ",
+  "witnesses": {
+   "pdr": "equivalent",
+   "tind": "equivalent",
+   "bmc": "equivalent"
+  },
+  "pdr_dir": "/home/unnitools/runs/deep/refs/LFSR/sby_self_prove_abc"
+ },
+ {
+  "run": "ref",
+  "design": "LIFObuffer",
+  "tb_icarus": "pass",
+  "tb_verilator": "pass",
+  "reset": {
+   "reset": "Rst",
+   "active": 1,
+   "held_high_during_reset": [
+    "EN"
+   ]
+  },
+  "bmc": "equivalent",
+  "pdr": "equivalent",
+  "tind": "unknown",
+  "class": "UNBOUNDED-EQ",
+  "witnesses": {
+   "pdr": "equivalent",
+   "tind": "unknown",
+   "bmc": "equivalent"
+  },
+  "pdr_dir": "/home/unnitools/runs/deep/refs/LIFObuffer/sby_self_prove_abc"
+ },
+ {
+  "run": "ref",
+  "design": "RAM",
+  "tb_icarus": "pass",
+  "tb_verilator": "pass",
+  "reset": {
+   "reset": "rst_n",
+   "active": 0,
+   "held_high_during_reset": [
+    "write_en",
+    "read_en"
+   ]
+  },
+  "bmc": "equivalent",
+  "pdr": "equivalent",
+  "tind": "unknown",
+  "class": "UNBOUNDED-EQ",
+  "witnesses": {
+   "pdr": "equivalent",
+   "tind": "unknown",
+   "bmc": "equivalent"
+  },
+  "pdr_dir": "/home/unnitools/runs/deep/refs/RAM/sby_self_prove_abc"
+ },
+ {
+  "run": "ref",
+  "design": "ROM",
+  "tb_icarus": "pass",
+  "tb_verilator": "pass",
+  "reset": {
+   "reset": null
+  },
+  "bmc": "equivalent",
+  "pdr": "equivalent",
+  "tind": "equivalent",
+  "class": "UNBOUNDED-EQ",
+  "witnesses": {
+   "pdr": "equivalent",
+   "tind": "equivalent",
+   "bmc": "equivalent"
+  },
+  "pdr_dir": "/home/unnitools/runs/deep/refs/ROM/sby_self_prove_abc"
+ },
+ {
+  "run": "ref",
+  "design": "accu",
+  "tb_icarus": "pass",
+  "tb_verilator": "pass",
+  "reset": {
+   "reset": "rst_n",
+   "active": 0
+  },
+  "bmc": "equivalent",
+  "pdr": "equivalent",
+  "tind": "equivalent",
+  "class": "UNBOUNDED-EQ",
+  "witnesses": {
+   "pdr": "equivalent",
+   "tind": "equivalent",
+   "bmc": "equivalent"
+  },
+  "pdr_dir": "/home/unnitools/runs/deep/refs/accu/sby_self_prove_abc"
+ },
+ {
+  "run": "ref",
+  "design": "adder_16bit",
+  "tb_icarus": "pass",
+  "tb_verilator": "pass",
+  "reset": {
+   "reset": null
+  },
+  "bmc": "equivalent",
+  "pdr": "equivalent",
+  "tind": "equivalent",
+  "class": "UNBOUNDED-EQ",
+  "witnesses": {
+   "pdr": "equivalent",
+   "tind": "equivalent",
+   "bmc": "equivalent"
+  },
+  "pdr_dir": "/home/unnitools/runs/deep/refs/adder_16bit/sby_self_prove_abc"
+ },
+ {
+  "run": "ref",
+  "design": "adder_32bit",
+  "tb_icarus": "pass",
+  "tb_verilator": "pass",
+  "reset": {
+   "reset": null
+  },
+  "bmc": "equivalent",
+  "pdr": "equivalent",
+  "tind": "equivalent",
+  "class": "UNBOUNDED-EQ",
+  "witnesses": {
+   "pdr": "equivalent",
+   "tind": "equivalent",
+   "bmc": "equivalent"
+  },
+  "pdr_dir": "/home/unnitools/runs/deep/refs/adder_32bit/sby_self_prove_abc"
+ },
+ {
+  "run": "ref",
+  "design": "adder_8bit",
+  "tb_icarus": "pass",
+  "tb_verilator": "pass",
+  "reset": {
+   "reset": null
+  },
+  "bmc": "equivalent",
+  "pdr": "equivalent",
+  "tind": "equivalent",
+  "class": "UNBOUNDED-EQ",
+  "witnesses": {
+   "pdr": "equivalent",
+   "tind": "equivalent",
+   "bmc": "equivalent"
+  },
+  "pdr_dir": "/home/unnitools/runs/deep/refs/adder_8bit/sby_self_prove_abc"
+ },
+ {
+  "run": "ref",
+  "design": "adder_bcd",
+  "tb_icarus": "pass",
+  "tb_verilator": "pass",
+  "reset": {
+   "reset": null
+  },
+  "bmc": "equivalent",
+  "pdr": "equivalent",
+  "tind": "equivalent",
+  "class": "UNBOUNDED-EQ",
+  "witnesses": {
+   "pdr": "equivalent",
+   "tind": "equivalent",
+   "bmc": "equivalent"
+  },
+  "pdr_dir": "/home/unnitools/runs/deep/refs/adder_bcd/sby_self_prove_abc"
+ },
+ {
+  "run": "ref",
+  "design": "adder_pipe_64bit",
+  "tb_icarus": "compile_error",
+  "tb_verilator": "vl_compile_error",
+  "error": "yosys read error"
+ },
+ {
+  "run": "ref",
+  "design": "alu",
+  "tb_icarus": "pass",
+  "tb_verilator": "pass",
+  "reset": {
+   "reset": null
+  },
+  "bmc": "equivalent",
+  "pdr": "unknown",
+  "tind": "unknown",
+  "class": "BMC-10-EQ-ONLY",
+  "witnesses": {
+   "pdr": "unknown",
+   "tind": "unknown",
+   "bmc": "equivalent"
+  },
+  "pdr_dir": "/home/unnitools/runs/deep/refs/alu/sby_self_prove_abc"
+ },
+ {
+  "run": "ref",
+  "design": "asyn_fifo",
+  "tb_icarus": "pass",
+  "tb_verilator": "pass",
+  "reset": {
+   "reset": "wrstn",
+   "active": 0
+  },
+  "bmc": "equivalent",
+  "pdr": "equivalent",
+  "tind": "unknown",
+  "class": "UNBOUNDED-EQ",
+  "witnesses": {
+   "pdr": "equivalent",
+   "tind": "unknown",
+   "bmc": "equivalent"
+  },
+  "pdr_dir": "/home/unnitools/runs/deep/refs/asyn_fifo/sby_self_prove_abc"
+ },
+ {
+  "run": "ref",
+  "design": "barrel_shifter",
+  "tb_icarus": "pass",
+  "tb_verilator": "pass",
+  "reset": {
+   "reset": null
+  },
+  "bmc": "equivalent",
+  "pdr": "equivalent",
+  "tind": "equivalent",
+  "class": "UNBOUNDED-EQ",
+  "witnesses": {
+   "pdr": "equivalent",
+   "tind": "equivalent",
+   "bmc": "equivalent"
+  },
+  "pdr_dir": "/home/unnitools/runs/deep/refs/barrel_shifter/sby_self_prove_abc"
+ },
+ {
+  "run": "ref",
+  "design": "calendar",
+  "tb_icarus": "pass",
+  "tb_verilator": "pass",
+  "reset": {
+   "reset": "RST",
+   "active": 1
+  },
+  "bmc": "equivalent",
+  "pdr": "equivalent",
+  "tind": "equivalent",
+  "class": "UNBOUNDED-EQ",
+  "witnesses": {
+   "pdr": "equivalent",
+   "tind": "equivalent",
+   "bmc": "equivalent"
+  },
+  "pdr_dir": "/home/unnitools/runs/deep/refs/calendar/sby_self_prove_abc"
+ },
+ {
+  "run": "ref",
+  "design": "clkgenerator",
+  "tb_icarus": "fail",
+  "tb_verilator": "pass",
+  "reset": {
+   "reset": null
+  },
+  "bmc": "equivalent",
+  "pdr": "unknown",
+  "tind": "unknown",
+  "class": "BMC-10-EQ-ONLY",
+  "witnesses": {
+   "pdr": "unknown",
+   "tind": "unknown",
+   "bmc": "equivalent"
+  },
+  "pdr_dir": "/home/unnitools/runs/deep/refs/clkgenerator/sby_self_prove_abc"
+ },
+ {
+  "run": "ref",
+  "design": "comparator_3bit",
+  "tb_icarus": "pass",
+  "tb_verilator": "pass",
+  "reset": {
+   "reset": null
+  },
+  "bmc": "equivalent",
+  "pdr": "equivalent",
+  "tind": "equivalent",
+  "class": "UNBOUNDED-EQ",
+  "witnesses": {
+   "pdr": "equivalent",
+   "tind": "equivalent",
+   "bmc": "equivalent"
+  },
+  "pdr_dir": "/home/unnitools/runs/deep/refs/comparator_3bit/sby_self_prove_abc"
+ },
+ {
+  "run": "ref",
+  "design": "comparator_4bit",
+  "tb_icarus": "pass",
+  "tb_verilator": "pass",
+  "reset": {
+   "reset": null
+  },
+  "bmc": "equivalent",
+  "pdr": "equivalent",
+  "tind": "equivalent",
+  "class": "UNBOUNDED-EQ",
+  "witnesses": {
+   "pdr": "equivalent",
+   "tind": "equivalent",
+   "bmc": "equivalent"
+  },
+  "pdr_dir": "/home/unnitools/runs/deep/refs/comparator_4bit/sby_self_prove_abc"
+ },
+ {
+  "run": "ref",
+  "design": "counter_12",
+  "tb_icarus": "pass",
+  "tb_verilator": "pass",
+  "reset": {
+   "reset": "rst_n",
+   "active": 0
+  },
+  "bmc": "equivalent",
+  "pdr": "equivalent",
+  "tind": "equivalent",
+  "class": "UNBOUNDED-EQ",
+  "witnesses": {
+   "pdr": "equivalent",
+   "tind": "equivalent",
+   "bmc": "equivalent"
+  },
+  "pdr_dir": "/home/unnitools/runs/deep/refs/counter_12/sby_self_prove_abc"
+ },
+ {
+  "run": "ref",
+  "design": "div_16bit",
+  "tb_icarus": "pass",
+  "tb_verilator": "pass",
+  "reset": {
+   "reset": null
+  },
+  "bmc": "timeout",
+  "pdr": "equivalent",
+  "tind": "equivalent",
+  "class": "UNBOUNDED-EQ",
+  "witnesses": {
+   "pdr": "equivalent",
+   "tind": "equivalent",
+   "bmc": "timeout"
+  },
+  "pdr_dir": "/home/unnitools/runs/deep/refs/div_16bit/sby_self_prove_abc"
+ },
+ {
+  "run": "ref",
+  "design": "edge_detect",
+  "tb_icarus": "pass",
+  "tb_verilator": "pass",
+  "reset": {
+   "reset": "rst_n",
+   "active": 0
+  },
+  "bmc": "equivalent",
+  "pdr": "equivalent",
+  "tind": "equivalent",
+  "class": "UNBOUNDED-EQ",
+  "witnesses": {
+   "pdr": "equivalent",
+   "tind": "equivalent",
+   "bmc": "equivalent"
+  },
+  "pdr_dir": "/home/unnitools/runs/deep/refs/edge_detect/sby_self_prove_abc"
+ },
+ {
+  "run": "ref",
+  "design": "fixed_point_adder",
+  "tb_icarus": "pass",
+  "tb_verilator": "pass",
+  "reset": {
+   "reset": null
+  },
+  "bmc": "equivalent",
+  "pdr": "equivalent",
+  "tind": "equivalent",
+  "class": "UNBOUNDED-EQ",
+  "witnesses": {
+   "pdr": "equivalent",
+   "tind": "equivalent",
+   "bmc": "equivalent"
+  },
+  "pdr_dir": "/home/unnitools/runs/deep/refs/fixed_point_adder/sby_self_prove_abc"
+ },
+ {
+  "run": "ref",
+  "design": "fixed_point_substractor",
+  "tb_icarus": "pass",
+  "tb_verilator": "pass",
+  "error": "yosys read error"
+ },
+ {
+  "run": "ref",
+  "design": "float_multi",
+  "tb_icarus": "pass",
+  "tb_verilator": "pass",
+  "error": "yosys read error"
+ },
+ {
+  "run": "ref",
+  "design": "freq_div",
+  "tb_icarus": "pass",
+  "tb_verilator": "pass",
+  "reset": {
+   "reset": "RST",
+   "active": 1
+  },
+  "bmc": "equivalent",
+  "pdr": "equivalent",
+  "tind": "unknown",
+  "class": "UNBOUNDED-EQ",
+  "witnesses": {
+   "pdr": "equivalent",
+   "tind": "unknown",
+   "bmc": "equivalent"
+  },
+  "pdr_dir": "/home/unnitools/runs/deep/refs/freq_div/sby_self_prove_abc"
+ },
+ {
+  "run": "ref",
+  "design": "freq_divbyeven",
+  "tb_icarus": "compile_error",
+  "tb_verilator": "vl_compile_error",
+  "reset": {
+   "reset": "rst_n",
+   "active": 0
+  },
+  "bmc": "equivalent",
+  "pdr": "equivalent",
+  "tind": "equivalent",
+  "class": "UNBOUNDED-EQ",
+  "witnesses": {
+   "pdr": "equivalent",
+   "tind": "equivalent",
+   "bmc": "equivalent"
+  },
+  "pdr_dir": "/home/unnitools/runs/deep/refs/freq_divbyeven/sby_self_prove_abc"
+ },
+ {
+  "run": "ref",
+  "design": "freq_divbyfrac",
+  "tb_icarus": "pass",
+  "tb_verilator": "pass",
+  "reset": {
+   "reset": "rst_n",
+   "active": 0
+  },
+  "bmc": "equivalent",
+  "pdr": "unknown",
+  "tind": "unknown",
+  "class": "BMC-10-EQ-ONLY",
+  "witnesses": {
+   "pdr": "unknown",
+   "tind": "unknown",
+   "bmc": "equivalent"
+  },
+  "pdr_dir": "/home/unnitools/runs/deep/refs/freq_divbyfrac/sby_self_prove_abc"
+ },
+ {
+  "run": "ref",
+  "design": "freq_divbyodd",
+  "tb_icarus": "pass",
+  "tb_verilator": "pass",
+  "reset": {
+   "reset": "rst_n",
+   "active": 0
+  },
+  "bmc": "equivalent",
+  "pdr": "unknown",
+  "tind": "unknown",
+  "class": "BMC-10-EQ-ONLY",
+  "witnesses": {
+   "pdr": "unknown",
+   "tind": "unknown",
+   "bmc": "equivalent"
+  },
+  "pdr_dir": "/home/unnitools/runs/deep/refs/freq_divbyodd/sby_self_prove_abc"
+ },
+ {
+  "run": "ref",
+  "design": "fsm",
+  "tb_icarus": "pass",
+  "tb_verilator": "pass",
+  "reset": {
+   "reset": "RST",
+   "active": 1
+  },
+  "bmc": "equivalent",
+  "pdr": "equivalent",
+  "tind": "unknown",
+  "class": "UNBOUNDED-EQ",
+  "witnesses": {
+   "pdr": "equivalent",
+   "tind": "unknown",
+   "bmc": "equivalent"
+  },
+  "pdr_dir": "/home/unnitools/runs/deep/refs/fsm/sby_self_prove_abc"
+ },
+ {
+  "run": "ref",
+  "design": "instr_reg",
+  "tb_icarus": "pass",
+  "tb_verilator": "pass",
+  "reset": {
+   "reset": "rst",
+   "active": 1
+  },
+  "bmc": "equivalent",
+  "pdr": "equivalent",
+  "tind": "equivalent",
+  "class": "UNBOUNDED-EQ",
+  "witnesses": {
+   "pdr": "equivalent",
+   "tind": "equivalent",
+   "bmc": "equivalent"
+  },
+  "pdr_dir": "/home/unnitools/runs/deep/refs/instr_reg/sby_self_prove_abc"
+ },
+ {
+  "run": "ref",
+  "design": "multi_16bit",
+  "tb_icarus": "pass",
+  "tb_verilator": "pass",
+  "reset": {
+   "reset": "rst_n",
+   "active": 0
+  },
+  "bmc": "equivalent",
+  "pdr": "unknown",
+  "tind": "equivalent",
+  "class": "UNBOUNDED-EQ",
+  "witnesses": {
+   "pdr": "unknown",
+   "tind": "equivalent",
+   "bmc": "equivalent"
+  },
+  "pdr_dir": "/home/unnitools/runs/deep/refs/multi_16bit/sby_self_prove_abc"
+ },
+ {
+  "run": "ref",
+  "design": "multi_8bit",
+  "tb_icarus": "pass",
+  "tb_verilator": "pass",
+  "reset": {
+   "reset": null
+  },
+  "bmc": "timeout",
+  "pdr": "equivalent",
+  "tind": "equivalent",
+  "class": "UNBOUNDED-EQ",
+  "witnesses": {
+   "pdr": "equivalent",
+   "tind": "equivalent",
+   "bmc": "timeout"
+  },
+  "pdr_dir": "/home/unnitools/runs/deep/refs/multi_8bit/sby_self_prove_abc"
+ },
+ {
+  "run": "ref",
+  "design": "multi_booth_8bit",
+  "tb_icarus": "pass",
+  "tb_verilator": "pass",
+  "reset": {
+   "reset": "reset",
+   "active": 1
+  },
+  "bmc": "equivalent",
+  "pdr": "equivalent",
+  "tind": "equivalent",
+  "class": "UNBOUNDED-EQ",
+  "witnesses": {
+   "pdr": "equivalent",
+   "tind": "equivalent",
+   "bmc": "equivalent"
+  },
+  "pdr_dir": "/home/unnitools/runs/deep/refs/multi_booth_8bit/sby_self_prove_abc"
+ },
+ {
+  "run": "ref",
+  "design": "multi_pipe_4bit",
+  "tb_icarus": "compile_error",
+  "tb_verilator": "vl_compile_error",
+  "error": "yosys read error"
+ },
+ {
+  "run": "ref",
+  "design": "multi_pipe_8bit",
+  "tb_icarus": "pass",
+  "tb_verilator": "pass",
+  "reset": {
+   "reset": "rst_n",
+   "active": 0
+  },
+  "bmc": "timeout",
+  "pdr": "equivalent",
+  "tind": "equivalent",
+  "class": "UNBOUNDED-EQ",
+  "witnesses": {
+   "pdr": "equivalent",
+   "tind": "equivalent",
+   "bmc": "timeout"
+  },
+  "pdr_dir": "/home/unnitools/runs/deep/refs/multi_pipe_8bit/sby_self_prove_abc"
+ },
+ {
+  "run": "ref",
+  "design": "parallel2serial",
+  "tb_icarus": "pass",
+  "tb_verilator": "pass",
+  "reset": {
+   "reset": "rst_n",
+   "active": 0
+  },
+  "bmc": "equivalent",
+  "pdr": "equivalent",
+  "tind": "equivalent",
+  "class": "UNBOUNDED-EQ",
+  "witnesses": {
+   "pdr": "equivalent",
+   "tind": "equivalent",
+   "bmc": "equivalent"
+  },
+  "pdr_dir": "/home/unnitools/runs/deep/refs/parallel2serial/sby_self_prove_abc"
+ },
+ {
+  "run": "ref",
+  "design": "pe",
+  "tb_icarus": "pass",
+  "tb_verilator": "pass",
+  "reset": {
+   "reset": "rst",
+   "active": 1
+  },
+  "bmc": "equivalent",
+  "pdr": "equivalent",
+  "tind": "equivalent",
+  "class": "UNBOUNDED-EQ",
+  "witnesses": {
+   "pdr": "equivalent",
+   "tind": "equivalent",
+   "bmc": "equivalent"
+  },
+  "pdr_dir": "/home/unnitools/runs/deep/refs/pe/sby_self_prove_abc"
+ },
+ {
+  "run": "ref",
+  "design": "pulse_detect",
+  "tb_icarus": "pass",
+  "tb_verilator": "pass",
+  "reset": {
+   "reset": "rst_n",
+   "active": 0
+  },
+  "bmc": "equivalent",
+  "pdr": "equivalent",
+  "tind": "equivalent",
+  "class": "UNBOUNDED-EQ",
+  "witnesses": {
+   "pdr": "equivalent",
+   "tind": "equivalent",
+   "bmc": "equivalent"
+  },
+  "pdr_dir": "/home/unnitools/runs/deep/refs/pulse_detect/sby_self_prove_abc"
+ },
+ {
+  "run": "ref",
+  "design": "radix2_div",
+  "tb_icarus": "fail",
+  "tb_verilator": "pass",
+  "reset": {
+   "reset": "rst",
+   "active": 1
+  },
+  "bmc": "equivalent",
+  "pdr": "equivalent",
+  "tind": "unknown",
+  "class": "UNBOUNDED-EQ",
+  "witnesses": {
+   "pdr": "equivalent",
+   "tind": "unknown",
+   "bmc": "equivalent"
+  },
+  "pdr_dir": "/home/unnitools/runs/deep/refs/radix2_div/sby_self_prove_abc"
+ },
+ {
+  "run": "ref",
+  "design": "right_shifter",
+  "tb_icarus": "pass",
+  "tb_verilator": "pass",
+  "reset": {
+   "reset": null
+  },
+  "bmc": "equivalent",
+  "pdr": "equivalent",
+  "tind": "equivalent",
+  "class": "UNBOUNDED-EQ",
+  "witnesses": {
+   "pdr": "equivalent",
+   "tind": "equivalent",
+   "bmc": "equivalent"
+  },
+  "pdr_dir": "/home/unnitools/runs/deep/refs/right_shifter/sby_self_prove_abc"
+ },
+ {
+  "run": "ref",
+  "design": "ring_counter",
+  "tb_icarus": "compile_error",
+  "tb_verilator": "pass",
+  "reset": {
+   "reset": "reset",
+   "active": 1
+  },
+  "bmc": "equivalent",
+  "pdr": "equivalent",
+  "tind": "equivalent",
+  "class": "UNBOUNDED-EQ",
+  "witnesses": {
+   "pdr": "equivalent",
+   "tind": "equivalent",
+   "bmc": "equivalent"
+  },
+  "pdr_dir": "/home/unnitools/runs/deep/refs/ring_counter/sby_self_prove_abc"
+ },
+ {
+  "run": "ref",
+  "design": "sequence_detector",
+  "tb_icarus": "pass",
+  "tb_verilator": "pass",
+  "reset": {
+   "reset": "rst_n",
+   "active": 0
+  },
+  "bmc": "equivalent",
+  "pdr": "equivalent",
+  "tind": "equivalent",
+  "class": "UNBOUNDED-EQ",
+  "witnesses": {
+   "pdr": "equivalent",
+   "tind": "equivalent",
+   "bmc": "equivalent"
+  },
+  "pdr_dir": "/home/unnitools/runs/deep/refs/sequence_detector/sby_self_prove_abc"
+ },
+ {
+  "run": "ref",
+  "design": "serial2parallel",
+  "tb_icarus": "pass",
+  "tb_verilator": "pass",
+  "reset": {
+   "reset": "rst_n",
+   "active": 0
+  },
+  "bmc": "equivalent",
+  "pdr": "equivalent",
+  "tind": "equivalent",
+  "class": "UNBOUNDED-EQ",
+  "witnesses": {
+   "pdr": "equivalent",
+   "tind": "equivalent",
+   "bmc": "equivalent"
+  },
+  "pdr_dir": "/home/unnitools/runs/deep/refs/serial2parallel/sby_self_prove_abc"
+ },
+ {
+  "run": "ref",
+  "design": "signal_generator",
+  "tb_icarus": "pass",
+  "tb_verilator": "pass",
+  "reset": {
+   "reset": "rst_n",
+   "active": 0
+  },
+  "bmc": "equivalent",
+  "pdr": "equivalent",
+  "tind": "equivalent",
+  "class": "UNBOUNDED-EQ",
+  "witnesses": {
+   "pdr": "equivalent",
+   "tind": "equivalent",
+   "bmc": "equivalent"
+  },
+  "pdr_dir": "/home/unnitools/runs/deep/refs/signal_generator/sby_self_prove_abc"
+ },
+ {
+  "run": "ref",
+  "design": "square_wave",
+  "tb_icarus": "pass",
+  "tb_verilator": "pass",
+  "reset": {
+   "reset": null
+  },
+  "bmc": "equivalent",
+  "pdr": "equivalent",
+  "tind": "unknown",
+  "class": "UNBOUNDED-EQ",
+  "witnesses": {
+   "pdr": "equivalent",
+   "tind": "unknown",
+   "bmc": "equivalent"
+  },
+  "pdr_dir": "/home/unnitools/runs/deep/refs/square_wave/sby_self_prove_abc"
+ },
+ {
+  "run": "ref",
+  "design": "sub_64bit",
+  "tb_icarus": "pass",
+  "tb_verilator": "pass",
+  "reset": {
+   "reset": null
+  },
+  "bmc": "equivalent",
+  "pdr": "equivalent",
+  "tind": "equivalent",
+  "class": "UNBOUNDED-EQ",
+  "witnesses": {
+   "pdr": "equivalent",
+   "tind": "equivalent",
+   "bmc": "equivalent"
+  },
+  "pdr_dir": "/home/unnitools/runs/deep/refs/sub_64bit/sby_self_prove_abc"
+ },
+ {
+  "run": "ref",
+  "design": "synchronizer",
+  "tb_icarus": "pass",
+  "tb_verilator": "pass",
+  "error": "yosys read error"
+ },
+ {
+  "run": "ref",
+  "design": "traffic_light",
+  "tb_icarus": "pass",
+  "tb_verilator": "pass",
+  "reset": {
+   "reset": "rst_n",
+   "active": 0
+  },
+  "bmc": "equivalent",
+  "pdr": "equivalent",
+  "tind": "equivalent",
+  "class": "UNBOUNDED-EQ",
+  "witnesses": {
+   "pdr": "equivalent",
+   "tind": "equivalent",
+   "bmc": "equivalent"
+  },
+  "pdr_dir": "/home/unnitools/runs/deep/refs/traffic_light/sby_self_prove_abc"
+ },
+ {
+  "run": "ref",
+  "design": "up_down_counter",
+  "tb_icarus": "pass",
+  "tb_verilator": "pass",
+  "reset": {
+   "reset": "reset",
+   "active": 1
+  },
+  "bmc": "equivalent",
+  "pdr": "equivalent",
+  "tind": "equivalent",
+  "class": "UNBOUNDED-EQ",
+  "witnesses": {
+   "pdr": "equivalent",
+   "tind": "equivalent",
+   "bmc": "equivalent"
+  },
+  "pdr_dir": "/home/unnitools/runs/deep/refs/up_down_counter/sby_self_prove_abc"
+ },
+ {
+  "run": "ref",
+  "design": "width_8to16",
+  "tb_icarus": "pass",
+  "tb_verilator": "pass",
+  "reset": {
+   "reset": "rst_n",
+   "active": 0
+  },
+  "bmc": "equivalent",
+  "pdr": "equivalent",
+  "tind": "unknown",
+  "class": "UNBOUNDED-EQ",
+  "witnesses": {
+   "pdr": "equivalent",
+   "tind": "unknown",
+   "bmc": "equivalent"
+  },
+  "pdr_dir": "/home/unnitools/runs/deep/refs/width_8to16/sby_self_prove_abc"
+ }
+]

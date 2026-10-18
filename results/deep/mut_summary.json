@@ -1,0 +1,5525 @@
+[
+ {
+  "design": "JC_counter",
+  "mutants": [
+   {
+    "id": 0,
+    "mutation": "mutate -mode cnot0 -module JC_counter -cell $procmux$5 -port B -portbit 16 -ctrl",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "equivalent",
+    "pdr": "different",
+    "tind": "unknown",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 1,
+    "mutation": "mutate -mode inv -module JC_counter -cell $procdff$11 -port Q -portbit 39 -wire ",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 2,
+    "mutation": "mutate -mode const1 -module JC_counter -cell $procdff$11 -port ARST -portbit 0 -",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 3,
+    "mutation": "mutate -mode const1 -module JC_counter -cell $procdff$11 -port CLK -portbit 0 -w",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 4,
+    "mutation": "mutate -mode inv -module JC_counter -cell $procdff$11 -port ARST -portbit 0 -wir",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 5,
+    "mutation": "mutate -mode const1 -module JC_counter -cell $procdff$11 -port Q -portbit 54 -wi",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 6,
+    "mutation": "mutate -mode inv -module JC_counter -cell $procdff$11 -port Q -portbit 17 -wire ",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 7,
+    "mutation": "mutate -mode cnot0 -module JC_counter -cell $procmux$5 -port Y -portbit 44 -ctrl",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 8,
+    "mutation": "mutate -mode inv -module JC_counter -cell $procdff$11 -port CLK -portbit 0 -wire",
+    "tb": "pass",
+    "tb_v": "pass",
+    "bmc": "equivalent",
+    "pdr": "unknown",
+    "tind": "unknown",
+    "class": "BMC-10-EQ-ONLY"
+   },
+   {
+    "id": 9,
+    "mutation": "mutate -mode const1 -module JC_counter -cell $procmux$5 -port Y -portbit 61 -src",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 10,
+    "mutation": "mutate -mode const0 -module JC_counter -cell $procmux$5 -port Y -portbit 55 -src",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "equivalent",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 11,
+    "mutation": "mutate -mode const1 -module JC_counter -cell $procdff$11 -port Q -portbit 42 -wi",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   }
+  ]
+ },
+ {
+  "design": "LFSR",
+  "mutants": [
+   {
+    "id": 0,
+    "mutation": "mutate -mode const1 -module LFSR -cell $procdff$6 -port CLK -portbit 0 -wire clk",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 1,
+    "mutation": "mutate -mode inv -module LFSR -cell $ref.v:6$not$2 -port Y -portbit 0 -wire feed",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 2,
+    "mutation": "mutate -mode inv -module LFSR -cell $ref.v:6$xor$1 -port A -portbit 0 -wire out ",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 3,
+    "mutation": "mutate -mode const1 -module LFSR -cell $procdff$6 -port ARST -portbit 0 -wire rs",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 4,
+    "mutation": "mutate -mode cnot0 -module LFSR -cell $procdff$6 -port Q -portbit 2 -ctrlbit 0 -",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 5,
+    "mutation": "mutate -mode const1 -module LFSR -cell $ref.v:6$not$2 -port Y -portbit 0 -wire f",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 6,
+    "mutation": "mutate -mode inv -module LFSR -cell $procdff$6 -port CLK -portbit 0 -wire clk -w",
+    "tb": "pass",
+    "tb_v": "pass",
+    "bmc": "equivalent",
+    "pdr": "unknown",
+    "tind": "unknown",
+    "class": "BMC-10-EQ-ONLY"
+   },
+   {
+    "id": 7,
+    "mutation": "mutate -mode inv -module LFSR -cell $procdff$6 -port ARST -portbit 0 -wire rst -",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 8,
+    "mutation": "mutate -mode const0 -module LFSR -cell $ref.v:6$not$2 -port Y -portbit 0 -wire f",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 9,
+    "mutation": "mutate -mode const0 -module LFSR -cell $procdff$6 -port CLK -portbit 0 -wire clk",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 10,
+    "mutation": "mutate -mode const0 -module LFSR -cell $procdff$6 -port ARST -portbit 0 -wire rs",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 11,
+    "mutation": "mutate -mode const1 -module LFSR -cell $ref.v:6$xor$1 -port A -portbit 0 -wire o",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   }
+  ]
+ },
+ {
+  "design": "LIFObuffer",
+  "mutants": [
+   {
+    "id": 0,
+    "mutation": "mutate -mode cnot0 -module LIFObuffer -cell $procmux$65 -port Y -portbit 1 -ctrl",
+    "tb": "pass",
+    "tb_v": "pass",
+    "bmc": "equivalent",
+    "pdr": "equivalent",
+    "tind": "unknown",
+    "class": "UNBOUNDED-EQ"
+   },
+   {
+    "id": 1,
+    "mutation": "mutate -mode const0 -module LIFObuffer -cell $ref.v:41$ternary$57 -port A -portb",
+    "tb": "pass",
+    "tb_v": "pass",
+    "bmc": "equivalent",
+    "pdr": "equivalent",
+    "tind": "unknown",
+    "class": "UNBOUNDED-EQ"
+   },
+   {
+    "id": 2,
+    "mutation": "mutate -mode const1 -module LIFObuffer -cell $procdff$842 -port Q -portbit 2 -wi",
+    "tb": "pass",
+    "tb_v": "pass",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 3,
+    "mutation": "mutate -mode inv -module LIFObuffer -cell $procdff$843 -port Q -portbit 3 -wire ",
+    "tb": "pass",
+    "tb_v": "pass",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 4,
+    "mutation": "mutate -mode inv -module LIFObuffer -cell $procdff$839 -port Q -portbit 2 -wire ",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 5,
+    "mutation": "mutate -mode cnot0 -module LIFObuffer -cell $procmux$88 -port A -portbit 0 -ctrl",
+    "tb": "pass",
+    "tb_v": "pass",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 6,
+    "mutation": "mutate -mode inv -module LIFObuffer -cell $ref.v:28$ternary$34 -port B -portbit ",
+    "tb": "pass",
+    "tb_v": "pass",
+    "bmc": "equivalent",
+    "pdr": "equivalent",
+    "tind": "unknown",
+    "class": "UNBOUNDED-EQ"
+   },
+   {
+    "id": 7,
+    "mutation": "mutate -mode const0 -module LIFObuffer -cell $procdff$841 -port Q -portbit 3 -wi",
+    "tb": "pass",
+    "tb_v": "pass",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 8,
+    "mutation": "mutate -mode const1 -module LIFObuffer -cell $procmux$452 -port B -portbit 0 -sr",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 9,
+    "mutation": "mutate -mode const0 -module LIFObuffer -cell $procdff$842 -port Q -portbit 3 -wi",
+    "tb": "pass",
+    "tb_v": "pass",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 10,
+    "mutation": "mutate -mode const1 -module LIFObuffer -cell $procdff$837 -port Q -portbit 0 -wi",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 11,
+    "mutation": "mutate -mode inv -module LIFObuffer -cell $procdff$840 -port Q -portbit 2 -wire ",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   }
+  ]
+ },
+ {
+  "design": "RAM",
+  "mutants": [
+   {
+    "id": 0,
+    "mutation": "mutate -mode cnot1 -module RAM -cell $procmux$96 -port Y -portbit 5 -ctrlbit 2 -",
+    "tb": "pass",
+    "tb_v": "pass",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 1,
+    "mutation": "mutate -mode cnot0 -module RAM -cell $procdff$213 -port Q -portbit 7 -ctrlbit 2 ",
+    "tb": "pass",
+    "tb_v": "pass",
+    "bmc": "equivalent",
+    "pdr": "equivalent",
+    "tind": "unknown",
+    "class": "UNBOUNDED-EQ"
+   },
+   {
+    "id": 2,
+    "mutation": "mutate -mode cnot0 -module RAM -cell $procmux$117 -port A -portbit 3 -ctrlbit 4 ",
+    "tb": "pass",
+    "tb_v": "pass",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 3,
+    "mutation": "mutate -mode const1 -module RAM -cell $procmux$23 -port B -portbit 85 -src ref.v",
+    "tb": "pass",
+    "tb_v": "pass",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 4,
+    "mutation": "mutate -mode const0 -module RAM -cell $procdff$183 -port Q -portbit 4 -wire read",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 5,
+    "mutation": "mutate -mode const1 -module RAM -cell $procdff$208 -port Q -portbit 0 -wire RAM[",
+    "tb": "pass",
+    "tb_v": "pass",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 6,
+    "mutation": "mutate -mode const0 -module RAM -cell $procmux$39 -port A -portbit 5 -src ref.v:",
+    "tb": "pass",
+    "tb_v": "pass",
+    "bmc": "equivalent",
+    "pdr": "equivalent",
+    "tind": "unknown",
+    "class": "UNBOUNDED-EQ"
+   },
+   {
+    "id": 7,
+    "mutation": "mutate -mode inv -module RAM -cell $procmux$36 -port A -portbit 2 -src ref.v:31.",
+    "tb": "pass",
+    "tb_v": "pass",
+    "bmc": "equivalent",
+    "pdr": "equivalent",
+    "tind": "unknown",
+    "class": "UNBOUNDED-EQ"
+   },
+   {
+    "id": 8,
+    "mutation": "mutate -mode const1 -module RAM -cell $procdff$223 -port Q -portbit 5 -wire RAM[",
+    "tb": "pass",
+    "tb_v": "pass",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 9,
+    "mutation": "mutate -mode cnot0 -module RAM -cell $procmux$36 -port B -portbit 0 -ctrlbit 2 -",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 10,
+    "mutation": "mutate -mode cnot1 -module RAM -cell $procdff$183 -port Q -portbit 3 -ctrlbit 4 ",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 11,
+    "mutation": "mutate -mode cnot1 -module RAM -cell $procmux$107 -port A -portbit 7 -ctrlbit 1 ",
+    "tb": "pass",
+    "tb_v": "pass",
+    "bmc": "equivalent",
+    "pdr": "equivalent",
+    "tind": "unknown",
+    "class": "UNBOUNDED-EQ"
+   }
+  ]
+ },
+ {
+  "design": "ROM",
+  "mutants": [
+   {
+    "id": 0,
+    "mutation": "mutate -mode const1 -module ROM -cell $ref.v:11$meminit$7$\\mem -port ADDR -portb",
+    "tb": "fail",
+    "tb_v": "pass",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 1,
+    "mutation": "mutate -mode const1 -module ROM -cell $ref.v:20$memrd$6$\\mem -port ADDR -portbit",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 2,
+    "tb": "gen_error",
+    "bmc": "gen_error",
+    "pdr": "gen_error",
+    "tind": "gen_error"
+   },
+   {
+    "id": 3,
+    "mutation": "mutate -mode cnot0 -module ROM -cell $ref.v:20$memrd$6$\\mem -port DATA -portbit ",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 4,
+    "mutation": "mutate -mode const0 -module ROM -cell $ref.v:13$meminit$9$\\mem -port ADDR -portb",
+    "tb": "pass",
+    "tb_v": "pass",
+    "bmc": "equivalent",
+    "pdr": "equivalent",
+    "tind": "equivalent",
+    "class": "UNBOUNDED-EQ"
+   },
+   {
+    "id": 5,
+    "mutation": "mutate -mode cnot0 -module ROM -cell $ref.v:20$memrd$6$\\mem -port ADDR -portbit ",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 6,
+    "tb": "gen_error",
+    "bmc": "gen_error",
+    "pdr": "gen_error",
+    "tind": "gen_error"
+   },
+   {
+    "id": 7,
+    "mutation": "mutate -mode const1 -module ROM -cell $ref.v:12$meminit$8$\\mem -port DATA -portb",
+    "tb": "pass",
+    "tb_v": "pass",
+    "bmc": "equivalent",
+    "pdr": "equivalent",
+    "tind": "equivalent",
+    "class": "UNBOUNDED-EQ"
+   },
+   {
+    "id": 8,
+    "mutation": "mutate -mode const0 -module ROM -cell $ref.v:20$memrd$6$\\mem -port ADDR -portbit",
+    "tb": "pass",
+    "tb_v": "pass",
+    "bmc": "equivalent",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 9,
+    "mutation": "mutate -mode const0 -module ROM -cell $ref.v:14$meminit$10$\\mem -port ADDR -port",
+    "tb": "pass",
+    "tb_v": "pass",
+    "bmc": "equivalent",
+    "pdr": "equivalent",
+    "tind": "equivalent",
+    "class": "UNBOUNDED-EQ"
+   },
+   {
+    "id": 10,
+    "mutation": "mutate -mode const0 -module ROM -cell $ref.v:20$memrd$6$\\mem -port ADDR -portbit",
+    "tb": "pass",
+    "tb_v": "pass",
+    "bmc": "equivalent",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 11,
+    "mutation": "mutate -mode const1 -module ROM -cell $ref.v:20$memrd$6$\\mem -port ADDR -portbit",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   }
+  ]
+ },
+ {
+  "design": "accu",
+  "mutants": [
+   {
+    "id": 0,
+    "mutation": "mutate -mode cnot1 -module accu -cell $procdff$47 -port D -portbit 4 -ctrlbit 2 ",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 1,
+    "mutation": "mutate -mode const1 -module accu -cell $ref.v:62$or$17 -port Y -portbit 0 -wire ",
+    "tb": "pass",
+    "tb_v": "pass",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 2,
+    "mutation": "mutate -mode inv -module accu -cell $procdff$47 -port Q -portbit 0 -wire data_ou",
+    "tb": "pass",
+    "tb_v": "pass",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 3,
+    "mutation": "mutate -mode inv -module accu -cell $ref.v:62$or$17 -port B -portbit 0 -wire val",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 4,
+    "mutation": "mutate -mode inv -module accu -cell $ref.v:62$or$17 -port Y -portbit 0 -wire add",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 5,
+    "mutation": "mutate -mode inv -module accu -cell $ref.v:20$logic_and$2 -port Y -portbit 0 -wi",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 6,
+    "mutation": "mutate -mode cnot1 -module accu -cell $procmux$26 -port A -portbit 3 -ctrlbit 1 ",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 7,
+    "mutation": "mutate -mode const1 -module accu -cell $procdff$42 -port Q -portbit 0 -wire vali",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 8,
+    "mutation": "mutate -mode cnot0 -module accu -cell $ref.v:31$add$5 -port Y -portbit 3 -ctrlbi",
+    "tb": "pass",
+    "tb_v": "pass",
+    "bmc": "equivalent",
+    "pdr": "equivalent",
+    "tind": "equivalent",
+    "class": "UNBOUNDED-EQ"
+   },
+   {
+    "id": 9,
+    "mutation": "mutate -mode const1 -module accu -cell $ref.v:20$logic_and$2 -port Y -portbit 0 ",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 10,
+    "mutation": "mutate -mode inv -module accu -cell $procdff$57 -port Q -portbit 1 -wire count -",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 11,
+    "mutation": "mutate -mode const1 -module accu -cell $ref.v:57$add$15 -port A -portbit 7 -src ",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   }
+  ]
+ },
+ {
+  "design": "adder_16bit",
+  "mutants": [
+   {
+    "id": 0,
+    "mutation": "mutate -mode const0 -module adder_16bit -cell $flatten\\add8_inst1.\\add4_inst2.\\a",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 1,
+    "mutation": "mutate -mode const1 -module adder_16bit -cell $flatten\\add8_inst2.\\add4_inst1.\\a",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 2,
+    "mutation": "mutate -mode const0 -module adder_16bit -cell $flatten\\add8_inst2.\\add4_inst1.\\a",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 3,
+    "mutation": "mutate -mode inv -module adder_16bit -cell $flatten\\add8_inst1.\\add4_inst2.\\add2",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 4,
+    "mutation": "mutate -mode inv -module adder_16bit -cell $flatten\\add8_inst1.\\add4_inst2.\\add2",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 5,
+    "mutation": "mutate -mode inv -module adder_16bit -cell $flatten\\add8_inst1.\\add4_inst1.\\add2",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 6,
+    "mutation": "mutate -mode inv -module adder_16bit -cell $flatten\\add8_inst2.\\add4_inst1.\\add2",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 7,
+    "mutation": "mutate -mode const1 -module adder_16bit -cell $flatten\\add8_inst1.\\add4_inst2.\\a",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 8,
+    "mutation": "mutate -mode inv -module adder_16bit -cell $flatten\\add8_inst2.\\add4_inst2.\\add2",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 9,
+    "mutation": "mutate -mode const1 -module adder_16bit -cell $flatten\\add8_inst2.\\add4_inst2.\\a",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 10,
+    "mutation": "mutate -mode const0 -module adder_16bit -cell $flatten\\add8_inst2.\\add4_inst2.\\a",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 11,
+    "mutation": "mutate -mode const1 -module adder_16bit -cell $flatten\\add8_inst1.\\add4_inst2.\\a",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   }
+  ]
+ },
+ {
+  "design": "adder_32bit",
+  "mutants": [
+   {
+    "id": 0,
+    "mutation": "mutate -mode inv -module adder_32bit -cell $flatten\\CLA1.\\adder3.\\CLA.$ref.v:170",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 1,
+    "mutation": "mutate -mode const1 -module adder_32bit -cell $flatten\\CLA2.\\adder3.$ref.v:155$a",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 2,
+    "mutation": "mutate -mode const1 -module adder_32bit -cell $flatten\\CLA1.\\adder4.\\adder1.$ref",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 3,
+    "mutation": "mutate -mode const0 -module adder_32bit -cell $flatten\\CLA2.\\adder4.$ref.v:151$x",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 4,
+    "mutation": "mutate -mode inv -module adder_32bit -cell $flatten\\CLA1.\\adder1.$ref.v:150$xor$",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 5,
+    "mutation": "mutate -mode const1 -module adder_32bit -cell $flatten\\CLA2.$ref.v:84$xor$21 -po",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 6,
+    "mutation": "mutate -mode inv -module adder_32bit -cell $flatten\\CLA2.$ref.v:84$xor$17 -port ",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 7,
+    "mutation": "mutate -mode const1 -module adder_32bit -cell $flatten\\CLA2.\\adder4.$ref.v:160$a",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 8,
+    "mutation": "mutate -mode inv -module adder_32bit -cell $flatten\\CLA1.\\adder2.\\CLA.$ref.v:169",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 9,
+    "mutation": "mutate -mode const0 -module adder_32bit -cell $flatten\\CLA2.\\adder1.\\CLA.$ref.v:",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 10,
+    "mutation": "mutate -mode const1 -module adder_32bit -cell $flatten\\CLA2.\\adder1.$ref.v:150$x",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 11,
+    "mutation": "mutate -mode const0 -module adder_32bit -cell $flatten\\CLA1.\\adder1.\\CLA.$ref.v:",
+    "tb": "pass",
+    "tb_v": "pass",
+    "bmc": "equivalent",
+    "pdr": "equivalent",
+    "tind": "equivalent",
+    "class": "UNBOUNDED-EQ"
+   }
+  ]
+ },
+ {
+  "design": "adder_8bit",
+  "mutants": [
+   {
+    "id": 0,
+    "mutation": "mutate -mode const0 -module adder_8bit -cell $flatten\\FA0.$ref.v:22$add$2 -port ",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 1,
+    "mutation": "mutate -mode inv -module adder_8bit -cell $flatten\\FA0.$ref.v:22$add$2 -port B -",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 2,
+    "mutation": "mutate -mode cnot1 -module adder_8bit -cell $flatten\\FA6.$ref.v:22$add$2 -port Y",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 3,
+    "mutation": "mutate -mode const1 -module adder_8bit -cell $flatten\\FA7.$ref.v:22$add$2 -port ",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 4,
+    "mutation": "mutate -mode inv -module adder_8bit -cell $flatten\\FA0.$ref.v:22$add$1 -port Y -",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 5,
+    "mutation": "mutate -mode const0 -module adder_8bit -cell $flatten\\FA0.$ref.v:22$add$2 -port ",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 6,
+    "mutation": "mutate -mode const0 -module adder_8bit -cell $flatten\\FA3.$ref.v:22$add$1 -port ",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 7,
+    "mutation": "mutate -mode inv -module adder_8bit -cell $flatten\\FA4.$ref.v:22$add$1 -port B -",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 8,
+    "mutation": "mutate -mode inv -module adder_8bit -cell $flatten\\FA7.$ref.v:22$add$2 -port Y -",
+    "tb": "pass",
+    "tb_v": "pass",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 9,
+    "mutation": "mutate -mode const0 -module adder_8bit -cell $flatten\\FA4.$ref.v:22$add$1 -port ",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 10,
+    "mutation": "mutate -mode inv -module adder_8bit -cell $flatten\\FA7.$ref.v:22$add$1 -port Y -",
+    "tb": "pass",
+    "tb_v": "pass",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 11,
+    "mutation": "mutate -mode const1 -module adder_8bit -cell $flatten\\FA4.$ref.v:22$add$2 -port ",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   }
+  ]
+ },
+ {
+  "design": "adder_bcd",
+  "mutants": [
+   {
+    "id": 0,
+    "mutation": "mutate -mode const0 -module adder_bcd -cell $ref.v:13$add$1 -port A -portbit 1 -",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 1,
+    "mutation": "mutate -mode inv -module adder_bcd -cell $ref.v:13$add$1 -port A -portbit 0 -wir",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 2,
+    "mutation": "mutate -mode const0 -module adder_bcd -cell $ref.v:16$ternary$4 -port A -portbit",
+    "tb": "pass",
+    "tb_v": "pass",
+    "bmc": "equivalent",
+    "pdr": "equivalent",
+    "tind": "equivalent",
+    "class": "UNBOUNDED-EQ"
+   },
+   {
+    "id": 3,
+    "mutation": "mutate -mode const1 -module adder_bcd -cell $ref.v:17$add$6 -port Y -portbit 3 -",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 4,
+    "mutation": "mutate -mode const0 -module adder_bcd -cell $ref.v:17$ternary$7 -port Y -portbit",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 5,
+    "mutation": "mutate -mode const0 -module adder_bcd -cell $ref.v:17$add$6 -port A -portbit 0 -",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 6,
+    "mutation": "mutate -mode inv -module adder_bcd -cell $ref.v:13$add$2 -port Y -portbit 2 -wir",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 7,
+    "mutation": "mutate -mode inv -module adder_bcd -cell $ref.v:13$add$1 -port B -portbit 2 -wir",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 8,
+    "mutation": "mutate -mode cnot1 -module adder_bcd -cell $ref.v:16$gt$3 -port A -portbit 2 -ct",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 9,
+    "mutation": "mutate -mode const1 -module adder_bcd -cell $ref.v:17$gt$5 -port B -portbit 6 -s",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 10,
+    "mutation": "mutate -mode inv -module adder_bcd -cell $ref.v:17$add$6 -port A -portbit 3 -src",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 11,
+    "mutation": "mutate -mode cnot1 -module adder_bcd -cell $ref.v:16$ternary$4 -port Y -portbit ",
+    "tb": "pass",
+    "tb_v": "pass",
+    "bmc": "equivalent",
+    "pdr": "equivalent",
+    "tind": "equivalent",
+    "class": "UNBOUNDED-EQ"
+   }
+  ]
+ },
+ {
+  "design": "adder_pipe_64bit",
+  "mutants": [],
+  "error": "ports"
+ },
+ {
+  "design": "alu",
+  "mutants": [
+   {
+    "id": 0,
+    "mutation": "mutate -mode const1 -module alu -cell $procmux$32 -port Y -portbit 24 -wire r -w",
+    "tb": "fail",
+    "tb_v": "vl_compile_error",
+    "bmc": "different",
+    "pdr": "unknown",
+    "tind": "unknown",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 1,
+    "mutation": "mutate -mode cnot0 -module alu -cell $ref.v:48$lt$5 -port B -portbit 23 -ctrlbit",
+    "tb": "pass",
+    "tb_v": "vl_compile_error",
+    "bmc": "different",
+    "pdr": "unknown",
+    "tind": "unknown",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 2,
+    "mutation": "mutate -mode const0 -module alu -cell $ref.v:49$eq$9 -port A -portbit 25 -wire r",
+    "tb": "pass",
+    "tb_v": "vl_compile_error",
+    "bmc": "different",
+    "pdr": "unknown",
+    "tind": "unknown",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 3,
+    "mutation": "mutate -mode inv -module alu -cell $ref.v:76$or$19 -port B -portbit 21 -src ref.",
+    "tb": "fail",
+    "tb_v": "vl_compile_error",
+    "bmc": "different",
+    "pdr": "unknown",
+    "tind": "unknown",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 4,
+    "mutation": "mutate -mode const0 -module alu -cell $ref.v:91$sshr$27 -port A -portbit 17 -src",
+    "tb": "pass",
+    "tb_v": "vl_compile_error",
+    "bmc": "different",
+    "pdr": "unknown",
+    "tind": "unknown",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 5,
+    "mutation": "mutate -mode const1 -module alu -cell $procmux$40_CMP0 -port B -portbit 0 -src r",
+    "tb": "pass",
+    "tb_v": "vl_compile_error",
+    "bmc": "equivalent",
+    "pdr": "unknown",
+    "tind": "unknown",
+    "class": "BMC-10-EQ-ONLY"
+   },
+   {
+    "id": 6,
+    "mutation": "mutate -mode const0 -module alu -cell $ref.v:58$add$13 -port Y -portbit 14 -src ",
+    "tb": "pass",
+    "tb_v": "vl_compile_error",
+    "bmc": "different",
+    "pdr": "unknown",
+    "tind": "unknown",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 7,
+    "mutation": "mutate -mode const0 -module alu -cell $ref.v:70$or$17 -port A -portbit 1 -src re",
+    "tb": "pass",
+    "tb_v": "vl_compile_error",
+    "bmc": "different",
+    "pdr": "unknown",
+    "tind": "unknown",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 8,
+    "mutation": "mutate -mode inv -module alu -cell $ref.v:100$sshr$30 -port A -portbit 26 -src r",
+    "tb": "pass",
+    "tb_v": "vl_compile_error",
+    "bmc": "different",
+    "pdr": "unknown",
+    "tind": "unknown",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 9,
+    "mutation": "mutate -mode cnot0 -module alu -cell $ref.v:67$and$16 -port Y -portbit 3 -ctrlbi",
+    "tb": "fail",
+    "tb_v": "vl_compile_error",
+    "bmc": "different",
+    "pdr": "unknown",
+    "tind": "unknown",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 10,
+    "mutation": "mutate -mode inv -module alu -cell $ref.v:49$eq$9 -port A -portbit 11 -wire r -w",
+    "tb": "pass",
+    "tb_v": "vl_compile_error",
+    "bmc": "different",
+    "pdr": "unknown",
+    "tind": "unknown",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 11,
+    "mutation": "mutate -mode inv -module alu -cell $ref.v:79$lt$21 -port B -portbit 26 -src ref.",
+    "tb": "pass",
+    "tb_v": "vl_compile_error",
+    "bmc": "different",
+    "pdr": "unknown",
+    "tind": "unknown",
+    "class": "DIFFERENT"
+   }
+  ]
+ },
+ {
+  "design": "asyn_fifo",
+  "mutants": [
+   {
+    "id": 0,
+    "mutation": "mutate -mode const0 -module asyn_fifo -cell $ref.v:120$not$33 -port Y -portbit 0",
+    "tb": "compile_error",
+    "tb_v": "vl_compile_error",
+    "bmc": "equivalent",
+    "pdr": "different",
+    "tind": "timeout",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 1,
+    "mutation": "mutate -mode const0 -module asyn_fifo -cell $procdff$79 -port Q -portbit 0 -wire",
+    "tb": "compile_error",
+    "tb_v": "vl_compile_error",
+    "bmc": "equivalent",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 2,
+    "mutation": "mutate -mode cnot1 -module asyn_fifo -cell $procmux$52 -port A -portbit 3 -ctrlb",
+    "tb": "compile_error",
+    "tb_v": "vl_compile_error",
+    "bmc": "equivalent",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 3,
+    "mutation": "mutate -mode const1 -module asyn_fifo -cell $flatten\\dual_port_RAM.$procmux$54 -",
+    "tb": "compile_error",
+    "tb_v": "vl_compile_error",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 4,
+    "mutation": "mutate -mode cnot1 -module asyn_fifo -cell $ref.v:68$add$20 -port A -portbit 3 -",
+    "tb": "compile_error",
+    "tb_v": "vl_compile_error",
+    "bmc": "equivalent",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 5,
+    "mutation": "mutate -mode cnot1 -module asyn_fifo -cell $procdff$94 -port D -portbit 2 -ctrlb",
+    "tb": "compile_error",
+    "tb_v": "vl_compile_error",
+    "bmc": "equivalent",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 6,
+    "mutation": "mutate -mode inv -module asyn_fifo -cell $ref.v:59$logic_not$13 -port A -portbit",
+    "tb": "compile_error",
+    "tb_v": "vl_compile_error",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 7,
+    "mutation": "mutate -mode cnot1 -module asyn_fifo -cell $procdff$79 -port Q -portbit 4 -ctrlb",
+    "tb": "compile_error",
+    "tb_v": "vl_compile_error",
+    "bmc": "equivalent",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 8,
+    "mutation": "mutate -mode const0 -module asyn_fifo -cell $procdff$89 -port Q -portbit 0 -wire",
+    "tb": "compile_error",
+    "tb_v": "vl_compile_error",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 9,
+    "mutation": "mutate -mode cnot1 -module asyn_fifo -cell $procdff$69 -port D -portbit 2 -ctrlb",
+    "tb": "compile_error",
+    "tb_v": "vl_compile_error",
+    "bmc": "equivalent",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 10,
+    "mutation": "mutate -mode cnot1 -module asyn_fifo -cell $ref.v:76$xor$22 -port Y -portbit 2 -",
+    "tb": "compile_error",
+    "tb_v": "vl_compile_error",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 11,
+    "mutation": "mutate -mode cnot1 -module asyn_fifo -cell $procdff$84 -port Q -portbit 0 -ctrlb",
+    "tb": "compile_error",
+    "tb_v": "vl_compile_error",
+    "bmc": "equivalent",
+    "pdr": "different",
+    "tind": "unknown",
+    "class": "DIFFERENT"
+   }
+  ]
+ },
+ {
+  "design": "barrel_shifter",
+  "mutants": [
+   {
+    "id": 0,
+    "mutation": "mutate -mode const0 -module barrel_shifter -cell $flatten\\ins_00.$ref.v:44$terna",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 1,
+    "mutation": "mutate -mode const1 -module barrel_shifter -cell $flatten\\ins_06.$ref.v:44$terna",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 2,
+    "mutation": "mutate -mode const0 -module barrel_shifter -cell $flatten\\ins_23.$ref.v:44$terna",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 3,
+    "mutation": "mutate -mode inv -module barrel_shifter -cell $flatten\\ins_11.$ref.v:44$ternary$",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 4,
+    "mutation": "mutate -mode const1 -module barrel_shifter -cell $flatten\\ins_00.$ref.v:44$terna",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 5,
+    "mutation": "mutate -mode inv -module barrel_shifter -cell $flatten\\ins_12.$ref.v:44$ternary$",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 6,
+    "mutation": "mutate -mode inv -module barrel_shifter -cell $flatten\\ins_21.$ref.v:44$ternary$",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 7,
+    "mutation": "mutate -mode const1 -module barrel_shifter -cell $flatten\\ins_25.$ref.v:44$terna",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 8,
+    "mutation": "mutate -mode inv -module barrel_shifter -cell $flatten\\ins_21.$ref.v:44$ternary$",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 9,
+    "mutation": "mutate -mode const0 -module barrel_shifter -cell $flatten\\ins_10.$ref.v:44$terna",
+    "tb": "pass",
+    "tb_v": "pass",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 10,
+    "mutation": "mutate -mode const0 -module barrel_shifter -cell $flatten\\ins_10.$ref.v:44$terna",
+    "tb": "pass",
+    "tb_v": "pass",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 11,
+    "mutation": "mutate -mode inv -module barrel_shifter -cell $flatten\\ins_04.$ref.v:44$ternary$",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   }
+  ]
+ },
+ {
+  "design": "calendar",
+  "mutants": [
+   {
+    "id": 0,
+    "mutation": "mutate -mode cnot0 -module calendar -cell $procmux$33 -port Y -portbit 1 -ctrlbi",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 1,
+    "mutation": "mutate -mode inv -module calendar -cell $ref.v:31$eq$16 -port A -portbit 0 -src ",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "equivalent",
+    "pdr": "different",
+    "tind": "unknown",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 2,
+    "mutation": "mutate -mode const1 -module calendar -cell $ref.v:32$add$19 -port B -portbit 7 -",
+    "tb": "pass",
+    "tb_v": "pass",
+    "bmc": "equivalent",
+    "pdr": "equivalent",
+    "tind": "equivalent",
+    "class": "UNBOUNDED-EQ"
+   },
+   {
+    "id": 3,
+    "mutation": "mutate -mode cnot1 -module calendar -cell $procdff$43 -port Q -portbit 0 -ctrlbi",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "equivalent",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 4,
+    "mutation": "mutate -mode cnot1 -module calendar -cell $ref.v:12$add$3 -port Y -portbit 15 -c",
+    "tb": "pass",
+    "tb_v": "pass",
+    "bmc": "equivalent",
+    "pdr": "equivalent",
+    "tind": "equivalent",
+    "class": "UNBOUNDED-EQ"
+   },
+   {
+    "id": 5,
+    "mutation": "mutate -mode const0 -module calendar -cell $ref.v:29$eq$14 -port Y -portbit 0 -s",
+    "tb": "pass",
+    "tb_v": "pass",
+    "bmc": "equivalent",
+    "pdr": "timeout",
+    "tind": "unknown",
+    "class": "BMC-10-EQ-ONLY"
+   },
+   {
+    "id": 6,
+    "mutation": "mutate -mode inv -module calendar -cell $ref.v:29$eq$12 -port B -portbit 0 -src ",
+    "tb": "pass",
+    "tb_v": "pass",
+    "bmc": "equivalent",
+    "pdr": "timeout",
+    "tind": "unknown",
+    "class": "BMC-10-EQ-ONLY"
+   },
+   {
+    "id": 7,
+    "mutation": "mutate -mode const1 -module calendar -cell $ref.v:21$add$9 -port Y -portbit 30 -",
+    "tb": "pass",
+    "tb_v": "pass",
+    "bmc": "equivalent",
+    "pdr": "equivalent",
+    "tind": "equivalent",
+    "class": "UNBOUNDED-EQ"
+   },
+   {
+    "id": 8,
+    "mutation": "mutate -mode const0 -module calendar -cell $procdff$40 -port Q -portbit 1 -wire ",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "equivalent",
+    "pdr": "different",
+    "tind": "unknown",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 9,
+    "mutation": "mutate -mode const1 -module calendar -cell $ref.v:21$add$9 -port Y -portbit 7 -s",
+    "tb": "pass",
+    "tb_v": "pass",
+    "bmc": "equivalent",
+    "pdr": "equivalent",
+    "tind": "equivalent",
+    "class": "UNBOUNDED-EQ"
+   },
+   {
+    "id": 10,
+    "mutation": "mutate -mode inv -module calendar -cell $procmux$30 -port A -portbit 1 -src ref.",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 11,
+    "mutation": "mutate -mode inv -module calendar -cell $ref.v:18$eq$6 -port A -portbit 2 -src r",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "equivalent",
+    "pdr": "different",
+    "tind": "unknown",
+    "class": "DIFFERENT"
+   }
+  ]
+ },
+ {
+  "design": "clkgenerator",
+  "mutants": []
+ },
+ {
+  "design": "comparator_3bit",
+  "mutants": [
+   {
+    "id": 0,
+    "mutation": "mutate -mode cnot0 -module comparator_3bit -cell $ref.v:9$gt$1 -port A -portbit ",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 1,
+    "mutation": "mutate -mode const1 -module comparator_3bit -cell $ref.v:11$lt$5 -port B -portbi",
+    "tb": "pass",
+    "tb_v": "pass",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 2,
+    "mutation": "mutate -mode cnot0 -module comparator_3bit -cell $ref.v:11$lt$5 -port A -portbit",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 3,
+    "mutation": "mutate -mode inv -module comparator_3bit -cell $ref.v:11$ternary$6 -port B -port",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 4,
+    "mutation": "mutate -mode inv -module comparator_3bit -cell $ref.v:9$ternary$2 -port Y -portb",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 5,
+    "mutation": "mutate -mode const1 -module comparator_3bit -cell $ref.v:10$ternary$4 -port A -p",
+    "tb": "pass",
+    "tb_v": "pass",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 6,
+    "mutation": "mutate -mode cnot1 -module comparator_3bit -cell $ref.v:10$eq$3 -port A -portbit",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 7,
+    "mutation": "mutate -mode const1 -module comparator_3bit -cell $ref.v:9$ternary$2 -port B -po",
+    "tb": "pass",
+    "tb_v": "pass",
+    "bmc": "equivalent",
+    "pdr": "equivalent",
+    "tind": "equivalent",
+    "class": "UNBOUNDED-EQ"
+   },
+   {
+    "id": 8,
+    "mutation": "mutate -mode const1 -module comparator_3bit -cell $ref.v:9$gt$1 -port B -portbit",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 9,
+    "mutation": "mutate -mode inv -module comparator_3bit -cell $ref.v:10$ternary$4 -port Y -port",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 10,
+    "mutation": "mutate -mode inv -module comparator_3bit -cell $ref.v:11$ternary$6 -port Y -port",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 11,
+    "mutation": "mutate -mode const1 -module comparator_3bit -cell $ref.v:10$ternary$4 -port B -p",
+    "tb": "pass",
+    "tb_v": "pass",
+    "bmc": "equivalent",
+    "pdr": "equivalent",
+    "tind": "equivalent",
+    "class": "UNBOUNDED-EQ"
+   }
+  ]
+ },
+ {
+  "design": "comparator_4bit",
+  "mutants": [
+   {
+    "id": 0,
+    "mutation": "mutate -mode inv -module comparator_4bit -cell $ref.v:15$logic_and$4 -port A -po",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 1,
+    "mutation": "mutate -mode cnot1 -module comparator_4bit -cell $ref.v:12$sub$1 -port Y -portbi",
+    "tb": "pass",
+    "tb_v": "pass",
+    "bmc": "equivalent",
+    "pdr": "equivalent",
+    "tind": "equivalent",
+    "class": "UNBOUNDED-EQ"
+   },
+   {
+    "id": 2,
+    "mutation": "mutate -mode cnot0 -module comparator_4bit -cell $ref.v:12$sub$1 -port Y -portbi",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 3,
+    "mutation": "mutate -mode const0 -module comparator_4bit -cell $ref.v:15$not$2 -port A -portb",
+    "tb": "pass",
+    "tb_v": "pass",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 4,
+    "mutation": "mutate -mode const0 -module comparator_4bit -cell $ref.v:15$ne$3 -port A -portbi",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 5,
+    "mutation": "mutate -mode cnot0 -module comparator_4bit -cell $ref.v:17$eq$5 -port B -portbit",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 6,
+    "mutation": "mutate -mode const1 -module comparator_4bit -cell $ref.v:17$eq$5 -port Y -portbi",
+    "tb": "pass",
+    "tb_v": "pass",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 7,
+    "mutation": "mutate -mode inv -module comparator_4bit -cell $ref.v:15$logic_and$4 -port Y -po",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 8,
+    "mutation": "mutate -mode cnot0 -module comparator_4bit -cell $ref.v:12$sub$1 -port Y -portbi",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 9,
+    "mutation": "mutate -mode const0 -module comparator_4bit -cell $ref.v:15$logic_and$4 -port Y ",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 10,
+    "mutation": "mutate -mode const0 -module comparator_4bit -cell $ref.v:12$sub$1 -port Y -portb",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 11,
+    "mutation": "mutate -mode inv -module comparator_4bit -cell $ref.v:15$ne$3 -port A -portbit 2",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   }
+  ]
+ },
+ {
+  "design": "counter_12",
+  "mutants": [
+   {
+    "id": 0,
+    "mutation": "mutate -mode const1 -module counter_12 -cell $procmux$9 -port S -portbit 0 -wire",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 1,
+    "mutation": "mutate -mode inv -module counter_12 -cell $procdff$15 -port D -portbit 2 -src re",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 2,
+    "mutation": "mutate -mode const1 -module counter_12 -cell $ref.v:24$add$4 -port B -portbit 0 ",
+    "tb": "pass",
+    "tb_v": "pass",
+    "bmc": "equivalent",
+    "pdr": "equivalent",
+    "tind": "equivalent",
+    "class": "UNBOUNDED-EQ"
+   },
+   {
+    "id": 3,
+    "mutation": "mutate -mode const0 -module counter_12 -cell $procmux$7 -port B -portbit 3 -src ",
+    "tb": "pass",
+    "tb_v": "pass",
+    "bmc": "equivalent",
+    "pdr": "equivalent",
+    "tind": "equivalent",
+    "class": "UNBOUNDED-EQ"
+   },
+   {
+    "id": 4,
+    "mutation": "mutate -mode inv -module counter_12 -cell $procdff$15 -port ARST -portbit 0 -wir",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 5,
+    "mutation": "mutate -mode const1 -module counter_12 -cell $procmux$9 -port Y -portbit 0 -src ",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 6,
+    "mutation": "mutate -mode cnot1 -module counter_12 -cell $procdff$15 -port Q -portbit 2 -ctrl",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 7,
+    "mutation": "mutate -mode const1 -module counter_12 -cell $ref.v:24$add$4 -port B -portbit 28",
+    "tb": "pass",
+    "tb_v": "pass",
+    "bmc": "equivalent",
+    "pdr": "equivalent",
+    "tind": "equivalent",
+    "class": "UNBOUNDED-EQ"
+   },
+   {
+    "id": 8,
+    "mutation": "mutate -mode const0 -module counter_12 -cell $procdff$15 -port ARST -portbit 0 -",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 9,
+    "mutation": "mutate -mode const0 -module counter_12 -cell $procdff$15 -port CLK -portbit 0 -w",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 10,
+    "mutation": "mutate -mode const0 -module counter_12 -cell $ref.v:19$eq$3 -port B -portbit 0 -",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "equivalent",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 11,
+    "mutation": "mutate -mode const1 -module counter_12 -cell $procmux$7 -port Y -portbit 1 -src ",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   }
+  ]
+ },
+ {
+  "design": "div_16bit",
+  "mutants": [
+   {
+    "id": 0,
+    "mutation": "mutate -mode inv -module div_16bit -cell $ref.v:26$sub$30 -port Y -portbit 26 -s",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 1,
+    "mutation": "mutate -mode const0 -module div_16bit -cell $ref.v:26$add$35 -port B -portbit 4 ",
+    "tb": "pass",
+    "tb_v": "pass",
+    "bmc": "timeout",
+    "pdr": "equivalent",
+    "tind": "timeout",
+    "class": "UNBOUNDED-EQ"
+   },
+   {
+    "id": 2,
+    "mutation": "mutate -mode const1 -module div_16bit -cell $procmux$69 -port Y -portbit 8 -wire",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 3,
+    "mutation": "mutate -mode const0 -module div_16bit -cell $procmux$69 -port Y -portbit 31 -wir",
+    "tb": "pass",
+    "tb_v": "pass",
+    "bmc": "timeout",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 4,
+    "mutation": "mutate -mode cnot0 -module div_16bit -cell $ref.v:26$add$39 -port Y -portbit 28 ",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 5,
+    "mutation": "mutate -mode cnot1 -module div_16bit -cell $ref.v:26$sub$10 -port A -portbit 13 ",
+    "tb": "pass",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 6,
+    "mutation": "mutate -mode cnot0 -module div_16bit -cell $procmux$69 -port Y -portbit 3 -ctrlb",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 7,
+    "mutation": "mutate -mode cnot1 -module div_16bit -cell $procmux$69 -port Y -portbit 29 -ctrl",
+    "tb": "pass",
+    "tb_v": "pass",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 8,
+    "mutation": "mutate -mode inv -module div_16bit -cell $procmux$69 -port Y -portbit 30 -wire o",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 9,
+    "mutation": "mutate -mode const0 -module div_16bit -cell $ref.v:26$sub$62 -port A -portbit 18",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 10,
+    "mutation": "mutate -mode const1 -module div_16bit -cell $ref.v:26$add$7 -port B -portbit 27 ",
+    "tb": "pass",
+    "tb_v": "pass",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 11,
+    "mutation": "mutate -mode inv -module div_16bit -cell $ref.v:25$ge$29 -port A -portbit 3 -src",
+    "tb": "pass",
+    "tb_v": "pass",
+    "bmc": "timeout",
+    "pdr": "equivalent",
+    "tind": "timeout",
+    "class": "UNBOUNDED-EQ"
+   }
+  ]
+ },
+ {
+  "design": "edge_detect",
+  "mutants": [
+   {
+    "id": 0,
+    "mutation": "mutate -mode const0 -module edge_detect -cell $ref.v:17$not$3 -port Y -portbit 0",
+    "tb": "pass",
+    "tb_v": "pass",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 1,
+    "mutation": "mutate -mode const1 -module edge_detect -cell $procdff$24 -port Q -portbit 0 -wi",
+    "tb": "fail",
+    "tb_v": "pass",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 2,
+    "mutation": "mutate -mode const0 -module edge_detect -cell $procdff$29 -port Q -portbit 0 -wi",
+    "tb": "pass",
+    "tb_v": "pass",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 3,
+    "mutation": "mutate -mode inv -module edge_detect -cell $ref.v:17$and$4 -port B -portbit 0 -s",
+    "tb": "fail",
+    "tb_v": "pass",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 4,
+    "mutation": "mutate -mode const1 -module edge_detect -cell $procdff$29 -port Q -portbit 0 -wi",
+    "tb": "fail",
+    "tb_v": "pass",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 5,
+    "mutation": "mutate -mode inv -module edge_detect -cell $procdff$29 -port Q -portbit 0 -wire ",
+    "tb": "fail",
+    "tb_v": "pass",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 6,
+    "mutation": "mutate -mode inv -module edge_detect -cell $procdff$24 -port Q -portbit 0 -wire ",
+    "tb": "fail",
+    "tb_v": "pass",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 7,
+    "mutation": "mutate -mode const0 -module edge_detect -cell $procmux$10 -port A -portbit 0 -sr",
+    "tb": "pass",
+    "tb_v": "pass",
+    "bmc": "equivalent",
+    "pdr": "equivalent",
+    "tind": "equivalent",
+    "class": "UNBOUNDED-EQ"
+   },
+   {
+    "id": 8,
+    "mutation": "mutate -mode inv -module edge_detect -cell $procdff$34 -port Q -portbit 0 -wire ",
+    "tb": "fail",
+    "tb_v": "pass",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 9,
+    "mutation": "mutate -mode const0 -module edge_detect -cell $procmux$13 -port A -portbit 0 -sr",
+    "tb": "pass",
+    "tb_v": "pass",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 10,
+    "mutation": "mutate -mode const0 -module edge_detect -cell $ref.v:21$not$5 -port A -portbit 0",
+    "tb": "pass",
+    "tb_v": "pass",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 11,
+    "mutation": "mutate -mode const0 -module edge_detect -cell $ref.v:21$not$5 -port Y -portbit 0",
+    "tb": "pass",
+    "tb_v": "pass",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   }
+  ]
+ },
+ {
+  "design": "fixed_point_adder",
+  "mutants": [
+   {
+    "id": 0,
+    "mutation": "mutate -mode inv -module fixed_point_adder -cell $procmux$19 -port S -portbit 0 ",
+    "tb": "compile_error",
+    "tb_v": "vl_compile_error",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 1,
+    "mutation": "mutate -mode const1 -module fixed_point_adder -cell $procmux$70 -port A -portbit",
+    "tb": "compile_error",
+    "tb_v": "vl_compile_error",
+    "bmc": "equivalent",
+    "pdr": "equivalent",
+    "tind": "equivalent",
+    "class": "UNBOUNDED-EQ"
+   },
+   {
+    "id": 2,
+    "mutation": "mutate -mode const1 -module fixed_point_adder -cell $procmux$25 -port Y -portbit",
+    "tb": "compile_error",
+    "tb_v": "vl_compile_error",
+    "bmc": "equivalent",
+    "pdr": "equivalent",
+    "tind": "equivalent",
+    "class": "UNBOUNDED-EQ"
+   },
+   {
+    "id": 3,
+    "mutation": "mutate -mode cnot1 -module fixed_point_adder -cell $ref.v:47$sub$14 -port A -por",
+    "tb": "compile_error",
+    "tb_v": "vl_compile_error",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 4,
+    "mutation": "mutate -mode cnot1 -module fixed_point_adder -cell $ref.v:31$sub$9 -port A -port",
+    "tb": "compile_error",
+    "tb_v": "vl_compile_error",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 5,
+    "mutation": "mutate -mode const0 -module fixed_point_adder -cell $ref.v:27$sub$8 -port Y -por",
+    "tb": "compile_error",
+    "tb_v": "vl_compile_error",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 6,
+    "mutation": "mutate -mode const1 -module fixed_point_adder -cell $procmux$85 -port Y -portbit",
+    "tb": "compile_error",
+    "tb_v": "vl_compile_error",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 7,
+    "mutation": "mutate -mode cnot1 -module fixed_point_adder -cell $procmux$85 -port Y -portbit ",
+    "tb": "compile_error",
+    "tb_v": "vl_compile_error",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 8,
+    "mutation": "mutate -mode cnot0 -module fixed_point_adder -cell $procmux$68 -port A -portbit ",
+    "tb": "compile_error",
+    "tb_v": "vl_compile_error",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 9,
+    "mutation": "mutate -mode inv -module fixed_point_adder -cell $procmux$47 -port S -portbit 0 ",
+    "tb": "compile_error",
+    "tb_v": "vl_compile_error",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 10,
+    "mutation": "mutate -mode cnot1 -module fixed_point_adder -cell $procmux$70 -port Y -portbit ",
+    "tb": "compile_error",
+    "tb_v": "vl_compile_error",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 11,
+    "mutation": "mutate -mode const1 -module fixed_point_adder -cell $ref.v:25$logic_and$6 -port ",
+    "tb": "compile_error",
+    "tb_v": "vl_compile_error",
+    "bmc": "equivalent",
+    "pdr": "equivalent",
+    "tind": "equivalent",
+    "class": "UNBOUNDED-EQ"
+   }
+  ]
+ },
+ {
+  "design": "fixed_point_substractor",
+  "mutants": [],
+  "error": "ports"
+ },
+ {
+  "design": "float_multi",
+  "mutants": [],
+  "error": "ports"
+ },
+ {
+  "design": "freq_div",
+  "mutants": [
+   {
+    "id": 0,
+    "mutation": "mutate -mode const0 -module freq_div -cell $procdff$37 -port D -portbit 0 -src r",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 1,
+    "mutation": "mutate -mode cnot0 -module freq_div -cell $procdff$28 -port Q -portbit 6 -ctrlbi",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "equivalent",
+    "pdr": "different",
+    "tind": "unknown",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 2,
+    "mutation": "mutate -mode cnot0 -module freq_div -cell $ref.v:41$add$10 -port Y -portbit 18 -",
+    "tb": "pass",
+    "tb_v": "pass",
+    "bmc": "equivalent",
+    "pdr": "equivalent",
+    "tind": "unknown",
+    "class": "UNBOUNDED-EQ"
+   },
+   {
+    "id": 3,
+    "mutation": "mutate -mode inv -module freq_div -cell $procdff$37 -port Q -portbit 0 -wire CLK",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 4,
+    "mutation": "mutate -mode inv -module freq_div -cell $ref.v:13$not$2 -port A -portbit 0 -wire",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 5,
+    "mutation": "mutate -mode inv -module freq_div -cell $ref.v:23$not$5 -port Y -portbit 0 -src ",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 6,
+    "mutation": "mutate -mode const1 -module freq_div -cell $ref.v:36$eq$8 -port A -portbit 0 -sr",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "equivalent",
+    "pdr": "different",
+    "tind": "unknown",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 7,
+    "mutation": "mutate -mode const0 -module freq_div -cell $procdff$37 -port Q -portbit 0 -wire ",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 8,
+    "mutation": "mutate -mode inv -module freq_div -cell $ref.v:27$add$6 -port Y -portbit 26 -src",
+    "tb": "pass",
+    "tb_v": "pass",
+    "bmc": "equivalent",
+    "pdr": "equivalent",
+    "tind": "unknown",
+    "class": "UNBOUNDED-EQ"
+   },
+   {
+    "id": 9,
+    "mutation": "mutate -mode const1 -module freq_div -cell $procmux$21 -port B -portbit 0 -src r",
+    "tb": "pass",
+    "tb_v": "pass",
+    "bmc": "equivalent",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 10,
+    "mutation": "mutate -mode const0 -module freq_div -cell $procdff$31 -port Q -portbit 0 -wire ",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 11,
+    "mutation": "mutate -mode const1 -module freq_div -cell $procmux$12 -port B -portbit 2 -src r",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "equivalent",
+    "pdr": "different",
+    "tind": "unknown",
+    "class": "DIFFERENT"
+   }
+  ]
+ },
+ {
+  "design": "freq_divbyeven",
+  "mutants": [
+   {
+    "id": 0,
+    "mutation": "mutate -mode const1 -module freq_divbyeven -cell $procmux$10 -port B -portbit 3 ",
+    "tb": "compile_error",
+    "tb_v": "vl_compile_error",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 1,
+    "mutation": "mutate -mode inv -module freq_divbyeven -cell $ref.v:20$add$4 -port A -portbit 1",
+    "tb": "compile_error",
+    "tb_v": "vl_compile_error",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 2,
+    "mutation": "mutate -mode const1 -module freq_divbyeven -cell $procdff$16 -port Q -portbit 0 ",
+    "tb": "compile_error",
+    "tb_v": "vl_compile_error",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 3,
+    "mutation": "mutate -mode const1 -module freq_divbyeven -cell $procdff$21 -port Q -portbit 2 ",
+    "tb": "compile_error",
+    "tb_v": "vl_compile_error",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 4,
+    "mutation": "mutate -mode const0 -module freq_divbyeven -cell $procdff$21 -port Q -portbit 1 ",
+    "tb": "compile_error",
+    "tb_v": "vl_compile_error",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 5,
+    "mutation": "mutate -mode const1 -module freq_divbyeven -cell $ref.v:25$not$5 -port A -portbi",
+    "tb": "compile_error",
+    "tb_v": "vl_compile_error",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 6,
+    "mutation": "mutate -mode inv -module freq_divbyeven -cell $procdff$21 -port Q -portbit 2 -wi",
+    "tb": "compile_error",
+    "tb_v": "vl_compile_error",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 7,
+    "mutation": "mutate -mode inv -module freq_divbyeven -cell $ref.v:19$lt$3 -port A -portbit 2 ",
+    "tb": "compile_error",
+    "tb_v": "vl_compile_error",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 8,
+    "mutation": "mutate -mode const1 -module freq_divbyeven -cell $procmux$7 -port S -portbit 0 -",
+    "tb": "compile_error",
+    "tb_v": "vl_compile_error",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 9,
+    "mutation": "mutate -mode const1 -module freq_divbyeven -cell $ref.v:20$add$4 -port Y -portbi",
+    "tb": "compile_error",
+    "tb_v": "vl_compile_error",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 10,
+    "mutation": "mutate -mode inv -module freq_divbyeven -cell $ref.v:25$not$5 -port A -portbit 0",
+    "tb": "compile_error",
+    "tb_v": "vl_compile_error",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 11,
+    "mutation": "mutate -mode inv -module freq_divbyeven -cell $procdff$16 -port Q -portbit 0 -wi",
+    "tb": "compile_error",
+    "tb_v": "vl_compile_error",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   }
+  ]
+ },
+ {
+  "design": "freq_divbyfrac",
+  "mutants": [
+   {
+    "id": 0,
+    "mutation": "mutate -mode const1 -module freq_divbyfrac -cell $ref.v:56$or$13 -port B -portbi",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "unknown",
+    "tind": "unknown",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 1,
+    "mutation": "mutate -mode const1 -module freq_divbyfrac -cell $procdff$38 -port D -portbit 0 ",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "unknown",
+    "tind": "unknown",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 2,
+    "mutation": "mutate -mode const1 -module freq_divbyfrac -cell $ref.v:56$or$13 -port Y -portbi",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "unknown",
+    "tind": "unknown",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 3,
+    "mutation": "mutate -mode const0 -module freq_divbyfrac -cell $ref.v:31$eq$8 -port Y -portbit",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "equivalent",
+    "pdr": "unknown",
+    "tind": "unknown",
+    "class": "BMC-10-EQ-ONLY"
+   },
+   {
+    "id": 4,
+    "mutation": "mutate -mode const0 -module freq_divbyfrac -cell $procdff$33 -port Q -portbit 0 ",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "unknown",
+    "tind": "unknown",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 5,
+    "mutation": "mutate -mode inv -module freq_divbyfrac -cell $ref.v:13$eq$3 -port B -portbit 1 ",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "unknown",
+    "tind": "unknown",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 6,
+    "mutation": "mutate -mode cnot0 -module freq_divbyfrac -cell $procdff$43 -port Q -portbit 2 -",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "equivalent",
+    "pdr": "unknown",
+    "tind": "unknown",
+    "class": "BMC-10-EQ-ONLY"
+   },
+   {
+    "id": 7,
+    "mutation": "mutate -mode cnot1 -module freq_divbyfrac -cell $ref.v:17$add$4 -port A -portbit",
+    "tb": "pass",
+    "tb_v": "pass",
+    "bmc": "equivalent",
+    "pdr": "unknown",
+    "tind": "unknown",
+    "class": "BMC-10-EQ-ONLY"
+   },
+   {
+    "id": 8,
+    "mutation": "mutate -mode const0 -module freq_divbyfrac -cell $procdff$43 -port Q -portbit 2 ",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "unknown",
+    "tind": "unknown",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 9,
+    "mutation": "mutate -mode inv -module freq_divbyfrac -cell $ref.v:56$or$13 -port B -portbit 0",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "unknown",
+    "tind": "unknown",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 10,
+    "mutation": "mutate -mode inv -module freq_divbyfrac -cell $ref.v:27$eq$7 -port A -portbit 3 ",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "unknown",
+    "tind": "unknown",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 11,
+    "mutation": "mutate -mode cnot1 -module freq_divbyfrac -cell $procmux$27 -port A -portbit 2 -",
+    "tb": "pass",
+    "tb_v": "pass",
+    "bmc": "equivalent",
+    "pdr": "unknown",
+    "tind": "unknown",
+    "class": "BMC-10-EQ-ONLY"
+   }
+  ]
+ },
+ {
+  "design": "freq_divbyodd",
+  "mutants": [
+   {
+    "id": 0,
+    "mutation": "mutate -mode const1 -module freq_divbyodd -cell $ref.v:19$lt$3 -port B -portbit ",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "equivalent",
+    "pdr": "unknown",
+    "tind": "unknown",
+    "class": "BMC-10-EQ-ONLY"
+   },
+   {
+    "id": 1,
+    "mutation": "mutate -mode const0 -module freq_divbyodd -cell $ref.v:19$lt$3 -port A -portbit ",
+    "tb": "pass",
+    "tb_v": "pass",
+    "bmc": "equivalent",
+    "pdr": "unknown",
+    "tind": "unknown",
+    "class": "BMC-10-EQ-ONLY"
+   },
+   {
+    "id": 2,
+    "mutation": "mutate -mode cnot1 -module freq_divbyodd -cell $procdff$37 -port Q -portbit 0 -c",
+    "tb": "pass",
+    "tb_v": "pass",
+    "bmc": "equivalent",
+    "pdr": "unknown",
+    "tind": "unknown",
+    "class": "BMC-10-EQ-ONLY"
+   },
+   {
+    "id": 3,
+    "mutation": "mutate -mode cnot0 -module freq_divbyodd -cell $ref.v:20$add$4 -port A -portbit ",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "unknown",
+    "tind": "unknown",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 4,
+    "mutation": "mutate -mode const0 -module freq_divbyodd -cell $ref.v:43$lt$14 -port B -portbit",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "equivalent",
+    "pdr": "unknown",
+    "tind": "unknown",
+    "class": "BMC-10-EQ-ONLY"
+   },
+   {
+    "id": 5,
+    "mutation": "mutate -mode const0 -module freq_divbyodd -cell $ref.v:27$lt$7 -port B -portbit ",
+    "tb": "pass",
+    "tb_v": "pass",
+    "bmc": "equivalent",
+    "pdr": "unknown",
+    "tind": "unknown",
+    "class": "BMC-10-EQ-ONLY"
+   },
+   {
+    "id": 6,
+    "mutation": "mutate -mode inv -module freq_divbyodd -cell $procdff$32 -port Q -portbit 0 -wir",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "unknown",
+    "tind": "unknown",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 7,
+    "mutation": "mutate -mode cnot0 -module freq_divbyodd -cell $procdff$47 -port Q -portbit 0 -c",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "unknown",
+    "tind": "unknown",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 8,
+    "mutation": "mutate -mode inv -module freq_divbyodd -cell $procmux$20 -port Y -portbit 0 -src",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "unknown",
+    "tind": "unknown",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 9,
+    "mutation": "mutate -mode inv -module freq_divbyodd -cell $procmux$23 -port B -portbit 0 -src",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "equivalent",
+    "pdr": "unknown",
+    "tind": "unknown",
+    "class": "BMC-10-EQ-ONLY"
+   },
+   {
+    "id": 10,
+    "mutation": "mutate -mode cnot0 -module freq_divbyodd -cell $procdff$47 -port Q -portbit 2 -c",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "equivalent",
+    "pdr": "unknown",
+    "tind": "unknown",
+    "class": "BMC-10-EQ-ONLY"
+   },
+   {
+    "id": 11,
+    "mutation": "mutate -mode const0 -module freq_divbyodd -cell $ref.v:48$or$15 -port B -portbit",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "equivalent",
+    "pdr": "unknown",
+    "tind": "unknown",
+    "class": "BMC-10-EQ-ONLY"
+   }
+  ]
+ },
+ {
+  "design": "fsm",
+  "mutants": [
+   {
+    "id": 0,
+    "mutation": "mutate -mode inv -module fsm -cell $auto$proc_dlatch.cc:337:make_hold$87 -port Y",
+    "tb": "pass",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 1,
+    "mutation": "mutate -mode inv -module fsm -cell $procdff$121 -port Q -portbit 2 -wire ST_cr -",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 2,
+    "mutation": "mutate -mode cnot0 -module fsm -cell $procmux$71 -port B -portbit 14 -ctrlbit 15",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 3,
+    "mutation": "mutate -mode inv -module fsm -cell $ref.v:71$eq$10 -port A -portbit 1 -src ref.v",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 4,
+    "mutation": "mutate -mode const1 -module fsm -cell $procdff$121 -port CLK -portbit 0 -wire CL",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 5,
+    "mutation": "mutate -mode const1 -module fsm -cell $auto$proc_dlatch.cc:559:proc_dlatch$118 -",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 6,
+    "mutation": "mutate -mode inv -module fsm -cell $procmux$66 -port Y -portbit 1 -src ref.v:24.",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 7,
+    "mutation": "mutate -mode const0 -module fsm -cell $procmux$36 -port B -portbit 0 -src ref.v:",
+    "tb": "pass",
+    "tb_v": "pass",
+    "bmc": "equivalent",
+    "pdr": "equivalent",
+    "tind": "unknown",
+    "class": "UNBOUNDED-EQ"
+   },
+   {
+    "id": 8,
+    "mutation": "mutate -mode const1 -module fsm -cell $procdff$121 -port D -portbit 1 -wire ST_n",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 9,
+    "mutation": "mutate -mode inv -module fsm -cell $procmux$17 -port Y -portbit 0 -wire MATCH -w",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 10,
+    "mutation": "mutate -mode const1 -module fsm -cell $procdff$121 -port Q -portbit 1 -wire ST_c",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 11,
+    "mutation": "mutate -mode const1 -module fsm -cell $procmux$28 -port Y -portbit 0 -src ref.v:",
+    "tb": "pass",
+    "tb_v": "pass",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   }
+  ]
+ },
+ {
+  "design": "instr_reg",
+  "mutants": [
+   {
+    "id": 0,
+    "mutation": "mutate -mode cnot0 -module instr_reg -cell $procmux$6 -port B -portbit 6 -ctrlbi",
+    "tb": "pass",
+    "tb_v": "pass",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 1,
+    "mutation": "mutate -mode const0 -module instr_reg -cell $procmux$14 -port A -portbit 7 -wire",
+    "tb": "pass",
+    "tb_v": "pass",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 2,
+    "mutation": "mutate -mode cnot1 -module instr_reg -cell $procdff$20 -port Q -portbit 0 -ctrlb",
+    "tb": "pass",
+    "tb_v": "pass",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 3,
+    "mutation": "mutate -mode inv -module instr_reg -cell $ref.v:19$eq$3 -port Y -portbit 0 -src ",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 4,
+    "mutation": "mutate -mode cnot1 -module instr_reg -cell $procmux$14 -port A -portbit 2 -ctrlb",
+    "tb": "pass",
+    "tb_v": "pass",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 5,
+    "mutation": "mutate -mode inv -module instr_reg -cell $procdff$20 -port Q -portbit 5 -wire in",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 6,
+    "mutation": "mutate -mode cnot0 -module instr_reg -cell $procdff$25 -port Q -portbit 5 -ctrlb",
+    "tb": "pass",
+    "tb_v": "pass",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 7,
+    "mutation": "mutate -mode const0 -module instr_reg -cell $ref.v:22$eq$4 -port A -portbit 1 -s",
+    "tb": "pass",
+    "tb_v": "pass",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 8,
+    "mutation": "mutate -mode inv -module instr_reg -cell $procmux$14 -port A -portbit 4 -wire ad",
+    "tb": "pass",
+    "tb_v": "pass",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 9,
+    "mutation": "mutate -mode const0 -module instr_reg -cell $procdff$25 -port Q -portbit 5 -wire",
+    "tb": "pass",
+    "tb_v": "pass",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 10,
+    "mutation": "mutate -mode const1 -module instr_reg -cell $procmux$14 -port A -portbit 2 -wire",
+    "tb": "pass",
+    "tb_v": "pass",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 11,
+    "mutation": "mutate -mode const1 -module instr_reg -cell $procmux$14 -port A -portbit 3 -wire",
+    "tb": "pass",
+    "tb_v": "pass",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   }
+  ]
+ },
+ {
+  "design": "multi_16bit",
+  "mutants": [
+   {
+    "id": 0,
+    "mutation": "mutate -mode const1 -module multi_16bit -cell $procdff$60 -port Q -portbit 2 -wi",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "unknown",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 1,
+    "mutation": "mutate -mode const1 -module multi_16bit -cell $procmux$39 -port Y -portbit 14 -s",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "equivalent",
+    "pdr": "unknown",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 2,
+    "mutation": "mutate -mode const0 -module multi_16bit -cell $ref.v:23$logic_and$4 -port A -por",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "unknown",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 3,
+    "mutation": "mutate -mode cnot0 -module multi_16bit -cell $procmux$29 -port B -portbit 30 -ct",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "unknown",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 4,
+    "mutation": "mutate -mode cnot1 -module multi_16bit -cell $procmux$32 -port B -portbit 12 -ct",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "unknown",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 5,
+    "mutation": "mutate -mode inv -module multi_16bit -cell $procdff$55 -port Q -portbit 14 -wire",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "equivalent",
+    "pdr": "unknown",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 6,
+    "mutation": "mutate -mode const0 -module multi_16bit -cell $ref.v:50$add$21 -port B -portbit ",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "equivalent",
+    "pdr": "unknown",
+    "tind": "unknown",
+    "class": "BMC-10-EQ-ONLY"
+   },
+   {
+    "id": 7,
+    "mutation": "mutate -mode cnot1 -module multi_16bit -cell $procmux$22 -port B -portbit 2 -ctr",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "equivalent",
+    "pdr": "unknown",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 8,
+    "mutation": "mutate -mode inv -module multi_16bit -cell $procdff$70 -port D -portbit 0 -src r",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "unknown",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 9,
+    "mutation": "mutate -mode cnot0 -module multi_16bit -cell $ref.v:48$lt$15 -port A -portbit 1 ",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "equivalent",
+    "pdr": "unknown",
+    "tind": "unknown",
+    "class": "BMC-10-EQ-ONLY"
+   },
+   {
+    "id": 10,
+    "mutation": "mutate -mode inv -module multi_16bit -cell $procmux$41 -port A -portbit 0 -wire ",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "unknown",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 11,
+    "mutation": "mutate -mode cnot0 -module multi_16bit -cell $procdff$65 -port Q -portbit 10 -ct",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "unknown",
+    "tind": "different",
+    "class": "DIFFERENT"
+   }
+  ]
+ },
+ {
+  "design": "multi_8bit",
+  "mutants": [
+   {
+    "id": 0,
+    "mutation": "mutate -mode const1 -module multi_8bit -cell $ref.v:17$add$31 -port Y -portbit 2",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 1,
+    "mutation": "mutate -mode const0 -module multi_8bit -cell $procmux$53 -port B -portbit 4 -src",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 2,
+    "mutation": "mutate -mode cnot1 -module multi_8bit -cell $ref.v:17$add$15 -port Y -portbit 12",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 3,
+    "mutation": "mutate -mode const0 -module multi_8bit -cell $procmux$59 -port S -portbit 0 -wir",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 4,
+    "mutation": "mutate -mode cnot0 -module multi_8bit -cell $procmux$38 -port Y -portbit 9 -ctrl",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 5,
+    "mutation": "mutate -mode cnot0 -module multi_8bit -cell $procmux$38 -port Y -portbit 12 -ctr",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 6,
+    "mutation": "mutate -mode const1 -module multi_8bit -cell $procmux$47 -port S -portbit 0 -wir",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 7,
+    "mutation": "mutate -mode cnot0 -module multi_8bit -cell $ref.v:17$add$31 -port Y -portbit 6 ",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 8,
+    "mutation": "mutate -mode const0 -module multi_8bit -cell $ref.v:17$add$11 -port B -portbit 9",
+    "tb": "pass",
+    "tb_v": "pass",
+    "bmc": "equivalent",
+    "pdr": "equivalent",
+    "tind": "equivalent",
+    "class": "UNBOUNDED-EQ"
+   },
+   {
+    "id": 9,
+    "mutation": "mutate -mode const0 -module multi_8bit -cell $procmux$41 -port Y -portbit 5 -src",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 10,
+    "mutation": "mutate -mode const1 -module multi_8bit -cell $procmux$38 -port Y -portbit 5 -wir",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 11,
+    "mutation": "mutate -mode const1 -module multi_8bit -cell $procmux$56 -port S -portbit 0 -wir",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   }
+  ]
+ },
+ {
+  "design": "multi_booth_8bit",
+  "mutants": [
+   {
+    "id": 0,
+    "mutation": "mutate -mode inv -module multi_booth_8bit -cell $procdff$30 -port Q -portbit 14 ",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "equivalent",
+    "pdr": "unknown",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 1,
+    "mutation": "mutate -mode cnot1 -module multi_booth_8bit -cell $ref.v:29$shiftx$4 -port A -po",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "unknown",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 2,
+    "mutation": "mutate -mode const0 -module multi_booth_8bit -cell $ref.v:26$lt$2 -port B -portb",
+    "tb": "pass",
+    "tb_v": "pass",
+    "bmc": "equivalent",
+    "pdr": "unknown",
+    "tind": "equivalent",
+    "class": "UNBOUNDED-EQ"
+   },
+   {
+    "id": 3,
+    "mutation": "mutate -mode inv -module multi_booth_8bit -cell $procmux$18 -port B -portbit 8 -",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "unknown",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 4,
+    "mutation": "mutate -mode cnot1 -module multi_booth_8bit -cell $procdff$33 -port Q -portbit 6",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "unknown",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 5,
+    "mutation": "mutate -mode inv -module multi_booth_8bit -cell $procdff$30 -port Q -portbit 0 -",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "unknown",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 6,
+    "mutation": "mutate -mode cnot1 -module multi_booth_8bit -cell $procdff$33 -port Q -portbit 8",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "unknown",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 7,
+    "mutation": "mutate -mode cnot1 -module multi_booth_8bit -cell $procdff$36 -port Q -portbit 4",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "unknown",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 8,
+    "mutation": "mutate -mode const0 -module multi_booth_8bit -cell $procdff$33 -port AD -portbit",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "unknown",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 9,
+    "mutation": "mutate -mode cnot1 -module multi_booth_8bit -cell $ref.v:29$shiftx$4 -port A -po",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "unknown",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 10,
+    "mutation": "mutate -mode const1 -module multi_booth_8bit -cell $procmux$15 -port B -portbit ",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "unknown",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 11,
+    "mutation": "mutate -mode inv -module multi_booth_8bit -cell $ref.v:33$add$7 -port Y -portbit",
+    "tb": "pass",
+    "tb_v": "pass",
+    "bmc": "equivalent",
+    "pdr": "unknown",
+    "tind": "equivalent",
+    "class": "UNBOUNDED-EQ"
+   }
+  ]
+ },
+ {
+  "design": "multi_pipe_4bit",
+  "mutants": [],
+  "error": "ports"
+ },
+ {
+  "design": "multi_pipe_8bit",
+  "mutants": [
+   {
+    "id": 0,
+    "mutation": "mutate -mode const1 -module multi_pipe_8bit -cell $ref.v:53$ternary$29 -port Y -",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 1,
+    "mutation": "mutate -mode const0 -module multi_pipe_8bit -cell $ref.v:55$ternary$33 -port Y -",
+    "tb": "fail",
+    "tb_v": "pass",
+    "bmc": "equivalent",
+    "pdr": "equivalent",
+    "tind": "equivalent",
+    "class": "UNBOUNDED-EQ"
+   },
+   {
+    "id": 2,
+    "mutation": "mutate -mode cnot0 -module multi_pipe_8bit -cell $ref.v:80$add$19 -port B -portb",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 3,
+    "mutation": "mutate -mode inv -module multi_pipe_8bit -cell $ref.v:44$ternary$6 -port B -port",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 4,
+    "mutation": "mutate -mode cnot1 -module multi_pipe_8bit -cell $procdff$65 -port Q -portbit 6 ",
+    "tb": "fail",
+    "tb_v": "pass",
+    "bmc": "equivalent",
+    "pdr": "equivalent",
+    "tind": "equivalent",
+    "class": "UNBOUNDED-EQ"
+   },
+   {
+    "id": 5,
+    "mutation": "mutate -mode inv -module multi_pipe_8bit -cell $ref.v:80$add$17 -port B -portbit",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 6,
+    "mutation": "mutate -mode const0 -module multi_pipe_8bit -cell $ref.v:70$add$12 -port A -port",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 7,
+    "mutation": "mutate -mode const1 -module multi_pipe_8bit -cell $ref.v:71$add$13 -port B -port",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 8,
+    "mutation": "mutate -mode const1 -module multi_pipe_8bit -cell $ref.v:55$ternary$33 -port Y -",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 9,
+    "mutation": "mutate -mode const0 -module multi_pipe_8bit -cell $ref.v:50$ternary$23 -port Y -",
+    "tb": "fail",
+    "tb_v": "pass",
+    "bmc": "equivalent",
+    "pdr": "equivalent",
+    "tind": "equivalent",
+    "class": "UNBOUNDED-EQ"
+   },
+   {
+    "id": 10,
+    "mutation": "mutate -mode const0 -module multi_pipe_8bit -cell $ref.v:71$add$13 -port B -port",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 11,
+    "mutation": "mutate -mode cnot1 -module multi_pipe_8bit -cell $ref.v:51$ternary$25 -port Y -p",
+    "tb": "fail",
+    "tb_v": "pass",
+    "bmc": "equivalent",
+    "pdr": "equivalent",
+    "tind": "equivalent",
+    "class": "UNBOUNDED-EQ"
+   }
+  ]
+ },
+ {
+  "design": "parallel2serial",
+  "mutants": [
+   {
+    "id": 0,
+    "mutation": "mutate -mode cnot0 -module parallel2serial -cell $procmux$13 -port A -portbit 1 ",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 1,
+    "mutation": "mutate -mode const1 -module parallel2serial -cell $procdff$29 -port Q -portbit 0",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 2,
+    "mutation": "mutate -mode inv -module parallel2serial -cell $procdff$19 -port Q -portbit 2 -w",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 3,
+    "mutation": "mutate -mode inv -module parallel2serial -cell $procdff$19 -port Q -portbit 1 -w",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 4,
+    "mutation": "mutate -mode cnot1 -module parallel2serial -cell $procmux$13 -port B -portbit 1 ",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 5,
+    "mutation": "mutate -mode cnot0 -module parallel2serial -cell $ref.v:30$add$4 -port Y -portbi",
+    "tb": "pass",
+    "tb_v": "pass",
+    "bmc": "equivalent",
+    "pdr": "equivalent",
+    "tind": "equivalent",
+    "class": "UNBOUNDED-EQ"
+   },
+   {
+    "id": 6,
+    "mutation": "mutate -mode cnot0 -module parallel2serial -cell $procdff$19 -port Q -portbit 3 ",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 7,
+    "mutation": "mutate -mode const1 -module parallel2serial -cell $ref.v:30$add$4 -port Y -portb",
+    "tb": "pass",
+    "tb_v": "pass",
+    "bmc": "equivalent",
+    "pdr": "equivalent",
+    "tind": "equivalent",
+    "class": "UNBOUNDED-EQ"
+   },
+   {
+    "id": 8,
+    "mutation": "mutate -mode inv -module parallel2serial -cell $procdff$24 -port Q -portbit 1 -w",
+    "tb": "pass",
+    "tb_v": "pass",
+    "bmc": "equivalent",
+    "pdr": "equivalent",
+    "tind": "equivalent",
+    "class": "UNBOUNDED-EQ"
+   },
+   {
+    "id": 9,
+    "mutation": "mutate -mode cnot0 -module parallel2serial -cell $procmux$13 -port B -portbit 1 ",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 10,
+    "mutation": "mutate -mode const0 -module parallel2serial -cell $procdff$24 -port Q -portbit 1",
+    "tb": "timeout",
+    "tb_v": "timeout",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 11,
+    "mutation": "mutate -mode inv -module parallel2serial -cell $procdff$19 -port Q -portbit 3 -w",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   }
+  ]
+ },
+ {
+  "design": "pe",
+  "mutants": [
+   {
+    "id": 0,
+    "mutation": "mutate -mode inv -module pe -cell $procdff$6 -port Q -portbit 16 -wire c -wirebi",
+    "tb": "pass",
+    "tb_v": "pass",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 1,
+    "mutation": "mutate -mode const1 -module pe -cell $procdff$6 -port CLK -portbit 0 -wire clk -",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 2,
+    "mutation": "mutate -mode const1 -module pe -cell $ref.v:22$add$3 -port B -portbit 21 -src re",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 3,
+    "mutation": "mutate -mode inv -module pe -cell $ref.v:22$mul$2 -port B -portbit 16 -wire b -w",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 4,
+    "mutation": "mutate -mode inv -module pe -cell $ref.v:22$mul$2 -port A -portbit 30 -wire a -w",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 5,
+    "mutation": "mutate -mode const1 -module pe -cell $procdff$6 -port ARST -portbit 0 -wire rst ",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 6,
+    "mutation": "mutate -mode const0 -module pe -cell $ref.v:22$mul$2 -port B -portbit 11 -wire b",
+    "tb": "pass",
+    "tb_v": "pass",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 7,
+    "mutation": "mutate -mode const0 -module pe -cell $ref.v:22$mul$2 -port B -portbit 15 -wire b",
+    "tb": "pass",
+    "tb_v": "pass",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 8,
+    "mutation": "mutate -mode inv -module pe -cell $ref.v:22$mul$2 -port A -portbit 14 -wire a -w",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 9,
+    "mutation": "mutate -mode cnot1 -module pe -cell $procdff$6 -port Q -portbit 17 -ctrlbit 9 -w",
+    "tb": "pass",
+    "tb_v": "pass",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 10,
+    "mutation": "mutate -mode inv -module pe -cell $procdff$6 -port CLK -portbit 0 -wire clk -wir",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "equivalent",
+    "pdr": "unknown",
+    "tind": "unknown",
+    "class": "BMC-10-EQ-ONLY"
+   },
+   {
+    "id": 11,
+    "mutation": "mutate -mode const1 -module pe -cell $ref.v:22$mul$2 -port B -portbit 25 -wire b",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   }
+  ]
+ },
+ {
+  "design": "pulse_detect",
+  "mutants": [
+   {
+    "id": 0,
+    "mutation": "mutate -mode const0 -module pulse_detect -cell $procmux$20 -port Y -portbit 0 -w",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 1,
+    "mutation": "mutate -mode cnot0 -module pulse_detect -cell $procdff$57 -port D -portbit 1 -ct",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 2,
+    "mutation": "mutate -mode const1 -module pulse_detect -cell $procdff$57 -port CLK -portbit 0 ",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 3,
+    "mutation": "mutate -mode inv -module pulse_detect -cell $procdff$57 -port Q -portbit 0 -wire",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 4,
+    "mutation": "mutate -mode const0 -module pulse_detect -cell $procmux$39_CMP0 -port B -portbit",
+    "tb": "pass",
+    "tb_v": "pass",
+    "bmc": "equivalent",
+    "pdr": "equivalent",
+    "tind": "equivalent",
+    "class": "UNBOUNDED-EQ"
+   },
+   {
+    "id": 5,
+    "mutation": "mutate -mode const1 -module pulse_detect -cell $procmux$14 -port B -portbit 0 -s",
+    "tb": "pass",
+    "tb_v": "pass",
+    "bmc": "equivalent",
+    "pdr": "equivalent",
+    "tind": "equivalent",
+    "class": "UNBOUNDED-EQ"
+   },
+   {
+    "id": 6,
+    "mutation": "mutate -mode inv -module pulse_detect -cell $procmux$52_CMP0 -port A -portbit 1 ",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 7,
+    "mutation": "mutate -mode cnot1 -module pulse_detect -cell $procmux$25 -port B -portbit 0 -ct",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 8,
+    "mutation": "mutate -mode const1 -module pulse_detect -cell $procmux$48 -port Y -portbit 0 -w",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 9,
+    "mutation": "mutate -mode cnot1 -module pulse_detect -cell $procmux$39_CMP0 -port A -portbit ",
+    "tb": "pass",
+    "tb_v": "pass",
+    "bmc": "equivalent",
+    "pdr": "equivalent",
+    "tind": "equivalent",
+    "class": "UNBOUNDED-EQ"
+   },
+   {
+    "id": 10,
+    "mutation": "mutate -mode const1 -module pulse_detect -cell $procmux$36 -port A -portbit 0 -s",
+    "tb": "pass",
+    "tb_v": "pass",
+    "bmc": "equivalent",
+    "pdr": "equivalent",
+    "tind": "equivalent",
+    "class": "UNBOUNDED-EQ"
+   },
+   {
+    "id": 11,
+    "mutation": "mutate -mode cnot0 -module pulse_detect -cell $procmux$48 -port Y -portbit 1 -ct",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   }
+  ]
+ },
+ {
+  "design": "radix2_div",
+  "mutants": [
+   {
+    "id": 0,
+    "mutation": "mutate -mode const0 -module radix2_div -cell $procmux$43 -port B -portbit 0 -src",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "equivalent",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 1,
+    "mutation": "mutate -mode cnot1 -module radix2_div -cell $ref.v:26$not$2 -port A -portbit 5 -",
+    "tb": "pass",
+    "tb_v": "pass",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 2,
+    "mutation": "mutate -mode const0 -module radix2_div -cell $procdff$110 -port Q -portbit 0 -wi",
+    "tb": "timeout",
+    "tb_v": "timeout",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 3,
+    "mutation": "mutate -mode inv -module radix2_div -cell $procmux$37 -port B -portbit 0 -wire d",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 4,
+    "mutation": "mutate -mode const0 -module radix2_div -cell $ref.v:26$and$1 -port Y -portbit 0 ",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 5,
+    "mutation": "mutate -mode const1 -module radix2_div -cell $procdff$106 -port Q -portbit 6 -wi",
+    "tb": "pass",
+    "tb_v": "pass",
+    "bmc": "equivalent",
+    "pdr": "equivalent",
+    "tind": "unknown",
+    "class": "UNBOUNDED-EQ"
+   },
+   {
+    "id": 6,
+    "mutation": "mutate -mode const0 -module radix2_div -cell $ref.v:77$and$26 -port B -portbit 0",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "equivalent",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 7,
+    "mutation": "mutate -mode const0 -module radix2_div -cell $procmux$99 -port A -portbit 6 -wir",
+    "tb": "pass",
+    "tb_v": "pass",
+    "bmc": "equivalent",
+    "pdr": "equivalent",
+    "tind": "unknown",
+    "class": "UNBOUNDED-EQ"
+   },
+   {
+    "id": 8,
+    "mutation": "mutate -mode inv -module radix2_div -cell $procmux$84 -port A -portbit 0 -src re",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 9,
+    "mutation": "mutate -mode inv -module radix2_div -cell $ref.v:37$ternary$15 -port Y -portbit ",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 10,
+    "mutation": "mutate -mode cnot0 -module radix2_div -cell $procdff$106 -port Q -portbit 6 -ctr",
+    "tb": "pass",
+    "tb_v": "pass",
+    "bmc": "equivalent",
+    "pdr": "equivalent",
+    "tind": "unknown",
+    "class": "UNBOUNDED-EQ"
+   },
+   {
+    "id": 11,
+    "mutation": "mutate -mode inv -module radix2_div -cell $ref.v:28$ternary$13 -port B -portbit ",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   }
+  ]
+ },
+ {
+  "design": "right_shifter",
+  "mutants": [
+   {
+    "id": 0,
+    "mutation": "mutate -mode inv -module right_shifter -cell $procdff$4 -port Q -portbit 3 -wire",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 1,
+    "mutation": "mutate -mode cnot1 -module right_shifter -cell $procdff$4 -port D -portbit 7 -ct",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 2,
+    "mutation": "mutate -mode const1 -module right_shifter -cell $procdff$4 -port Q -portbit 2 -w",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 3,
+    "mutation": "mutate -mode inv -module right_shifter -cell $procdff$4 -port Q -portbit 5 -wire",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 4,
+    "mutation": "mutate -mode inv -module right_shifter -cell $procdff$4 -port CLK -portbit 0 -wi",
+    "tb": "pass",
+    "tb_v": "pass",
+    "bmc": "equivalent",
+    "pdr": "unknown",
+    "tind": "unknown",
+    "class": "BMC-10-EQ-ONLY"
+   },
+   {
+    "id": 5,
+    "mutation": "mutate -mode const1 -module right_shifter -cell $procdff$4 -port D -portbit 0 -w",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 6,
+    "mutation": "mutate -mode inv -module right_shifter -cell $procdff$4 -port D -portbit 7 -wire",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 7,
+    "mutation": "mutate -mode const0 -module right_shifter -cell $procdff$4 -port D -portbit 2 -w",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 8,
+    "mutation": "mutate -mode const1 -module right_shifter -cell $procdff$4 -port CLK -portbit 0 ",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 9,
+    "mutation": "mutate -mode const0 -module right_shifter -cell $procdff$4 -port D -portbit 7 -w",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 10,
+    "mutation": "mutate -mode const0 -module right_shifter -cell $procdff$4 -port CLK -portbit 0 ",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 11,
+    "mutation": "mutate -mode inv -module right_shifter -cell $procdff$4 -port Q -portbit 4 -wire",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   }
+  ]
+ },
+ {
+  "design": "ring_counter",
+  "mutants": [
+   {
+    "id": 0,
+    "mutation": "mutate -mode cnot0 -module ring_counter -cell $procdff$4 -port D -portbit 6 -ctr",
+    "tb": "compile_error",
+    "tb_v": "pass",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 1,
+    "mutation": "mutate -mode const1 -module ring_counter -cell $procdff$4 -port ARST -portbit 0 ",
+    "tb": "compile_error",
+    "tb_v": "pass",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 2,
+    "mutation": "mutate -mode const0 -module ring_counter -cell $procdff$4 -port Q -portbit 1 -wi",
+    "tb": "compile_error",
+    "tb_v": "pass",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 3,
+    "mutation": "mutate -mode const0 -module ring_counter -cell $procdff$4 -port ARST -portbit 0 ",
+    "tb": "compile_error",
+    "tb_v": "pass",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 4,
+    "mutation": "mutate -mode inv -module ring_counter -cell $procdff$4 -port CLK -portbit 0 -wir",
+    "tb": "compile_error",
+    "tb_v": "pass",
+    "bmc": "equivalent",
+    "pdr": "unknown",
+    "tind": "unknown",
+    "class": "BMC-10-EQ-ONLY"
+   },
+   {
+    "id": 5,
+    "mutation": "mutate -mode cnot0 -module ring_counter -cell $procdff$4 -port Q -portbit 0 -ctr",
+    "tb": "compile_error",
+    "tb_v": "pass",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 6,
+    "mutation": "mutate -mode const0 -module ring_counter -cell $procdff$4 -port CLK -portbit 0 -",
+    "tb": "compile_error",
+    "tb_v": "pass",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 7,
+    "mutation": "mutate -mode inv -module ring_counter -cell $procdff$4 -port ARST -portbit 0 -wi",
+    "tb": "compile_error",
+    "tb_v": "pass",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 8,
+    "mutation": "mutate -mode const1 -module ring_counter -cell $procdff$4 -port CLK -portbit 0 -",
+    "tb": "compile_error",
+    "tb_v": "pass",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 9,
+    "mutation": "mutate -mode const0 -module ring_counter -cell $procdff$4 -port D -portbit 7 -wi",
+    "tb": "compile_error",
+    "tb_v": "pass",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 10,
+    "mutation": "mutate -mode const0 -module ring_counter -cell $procdff$4 -port D -portbit 0 -wi",
+    "tb": "compile_error",
+    "tb_v": "pass",
+    "bmc": "equivalent",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 11,
+    "mutation": "mutate -mode cnot0 -module ring_counter -cell $procdff$4 -port D -portbit 3 -ctr",
+    "tb": "compile_error",
+    "tb_v": "pass",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   }
+  ]
+ },
+ {
+  "design": "sequence_detector",
+  "mutants": [
+   {
+    "id": 0,
+    "mutation": "mutate -mode const1 -module sequence_detector -cell $procmux$23 -port A -portbit",
+    "tb": "pass",
+    "tb_v": "pass",
+    "bmc": "equivalent",
+    "pdr": "equivalent",
+    "tind": "equivalent",
+    "class": "UNBOUNDED-EQ"
+   },
+   {
+    "id": 1,
+    "mutation": "mutate -mode const0 -module sequence_detector -cell $procdff$29 -port D -portbit",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 2,
+    "mutation": "mutate -mode const0 -module sequence_detector -cell $procdff$29 -port Q -portbit",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 3,
+    "mutation": "mutate -mode const1 -module sequence_detector -cell $procmux$16_CMP0 -port A -po",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 4,
+    "mutation": "mutate -mode const0 -module sequence_detector -cell $procmux$15_CMP0 -port A -po",
+    "tb": "pass",
+    "tb_v": "pass",
+    "bmc": "equivalent",
+    "pdr": "equivalent",
+    "tind": "equivalent",
+    "class": "UNBOUNDED-EQ"
+   },
+   {
+    "id": 5,
+    "mutation": "mutate -mode inv -module sequence_detector -cell $procdff$29 -port Q -portbit 0 ",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 6,
+    "mutation": "mutate -mode inv -module sequence_detector -cell $procmux$17_CMP0 -port A -portb",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 7,
+    "mutation": "mutate -mode cnot0 -module sequence_detector -cell $ref.v:40$ternary$9 -port Y -",
+    "tb": "pass",
+    "tb_v": "pass",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 8,
+    "mutation": "mutate -mode inv -module sequence_detector -cell $procmux$15_CMP0 -port A -portb",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 9,
+    "mutation": "mutate -mode const1 -module sequence_detector -cell $ref.v:39$ternary$8 -port B ",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 10,
+    "mutation": "mutate -mode const1 -module sequence_detector -cell $procmux$16_CMP0 -port B -po",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 11,
+    "mutation": "mutate -mode cnot0 -module sequence_detector -cell $ref.v:36$ternary$5 -port Y -",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   }
+  ]
+ },
+ {
+  "design": "serial2parallel",
+  "mutants": [
+   {
+    "id": 0,
+    "mutation": "mutate -mode cnot0 -module serial2parallel -cell $procmux$17 -port A -portbit 3 ",
+    "tb": "pass",
+    "tb_v": "pass",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 1,
+    "mutation": "mutate -mode const1 -module serial2parallel -cell $procdff$33 -port Q -portbit 0",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 2,
+    "mutation": "mutate -mode const0 -module serial2parallel -cell $ref.v:17$ternary$5 -port B -p",
+    "tb": "pass",
+    "tb_v": "pass",
+    "bmc": "equivalent",
+    "pdr": "equivalent",
+    "tind": "equivalent",
+    "class": "UNBOUNDED-EQ"
+   },
+   {
+    "id": 3,
+    "mutation": "mutate -mode const1 -module serial2parallel -cell $procmux$19 -port Y -portbit 0",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "equivalent",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 4,
+    "mutation": "mutate -mode inv -module serial2parallel -cell $ref.v:17$add$4 -port Y -portbit ",
+    "tb": "pass",
+    "tb_v": "pass",
+    "bmc": "equivalent",
+    "pdr": "equivalent",
+    "tind": "equivalent",
+    "class": "UNBOUNDED-EQ"
+   },
+   {
+    "id": 5,
+    "mutation": "mutate -mode inv -module serial2parallel -cell $procmux$22 -port A -portbit 0 -s",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "equivalent",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 6,
+    "mutation": "mutate -mode const1 -module serial2parallel -cell $ref.v:17$add$4 -port Y -portb",
+    "tb": "pass",
+    "tb_v": "pass",
+    "bmc": "equivalent",
+    "pdr": "equivalent",
+    "tind": "equivalent",
+    "class": "UNBOUNDED-EQ"
+   },
+   {
+    "id": 7,
+    "mutation": "mutate -mode cnot1 -module serial2parallel -cell $ref.v:25$le$8 -port A -portbit",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "equivalent",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 8,
+    "mutation": "mutate -mode const0 -module serial2parallel -cell $procdff$28 -port Q -portbit 5",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "equivalent",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 9,
+    "mutation": "mutate -mode const0 -module serial2parallel -cell $procdff$43 -port D -portbit 0",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "equivalent",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 10,
+    "mutation": "mutate -mode cnot1 -module serial2parallel -cell $procdff$38 -port Q -portbit 6 ",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "equivalent",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 11,
+    "mutation": "mutate -mode inv -module serial2parallel -cell $procmux$19 -port B -portbit 0 -w",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "equivalent",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   }
+  ]
+ },
+ {
+  "design": "signal_generator",
+  "mutants": [
+   {
+    "id": 0,
+    "mutation": "mutate -mode const1 -module signal_generator -cell $procdff$29 -port Q -portbit ",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 1,
+    "mutation": "mutate -mode inv -module signal_generator -cell $procmux$10 -port B -portbit 0 -",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "equivalent",
+    "pdr": "different",
+    "tind": "unknown",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 2,
+    "mutation": "mutate -mode cnot1 -module signal_generator -cell $ref.v:26$eq$5 -port A -portbi",
+    "tb": "pass",
+    "tb_v": "pass",
+    "bmc": "equivalent",
+    "pdr": "equivalent",
+    "tind": "equivalent",
+    "class": "UNBOUNDED-EQ"
+   },
+   {
+    "id": 3,
+    "mutation": "mutate -mode const1 -module signal_generator -cell $ref.v:18$eq$3 -port A -portb",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "equivalent",
+    "pdr": "different",
+    "tind": "unknown",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 4,
+    "mutation": "mutate -mode const1 -module signal_generator -cell $procmux$8 -port Y -portbit 0",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "equivalent",
+    "pdr": "different",
+    "tind": "unknown",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 5,
+    "mutation": "mutate -mode const1 -module signal_generator -cell $procmux$22 -port B -portbit ",
+    "tb": "pass",
+    "tb_v": "pass",
+    "bmc": "equivalent",
+    "pdr": "equivalent",
+    "tind": "equivalent",
+    "class": "UNBOUNDED-EQ"
+   },
+   {
+    "id": 6,
+    "mutation": "mutate -mode inv -module signal_generator -cell $ref.v:29$sub$6 -port B -portbit",
+    "tb": "pass",
+    "tb_v": "pass",
+    "bmc": "equivalent",
+    "pdr": "equivalent",
+    "tind": "equivalent",
+    "class": "UNBOUNDED-EQ"
+   },
+   {
+    "id": 7,
+    "mutation": "mutate -mode const0 -module signal_generator -cell $ref.v:21$add$4 -port Y -port",
+    "tb": "pass",
+    "tb_v": "pass",
+    "bmc": "equivalent",
+    "pdr": "equivalent",
+    "tind": "equivalent",
+    "class": "UNBOUNDED-EQ"
+   },
+   {
+    "id": 8,
+    "mutation": "mutate -mode cnot0 -module signal_generator -cell $procmux$11_CMP0 -port A -port",
+    "tb": "pass",
+    "tb_v": "pass",
+    "bmc": "equivalent",
+    "pdr": "equivalent",
+    "tind": "equivalent",
+    "class": "UNBOUNDED-EQ"
+   },
+   {
+    "id": 9,
+    "mutation": "mutate -mode inv -module signal_generator -cell $procdff$29 -port Q -portbit 0 -",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 10,
+    "mutation": "mutate -mode const1 -module signal_generator -cell $procdff$29 -port Q -portbit ",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 11,
+    "mutation": "mutate -mode const1 -module signal_generator -cell $procmux$24_CMP0 -port Y -por",
+    "tb": "pass",
+    "tb_v": "fail",
+    "bmc": "equivalent",
+    "pdr": "different",
+    "tind": "unknown",
+    "class": "DIFFERENT"
+   }
+  ]
+ },
+ {
+  "design": "square_wave",
+  "mutants": [
+   {
+    "id": 0,
+    "mutation": "mutate -mode const0 -module square_wave -cell $ref.v:20$add$5 -port A -portbit 7",
+    "tb": "pass",
+    "tb_v": "pass",
+    "bmc": "equivalent",
+    "pdr": "different",
+    "tind": "unknown",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 1,
+    "mutation": "mutate -mode const1 -module square_wave -cell $ref.v:15$eq$3 -port B -portbit 24",
+    "tb": "pass",
+    "tb_v": "pass",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 2,
+    "mutation": "mutate -mode const1 -module square_wave -cell $ref.v:20$add$5 -port B -portbit 1",
+    "tb": "pass",
+    "tb_v": "pass",
+    "bmc": "equivalent",
+    "pdr": "equivalent",
+    "tind": "unknown",
+    "class": "UNBOUNDED-EQ"
+   },
+   {
+    "id": 3,
+    "mutation": "mutate -mode inv -module square_wave -cell $procmux$8 -port Y -portbit 4 -src re",
+    "tb": "pass",
+    "tb_v": "pass",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 4,
+    "mutation": "mutate -mode inv -module square_wave -cell $ref.v:15$sub$2 -port B -portbit 19 -",
+    "tb": "pass",
+    "tb_v": "pass",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 5,
+    "mutation": "mutate -mode const0 -module square_wave -cell $procdff$14 -port Q -portbit 5 -wi",
+    "tb": "pass",
+    "tb_v": "pass",
+    "bmc": "equivalent",
+    "pdr": "different",
+    "tind": "unknown",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 6,
+    "mutation": "mutate -mode const1 -module square_wave -cell $procdff$14 -port Q -portbit 1 -wi",
+    "tb": "pass",
+    "tb_v": "pass",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 7,
+    "mutation": "mutate -mode cnot0 -module square_wave -cell $ref.v:15$sub$2 -port A -portbit 4 ",
+    "tb": "pass",
+    "tb_v": "pass",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 8,
+    "mutation": "mutate -mode const0 -module square_wave -cell $ref.v:15$sub$2 -port A -portbit 3",
+    "tb": "pass",
+    "tb_v": "pass",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 9,
+    "mutation": "mutate -mode inv -module square_wave -cell $procdff$14 -port Q -portbit 6 -wire ",
+    "tb": "pass",
+    "tb_v": "pass",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 10,
+    "mutation": "mutate -mode const1 -module square_wave -cell $ref.v:17$not$4 -port A -portbit 0",
+    "tb": "pass",
+    "tb_v": "pass",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 11,
+    "mutation": "mutate -mode const0 -module square_wave -cell $procdff$13 -port Q -portbit 0 -wi",
+    "tb": "pass",
+    "tb_v": "pass",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   }
+  ]
+ },
+ {
+  "design": "sub_64bit",
+  "mutants": [
+   {
+    "id": 0,
+    "mutation": "mutate -mode cnot0 -module sub_64bit -cell $ref.v:8$sub$2 -port B -portbit 41 -c",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 1,
+    "mutation": "mutate -mode const0 -module sub_64bit -cell $ref.v:8$sub$2 -port A -portbit 60 -",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 2,
+    "mutation": "mutate -mode cnot0 -module sub_64bit -cell $ref.v:8$sub$2 -port Y -portbit 31 -c",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 3,
+    "mutation": "mutate -mode const1 -module sub_64bit -cell $procmux$7 -port Y -portbit 0 -wire ",
+    "tb": "pass",
+    "tb_v": "pass",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 4,
+    "mutation": "mutate -mode const1 -module sub_64bit -cell $ref.v:8$sub$2 -port A -portbit 38 -",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 5,
+    "mutation": "mutate -mode const0 -module sub_64bit -cell $ref.v:11$ne$4 -port A -portbit 0 -w",
+    "tb": "pass",
+    "tb_v": "pass",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 6,
+    "mutation": "mutate -mode const1 -module sub_64bit -cell $procmux$7 -port B -portbit 0 -src r",
+    "tb": "pass",
+    "tb_v": "pass",
+    "bmc": "equivalent",
+    "pdr": "equivalent",
+    "tind": "equivalent",
+    "class": "UNBOUNDED-EQ"
+   },
+   {
+    "id": 7,
+    "mutation": "mutate -mode cnot0 -module sub_64bit -cell $ref.v:8$sub$2 -port A -portbit 18 -c",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 8,
+    "mutation": "mutate -mode inv -module sub_64bit -cell $ref.v:8$sub$2 -port B -portbit 3 -wire",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 9,
+    "mutation": "mutate -mode cnot0 -module sub_64bit -cell $ref.v:8$sub$2 -port A -portbit 14 -c",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 10,
+    "mutation": "mutate -mode const0 -module sub_64bit -cell $ref.v:8$sub$2 -port A -portbit 44 -",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 11,
+    "mutation": "mutate -mode const0 -module sub_64bit -cell $procmux$7 -port S -portbit 0 -src r",
+    "tb": "pass",
+    "tb_v": "pass",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   }
+  ]
+ },
+ {
+  "design": "synchronizer",
+  "mutants": [],
+  "error": "ports"
+ },
+ {
+  "design": "traffic_light",
+  "mutants": [
+   {
+    "id": 0,
+    "mutation": "mutate -mode const0 -module traffic_light -cell $procdff$100 -port Q -portbit 0 ",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "equivalent",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 1,
+    "mutation": "mutate -mode const1 -module traffic_light -cell $procmux$49_CMP0 -port B -portbi",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "equivalent",
+    "tind": "equivalent",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 2,
+    "mutation": "mutate -mode const0 -module traffic_light -cell $ref.v:84$sub$17 -port A -portbi",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 3,
+    "mutation": "mutate -mode const0 -module traffic_light -cell $ref.v:76$logic_and$8 -port A -p",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "equivalent",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 4,
+    "mutation": "mutate -mode const1 -module traffic_light -cell $procmux$42 -port Y -portbit 0 -",
+    "tb": "pass",
+    "tb_v": "pass",
+    "bmc": "equivalent",
+    "pdr": "equivalent",
+    "tind": "equivalent",
+    "class": "UNBOUNDED-EQ"
+   },
+   {
+    "id": 5,
+    "mutation": "mutate -mode const1 -module traffic_light -cell $procmux$48_CMP0 -port A -portbi",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "equivalent",
+    "pdr": "different",
+    "tind": "unknown",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 6,
+    "mutation": "mutate -mode cnot1 -module traffic_light -cell $procdff$80 -port D -portbit 1 -c",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 7,
+    "mutation": "mutate -mode const1 -module traffic_light -cell $ref.v:82$logic_not$15 -port A -",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 8,
+    "mutation": "mutate -mode const1 -module traffic_light -cell $procdff$95 -port Q -portbit 0 -",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 9,
+    "mutation": "mutate -mode const1 -module traffic_light -cell $ref.v:76$logic_and$8 -port A -p",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "equivalent",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 10,
+    "mutation": "mutate -mode const0 -module traffic_light -cell $procdff$75 -port Q -portbit 0 -",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "equivalent",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 11,
+    "mutation": "mutate -mode const0 -module traffic_light -cell $procmux$47_CMP0 -port A -portbi",
+    "tb": "fail",
+    "tb_v": "pass",
+    "bmc": "equivalent",
+    "pdr": "equivalent",
+    "tind": "equivalent",
+    "class": "UNBOUNDED-EQ"
+   }
+  ]
+ },
+ {
+  "design": "up_down_counter",
+  "mutants": [
+   {
+    "id": 0,
+    "mutation": "mutate -mode const0 -module up_down_counter -cell $procmux$13 -port S -portbit 0",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 1,
+    "mutation": "mutate -mode inv -module up_down_counter -cell $procdff$17 -port Q -portbit 1 -w",
+    "tb": "pass",
+    "tb_v": "pass",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 2,
+    "mutation": "mutate -mode const1 -module up_down_counter -cell $procdff$17 -port Q -portbit 1",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 3,
+    "mutation": "mutate -mode const1 -module up_down_counter -cell $procmux$13 -port S -portbit 0",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 4,
+    "mutation": "mutate -mode const1 -module up_down_counter -cell $ref.v:25$sub$5 -port Y -portb",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 5,
+    "mutation": "mutate -mode cnot1 -module up_down_counter -cell $ref.v:18$add$3 -port Y -portbi",
+    "tb": "pass",
+    "tb_v": "pass",
+    "bmc": "equivalent",
+    "pdr": "equivalent",
+    "tind": "equivalent",
+    "class": "UNBOUNDED-EQ"
+   },
+   {
+    "id": 6,
+    "mutation": "mutate -mode cnot0 -module up_down_counter -cell $procmux$13 -port B -portbit 6 ",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 7,
+    "mutation": "mutate -mode cnot1 -module up_down_counter -cell $ref.v:22$eq$4 -port A -portbit",
+    "tb": "pass",
+    "tb_v": "pass",
+    "bmc": "equivalent",
+    "pdr": "equivalent",
+    "tind": "equivalent",
+    "class": "UNBOUNDED-EQ"
+   },
+   {
+    "id": 8,
+    "mutation": "mutate -mode const1 -module up_down_counter -cell $ref.v:15$eq$2 -port A -portbi",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 9,
+    "mutation": "mutate -mode const0 -module up_down_counter -cell $procdff$17 -port CLK -portbit",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 10,
+    "mutation": "mutate -mode const1 -module up_down_counter -cell $procmux$13 -port Y -portbit 0",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 11,
+    "mutation": "mutate -mode const1 -module up_down_counter -cell $procdff$17 -port ARST -portbi",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   }
+  ]
+ },
+ {
+  "design": "width_8to16",
+  "mutants": [
+   {
+    "id": 0,
+    "mutation": "mutate -mode const0 -module width_8to16 -cell $procdff$42 -port Q -portbit 6 -wi",
+    "tb": "fail",
+    "tb_v": "pass",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 1,
+    "mutation": "mutate -mode inv -module width_8to16 -cell $ref.v:17$logic_not$3 -port Y -portbi",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 2,
+    "mutation": "mutate -mode const1 -module width_8to16 -cell $procdff$42 -port Q -portbit 2 -wi",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 3,
+    "mutation": "mutate -mode const1 -module width_8to16 -cell $procmux$19 -port B -portbit 0 -sr",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 4,
+    "mutation": "mutate -mode const0 -module width_8to16 -cell $procmux$17 -port B -portbit 0 -sr",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 5,
+    "mutation": "mutate -mode inv -module width_8to16 -cell $procmux$21 -port A -portbit 1 -src r",
+    "tb": "fail",
+    "tb_v": "pass",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 6,
+    "mutation": "mutate -mode cnot1 -module width_8to16 -cell $procdff$42 -port Q -portbit 7 -ctr",
+    "tb": "fail",
+    "tb_v": "pass",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 7,
+    "mutation": "mutate -mode const1 -module width_8to16 -cell $procdff$27 -port Q -portbit 0 -wi",
+    "tb": "fail",
+    "tb_v": "pass",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 8,
+    "mutation": "mutate -mode const1 -module width_8to16 -cell $procmux$14 -port Y -portbit 12 -s",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 9,
+    "mutation": "mutate -mode inv -module width_8to16 -cell $procdff$32 -port ARST -portbit 0 -sr",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 10,
+    "mutation": "mutate -mode inv -module width_8to16 -cell $procdff$37 -port Q -portbit 0 -wire ",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   },
+   {
+    "id": 11,
+    "mutation": "mutate -mode inv -module width_8to16 -cell $ref.v:25$not$7 -port A -portbit 0 -s",
+    "tb": "fail",
+    "tb_v": "fail",
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT"
+   }
+  ]
+ }
+]

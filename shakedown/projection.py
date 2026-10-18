@@ -25,7 +25,7 @@ import os
 
 REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 TASKS = {"ve": 156, "rtllm": 50}          # official benchmark sizes
-GATED = {"ve": 143, "rtllm": 38}          # strict-scoring sizes
+GATED = {"ve": 144, "rtllm": 37}          # A17 item 2 strict gate (BMC-only refs out)
 WINDOW_GEN_H = 10.0
 WINDOW_SCORE_H = 4.5
 CUT_VE_SUBSET = 60

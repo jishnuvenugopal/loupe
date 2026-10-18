@@ -84,14 +84,18 @@ def main():
             except Exception:
                 verdict = {"tb": "error", "equiv": "error", "error": p.stderr[-300:]}
             tb, equiv, nv = verdict.get("tb"), verdict.get("equiv"), bool(verdict.get("nonvacuous"))
-            strict = (tb == "pass" and nv and equiv == "equivalent")
-            from stats import a16_class  # pinned classifier
+            vclass = verdict.get("class")
+            strict = (tb == "pass" and nv and vclass == "UNBOUNDED-EQ")
+            within_d = (tb == "pass" and nv and
+                        (vclass == "UNBOUNDED-EQ" or (vclass or "").startswith("BMC-")))
+            from stats import a16_class  # pinned A17 classifier (vclass-aware)
             row = {"arm": args.arm, "bench": r["bench"], "task_id": r["task_id"],
                    "sample_idx": r["sample_idx"], "seed": r.get("seed"),
                    "extract_ok": ex["extract_ok"], "module_name_ok": ex["module_name_ok"],
-                   "tb": tb, "equiv": equiv, "nonvacuous": nv,
-                   "strict_correct": strict, "class": a16_class(tb, equiv, nv),
-                   "formally_different": equiv == "different",
+                   "tb": tb, "equiv": equiv, "nonvacuous": nv, "vclass": vclass,
+                   "strict_correct": strict, "correct_within_d": within_d,
+                   "class": a16_class(tb, equiv, nv, vclass),
+                   "formally_different": vclass == "DIFFERENT" or equiv == "different",
                    "depth": verdict.get("depth"),
                    "scorer_commit": commit,
                    "scorer_sha256": verdict.get("scorer_sha256"),
@@ -124,7 +128,7 @@ def main():
                     if not wrote:
                         f.write("# no sat log; VCD counterexamples (stay in ~/runs):\n"
                                 + "\n".join(vcds) + "\n")
-            print(f"[{i + 1}/{len(todo)}] {key} tb={tb} equiv={equiv} strict={strict}",
+            print(f"[{i + 1}/{len(todo)}] {key} tb={tb} vclass={vclass} strict={strict}",
                   flush=True)
     print("DONE", flush=True)
 

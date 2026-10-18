@@ -263,6 +263,24 @@
     "overlap probe (\u00a73 step 7)",
     "full overnight projection (\u00a73 step 5)"
    ]
+  },
+  {
+   "id": "A17",
+   "received": "18 Oct 2026 ~21:30 +08",
+   "phase_at_receipt": "6 (7B weights downloading)",
+   "g0_reached": false,
+   "items": "analysis-code and PREREG fixes before G0 (definitions, gates 144/37/33, denominators, dedup key, task-set consistency, freeze check, in-repo evidence, deviations, wording)",
+   "key_outcomes": [
+    "gates: ve_strict=144, rtllm_strict=37, headline=33; clkgenerator already out (its ref fails its own Icarus TB); lists+sha256 in scoring/gates/",
+    "stats.py: three nested shares (primary not-proved-correct, companion not-correct-within-depth-d, floor proved-wrong); official-pass denominators in point AND bootstrap; dedup keyed (arm,bench,task,sample_idx)",
+    "pilot smoke on new gates: GPT-4 14.9% [2.1,33.3] / GPT-3.5 13.8% [0,29.4]; synchronizer's 5 error passes out",
+    "freeze check: git diff --quiet scorer-v1 -- scorer tests ':(exclude)scorer/__pycache__' + sha256sum -c SCORER_SHA256 (both green)",
+    "results/deep/{gpt_summary,refs_summary,mut_summary,spec_results}.json committed; PREREG points there",
+    "3B-base compile errors: 7/9 unclosed <think> with no fenced code (extractor fallback picks draft module text out of the reasoning), 2/9 2048-token cap hits mid-think; no change made"
+   ],
+   "pending": [
+    "7B shakedown + overlap probe + projection (A17 item 10 reporting: steady-state tok/s separate from load; no-cut only if <=9h steady-state)"
+   ]
   }
  ]
 }

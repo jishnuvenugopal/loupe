@@ -7,7 +7,9 @@ Date: <date at G0>.
 
 ## Question
 For each released checkpoint, what share of its official-testbench passes is
-not functionally correct under strict scoring?
+**not proved correct** — that is, lacks an unbounded formal equivalence proof
+against the reference from reset? Reported beside it: the share **not correct
+within depth d**, and the share **proved wrong** by a counterexample.
 
 ## Arms
 Engine for every arm: **vLLM 0.21.0+2325b6f0.nvinternal.26.05.post1, container
@@ -27,9 +29,9 @@ hub and would be loaded cast to bfloat16 — recorded for completeness, not
 scored]** →
 `Nellyw888/VeriReason-Qwen2.5-3b-RTLCoder-Verilog-GRPO-reasoning-tb@3b93ce1`.
 H0-a rule (pre-registered, executed 18 Oct): the SFT checkpoint is the RL model's
-parent iff the median RL↔SFT relative tensor distance is ≤ 10× smaller than RL↔(each
-Qwen 3B); otherwise the 3B family drops its SFT arm and the 3B contrast becomes
-SFT+RL vs Instruct. Outcome: dropped. 3B arms scored: 3B-RL and 3B-Instruct
+parent iff the median RL↔SFT relative tensor distance is at least 10× smaller
+than RL↔(each Qwen 3B); otherwise the 3B family drops its SFT arm and the 3B
+contrast becomes SFT+RL vs Instruct. Outcome: dropped. 3B arms scored: 3B-RL and 3B-Instruct
 (base); the fp32 SFT checkpoint is still downloaded + verified but not scored.
 3B lane settings (A16 §3 step 3): same container, `dtype="bfloat16"`,
 `generation_config="vllm"`, `seed=0`, `enable_prefix_caching=True`,
@@ -40,18 +42,35 @@ Cut order under time pressure (A16 §3 step 5): (1) VerilogEval seeded subset of
 tokens, never an SFT arm.
 
 ## Tasks [A14, accepted 17 Oct 2026; gate counts updated 18 Oct 2026 per the
-frozen deep-scorer results, operator instruction]
+frozen deep-scorer results, operator instruction; **A17 item 2: references with
+unbounded proofs only**]
 Generate: VerilogEval v2 spec-to-RTL (156, `c498220`), RTLLM v2.1 @`51ed553` (50).
-Strict-score: **149 gated VerilogEval tasks** (not 143; the pilot's six
-timeout/error exclusions were proved unbounded by PDR/SMT-induction —
-`results/pilot_repro/ve_gate_summary.json`: 145 UNBOUNDED-EQ + 5 BMC-10-only of
-156; excluded: Prob095, 096, 137, 146, 152, 155 (Yosys read errors), Prob099
-(official TB does not compile; self-equivalence nevertheless proved)) and
-**40 usable RTLLM designs** = the pilot's 38 (Appendix C of the brief) plus
-`multi_8bit` and `multi_pipe_8bit` (both proved UNBOUNDED-EQ;
-`~/runs/deep/refs_summary.json`). `div_16bit` stays excluded (deep proof exists,
-but the design is kept out per the frozen operator decision; divide-by-zero
-spec ambiguity, brief §9).
+Official pass@1 for G1b runs on all 156 / 50 tasks. **Every strict metric runs
+on the committed gate lists only** (`scoring/gates/`):
+- `ve_strict.txt` — **144** tasks: reference self-equivalence class `UNBOUNDED-EQ`,
+  reference passes its own testbench under Icarus, reads in Yosys. From the
+  156: out go the 6 Yosys read-errors (Prob095, 096, 137, 146, 152, 155),
+  Prob099 (official TB does not compile; self-equivalence nevertheless proved),
+  and the 5 BMC-only references (Prob001_zero, Prob002_m2014_q4i,
+  Prob003_step_one, Prob046_dff8p, Prob078_dualedge) — `wide_bmc.txt`.
+- `rtllm_strict.txt` — **37** designs: the usable-40 minus the 3 BMC-only
+  references `alu`, `freq_divbyfrac`, `freq_divbyodd`. (`clkgenerator` is also
+  BMC-only in `refs_summary.json` but was already outside the usable-40: its
+  reference fails its own Icarus testbench.) `div_16bit` stays out (frozen
+  operator decision, brief §9).
+- `rtllm_apart.txt` — the 4 reported-apart designs; **headline RTLLM tables use
+  the other 33**, sensitivity row on all 37 (`--rtllm-all37`).
+- `wide_bmc.txt` — the 5 + 3 BMC-only ids; `--wide-gate` puts them back for the
+  within-depth-d companion on the wider 149 / 40 gate (no extra compute: these
+  tasks are generated and scored anyway).
+Gate sha256 (A17 item 2): `ve_strict.txt`
+`3ed7e4e18d70c5f1b50f849db061ec61b6b82749d218e8067903f4a42dfe99ed`,
+`rtllm_strict.txt`
+`45c6db375efab345864d9f3701a81efa65bf06734033d0ff7a58443dbe6ff339`,
+`rtllm_apart.txt`
+`3f0cdb53c5304e30ddacd68ab6237b17d096e45be624195d51e7e0c901743a7f`,
+`wide_bmc.txt`
+`1254b1ed0ba62c558fa5b4a23b285f5a4454c320a063c0b9483f2ec92173f486`.
 Reported apart: accu, LIFObuffer (unreported reference bugs, RTLLM #25/#26);
 RAM, square_wave (tracked, #16/#23).
 
@@ -69,7 +88,11 @@ RAM, square_wave (tracked, #16/#23).
   (156 + 50 rows each). `prompts/SHA256SUMS` sha256
   `a0d465913ab1ca7e772002a4ca90ccdb61084dccf856452181dfcb83abae6f3c`.
 - Chat template: each model's own (`apply_chat_template(..., add_generation_prompt=True)`),
-  template sha256 recorded per arm in `models.yaml`.
+  template sha256 recorded per arm in `models.yaml`. **Template file provenance**
+  (A17 item 9): 3B-RL ships `chat_template.jinja` (standalone file); 3B base /
+  3B SFT / raw 3B / 1.5B embed the template in `tokenizer_config.json`; the
+  three 7B arms' provenance is recorded at weight verification (downloads were
+  in flight at draft time).
 - Extraction: CodeV-R1's extractor (`test/utils/verilog_extractor.py` @ `277ac46`);
   module must be `TopModule` (VE) or the task name (RTLLM). Gate G2 ≥ 95%.
 
@@ -93,28 +116,67 @@ Strict = official testbench + non-vacuity + formal equivalence from reset
 (BMC depth 10 default, `scorer/depth.yaml` overrides; unbounded engines PDR /
 SMT-induction upgrade the verdict to proof classes UNBOUNDED-EQ etc.) +
 reference audit. Formal timeout 60 s → "timeout" class (reported, not counted
-as equivalent). Reproduced on this machine (G1-Spark + deep run):
-- 290/290 RTLLM-shipped GPT rows match Appendix B testbench verdicts;
-  equiv 280/290 (the 10 `synchronizer` rows differ only in recording); totals
-  GPT-4 60 pass / 39 equivalent / 14 different / 7 error, GPT-3.5 37/25/4/8
-  (`~/runs/deep/gpt_summary.json`, `DEEP_REPORT.md` §5).
-- Scorer power: 528 seeded mutants, 438 formally different, strict kill
-  438/438 = 100.0%, official-TB false passes 75/438 = 17.1%
-  (`~/runs/deep/mut/mut_summary.json`).
+as equivalent). Reproduced on this machine (G1-Spark + deep run;
+evidence committed under `results/deep/` — A17 item 7):
+- 290/290 RTLLM-shipped GPT rows match Appendix B testbench verdicts — the
+  independent anchor; equiv 280/290 (`synchronizer`'s 10 rows are recorded
+  differently, not judged differently); totals GPT-4 60 pass / 39 equivalent /
+  14 different / 7 error, GPT-3.5 37/25/4/8 (`results/deep/gpt_summary.json`,
+  `DEEP_REPORT.md` §5).
+- Scorer power: 528 seeded mutants, 438 formally different, **official-TB false
+  passes 75/438 = 17.1%** (the power result; `results/deep/mut/mut_summary.json`).
+  "Strict kill 438/438 = 100%" is true by construction — the strict verdict uses
+  the same engines that define "formally different" — and is NOT cited as
+  evidence of power. The independent checks are the 290-row anchor above and
+  cross-simulator agreement (zero Icarus/Verilator pass-fail disagreements).
 - Reference audit machine-checked: accu FAIL (cex sum=101 with invalid 100),
   LIFObuffer FAIL, square_wave const-0 cover unreachable while the official TB
-  passes it (`~/runs/deep/spec/spec_results.json`).
+  passes it (`results/deep/spec/spec_results.json`).
+- RTLLM gate evidence: `results/deep/refs_summary.json`.
 
-## Primary outcome
-Per checkpoint: false-pass share = P(not strict | official pass), with a
-task-clustered bootstrap 95% CI (10,000 resamples), by failure class, with
-every counterexample published.
+**Freeze check before every scoring run (A17 item 6 — exact commands):**
+`git diff --quiet scorer-v1 -- scorer tests ':(exclude)scorer/__pycache__'`
+AND `sha256sum -c results/pilot_repro/SCORER_SHA256`; stop if either fails.
+(The plain `git diff --quiet scorer-v1 -- scorer tests` fails because
+`scorer/__pycache__/*.pyc` were tracked at the tag and untracked afterwards.)
+
+## Primary outcome (A17 item 1: two definitions of correct, one primary)
+Classes of an official pass, read from the frozen `score.py` verdict `class`
+field (`score.py` stays frozen: `equiv = "equivalent"` only for `UNBOUNDED-EQ`;
+`BMC-N-EQ-ONLY` lands in `equiv "error"` — kept, and stated here):
+proved equivalent (`UNBOUNDED-EQ`) · bounded only (`BMC-N-EQ-ONLY`: equivalent
+up to depth d, no unbounded proof) · proved wrong (`DIFFERENT`, has a
+counterexample) · unverified (`UNKNOWN` timeout/engine error, and `equiv
+"error"` port/read failures) · vacuous (flag: the testbench run checked
+nothing; reported with each class).
+- **proved correct** = official pass AND non-vacuous AND `UNBOUNDED-EQ`
+- **correct within depth d** = official pass AND non-vacuous AND (`UNBOUNDED-EQ`
+  or `BMC-N-EQ-ONLY`)
+- **PRIMARY — not-proved-correct share** = official passes not proved correct /
+  official passes, task-clustered bootstrap 95% CI (10,000 resamples)
+- **Companion — not-correct-within-depth-d share** = official passes not correct
+  within depth d / official passes, same CI
+- **Floor — proved-wrong share** = `DIFFERENT` official passes / official
+  passes, same CI
+The three nest: proved wrong ≤ not correct within depth d ≤ not proved
+correct; companion→primary step = bounded-only share; floor→companion step =
+unverified share (plus any vacuous passes). All three plus class counts
+(`different`, `bounded-only`, `timeout`, `error`, `vacuous`) reported for every
+arm × benchmark, with every counterexample published. **Wording rule**: the
+primary share is never called "false passes" or "wrong"; every headline number
+appears with the proved-wrong floor beside it.
 
 ## Secondary, exploratory
-H1: false-pass share RL vs SFT. H2: the RL−SFT gap in official pass@1 vs the
-same gap in strict pass@1.
-Minimum detectable effect: about 6–11 pp (VerilogEval v2, 149 tasks), 18–24 pp
-(RTLLM, 40 designs). An interval that includes zero = "not resolved".
+**H1/H2 apply to the CodeV family only (RL vs Distill).** The VeriReason
+contrast (RL vs Instruct) is reported descriptively as "SFT+RL vs Instruct",
+not as H1/H2. H1: not-proved-correct share, RL vs SFT (primary metric); the
+same contrast on the proved-wrong share is a pre-registered sensitivity row
+(engine success can differ between arms). H2: the RL−SFT gap in official
+pass@1 minus the same gap in strict pass@1, where strict pass@1 uses "proved
+correct" (its companion uses "correct within depth d").
+H1/H2 are likely underpowered: the task count is fixed, and verdicts cluster
+by design (pilot: GPT-4's 60 passes came from 18 designs). An interval that
+includes zero = "not resolved".
 
 ## Fidelity gate G1b
 Official pass@1 on VerilogEval v2 spec-to-RTL brackets arXiv 2505.24183 v5
@@ -143,26 +205,32 @@ All under `scoring/`, commit `bc02bb9`:
   (counterexample tables; homed in `scoring/` so the frozen `scorer/` tree stays
   byte-identical to tag `scorer-v1`).
 
-## Analysis plan (A16 §6 steps 3–7, short form)
+## Analysis plan (A16 §6 steps 3–7 short form; A17 items 1–2)
 - **Extraction gate G2**: `scoring/extract.py` over every arm; pass iff ≥ 95% of
   each arm's samples extract a module with the right name (`TopModule` /
   task name). On failure: stop for that arm, show 10 failing samples, operator
   decides the glue fix. Prompts never change.
-- **Strict-correct** = `tb` pass AND non-vacuous AND `equivalent`. Classes of an
-  official pass that is not strict-correct: `different`, `vacuous`, `timeout`
-  (reported, never counted as equivalent), `error`.
-- **False-pass share** = (official passes not strict-correct) / (official
-  passes), ratio of sums over tasks. Headline "formally different within depth
-  d" share from the proof classes.
-- **RTLLM headline tables**: the 34 designs other than `accu`, `LIFObuffer`,
-  `RAM`, `square_wave` (reported apart in their own table); sensitivity row for
-  all 38 usable designs.
+- **Strict-correct** (A17 item 1) = official pass AND non-vacuous AND
+  `UNBOUNDED-EQ`; companion = … AND (`UNBOUNDED-EQ` or `BMC-N-EQ-ONLY`).
+  Classes of an official pass that is not proved correct: `different`,
+  `bounded-only`, `timeout` (reported, never counted as equivalent), `error`,
+  and `vacuous` as a flag reported with each class.
+- **Gates (A17 item 2)**: official pass@1 for G1b on all 156 / 50 tasks; every
+  strict metric on `scoring/gates/ve_strict.txt` (144) and `rtllm_strict.txt`
+  (37) only. Headline RTLLM tables use the **33** designs other than `accu`,
+  `LIFObuffer`, `RAM`, `square_wave` (reported apart in their own table);
+  sensitivity rows: all 37 (`--rtllm-all37`) and the wide 149 / 40 gate for the
+  within-depth-d companion (`--wide-gate`, BMC-only references back in).
+- **Three nested shares** (primary / companion / floor, definitions in Primary
+  outcome) with task-clustered bootstrap CIs; the steps between them are the
+  bounded-only and unverified shares; class counts per arm × benchmark.
 - **Dedup before classification** (within arm × task): exact duplicates by
   sha256 of extracted code with comments/whitespace removed; normalised
   duplicates by sha256 of `yosys -p "read_verilog -sv; hierarchy -top; proc;
   opt_clean; rename -enumerate; write_rtlil"` output with `attribute \src`
-  lines removed. Unique-design counts + per-unique-design false-pass share as a
-  sensitivity row; the primary metric stays per sample.
+  lines removed. Keyed `(arm, bench, task, sample_idx)` (A17 item 4).
+  Unique-design counts + per-unique-design shares as sensitivity rows; the
+  primary metric stays per sample.
 - **Contamination**: five datasets at pinned revisions (CodeV-R1-dataset
   `9ab06ff`, RTL-Coder_small `801eea7`, RTL-Coder_7b_reasoning `528eb9b`,
   VeriReason tb `42823db` 1,149 rows, tb_simple `61cc6a2` 743 rows), MinHash
@@ -170,19 +238,21 @@ All under `scoring/`, commit `bc02bb9`:
   match, statements vs specs primary, code vs references secondary;
   `results/main/contamination/overlaps.csv`; secondary contrasts rerun without
   overlapping tasks.
-- **Statistics**: `scoring/stats.py` (above). Task-clustered bootstrap, 10,000
-  resamples, `numpy.random.default_rng(0)`, percentile 95%. Per arm × benchmark:
-  tasks, samples, official pass@1, strict pass@1, official-pass count, false-pass
-  share, formally-different share, class counts. H1/H2 paired on the same task
-  draws; interval ∋ 0 → "not resolved". Sensitivity rows: without contaminated
-  tasks; per unique design; all 38 RTLLM designs.
-- **Blind sample of 40**: population = unique official-pass strict-fail designs
-  of class `different`/`vacuous`, all arms, excluding the four reported-apart
-  designs; stratified by arm × benchmark, proportional largest-remainder
-  allocation, `random.Random(0)`; packets blind to arm/model/family/index; key
-  outside the repo (sha256 committed); operator labels `real bug` / `reference
-  wrong` / `allowed by spec` / `unclear` / `scorer artefact`; class shares with
-  Wilson 95% intervals, overall and per family.
+- **Statistics**: `scoring/stats.py` (pinned). Task-clustered bootstrap, 10,000
+  resamples, `numpy.random.default_rng(0)`, percentile 95%; shares are ratios
+  of sums with official passes as denominator (including in the bootstrap).
+  H1 on the primary share (proved-wrong contrast = sensitivity row); H2 with
+  strict pass@1 = proved correct. Paired contrasts resample the same task
+  draws; interval ∋ 0 → "not resolved".
+- **Blind sample of 40**: population = unique official passes of class
+  `different` or `vacuous`, all arms, excluding the four reported-apart
+  designs (bounded-only and unverified passes have no counterexample to judge,
+  so they are not in it); stratified by arm × benchmark, proportional
+  largest-remainder allocation, `random.Random(0)`; packets blind to
+  arm/model/family/index; key outside the repo (sha256 committed); operator
+  labels `real bug` / `reference wrong` / `allowed by spec` / `unclear` /
+  `scorer artefact`; class shares with Wilson 95% intervals, overall and per
+  family. Limitation: blind labels are a single rater (the study author).
 
 ## Contamination
 MinHash (5-gram word shingles, 128 permutations, J ≥ 0.8) + normalised exact
@@ -198,18 +268,20 @@ GRPO reward oracle.
 - Scoring speed (timing proxy on RTLLM-shipped GPT-4 designs, not study-arm
   samples): 0.466 samples/s at WORKERS=18 (≈2.1 s/sample); formal dominates
   (96% of EDA time) — `results/shakedown/scoring_speed.json`.
-- **Scoring-time projection (A16 §3 step 6)**: (156+50)×3×5 = 3,090 official-TB
-  runs, of which (143+38)×3×5 = 2,715 formal-eligible; measured-rate estimate
-  **1.84 h**, pessimistic all-pass bound 0.26 h(+), vs the 4.5 h morning window
-  → fits. RTLLM n=5 option: 3,590 runs → 2.14 h → fits. Nothing cut for
-  scoring time (`shakedown/projection.py`).
+- **Scoring-time projection (A16 §3 step 6; A17 item 5 counts)**:
+  (156+50)×3×5 = 3,090 official-TB runs, of which (144+37)×3×5 = 2,715
+  formal-eligible; measured-rate estimate **1.84 h**, pessimistic all-pass
+  bound 0.26 h(+), vs the 4.5 h morning window → fits. RTLLM n=5 option:
+  3,590 runs → 2.14 h → fits. Nothing cut for scoring time
+  (`shakedown/projection.py`).
 - Generation throughput, 3B lane (A16 settings, 64 concurrent, wall includes
   model load): 3B-RL VE 167 / RTLLM 378 tok/s; 3B base VE 194 / RTLLM 316 tok/s
   (`results/shakedown/{3b-rl,3b-base}.json`). 3B generation projection ≈ 1.3 h.
   Note: re-generating the 3B-RL shakedown at `max_model_len` 4096 (vs the first
   run's 20480) changed completions slightly — vLLM per-request seeds are not
-  bitwise-deterministic across settings; determinism holds at the pinned
-  settings only.
+  bitwise-deterministic across settings. **The generations are therefore the
+  record**: the extracted designs and the completions (compressed) are released
+  with the results under the manifest sha256 (A17 item 10).
 - Generation throughput, 7B lane: **PENDING — weights still downloading at
   18 Oct 20:00** (7B-Instruct ~2.7/15.2 GB; Distill ~0; RL 1/4 shards). The
   overnight projection completes when the 7B shakedown runs; the projection
@@ -223,6 +295,18 @@ GRPO reward oracle.
   second machine was not run." Everything (generation, official + strict
   scoring, dedup, contamination, statistics, blind packet, tables, GRPO) runs
   on the one DGX Spark; the operator labels the blind sample elsewhere.
+- The deep scorer (A17 item 8): proof classes, a reset scaffold with
+  zero-initialised flip-flops, PDR and SMT induction — where brief v1 asked
+  for the pilot code verbatim.
+- Gate change 149 / 40 → **144 / 37** by the A17 item-2 rule (references with
+  unbounded proofs only); headline RTLLM 33.
+- A17 item-1 definitions: primary "not proved correct", in place of A16's
+  "false-pass share".
+- Phase 4 exit check: 6 of 8 weights verified when this draft was written; the
+  three 7B arms are verified by the watcher (timestamp recorded at G0 from
+  `~/runs/7b_watcher.log`).
+- Anchor detail (A17 item 8): testbench 290/290; equiv 280/290 — the
+  `synchronizer` rows are recorded differently, not judged differently.
 
 ## Licences
 7B and 1.5B Qwen bases: Apache-2.0. Qwen2.5-Coder-3B family: Qwen Research

@@ -1,0 +1,3284 @@
+[
+ {
+  "run": "gpt",
+  "model": "chatgpt35",
+  "trial": "t1",
+  "design": "calender",
+  "tb_icarus": "no_task"
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt35",
+  "trial": "t1",
+  "design": "multi_pipe_4bit",
+  "tb_icarus": "compile_error",
+  "tb_verilator": "vl_compile_error"
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt35",
+  "trial": "t1",
+  "design": "adder_pipe_64bit",
+  "tb_icarus": "compile_error",
+  "tb_verilator": "vl_compile_error"
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt35",
+  "trial": "t1",
+  "design": "alu",
+  "tb_icarus": "compile_error",
+  "tb_verilator": "vl_compile_error"
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt35",
+  "trial": "t1",
+  "design": "div_16bit",
+  "tb_icarus": "compile_error",
+  "tb_verilator": "vl_compile_error"
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt35",
+  "trial": "t1",
+  "design": "adder_32bit",
+  "tb_icarus": "compile_error",
+  "tb_verilator": "vl_compile_error"
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt35",
+  "trial": "t1",
+  "design": "asyn_fifo",
+  "tb_icarus": "compile_error",
+  "tb_verilator": "vl_compile_error"
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt35",
+  "trial": "t1",
+  "design": "accu",
+  "tb_icarus": "compile_error",
+  "tb_verilator": "vl_compile_error"
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt35",
+  "trial": "t1",
+  "design": "radix2_div",
+  "tb_icarus": "compile_error",
+  "tb_verilator": "vl_compile_error"
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt35",
+  "trial": "t1",
+  "design": "adder_8bit",
+  "tb_icarus": "compile_error",
+  "tb_verilator": "fail"
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt35",
+  "trial": "t1",
+  "design": "JC_counter",
+  "tb_icarus": "fail",
+  "tb_verilator": "fail"
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt35",
+  "trial": "t1",
+  "design": "multi_16bit",
+  "tb_icarus": "fail",
+  "tb_verilator": "fail"
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt35",
+  "trial": "t1",
+  "design": "fsm",
+  "tb_icarus": "fail",
+  "tb_verilator": "fail"
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt35",
+  "trial": "t1",
+  "design": "parallel2serial",
+  "tb_icarus": "fail",
+  "tb_verilator": "fail"
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt35",
+  "trial": "t1",
+  "design": "serial2parallel",
+  "tb_icarus": "fail",
+  "tb_verilator": "fail"
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt35",
+  "trial": "t1",
+  "design": "edge_detect",
+  "tb_icarus": "pass",
+  "tb_verilator": "pass",
+  "bmc": "different",
+  "pdr": "different",
+  "tind": "different",
+  "class": "DIFFERENT",
+  "witnesses": {
+   "pdr": "different",
+   "tind": "different",
+   "bmc": "different"
+  },
+  "pdr_dir": "/home/unnitools/runs/deep/gpt/chatgpt35/t1/edge_detect/sby_gen_prove_abc",
+  "flip": false
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt35",
+  "trial": "t1",
+  "design": "pulse_detect",
+  "tb_icarus": "fail",
+  "tb_verilator": "fail"
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt35",
+  "trial": "t1",
+  "design": "RAM",
+  "tb_icarus": "pass",
+  "tb_verilator": "pass",
+  "bmc": "error",
+  "pdr": "different",
+  "tind": "different",
+  "class": "DIFFERENT",
+  "witnesses": {
+   "pdr": "different",
+   "tind": "different",
+   "bmc": "error"
+  },
+  "pdr_dir": "/home/unnitools/runs/deep/gpt/chatgpt35/t1/RAM/sby_gen_prove_abc",
+  "flip": false
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt35",
+  "trial": "t1",
+  "design": "multi_booth_8bit",
+  "tb_icarus": "fail",
+  "tb_verilator": "fail"
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt35",
+  "trial": "t2",
+  "design": "adder_pipe_64bit",
+  "tb_icarus": "compile_error",
+  "tb_verilator": "vl_compile_error"
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt35",
+  "trial": "t2",
+  "design": "alu",
+  "tb_icarus": "compile_error",
+  "tb_verilator": "vl_compile_error"
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt35",
+  "trial": "t2",
+  "design": "calender",
+  "tb_icarus": "no_task"
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt35",
+  "trial": "t2",
+  "design": "asyn_fifo",
+  "tb_icarus": "compile_error",
+  "tb_verilator": "vl_compile_error"
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt35",
+  "trial": "t1",
+  "design": "synchronizer",
+  "tb_icarus": "pass",
+  "tb_verilator": "pass",
+  "equiv": "read_error"
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt35",
+  "trial": "t1",
+  "design": "counter_12",
+  "tb_icarus": "pass",
+  "tb_verilator": "pass",
+  "bmc": "equivalent",
+  "pdr": "equivalent",
+  "tind": "equivalent",
+  "class": "UNBOUNDED-EQ",
+  "witnesses": {
+   "pdr": "equivalent",
+   "tind": "equivalent",
+   "bmc": "equivalent"
+  },
+  "pdr_dir": "/home/unnitools/runs/deep/gpt/chatgpt35/t1/counter_12/sby_gen_prove_abc",
+  "flip": false
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt35",
+  "trial": "t1",
+  "design": "right_shifter",
+  "tb_icarus": "fail",
+  "tb_verilator": "fail"
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt35",
+  "trial": "t1",
+  "design": "freq_div",
+  "tb_icarus": "fail",
+  "tb_verilator": "fail"
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt35",
+  "trial": "t1",
+  "design": "multi_pipe_8bit",
+  "tb_icarus": "fail",
+  "tb_verilator": "fail"
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt35",
+  "trial": "t1",
+  "design": "adder_16bit",
+  "tb_icarus": "compile_error",
+  "tb_verilator": "fail"
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt35",
+  "trial": "t2",
+  "design": "multi_pipe_4bit",
+  "tb_icarus": "compile_error",
+  "tb_verilator": "vl_compile_error"
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt35",
+  "trial": "t2",
+  "design": "multi_pipe_8bit",
+  "tb_icarus": "compile_error",
+  "tb_verilator": "vl_compile_error"
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt35",
+  "trial": "t1",
+  "design": "signal_generator",
+  "tb_icarus": "pass",
+  "tb_verilator": "pass",
+  "bmc": "equivalent",
+  "pdr": "equivalent",
+  "tind": "equivalent",
+  "class": "UNBOUNDED-EQ",
+  "witnesses": {
+   "pdr": "equivalent",
+   "tind": "equivalent",
+   "bmc": "equivalent"
+  },
+  "pdr_dir": "/home/unnitools/runs/deep/gpt/chatgpt35/t1/signal_generator/sby_gen_prove_abc",
+  "flip": false
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt35",
+  "trial": "t1",
+  "design": "pe",
+  "tb_icarus": "pass",
+  "tb_verilator": "pass",
+  "bmc": "equivalent",
+  "pdr": "equivalent",
+  "tind": "equivalent",
+  "class": "UNBOUNDED-EQ",
+  "witnesses": {
+   "pdr": "equivalent",
+   "tind": "equivalent",
+   "bmc": "equivalent"
+  },
+  "pdr_dir": "/home/unnitools/runs/deep/gpt/chatgpt35/t1/pe/sby_gen_prove_abc",
+  "flip": false
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt35",
+  "trial": "t2",
+  "design": "accu",
+  "tb_icarus": "fail",
+  "tb_verilator": "fail"
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt35",
+  "trial": "t2",
+  "design": "radix2_div",
+  "tb_icarus": "compile_error",
+  "tb_verilator": "vl_compile_error"
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt35",
+  "trial": "t1",
+  "design": "width_8to16",
+  "tb_icarus": "fail",
+  "tb_verilator": "fail"
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt35",
+  "trial": "t1",
+  "design": "traffic_light",
+  "tb_icarus": "fail",
+  "tb_verilator": "fail"
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt35",
+  "trial": "t2",
+  "design": "adder_16bit",
+  "tb_icarus": "compile_error",
+  "tb_verilator": "fail"
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt35",
+  "trial": "t2",
+  "design": "JC_counter",
+  "tb_icarus": "fail",
+  "tb_verilator": "fail"
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt35",
+  "trial": "t2",
+  "design": "div_16bit",
+  "tb_icarus": "fail",
+  "tb_verilator": "fail"
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt35",
+  "trial": "t2",
+  "design": "adder_32bit",
+  "tb_icarus": "compile_error",
+  "tb_verilator": "fail"
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt35",
+  "trial": "t2",
+  "design": "RAM",
+  "tb_icarus": "pass",
+  "tb_verilator": "pass",
+  "bmc": "error",
+  "pdr": "different",
+  "tind": "different",
+  "class": "DIFFERENT",
+  "witnesses": {
+   "pdr": "different",
+   "tind": "different",
+   "bmc": "error"
+  },
+  "pdr_dir": "/home/unnitools/runs/deep/gpt/chatgpt35/t2/RAM/sby_gen_prove_abc",
+  "flip": false
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt35",
+  "trial": "t2",
+  "design": "counter_12",
+  "tb_icarus": "pass",
+  "tb_verilator": "pass",
+  "bmc": "equivalent",
+  "pdr": "equivalent",
+  "tind": "equivalent",
+  "class": "UNBOUNDED-EQ",
+  "witnesses": {
+   "pdr": "equivalent",
+   "tind": "equivalent",
+   "bmc": "equivalent"
+  },
+  "pdr_dir": "/home/unnitools/runs/deep/gpt/chatgpt35/t2/counter_12/sby_gen_prove_abc",
+  "flip": false
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt35",
+  "trial": "t2",
+  "design": "multi_booth_8bit",
+  "tb_icarus": "fail",
+  "tb_verilator": "fail"
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt35",
+  "trial": "t2",
+  "design": "adder_8bit",
+  "tb_icarus": "pass",
+  "tb_verilator": "pass",
+  "bmc": "equivalent",
+  "pdr": "equivalent",
+  "tind": "equivalent",
+  "class": "UNBOUNDED-EQ",
+  "witnesses": {
+   "pdr": "equivalent",
+   "tind": "equivalent",
+   "bmc": "equivalent"
+  },
+  "pdr_dir": "/home/unnitools/runs/deep/gpt/chatgpt35/t2/adder_8bit/sby_gen_prove_abc",
+  "flip": false
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt35",
+  "trial": "t3",
+  "design": "adder_32bit",
+  "tb_icarus": "compile_error",
+  "tb_verilator": "vl_compile_error"
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt35",
+  "trial": "t2",
+  "design": "parallel2serial",
+  "tb_icarus": "fail",
+  "tb_verilator": "fail"
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt35",
+  "trial": "t3",
+  "design": "adder_pipe_64bit",
+  "tb_icarus": "compile_error",
+  "tb_verilator": "vl_compile_error"
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt35",
+  "trial": "t2",
+  "design": "fsm",
+  "tb_icarus": "fail",
+  "tb_verilator": "fail"
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt35",
+  "trial": "t3",
+  "design": "alu",
+  "tb_icarus": "compile_error",
+  "tb_verilator": "vl_compile_error"
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt35",
+  "trial": "t3",
+  "design": "calender",
+  "tb_icarus": "no_task"
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt35",
+  "trial": "t3",
+  "design": "asyn_fifo",
+  "tb_icarus": "compile_error",
+  "tb_verilator": "vl_compile_error"
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt35",
+  "trial": "t2",
+  "design": "edge_detect",
+  "tb_icarus": "pass",
+  "tb_verilator": "pass",
+  "bmc": "different",
+  "pdr": "different",
+  "tind": "different",
+  "class": "DIFFERENT",
+  "witnesses": {
+   "pdr": "different",
+   "tind": "different",
+   "bmc": "different"
+  },
+  "pdr_dir": "/home/unnitools/runs/deep/gpt/chatgpt35/t2/edge_detect/sby_gen_prove_abc",
+  "flip": false
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt35",
+  "trial": "t2",
+  "design": "freq_div",
+  "tb_icarus": "fail",
+  "tb_verilator": "fail"
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt35",
+  "trial": "t2",
+  "design": "pulse_detect",
+  "tb_icarus": "fail",
+  "tb_verilator": "fail"
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt35",
+  "trial": "t2",
+  "design": "right_shifter",
+  "tb_icarus": "fail",
+  "tb_verilator": "fail"
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt35",
+  "trial": "t2",
+  "design": "serial2parallel",
+  "tb_icarus": "fail",
+  "tb_verilator": "fail"
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt35",
+  "trial": "t2",
+  "design": "pe",
+  "tb_icarus": "pass",
+  "tb_verilator": "pass",
+  "bmc": "equivalent",
+  "pdr": "equivalent",
+  "tind": "equivalent",
+  "class": "UNBOUNDED-EQ",
+  "witnesses": {
+   "pdr": "equivalent",
+   "tind": "equivalent",
+   "bmc": "equivalent"
+  },
+  "pdr_dir": "/home/unnitools/runs/deep/gpt/chatgpt35/t2/pe/sby_gen_prove_abc",
+  "flip": false
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt35",
+  "trial": "t3",
+  "design": "multi_pipe_4bit",
+  "tb_icarus": "compile_error",
+  "tb_verilator": "vl_compile_error"
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt35",
+  "trial": "t3",
+  "design": "multi_pipe_8bit",
+  "tb_icarus": "compile_error",
+  "tb_verilator": "vl_compile_error"
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt35",
+  "trial": "t3",
+  "design": "parallel2serial",
+  "tb_icarus": "compile_error",
+  "tb_verilator": "vl_compile_error"
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt35",
+  "trial": "t3",
+  "design": "RAM",
+  "tb_icarus": "fail",
+  "tb_verilator": "fail"
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt35",
+  "trial": "t3",
+  "design": "pulse_detect",
+  "tb_icarus": "compile_error",
+  "tb_verilator": "vl_compile_error"
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt35",
+  "trial": "t2",
+  "design": "signal_generator",
+  "tb_icarus": "pass",
+  "tb_verilator": "pass",
+  "bmc": "equivalent",
+  "pdr": "equivalent",
+  "tind": "equivalent",
+  "class": "UNBOUNDED-EQ",
+  "witnesses": {
+   "pdr": "equivalent",
+   "tind": "equivalent",
+   "bmc": "equivalent"
+  },
+  "pdr_dir": "/home/unnitools/runs/deep/gpt/chatgpt35/t2/signal_generator/sby_gen_prove_abc",
+  "flip": false
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt35",
+  "trial": "t3",
+  "design": "radix2_div",
+  "tb_icarus": "compile_error",
+  "tb_verilator": "vl_compile_error"
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt35",
+  "trial": "t2",
+  "design": "width_8to16",
+  "tb_icarus": "fail",
+  "tb_verilator": "fail"
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt35",
+  "trial": "t3",
+  "design": "JC_counter",
+  "tb_icarus": "fail",
+  "tb_verilator": "fail"
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt35",
+  "trial": "t2",
+  "design": "synchronizer",
+  "tb_icarus": "pass",
+  "tb_verilator": "pass",
+  "equiv": "read_error"
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt35",
+  "trial": "t3",
+  "design": "accu",
+  "tb_icarus": "fail",
+  "tb_verilator": "fail"
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt35",
+  "trial": "t3",
+  "design": "adder_16bit",
+  "tb_icarus": "compile_error",
+  "tb_verilator": "fail"
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt35",
+  "trial": "t2",
+  "design": "traffic_light",
+  "tb_icarus": "fail",
+  "tb_verilator": "fail"
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt35",
+  "trial": "t4",
+  "design": "RAM",
+  "tb_icarus": "compile_error",
+  "tb_verilator": "vl_compile_error"
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt35",
+  "trial": "t4",
+  "design": "accu",
+  "tb_icarus": "compile_error",
+  "tb_verilator": "vl_compile_error"
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt35",
+  "trial": "t3",
+  "design": "adder_8bit",
+  "tb_icarus": "pass",
+  "tb_verilator": "pass",
+  "bmc": "equivalent",
+  "pdr": "equivalent",
+  "tind": "equivalent",
+  "class": "UNBOUNDED-EQ",
+  "witnesses": {
+   "pdr": "equivalent",
+   "tind": "equivalent",
+   "bmc": "equivalent"
+  },
+  "pdr_dir": "/home/unnitools/runs/deep/gpt/chatgpt35/t3/adder_8bit/sby_gen_prove_abc",
+  "flip": false
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt35",
+  "trial": "t3",
+  "design": "edge_detect",
+  "tb_icarus": "pass",
+  "tb_verilator": "pass",
+  "bmc": "equivalent",
+  "pdr": "equivalent",
+  "tind": "equivalent",
+  "class": "UNBOUNDED-EQ",
+  "witnesses": {
+   "pdr": "equivalent",
+   "tind": "equivalent",
+   "bmc": "equivalent"
+  },
+  "pdr_dir": "/home/unnitools/runs/deep/gpt/chatgpt35/t3/edge_detect/sby_gen_prove_abc",
+  "flip": false
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt35",
+  "trial": "t4",
+  "design": "adder_8bit",
+  "tb_icarus": "compile_error",
+  "tb_verilator": "vl_compile_error"
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt35",
+  "trial": "t4",
+  "design": "adder_pipe_64bit",
+  "tb_icarus": "compile_error",
+  "tb_verilator": "vl_compile_error"
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt35",
+  "trial": "t3",
+  "design": "div_16bit",
+  "tb_icarus": "fail",
+  "tb_verilator": "fail"
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt35",
+  "trial": "t4",
+  "design": "asyn_fifo",
+  "tb_icarus": "compile_error",
+  "tb_verilator": "vl_compile_error"
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt35",
+  "trial": "t4",
+  "design": "calender",
+  "tb_icarus": "no_task"
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt35",
+  "trial": "t3",
+  "design": "counter_12",
+  "tb_icarus": "pass",
+  "tb_verilator": "pass",
+  "bmc": "different",
+  "pdr": "different",
+  "tind": "different",
+  "class": "DIFFERENT",
+  "witnesses": {
+   "pdr": "different",
+   "tind": "different",
+   "bmc": "different"
+  },
+  "pdr_dir": "/home/unnitools/runs/deep/gpt/chatgpt35/t3/counter_12/sby_gen_prove_abc",
+  "flip": false
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt35",
+  "trial": "t3",
+  "design": "fsm",
+  "tb_icarus": "fail",
+  "tb_verilator": "fail"
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt35",
+  "trial": "t3",
+  "design": "freq_div",
+  "tb_icarus": "pass",
+  "tb_verilator": "pass",
+  "bmc": "equivalent",
+  "pdr": "equivalent",
+  "tind": "unknown",
+  "class": "UNBOUNDED-EQ",
+  "witnesses": {
+   "pdr": "equivalent",
+   "tind": "unknown",
+   "bmc": "equivalent"
+  },
+  "pdr_dir": "/home/unnitools/runs/deep/gpt/chatgpt35/t3/freq_div/sby_gen_prove_abc",
+  "flip": false
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt35",
+  "trial": "t3",
+  "design": "multi_16bit",
+  "tb_icarus": "fail",
+  "tb_verilator": "fail"
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt35",
+  "trial": "t2",
+  "design": "multi_16bit",
+  "tb_icarus": "pass",
+  "tb_verilator": "pass",
+  "bmc": "equivalent",
+  "pdr": "unknown",
+  "tind": "equivalent",
+  "class": "UNBOUNDED-EQ",
+  "witnesses": {
+   "pdr": "unknown",
+   "tind": "equivalent",
+   "bmc": "equivalent"
+  },
+  "pdr_dir": "/home/unnitools/runs/deep/gpt/chatgpt35/t2/multi_16bit/sby_gen_prove_abc",
+  "flip": false
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt35",
+  "trial": "t3",
+  "design": "right_shifter",
+  "tb_icarus": "fail",
+  "tb_verilator": "fail"
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt35",
+  "trial": "t3",
+  "design": "synchronizer",
+  "tb_icarus": "pass",
+  "tb_verilator": "pass",
+  "equiv": "read_error"
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt35",
+  "trial": "t3",
+  "design": "traffic_light",
+  "tb_icarus": "fail",
+  "tb_verilator": "fail"
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt35",
+  "trial": "t4",
+  "design": "multi_pipe_4bit",
+  "tb_icarus": "compile_error",
+  "tb_verilator": "vl_compile_error"
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt35",
+  "trial": "t3",
+  "design": "signal_generator",
+  "tb_icarus": "pass",
+  "tb_verilator": "pass",
+  "bmc": "equivalent",
+  "pdr": "equivalent",
+  "tind": "equivalent",
+  "class": "UNBOUNDED-EQ",
+  "witnesses": {
+   "pdr": "equivalent",
+   "tind": "equivalent",
+   "bmc": "equivalent"
+  },
+  "pdr_dir": "/home/unnitools/runs/deep/gpt/chatgpt35/t3/signal_generator/sby_gen_prove_abc",
+  "flip": false
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt35",
+  "trial": "t4",
+  "design": "parallel2serial",
+  "tb_icarus": "compile_error",
+  "tb_verilator": "vl_compile_error"
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt35",
+  "trial": "t3",
+  "design": "serial2parallel",
+  "tb_icarus": "fail",
+  "tb_verilator": "fail"
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt35",
+  "trial": "t4",
+  "design": "radix2_div",
+  "tb_icarus": "compile_error",
+  "tb_verilator": "vl_compile_error"
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt35",
+  "trial": "t3",
+  "design": "width_8to16",
+  "tb_icarus": "fail",
+  "tb_verilator": "fail"
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt35",
+  "trial": "t4",
+  "design": "serial2parallel",
+  "tb_icarus": "compile_error",
+  "tb_verilator": "vl_compile_error"
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt35",
+  "trial": "t4",
+  "design": "JC_counter",
+  "tb_icarus": "fail",
+  "tb_verilator": "fail"
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt35",
+  "trial": "t4",
+  "design": "adder_16bit",
+  "tb_icarus": "fail",
+  "tb_verilator": "fail"
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt35",
+  "trial": "t4",
+  "design": "traffic_light",
+  "tb_icarus": "compile_error",
+  "tb_verilator": "vl_compile_error"
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt35",
+  "trial": "t4",
+  "design": "adder_32bit",
+  "tb_icarus": "fail",
+  "tb_verilator": "fail"
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt35",
+  "trial": "t3",
+  "design": "pe",
+  "tb_icarus": "pass",
+  "tb_verilator": "pass",
+  "bmc": "equivalent",
+  "pdr": "equivalent",
+  "tind": "equivalent",
+  "class": "UNBOUNDED-EQ",
+  "witnesses": {
+   "pdr": "equivalent",
+   "tind": "equivalent",
+   "bmc": "equivalent"
+  },
+  "pdr_dir": "/home/unnitools/runs/deep/gpt/chatgpt35/t3/pe/sby_gen_prove_abc",
+  "flip": false
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt35",
+  "trial": "t4",
+  "design": "alu",
+  "tb_icarus": "fail",
+  "tb_verilator": "fail"
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt35",
+  "trial": "t4",
+  "design": "counter_12",
+  "tb_icarus": "pass",
+  "tb_verilator": "pass",
+  "bmc": "equivalent",
+  "pdr": "equivalent",
+  "tind": "equivalent",
+  "class": "UNBOUNDED-EQ",
+  "witnesses": {
+   "pdr": "equivalent",
+   "tind": "equivalent",
+   "bmc": "equivalent"
+  },
+  "pdr_dir": "/home/unnitools/runs/deep/gpt/chatgpt35/t4/counter_12/sby_gen_prove_abc",
+  "flip": false
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt35",
+  "trial": "t5",
+  "design": "accu",
+  "tb_icarus": "compile_error",
+  "tb_verilator": "vl_compile_error"
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt35",
+  "trial": "t4",
+  "design": "fsm",
+  "tb_icarus": "fail",
+  "tb_verilator": "fail"
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt35",
+  "trial": "t5",
+  "design": "adder_32bit",
+  "tb_icarus": "compile_error",
+  "tb_verilator": "vl_compile_error"
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt35",
+  "trial": "t4",
+  "design": "div_16bit",
+  "tb_icarus": "fail",
+  "tb_verilator": "fail"
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt35",
+  "trial": "t5",
+  "design": "adder_pipe_64bit",
+  "tb_icarus": "compile_error",
+  "tb_verilator": "vl_compile_error"
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt35",
+  "trial": "t5",
+  "design": "asyn_fifo",
+  "tb_icarus": "compile_error",
+  "tb_verilator": "vl_compile_error"
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt35",
+  "trial": "t5",
+  "design": "calender",
+  "tb_icarus": "no_task"
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt35",
+  "trial": "t4",
+  "design": "freq_div",
+  "tb_icarus": "pass",
+  "tb_verilator": "pass",
+  "bmc": "equivalent",
+  "pdr": "equivalent",
+  "tind": "unknown",
+  "class": "UNBOUNDED-EQ",
+  "witnesses": {
+   "pdr": "equivalent",
+   "tind": "unknown",
+   "bmc": "equivalent"
+  },
+  "pdr_dir": "/home/unnitools/runs/deep/gpt/chatgpt35/t4/freq_div/sby_gen_prove_abc",
+  "flip": false
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt35",
+  "trial": "t4",
+  "design": "edge_detect",
+  "tb_icarus": "pass",
+  "tb_verilator": "pass",
+  "bmc": "equivalent",
+  "pdr": "equivalent",
+  "tind": "equivalent",
+  "class": "UNBOUNDED-EQ",
+  "witnesses": {
+   "pdr": "equivalent",
+   "tind": "equivalent",
+   "bmc": "equivalent"
+  },
+  "pdr_dir": "/home/unnitools/runs/deep/gpt/chatgpt35/t4/edge_detect/sby_gen_prove_abc",
+  "flip": false
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt35",
+  "trial": "t4",
+  "design": "multi_16bit",
+  "tb_icarus": "fail",
+  "tb_verilator": "fail"
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt35",
+  "trial": "t4",
+  "design": "multi_pipe_8bit",
+  "tb_icarus": "fail",
+  "tb_verilator": "fail"
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt35",
+  "trial": "t4",
+  "design": "pulse_detect",
+  "tb_icarus": "fail",
+  "tb_verilator": "fail"
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt35",
+  "trial": "t4",
+  "design": "multi_booth_8bit",
+  "tb_icarus": "fail",
+  "tb_verilator": "fail"
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt35",
+  "trial": "t4",
+  "design": "right_shifter",
+  "tb_icarus": "pass",
+  "tb_verilator": "pass",
+  "bmc": "equivalent",
+  "pdr": "equivalent",
+  "tind": "equivalent",
+  "class": "UNBOUNDED-EQ",
+  "witnesses": {
+   "pdr": "equivalent",
+   "tind": "equivalent",
+   "bmc": "equivalent"
+  },
+  "pdr_dir": "/home/unnitools/runs/deep/gpt/chatgpt35/t4/right_shifter/sby_gen_prove_abc",
+  "flip": false
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt35",
+  "trial": "t5",
+  "design": "multi_pipe_4bit",
+  "tb_icarus": "compile_error",
+  "tb_verilator": "vl_compile_error"
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt35",
+  "trial": "t5",
+  "design": "multi_pipe_8bit",
+  "tb_icarus": "compile_error",
+  "tb_verilator": "vl_compile_error"
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt35",
+  "trial": "t5",
+  "design": "parallel2serial",
+  "tb_icarus": "compile_error",
+  "tb_verilator": "vl_compile_error"
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt35",
+  "trial": "t4",
+  "design": "synchronizer",
+  "tb_icarus": "pass",
+  "tb_verilator": "pass",
+  "equiv": "read_error"
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt35",
+  "trial": "t5",
+  "design": "JC_counter",
+  "tb_icarus": "fail",
+  "tb_verilator": "fail"
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt35",
+  "trial": "t4",
+  "design": "signal_generator",
+  "tb_icarus": "pass",
+  "tb_verilator": "pass",
+  "bmc": "equivalent",
+  "pdr": "equivalent",
+  "tind": "equivalent",
+  "class": "UNBOUNDED-EQ",
+  "witnesses": {
+   "pdr": "equivalent",
+   "tind": "equivalent",
+   "bmc": "equivalent"
+  },
+  "pdr_dir": "/home/unnitools/runs/deep/gpt/chatgpt35/t4/signal_generator/sby_gen_prove_abc",
+  "flip": false
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt35",
+  "trial": "t5",
+  "design": "radix2_div",
+  "tb_icarus": "compile_error",
+  "tb_verilator": "vl_compile_error"
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt35",
+  "trial": "t5",
+  "design": "right_shifter",
+  "tb_icarus": "compile_error",
+  "tb_verilator": "vl_compile_error"
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt35",
+  "trial": "t4",
+  "design": "pe",
+  "tb_icarus": "pass",
+  "tb_verilator": "pass",
+  "bmc": "equivalent",
+  "pdr": "equivalent",
+  "tind": "equivalent",
+  "class": "UNBOUNDED-EQ",
+  "witnesses": {
+   "pdr": "equivalent",
+   "tind": "equivalent",
+   "bmc": "equivalent"
+  },
+  "pdr_dir": "/home/unnitools/runs/deep/gpt/chatgpt35/t4/pe/sby_gen_prove_abc",
+  "flip": false
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt35",
+  "trial": "t4",
+  "design": "width_8to16",
+  "tb_icarus": "pass",
+  "tb_verilator": "pass",
+  "bmc": "different",
+  "pdr": "different",
+  "tind": "different",
+  "class": "DIFFERENT",
+  "witnesses": {
+   "pdr": "different",
+   "tind": "different",
+   "bmc": "different"
+  },
+  "pdr_dir": "/home/unnitools/runs/deep/gpt/chatgpt35/t4/width_8to16/sby_gen_prove_abc",
+  "flip": false
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt35",
+  "trial": "t5",
+  "design": "adder_16bit",
+  "tb_icarus": "compile_error",
+  "tb_verilator": "fail"
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt35",
+  "trial": "t5",
+  "design": "width_8to16",
+  "tb_icarus": "compile_error",
+  "tb_verilator": "vl_compile_error"
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt35",
+  "trial": "t5",
+  "design": "RAM",
+  "tb_icarus": "pass",
+  "tb_verilator": "pass",
+  "bmc": "error",
+  "pdr": "different",
+  "tind": "different",
+  "class": "DIFFERENT",
+  "witnesses": {
+   "pdr": "different",
+   "tind": "different",
+   "bmc": "error"
+  },
+  "pdr_dir": "/home/unnitools/runs/deep/gpt/chatgpt35/t5/RAM/sby_gen_prove_abc",
+  "flip": false
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt35",
+  "trial": "t5",
+  "design": "alu",
+  "tb_icarus": "fail",
+  "tb_verilator": "fail"
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt35",
+  "trial": "t5",
+  "design": "adder_8bit",
+  "tb_icarus": "pass",
+  "tb_verilator": "pass",
+  "bmc": "equivalent",
+  "pdr": "equivalent",
+  "tind": "equivalent",
+  "class": "UNBOUNDED-EQ",
+  "witnesses": {
+   "pdr": "equivalent",
+   "tind": "equivalent",
+   "bmc": "equivalent"
+  },
+  "pdr_dir": "/home/unnitools/runs/deep/gpt/chatgpt35/t5/adder_8bit/sby_gen_prove_abc",
+  "flip": false
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt35",
+  "trial": "t5",
+  "design": "edge_detect",
+  "tb_icarus": "pass",
+  "tb_verilator": "pass",
+  "bmc": "equivalent",
+  "pdr": "equivalent",
+  "tind": "equivalent",
+  "class": "UNBOUNDED-EQ",
+  "witnesses": {
+   "pdr": "equivalent",
+   "tind": "equivalent",
+   "bmc": "equivalent"
+  },
+  "pdr_dir": "/home/unnitools/runs/deep/gpt/chatgpt35/t5/edge_detect/sby_gen_prove_abc",
+  "flip": false
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt35",
+  "trial": "t5",
+  "design": "div_16bit",
+  "tb_icarus": "fail",
+  "tb_verilator": "fail"
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt35",
+  "trial": "t5",
+  "design": "multi_16bit",
+  "tb_icarus": "fail",
+  "tb_verilator": "fail"
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt4",
+  "trial": "t1",
+  "design": "adder_pipe_64bit",
+  "tb_icarus": "compile_error",
+  "tb_verilator": "vl_compile_error"
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt35",
+  "trial": "t5",
+  "design": "fsm",
+  "tb_icarus": "fail",
+  "tb_verilator": "fail"
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt35",
+  "trial": "t5",
+  "design": "freq_div",
+  "tb_icarus": "pass",
+  "tb_verilator": "pass",
+  "bmc": "equivalent",
+  "pdr": "equivalent",
+  "tind": "unknown",
+  "class": "UNBOUNDED-EQ",
+  "witnesses": {
+   "pdr": "equivalent",
+   "tind": "unknown",
+   "bmc": "equivalent"
+  },
+  "pdr_dir": "/home/unnitools/runs/deep/gpt/chatgpt35/t5/freq_div/sby_gen_prove_abc",
+  "flip": false
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt35",
+  "trial": "t5",
+  "design": "multi_booth_8bit",
+  "tb_icarus": "fail",
+  "tb_verilator": "fail"
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt35",
+  "trial": "t5",
+  "design": "counter_12",
+  "tb_icarus": "pass",
+  "tb_verilator": "pass",
+  "bmc": "equivalent",
+  "pdr": "equivalent",
+  "tind": "equivalent",
+  "class": "UNBOUNDED-EQ",
+  "witnesses": {
+   "pdr": "equivalent",
+   "tind": "equivalent",
+   "bmc": "equivalent"
+  },
+  "pdr_dir": "/home/unnitools/runs/deep/gpt/chatgpt35/t5/counter_12/sby_gen_prove_abc",
+  "flip": false
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt35",
+  "trial": "t5",
+  "design": "pulse_detect",
+  "tb_icarus": "fail",
+  "tb_verilator": "fail"
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt35",
+  "trial": "t5",
+  "design": "serial2parallel",
+  "tb_icarus": "fail",
+  "tb_verilator": "fail"
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt35",
+  "trial": "t5",
+  "design": "traffic_light",
+  "tb_icarus": "fail",
+  "tb_verilator": "fail"
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt35",
+  "trial": "t5",
+  "design": "signal_generator",
+  "tb_icarus": "pass",
+  "tb_verilator": "pass",
+  "bmc": "equivalent",
+  "pdr": "equivalent",
+  "tind": "equivalent",
+  "class": "UNBOUNDED-EQ",
+  "witnesses": {
+   "pdr": "equivalent",
+   "tind": "equivalent",
+   "bmc": "equivalent"
+  },
+  "pdr_dir": "/home/unnitools/runs/deep/gpt/chatgpt35/t5/signal_generator/sby_gen_prove_abc",
+  "flip": false
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt4",
+  "trial": "t1",
+  "design": "JC_counter",
+  "tb_icarus": "fail",
+  "tb_verilator": "fail"
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt35",
+  "trial": "t5",
+  "design": "synchronizer",
+  "tb_icarus": "pass",
+  "tb_verilator": "pass",
+  "equiv": "read_error"
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt4",
+  "trial": "t1",
+  "design": "RAM",
+  "tb_icarus": "fail",
+  "tb_verilator": "fail"
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt4",
+  "trial": "t1",
+  "design": "adder_32bit",
+  "tb_icarus": "compile_error",
+  "tb_verilator": "fail"
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt4",
+  "trial": "t1",
+  "design": "accu",
+  "tb_icarus": "pass",
+  "tb_verilator": "pass",
+  "bmc": "different",
+  "pdr": "different",
+  "tind": "different",
+  "class": "DIFFERENT",
+  "witnesses": {
+   "pdr": "different",
+   "tind": "different",
+   "bmc": "different"
+  },
+  "pdr_dir": "/home/unnitools/runs/deep/gpt/chatgpt4/t1/accu/sby_gen_prove_abc",
+  "flip": false
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt4",
+  "trial": "t1",
+  "design": "asyn_fifo",
+  "tb_icarus": "compile_error",
+  "tb_verilator": "fail"
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt35",
+  "trial": "t5",
+  "design": "pe",
+  "tb_icarus": "pass",
+  "tb_verilator": "pass",
+  "bmc": "equivalent",
+  "pdr": "equivalent",
+  "tind": "equivalent",
+  "class": "UNBOUNDED-EQ",
+  "witnesses": {
+   "pdr": "equivalent",
+   "tind": "equivalent",
+   "bmc": "equivalent"
+  },
+  "pdr_dir": "/home/unnitools/runs/deep/gpt/chatgpt35/t5/pe/sby_gen_prove_abc",
+  "flip": false
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt4",
+  "trial": "t1",
+  "design": "radix2_div",
+  "tb_icarus": "compile_error",
+  "tb_verilator": "vl_compile_error"
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt4",
+  "trial": "t1",
+  "design": "counter_12",
+  "tb_icarus": "pass",
+  "tb_verilator": "pass",
+  "bmc": "equivalent",
+  "pdr": "equivalent",
+  "tind": "equivalent",
+  "class": "UNBOUNDED-EQ",
+  "witnesses": {
+   "pdr": "equivalent",
+   "tind": "equivalent",
+   "bmc": "equivalent"
+  },
+  "pdr_dir": "/home/unnitools/runs/deep/gpt/chatgpt4/t1/counter_12/sby_gen_prove_abc",
+  "flip": false
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt4",
+  "trial": "t1",
+  "design": "alu",
+  "tb_icarus": "fail",
+  "tb_verilator": "fail"
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt4",
+  "trial": "t1",
+  "design": "calendar",
+  "tb_icarus": "pass",
+  "tb_verilator": "pass",
+  "bmc": "equivalent",
+  "pdr": "equivalent",
+  "tind": "equivalent",
+  "class": "UNBOUNDED-EQ",
+  "witnesses": {
+   "pdr": "equivalent",
+   "tind": "equivalent",
+   "bmc": "equivalent"
+  },
+  "pdr_dir": "/home/unnitools/runs/deep/gpt/chatgpt4/t1/calendar/sby_gen_prove_abc",
+  "flip": false
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt4",
+  "trial": "t1",
+  "design": "adder_8bit",
+  "tb_icarus": "pass",
+  "tb_verilator": "pass",
+  "bmc": "equivalent",
+  "pdr": "equivalent",
+  "tind": "equivalent",
+  "class": "UNBOUNDED-EQ",
+  "witnesses": {
+   "pdr": "equivalent",
+   "tind": "equivalent",
+   "bmc": "equivalent"
+  },
+  "pdr_dir": "/home/unnitools/runs/deep/gpt/chatgpt4/t1/adder_8bit/sby_gen_prove_abc",
+  "flip": false
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt4",
+  "trial": "t1",
+  "design": "adder_16bit",
+  "tb_icarus": "pass",
+  "tb_verilator": "pass",
+  "bmc": "equivalent",
+  "pdr": "equivalent",
+  "tind": "equivalent",
+  "class": "UNBOUNDED-EQ",
+  "witnesses": {
+   "pdr": "equivalent",
+   "tind": "equivalent",
+   "bmc": "equivalent"
+  },
+  "pdr_dir": "/home/unnitools/runs/deep/gpt/chatgpt4/t1/adder_16bit/sby_gen_prove_abc",
+  "flip": false
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt4",
+  "trial": "t1",
+  "design": "fsm",
+  "tb_icarus": "compile_error",
+  "tb_verilator": "fail"
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt4",
+  "trial": "t1",
+  "design": "multi_booth_8bit",
+  "tb_icarus": "fail",
+  "tb_verilator": "fail"
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt4",
+  "trial": "t1",
+  "design": "edge_detect",
+  "tb_icarus": "pass",
+  "tb_verilator": "pass",
+  "bmc": "equivalent",
+  "pdr": "equivalent",
+  "tind": "equivalent",
+  "class": "UNBOUNDED-EQ",
+  "witnesses": {
+   "pdr": "equivalent",
+   "tind": "equivalent",
+   "bmc": "equivalent"
+  },
+  "pdr_dir": "/home/unnitools/runs/deep/gpt/chatgpt4/t1/edge_detect/sby_gen_prove_abc",
+  "flip": false
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt4",
+  "trial": "t1",
+  "design": "freq_div",
+  "tb_icarus": "pass",
+  "tb_verilator": "pass",
+  "bmc": "equivalent",
+  "pdr": "equivalent",
+  "tind": "unknown",
+  "class": "UNBOUNDED-EQ",
+  "witnesses": {
+   "pdr": "equivalent",
+   "tind": "unknown",
+   "bmc": "equivalent"
+  },
+  "pdr_dir": "/home/unnitools/runs/deep/gpt/chatgpt4/t1/freq_div/sby_gen_prove_abc",
+  "flip": false
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt4",
+  "trial": "t1",
+  "design": "multi_pipe_4bit",
+  "tb_icarus": "fail",
+  "tb_verilator": "fail"
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt4",
+  "trial": "t2",
+  "design": "adder_32bit",
+  "tb_icarus": "compile_error",
+  "tb_verilator": "vl_compile_error"
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt4",
+  "trial": "t1",
+  "design": "multi_pipe_8bit",
+  "tb_icarus": "fail",
+  "tb_verilator": "fail"
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt4",
+  "trial": "t1",
+  "design": "parallel2serial",
+  "tb_icarus": "fail",
+  "tb_verilator": "fail"
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt4",
+  "trial": "t1",
+  "design": "pe",
+  "tb_icarus": "fail",
+  "tb_verilator": "fail"
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt4",
+  "trial": "t2",
+  "design": "adder_pipe_64bit",
+  "tb_icarus": "compile_error",
+  "tb_verilator": "vl_compile_error"
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt4",
+  "trial": "t2",
+  "design": "asyn_fifo",
+  "tb_icarus": "compile_error",
+  "tb_verilator": "vl_compile_error"
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt4",
+  "trial": "t1",
+  "design": "multi_16bit",
+  "tb_icarus": "fail",
+  "tb_verilator": "fail"
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt4",
+  "trial": "t1",
+  "design": "pulse_detect",
+  "tb_icarus": "fail",
+  "tb_verilator": "fail"
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt4",
+  "trial": "t1",
+  "design": "right_shifter",
+  "tb_icarus": "pass",
+  "tb_verilator": "pass",
+  "bmc": "equivalent",
+  "pdr": "equivalent",
+  "tind": "equivalent",
+  "class": "UNBOUNDED-EQ",
+  "witnesses": {
+   "pdr": "equivalent",
+   "tind": "equivalent",
+   "bmc": "equivalent"
+  },
+  "pdr_dir": "/home/unnitools/runs/deep/gpt/chatgpt4/t1/right_shifter/sby_gen_prove_abc",
+  "flip": false
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt4",
+  "trial": "t1",
+  "design": "traffic_light",
+  "tb_icarus": "fail",
+  "tb_verilator": "fail"
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt4",
+  "trial": "t1",
+  "design": "signal_generator",
+  "tb_icarus": "fail",
+  "tb_verilator": "fail"
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt4",
+  "trial": "t1",
+  "design": "serial2parallel",
+  "tb_icarus": "fail",
+  "tb_verilator": "fail"
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt4",
+  "trial": "t1",
+  "design": "synchronizer",
+  "tb_icarus": "pass",
+  "tb_verilator": "pass",
+  "equiv": "read_error"
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt4",
+  "trial": "t1",
+  "design": "width_8to16",
+  "tb_icarus": "pass",
+  "tb_verilator": "pass",
+  "bmc": "different",
+  "pdr": "different",
+  "tind": "different",
+  "class": "DIFFERENT",
+  "witnesses": {
+   "pdr": "different",
+   "tind": "different",
+   "bmc": "different"
+  },
+  "pdr_dir": "/home/unnitools/runs/deep/gpt/chatgpt4/t1/width_8to16/sby_gen_prove_abc",
+  "flip": false
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt4",
+  "trial": "t2",
+  "design": "JC_counter",
+  "tb_icarus": "fail",
+  "tb_verilator": "fail"
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt4",
+  "trial": "t2",
+  "design": "alu",
+  "tb_icarus": "fail",
+  "tb_verilator": "fail"
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt4",
+  "trial": "t2",
+  "design": "accu",
+  "tb_icarus": "pass",
+  "tb_verilator": "pass",
+  "bmc": "different",
+  "pdr": "different",
+  "tind": "different",
+  "class": "DIFFERENT",
+  "witnesses": {
+   "pdr": "different",
+   "tind": "different",
+   "bmc": "different"
+  },
+  "pdr_dir": "/home/unnitools/runs/deep/gpt/chatgpt4/t2/accu/sby_gen_prove_abc",
+  "flip": false
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt4",
+  "trial": "t2",
+  "design": "pulse_detect",
+  "tb_icarus": "fail",
+  "tb_verilator": "vl_compile_error"
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt4",
+  "trial": "t2",
+  "design": "radix2_div",
+  "tb_icarus": "compile_error",
+  "tb_verilator": "vl_compile_error"
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt4",
+  "trial": "t2",
+  "design": "calendar",
+  "tb_icarus": "pass",
+  "tb_verilator": "pass",
+  "bmc": "equivalent",
+  "pdr": "equivalent",
+  "tind": "equivalent",
+  "class": "UNBOUNDED-EQ",
+  "witnesses": {
+   "pdr": "equivalent",
+   "tind": "equivalent",
+   "bmc": "equivalent"
+  },
+  "pdr_dir": "/home/unnitools/runs/deep/gpt/chatgpt4/t2/calendar/sby_gen_prove_abc",
+  "flip": false
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt4",
+  "trial": "t2",
+  "design": "edge_detect",
+  "tb_icarus": "pass",
+  "tb_verilator": "pass",
+  "bmc": "equivalent",
+  "pdr": "equivalent",
+  "tind": "equivalent",
+  "class": "UNBOUNDED-EQ",
+  "witnesses": {
+   "pdr": "equivalent",
+   "tind": "equivalent",
+   "bmc": "equivalent"
+  },
+  "pdr_dir": "/home/unnitools/runs/deep/gpt/chatgpt4/t2/edge_detect/sby_gen_prove_abc",
+  "flip": false
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt4",
+  "trial": "t2",
+  "design": "counter_12",
+  "tb_icarus": "pass",
+  "tb_verilator": "pass",
+  "bmc": "equivalent",
+  "pdr": "equivalent",
+  "tind": "equivalent",
+  "class": "UNBOUNDED-EQ",
+  "witnesses": {
+   "pdr": "equivalent",
+   "tind": "equivalent",
+   "bmc": "equivalent"
+  },
+  "pdr_dir": "/home/unnitools/runs/deep/gpt/chatgpt4/t2/counter_12/sby_gen_prove_abc",
+  "flip": false
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt4",
+  "trial": "t2",
+  "design": "div_16bit",
+  "tb_icarus": "fail",
+  "tb_verilator": "fail"
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt4",
+  "trial": "t2",
+  "design": "adder_16bit",
+  "tb_icarus": "pass",
+  "tb_verilator": "pass",
+  "bmc": "equivalent",
+  "pdr": "equivalent",
+  "tind": "equivalent",
+  "class": "UNBOUNDED-EQ",
+  "witnesses": {
+   "pdr": "equivalent",
+   "tind": "equivalent",
+   "bmc": "equivalent"
+  },
+  "pdr_dir": "/home/unnitools/runs/deep/gpt/chatgpt4/t2/adder_16bit/sby_gen_prove_abc",
+  "flip": false
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt4",
+  "trial": "t2",
+  "design": "multi_booth_8bit",
+  "tb_icarus": "fail",
+  "tb_verilator": "fail"
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt4",
+  "trial": "t2",
+  "design": "freq_div",
+  "tb_icarus": "pass",
+  "tb_verilator": "pass",
+  "bmc": "equivalent",
+  "pdr": "equivalent",
+  "tind": "unknown",
+  "class": "UNBOUNDED-EQ",
+  "witnesses": {
+   "pdr": "equivalent",
+   "tind": "unknown",
+   "bmc": "equivalent"
+  },
+  "pdr_dir": "/home/unnitools/runs/deep/gpt/chatgpt4/t2/freq_div/sby_gen_prove_abc",
+  "flip": false
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt4",
+  "trial": "t2",
+  "design": "multi_16bit",
+  "tb_icarus": "fail",
+  "tb_verilator": "fail"
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt4",
+  "trial": "t2",
+  "design": "multi_pipe_4bit",
+  "tb_icarus": "fail",
+  "tb_verilator": "fail"
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt4",
+  "trial": "t2",
+  "design": "adder_8bit",
+  "tb_icarus": "pass",
+  "tb_verilator": "pass",
+  "bmc": "equivalent",
+  "pdr": "equivalent",
+  "tind": "equivalent",
+  "class": "UNBOUNDED-EQ",
+  "witnesses": {
+   "pdr": "equivalent",
+   "tind": "equivalent",
+   "bmc": "equivalent"
+  },
+  "pdr_dir": "/home/unnitools/runs/deep/gpt/chatgpt4/t2/adder_8bit/sby_gen_prove_abc",
+  "flip": false
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt4",
+  "trial": "t2",
+  "design": "fsm",
+  "tb_icarus": "pass",
+  "tb_verilator": "pass",
+  "bmc": "different",
+  "pdr": "different",
+  "tind": "different",
+  "class": "DIFFERENT",
+  "witnesses": {
+   "pdr": "different",
+   "tind": "different",
+   "bmc": "different"
+  },
+  "pdr_dir": "/home/unnitools/runs/deep/gpt/chatgpt4/t2/fsm/sby_gen_prove_abc",
+  "flip": false
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt4",
+  "trial": "t2",
+  "design": "multi_pipe_8bit",
+  "tb_icarus": "fail",
+  "tb_verilator": "fail"
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt4",
+  "trial": "t3",
+  "design": "adder_pipe_64bit",
+  "tb_icarus": "compile_error",
+  "tb_verilator": "vl_compile_error"
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt4",
+  "trial": "t2",
+  "design": "parallel2serial",
+  "tb_icarus": "fail",
+  "tb_verilator": "fail"
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt4",
+  "trial": "t2",
+  "design": "serial2parallel",
+  "tb_icarus": "fail",
+  "tb_verilator": "fail"
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt4",
+  "trial": "t2",
+  "design": "synchronizer",
+  "tb_icarus": "pass",
+  "tb_verilator": "pass",
+  "equiv": "read_error"
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt4",
+  "trial": "t2",
+  "design": "right_shifter",
+  "tb_icarus": "pass",
+  "tb_verilator": "pass",
+  "bmc": "equivalent",
+  "pdr": "equivalent",
+  "tind": "equivalent",
+  "class": "UNBOUNDED-EQ",
+  "witnesses": {
+   "pdr": "equivalent",
+   "tind": "equivalent",
+   "bmc": "equivalent"
+  },
+  "pdr_dir": "/home/unnitools/runs/deep/gpt/chatgpt4/t2/right_shifter/sby_gen_prove_abc",
+  "flip": false
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt4",
+  "trial": "t2",
+  "design": "traffic_light",
+  "tb_icarus": "fail",
+  "tb_verilator": "fail"
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt4",
+  "trial": "t3",
+  "design": "RAM",
+  "tb_icarus": "fail",
+  "tb_verilator": "fail"
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt4",
+  "trial": "t3",
+  "design": "adder_8bit",
+  "tb_icarus": "compile_error",
+  "tb_verilator": "pass"
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt4",
+  "trial": "t2",
+  "design": "signal_generator",
+  "tb_icarus": "pass",
+  "tb_verilator": "pass",
+  "bmc": "equivalent",
+  "pdr": "equivalent",
+  "tind": "equivalent",
+  "class": "UNBOUNDED-EQ",
+  "witnesses": {
+   "pdr": "equivalent",
+   "tind": "equivalent",
+   "bmc": "equivalent"
+  },
+  "pdr_dir": "/home/unnitools/runs/deep/gpt/chatgpt4/t2/signal_generator/sby_gen_prove_abc",
+  "flip": false
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt4",
+  "trial": "t3",
+  "design": "JC_counter",
+  "tb_icarus": "fail",
+  "tb_verilator": "fail"
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt4",
+  "trial": "t2",
+  "design": "pe",
+  "tb_icarus": "pass",
+  "tb_verilator": "pass",
+  "bmc": "equivalent",
+  "pdr": "equivalent",
+  "tind": "equivalent",
+  "class": "UNBOUNDED-EQ",
+  "witnesses": {
+   "pdr": "equivalent",
+   "tind": "equivalent",
+   "bmc": "equivalent"
+  },
+  "pdr_dir": "/home/unnitools/runs/deep/gpt/chatgpt4/t2/pe/sby_gen_prove_abc",
+  "flip": false
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt4",
+  "trial": "t3",
+  "design": "multi_pipe_4bit",
+  "tb_icarus": "compile_error",
+  "tb_verilator": "vl_compile_error"
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt4",
+  "trial": "t2",
+  "design": "width_8to16",
+  "tb_icarus": "pass",
+  "tb_verilator": "pass",
+  "bmc": "equivalent",
+  "pdr": "equivalent",
+  "tind": "unknown",
+  "class": "UNBOUNDED-EQ",
+  "witnesses": {
+   "pdr": "equivalent",
+   "tind": "unknown",
+   "bmc": "equivalent"
+  },
+  "pdr_dir": "/home/unnitools/runs/deep/gpt/chatgpt4/t2/width_8to16/sby_gen_prove_abc",
+  "flip": false
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt4",
+  "trial": "t3",
+  "design": "accu",
+  "tb_icarus": "pass",
+  "tb_verilator": "pass",
+  "bmc": "different",
+  "pdr": "different",
+  "tind": "different",
+  "class": "DIFFERENT",
+  "witnesses": {
+   "pdr": "different",
+   "tind": "different",
+   "bmc": "different"
+  },
+  "pdr_dir": "/home/unnitools/runs/deep/gpt/chatgpt4/t3/accu/sby_gen_prove_abc",
+  "flip": false
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt4",
+  "trial": "t3",
+  "design": "alu",
+  "tb_icarus": "fail",
+  "tb_verilator": "fail"
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt4",
+  "trial": "t3",
+  "design": "adder_16bit",
+  "tb_icarus": "pass",
+  "tb_verilator": "pass",
+  "bmc": "equivalent",
+  "pdr": "equivalent",
+  "tind": "equivalent",
+  "class": "UNBOUNDED-EQ",
+  "witnesses": {
+   "pdr": "equivalent",
+   "tind": "equivalent",
+   "bmc": "equivalent"
+  },
+  "pdr_dir": "/home/unnitools/runs/deep/gpt/chatgpt4/t3/adder_16bit/sby_gen_prove_abc",
+  "flip": false
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt4",
+  "trial": "t3",
+  "design": "radix2_div",
+  "tb_icarus": "compile_error",
+  "tb_verilator": "vl_compile_error"
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt4",
+  "trial": "t2",
+  "design": "RAM",
+  "tb_icarus": "pass",
+  "tb_verilator": "pass",
+  "bmc": "different",
+  "pdr": "different",
+  "tind": "different",
+  "class": "DIFFERENT",
+  "witnesses": {
+   "pdr": "different",
+   "tind": "different",
+   "bmc": "different"
+  },
+  "pdr_dir": "/home/unnitools/runs/deep/gpt/chatgpt4/t2/RAM/sby_gen_prove_abc",
+  "flip": false
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt4",
+  "trial": "t3",
+  "design": "div_16bit",
+  "tb_icarus": "fail",
+  "tb_verilator": "fail"
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt4",
+  "trial": "t3",
+  "design": "asyn_fifo",
+  "tb_icarus": "fail",
+  "tb_verilator": "fail"
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt4",
+  "trial": "t3",
+  "design": "adder_32bit",
+  "tb_icarus": "pass",
+  "tb_verilator": "pass",
+  "bmc": "equivalent",
+  "pdr": "equivalent",
+  "tind": "equivalent",
+  "class": "UNBOUNDED-EQ",
+  "witnesses": {
+   "pdr": "equivalent",
+   "tind": "equivalent",
+   "bmc": "equivalent"
+  },
+  "pdr_dir": "/home/unnitools/runs/deep/gpt/chatgpt4/t3/adder_32bit/sby_gen_prove_abc",
+  "flip": false
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt4",
+  "trial": "t3",
+  "design": "traffic_light",
+  "tb_icarus": "compile_error",
+  "tb_verilator": "vl_compile_error"
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt4",
+  "trial": "t3",
+  "design": "fsm",
+  "tb_icarus": "compile_error",
+  "tb_verilator": "fail"
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt4",
+  "trial": "t3",
+  "design": "calendar",
+  "tb_icarus": "pass",
+  "tb_verilator": "pass",
+  "bmc": "equivalent",
+  "pdr": "equivalent",
+  "tind": "equivalent",
+  "class": "UNBOUNDED-EQ",
+  "witnesses": {
+   "pdr": "equivalent",
+   "tind": "equivalent",
+   "bmc": "equivalent"
+  },
+  "pdr_dir": "/home/unnitools/runs/deep/gpt/chatgpt4/t3/calendar/sby_gen_prove_abc",
+  "flip": false
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt4",
+  "trial": "t3",
+  "design": "counter_12",
+  "tb_icarus": "pass",
+  "tb_verilator": "pass",
+  "bmc": "equivalent",
+  "pdr": "equivalent",
+  "tind": "equivalent",
+  "class": "UNBOUNDED-EQ",
+  "witnesses": {
+   "pdr": "equivalent",
+   "tind": "equivalent",
+   "bmc": "equivalent"
+  },
+  "pdr_dir": "/home/unnitools/runs/deep/gpt/chatgpt4/t3/counter_12/sby_gen_prove_abc",
+  "flip": false
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt4",
+  "trial": "t3",
+  "design": "multi_booth_8bit",
+  "tb_icarus": "fail",
+  "tb_verilator": "fail"
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt4",
+  "trial": "t3",
+  "design": "freq_div",
+  "tb_icarus": "pass",
+  "tb_verilator": "pass",
+  "bmc": "equivalent",
+  "pdr": "equivalent",
+  "tind": "unknown",
+  "class": "UNBOUNDED-EQ",
+  "witnesses": {
+   "pdr": "equivalent",
+   "tind": "unknown",
+   "bmc": "equivalent"
+  },
+  "pdr_dir": "/home/unnitools/runs/deep/gpt/chatgpt4/t3/freq_div/sby_gen_prove_abc",
+  "flip": false
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt4",
+  "trial": "t4",
+  "design": "adder_16bit",
+  "tb_icarus": "compile_error",
+  "tb_verilator": "vl_compile_error"
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt4",
+  "trial": "t3",
+  "design": "edge_detect",
+  "tb_icarus": "pass",
+  "tb_verilator": "pass",
+  "bmc": "equivalent",
+  "pdr": "equivalent",
+  "tind": "equivalent",
+  "class": "UNBOUNDED-EQ",
+  "witnesses": {
+   "pdr": "equivalent",
+   "tind": "equivalent",
+   "bmc": "equivalent"
+  },
+  "pdr_dir": "/home/unnitools/runs/deep/gpt/chatgpt4/t3/edge_detect/sby_gen_prove_abc",
+  "flip": false
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt4",
+  "trial": "t3",
+  "design": "multi_16bit",
+  "tb_icarus": "fail",
+  "tb_verilator": "fail"
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt4",
+  "trial": "t4",
+  "design": "adder_pipe_64bit",
+  "tb_icarus": "compile_error",
+  "tb_verilator": "vl_compile_error"
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt4",
+  "trial": "t3",
+  "design": "parallel2serial",
+  "tb_icarus": "fail",
+  "tb_verilator": "fail"
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt4",
+  "trial": "t3",
+  "design": "multi_pipe_8bit",
+  "tb_icarus": "fail",
+  "tb_verilator": "fail"
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt4",
+  "trial": "t3",
+  "design": "pulse_detect",
+  "tb_icarus": "fail",
+  "tb_verilator": "fail"
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt4",
+  "trial": "t3",
+  "design": "signal_generator",
+  "tb_icarus": "pass",
+  "tb_verilator": "pass",
+  "bmc": "equivalent",
+  "pdr": "equivalent",
+  "tind": "equivalent",
+  "class": "UNBOUNDED-EQ",
+  "witnesses": {
+   "pdr": "equivalent",
+   "tind": "equivalent",
+   "bmc": "equivalent"
+  },
+  "pdr_dir": "/home/unnitools/runs/deep/gpt/chatgpt4/t3/signal_generator/sby_gen_prove_abc",
+  "flip": false
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt4",
+  "trial": "t3",
+  "design": "synchronizer",
+  "tb_icarus": "pass",
+  "tb_verilator": "pass",
+  "equiv": "read_error"
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt4",
+  "trial": "t3",
+  "design": "serial2parallel",
+  "tb_icarus": "fail",
+  "tb_verilator": "fail"
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt4",
+  "trial": "t3",
+  "design": "right_shifter",
+  "tb_icarus": "pass",
+  "tb_verilator": "pass",
+  "bmc": "equivalent",
+  "pdr": "equivalent",
+  "tind": "equivalent",
+  "class": "UNBOUNDED-EQ",
+  "witnesses": {
+   "pdr": "equivalent",
+   "tind": "equivalent",
+   "bmc": "equivalent"
+  },
+  "pdr_dir": "/home/unnitools/runs/deep/gpt/chatgpt4/t3/right_shifter/sby_gen_prove_abc",
+  "flip": false
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt4",
+  "trial": "t4",
+  "design": "JC_counter",
+  "tb_icarus": "fail",
+  "tb_verilator": "fail"
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt4",
+  "trial": "t3",
+  "design": "width_8to16",
+  "tb_icarus": "pass",
+  "tb_verilator": "pass",
+  "bmc": "different",
+  "pdr": "different",
+  "tind": "different",
+  "class": "DIFFERENT",
+  "witnesses": {
+   "pdr": "different",
+   "tind": "different",
+   "bmc": "different"
+  },
+  "pdr_dir": "/home/unnitools/runs/deep/gpt/chatgpt4/t3/width_8to16/sby_gen_prove_abc",
+  "flip": false
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt4",
+  "trial": "t4",
+  "design": "multi_pipe_4bit",
+  "tb_icarus": "compile_error",
+  "tb_verilator": "vl_compile_error"
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt4",
+  "trial": "t4",
+  "design": "alu",
+  "tb_icarus": "fail",
+  "tb_verilator": "fail"
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt4",
+  "trial": "t4",
+  "design": "adder_32bit",
+  "tb_icarus": "fail",
+  "tb_verilator": "fail"
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt4",
+  "trial": "t4",
+  "design": "accu",
+  "tb_icarus": "pass",
+  "tb_verilator": "pass",
+  "bmc": "different",
+  "pdr": "different",
+  "tind": "different",
+  "class": "DIFFERENT",
+  "witnesses": {
+   "pdr": "different",
+   "tind": "different",
+   "bmc": "different"
+  },
+  "pdr_dir": "/home/unnitools/runs/deep/gpt/chatgpt4/t4/accu/sby_gen_prove_abc",
+  "flip": false
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt4",
+  "trial": "t4",
+  "design": "RAM",
+  "tb_icarus": "fail",
+  "tb_verilator": "fail"
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt4",
+  "trial": "t4",
+  "design": "pulse_detect",
+  "tb_icarus": "fail",
+  "tb_verilator": "vl_compile_error"
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt4",
+  "trial": "t4",
+  "design": "radix2_div",
+  "tb_icarus": "compile_error",
+  "tb_verilator": "vl_compile_error"
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt4",
+  "trial": "t4",
+  "design": "asyn_fifo",
+  "tb_icarus": "fail",
+  "tb_verilator": "fail"
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt4",
+  "trial": "t4",
+  "design": "counter_12",
+  "tb_icarus": "pass",
+  "tb_verilator": "pass",
+  "bmc": "equivalent",
+  "pdr": "equivalent",
+  "tind": "equivalent",
+  "class": "UNBOUNDED-EQ",
+  "witnesses": {
+   "pdr": "equivalent",
+   "tind": "equivalent",
+   "bmc": "equivalent"
+  },
+  "pdr_dir": "/home/unnitools/runs/deep/gpt/chatgpt4/t4/counter_12/sby_gen_prove_abc",
+  "flip": false
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt4",
+  "trial": "t4",
+  "design": "div_16bit",
+  "tb_icarus": "fail",
+  "tb_verilator": "fail"
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt4",
+  "trial": "t4",
+  "design": "adder_8bit",
+  "tb_icarus": "pass",
+  "tb_verilator": "pass",
+  "bmc": "equivalent",
+  "pdr": "equivalent",
+  "tind": "equivalent",
+  "class": "UNBOUNDED-EQ",
+  "witnesses": {
+   "pdr": "equivalent",
+   "tind": "equivalent",
+   "bmc": "equivalent"
+  },
+  "pdr_dir": "/home/unnitools/runs/deep/gpt/chatgpt4/t4/adder_8bit/sby_gen_prove_abc",
+  "flip": false
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt4",
+  "trial": "t4",
+  "design": "calendar",
+  "tb_icarus": "pass",
+  "tb_verilator": "pass",
+  "bmc": "equivalent",
+  "pdr": "equivalent",
+  "tind": "equivalent",
+  "class": "UNBOUNDED-EQ",
+  "witnesses": {
+   "pdr": "equivalent",
+   "tind": "equivalent",
+   "bmc": "equivalent"
+  },
+  "pdr_dir": "/home/unnitools/runs/deep/gpt/chatgpt4/t4/calendar/sby_gen_prove_abc",
+  "flip": false
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt4",
+  "trial": "t4",
+  "design": "parallel2serial",
+  "tb_icarus": "fail",
+  "tb_verilator": "fail"
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt4",
+  "trial": "t4",
+  "design": "multi_booth_8bit",
+  "tb_icarus": "fail",
+  "tb_verilator": "fail"
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt4",
+  "trial": "t4",
+  "design": "multi_pipe_8bit",
+  "tb_icarus": "fail",
+  "tb_verilator": "fail"
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt4",
+  "trial": "t4",
+  "design": "fsm",
+  "tb_icarus": "pass",
+  "tb_verilator": "pass",
+  "bmc": "different",
+  "pdr": "different",
+  "tind": "different",
+  "class": "DIFFERENT",
+  "witnesses": {
+   "pdr": "different",
+   "tind": "different",
+   "bmc": "different"
+  },
+  "pdr_dir": "/home/unnitools/runs/deep/gpt/chatgpt4/t4/fsm/sby_gen_prove_abc",
+  "flip": false
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt4",
+  "trial": "t4",
+  "design": "edge_detect",
+  "tb_icarus": "pass",
+  "tb_verilator": "pass",
+  "bmc": "equivalent",
+  "pdr": "equivalent",
+  "tind": "equivalent",
+  "class": "UNBOUNDED-EQ",
+  "witnesses": {
+   "pdr": "equivalent",
+   "tind": "equivalent",
+   "bmc": "equivalent"
+  },
+  "pdr_dir": "/home/unnitools/runs/deep/gpt/chatgpt4/t4/edge_detect/sby_gen_prove_abc",
+  "flip": false
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt4",
+  "trial": "t5",
+  "design": "adder_32bit",
+  "tb_icarus": "compile_error",
+  "tb_verilator": "vl_compile_error"
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt4",
+  "trial": "t5",
+  "design": "adder_pipe_64bit",
+  "tb_icarus": "compile_error",
+  "tb_verilator": "vl_compile_error"
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt4",
+  "trial": "t4",
+  "design": "freq_div",
+  "tb_icarus": "pass",
+  "tb_verilator": "pass",
+  "bmc": "equivalent",
+  "pdr": "equivalent",
+  "tind": "unknown",
+  "class": "UNBOUNDED-EQ",
+  "witnesses": {
+   "pdr": "equivalent",
+   "tind": "unknown",
+   "bmc": "equivalent"
+  },
+  "pdr_dir": "/home/unnitools/runs/deep/gpt/chatgpt4/t4/freq_div/sby_gen_prove_abc",
+  "flip": false
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt4",
+  "trial": "t4",
+  "design": "signal_generator",
+  "tb_icarus": "fail",
+  "tb_verilator": "fail"
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt4",
+  "trial": "t4",
+  "design": "multi_16bit",
+  "tb_icarus": "pass",
+  "tb_verilator": "pass",
+  "bmc": "different",
+  "pdr": "unknown",
+  "tind": "different",
+  "class": "DIFFERENT",
+  "witnesses": {
+   "pdr": "unknown",
+   "tind": "different",
+   "bmc": "different"
+  },
+  "pdr_dir": "/home/unnitools/runs/deep/gpt/chatgpt4/t4/multi_16bit/sby_gen_prove_abc",
+  "flip": false
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt4",
+  "trial": "t4",
+  "design": "right_shifter",
+  "tb_icarus": "pass",
+  "tb_verilator": "pass",
+  "bmc": "equivalent",
+  "pdr": "equivalent",
+  "tind": "equivalent",
+  "class": "UNBOUNDED-EQ",
+  "witnesses": {
+   "pdr": "equivalent",
+   "tind": "equivalent",
+   "bmc": "equivalent"
+  },
+  "pdr_dir": "/home/unnitools/runs/deep/gpt/chatgpt4/t4/right_shifter/sby_gen_prove_abc",
+  "flip": false
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt4",
+  "trial": "t4",
+  "design": "traffic_light",
+  "tb_icarus": "fail",
+  "tb_verilator": "fail"
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt4",
+  "trial": "t4",
+  "design": "serial2parallel",
+  "tb_icarus": "fail",
+  "tb_verilator": "fail"
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt4",
+  "trial": "t4",
+  "design": "synchronizer",
+  "tb_icarus": "pass",
+  "tb_verilator": "pass",
+  "equiv": "read_error"
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt4",
+  "trial": "t5",
+  "design": "JC_counter",
+  "tb_icarus": "fail",
+  "tb_verilator": "fail"
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt4",
+  "trial": "t4",
+  "design": "width_8to16",
+  "tb_icarus": "pass",
+  "tb_verilator": "pass",
+  "bmc": "different",
+  "pdr": "different",
+  "tind": "different",
+  "class": "DIFFERENT",
+  "witnesses": {
+   "pdr": "different",
+   "tind": "different",
+   "bmc": "different"
+  },
+  "pdr_dir": "/home/unnitools/runs/deep/gpt/chatgpt4/t4/width_8to16/sby_gen_prove_abc",
+  "flip": false
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt4",
+  "trial": "t4",
+  "design": "pe",
+  "tb_icarus": "pass",
+  "tb_verilator": "pass",
+  "bmc": "equivalent",
+  "pdr": "equivalent",
+  "tind": "equivalent",
+  "class": "UNBOUNDED-EQ",
+  "witnesses": {
+   "pdr": "equivalent",
+   "tind": "equivalent",
+   "bmc": "equivalent"
+  },
+  "pdr_dir": "/home/unnitools/runs/deep/gpt/chatgpt4/t4/pe/sby_gen_prove_abc",
+  "flip": false
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt4",
+  "trial": "t5",
+  "design": "multi_pipe_4bit",
+  "tb_icarus": "compile_error",
+  "tb_verilator": "vl_compile_error"
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt4",
+  "trial": "t5",
+  "design": "adder_16bit",
+  "tb_icarus": "compile_error",
+  "tb_verilator": "fail"
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt4",
+  "trial": "t5",
+  "design": "alu",
+  "tb_icarus": "fail",
+  "tb_verilator": "fail"
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt4",
+  "trial": "t5",
+  "design": "RAM",
+  "tb_icarus": "pass",
+  "tb_verilator": "pass",
+  "bmc": "error",
+  "pdr": "different",
+  "tind": "different",
+  "class": "DIFFERENT",
+  "witnesses": {
+   "pdr": "different",
+   "tind": "different",
+   "bmc": "error"
+  },
+  "pdr_dir": "/home/unnitools/runs/deep/gpt/chatgpt4/t5/RAM/sby_gen_prove_abc",
+  "flip": false
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt4",
+  "trial": "t5",
+  "design": "asyn_fifo",
+  "tb_icarus": "fail",
+  "tb_verilator": "fail"
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt4",
+  "trial": "t5",
+  "design": "radix2_div",
+  "tb_icarus": "compile_error",
+  "tb_verilator": "vl_compile_error"
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt4",
+  "trial": "t5",
+  "design": "accu",
+  "tb_icarus": "pass",
+  "tb_verilator": "pass",
+  "bmc": "different",
+  "pdr": "different",
+  "tind": "different",
+  "class": "DIFFERENT",
+  "witnesses": {
+   "pdr": "different",
+   "tind": "different",
+   "bmc": "different"
+  },
+  "pdr_dir": "/home/unnitools/runs/deep/gpt/chatgpt4/t5/accu/sby_gen_prove_abc",
+  "flip": false
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt4",
+  "trial": "t5",
+  "design": "adder_8bit",
+  "tb_icarus": "pass",
+  "tb_verilator": "pass",
+  "bmc": "equivalent",
+  "pdr": "equivalent",
+  "tind": "equivalent",
+  "class": "UNBOUNDED-EQ",
+  "witnesses": {
+   "pdr": "equivalent",
+   "tind": "equivalent",
+   "bmc": "equivalent"
+  },
+  "pdr_dir": "/home/unnitools/runs/deep/gpt/chatgpt4/t5/adder_8bit/sby_gen_prove_abc",
+  "flip": false
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt4",
+  "trial": "t5",
+  "design": "multi_booth_8bit",
+  "tb_icarus": "fail",
+  "tb_verilator": "fail"
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt4",
+  "trial": "t5",
+  "design": "calendar",
+  "tb_icarus": "pass",
+  "tb_verilator": "pass",
+  "bmc": "equivalent",
+  "pdr": "equivalent",
+  "tind": "equivalent",
+  "class": "UNBOUNDED-EQ",
+  "witnesses": {
+   "pdr": "equivalent",
+   "tind": "equivalent",
+   "bmc": "equivalent"
+  },
+  "pdr_dir": "/home/unnitools/runs/deep/gpt/chatgpt4/t5/calendar/sby_gen_prove_abc",
+  "flip": false
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt4",
+  "trial": "t5",
+  "design": "multi_16bit",
+  "tb_icarus": "fail",
+  "tb_verilator": "fail"
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt4",
+  "trial": "t5",
+  "design": "counter_12",
+  "tb_icarus": "pass",
+  "tb_verilator": "pass",
+  "bmc": "equivalent",
+  "pdr": "equivalent",
+  "tind": "equivalent",
+  "class": "UNBOUNDED-EQ",
+  "witnesses": {
+   "pdr": "equivalent",
+   "tind": "equivalent",
+   "bmc": "equivalent"
+  },
+  "pdr_dir": "/home/unnitools/runs/deep/gpt/chatgpt4/t5/counter_12/sby_gen_prove_abc",
+  "flip": false
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt4",
+  "trial": "t5",
+  "design": "fsm",
+  "tb_icarus": "compile_error",
+  "tb_verilator": "fail"
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt4",
+  "trial": "t5",
+  "design": "div_16bit",
+  "tb_icarus": "fail",
+  "tb_verilator": "fail"
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt4",
+  "trial": "t5",
+  "design": "edge_detect",
+  "tb_icarus": "pass",
+  "tb_verilator": "pass",
+  "bmc": "equivalent",
+  "pdr": "equivalent",
+  "tind": "equivalent",
+  "class": "UNBOUNDED-EQ",
+  "witnesses": {
+   "pdr": "equivalent",
+   "tind": "equivalent",
+   "bmc": "equivalent"
+  },
+  "pdr_dir": "/home/unnitools/runs/deep/gpt/chatgpt4/t5/edge_detect/sby_gen_prove_abc",
+  "flip": false
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt4",
+  "trial": "t5",
+  "design": "freq_div",
+  "tb_icarus": "pass",
+  "tb_verilator": "pass",
+  "bmc": "equivalent",
+  "pdr": "equivalent",
+  "tind": "unknown",
+  "class": "UNBOUNDED-EQ",
+  "witnesses": {
+   "pdr": "equivalent",
+   "tind": "unknown",
+   "bmc": "equivalent"
+  },
+  "pdr_dir": "/home/unnitools/runs/deep/gpt/chatgpt4/t5/freq_div/sby_gen_prove_abc",
+  "flip": false
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt4",
+  "trial": "t5",
+  "design": "parallel2serial",
+  "tb_icarus": "fail",
+  "tb_verilator": "fail"
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt4",
+  "trial": "t5",
+  "design": "multi_pipe_8bit",
+  "tb_icarus": "fail",
+  "tb_verilator": "fail"
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt4",
+  "trial": "t5",
+  "design": "pe",
+  "tb_icarus": "fail",
+  "tb_verilator": "fail"
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt4",
+  "trial": "t5",
+  "design": "serial2parallel",
+  "tb_icarus": "fail",
+  "tb_verilator": "fail"
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt4",
+  "trial": "t5",
+  "design": "pulse_detect",
+  "tb_icarus": "fail",
+  "tb_verilator": "fail"
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt4",
+  "trial": "t5",
+  "design": "right_shifter",
+  "tb_icarus": "pass",
+  "tb_verilator": "pass",
+  "bmc": "equivalent",
+  "pdr": "equivalent",
+  "tind": "equivalent",
+  "class": "UNBOUNDED-EQ",
+  "witnesses": {
+   "pdr": "equivalent",
+   "tind": "equivalent",
+   "bmc": "equivalent"
+  },
+  "pdr_dir": "/home/unnitools/runs/deep/gpt/chatgpt4/t5/right_shifter/sby_gen_prove_abc",
+  "flip": false
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt4",
+  "trial": "t5",
+  "design": "signal_generator",
+  "tb_icarus": "fail",
+  "tb_verilator": "fail"
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt4",
+  "trial": "t5",
+  "design": "synchronizer",
+  "tb_icarus": "pass",
+  "tb_verilator": "pass",
+  "equiv": "read_error"
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt4",
+  "trial": "t5",
+  "design": "traffic_light",
+  "tb_icarus": "pass",
+  "tb_verilator": "pass",
+  "bmc": "different",
+  "pdr": "different",
+  "tind": "different",
+  "class": "DIFFERENT",
+  "witnesses": {
+   "pdr": "different",
+   "tind": "different",
+   "bmc": "different"
+  },
+  "pdr_dir": "/home/unnitools/runs/deep/gpt/chatgpt4/t5/traffic_light/sby_gen_prove_abc",
+  "flip": false
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt4",
+  "trial": "t5",
+  "design": "width_8to16",
+  "tb_icarus": "pass",
+  "tb_verilator": "pass",
+  "bmc": "equivalent",
+  "pdr": "equivalent",
+  "tind": "unknown",
+  "class": "UNBOUNDED-EQ",
+  "witnesses": {
+   "pdr": "equivalent",
+   "tind": "unknown",
+   "bmc": "equivalent"
+  },
+  "pdr_dir": "/home/unnitools/runs/deep/gpt/chatgpt4/t5/width_8to16/sby_gen_prove_abc",
+  "flip": false
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt4",
+  "trial": "t1",
+  "design": "div_16bit",
+  "tb_icarus": "pass",
+  "tb_verilator": "pass",
+  "bmc": "different",
+  "pdr": "different",
+  "tind": "different",
+  "class": "DIFFERENT",
+  "witnesses": {
+   "pdr": "different",
+   "tind": "different",
+   "bmc": "different"
+  },
+  "pdr_dir": "/home/unnitools/runs/deep/gpt/chatgpt4/t1/div_16bit/sby_gen_prove_abc",
+  "flip": false
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt35",
+  "trial": "t3",
+  "design": "multi_booth_8bit",
+  "tb_icarus": "timeout",
+  "tb_verilator": "timeout"
+ },
+ {
+  "run": "gpt",
+  "model": "chatgpt4",
+  "trial": "t3",
+  "design": "pe",
+  "tb_icarus": "pass",
+  "tb_verilator": "pass",
+  "bmc": "error",
+  "pdr": "equivalent",
+  "tind": "timeout",
+  "class": "UNBOUNDED-EQ",
+  "witnesses": {
+   "pdr": "equivalent",
+   "tind": "timeout",
+   "bmc": "error"
+  },
+  "pdr_dir": "/home/unnitools/runs/deep/gpt/chatgpt4/t3/pe/sby_gen_prove_abc",
+  "flip": false
+ }
+]

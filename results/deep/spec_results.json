@@ -1,0 +1,65 @@
+[
+ {
+  "spec_property": "accu: only valid samples accumulate (groups of 4)",
+  "case": "accu",
+  "subject": "reference",
+  "status": "FAIL",
+  "evidence": "/home/unnitools/runs/deep/spec/accu_reference/sby_accu_prop"
+ },
+ {
+  "spec_property": "width_8to16: valid_out is a one-cycle pulse",
+  "case": "width_8to16",
+  "subject": "reference",
+  "status": "PASS",
+  "evidence": "/home/unnitools/runs/deep/spec/width_8to16_reference/sby_w816_prop"
+ },
+ {
+  "spec_property": "width_8to16: same, on the GPT-4 t1 design",
+  "case": "width_8to16",
+  "subject": "gpt4t1",
+  "status": "FAIL",
+  "evidence": "/home/unnitools/runs/deep/spec/width_8to16_gpt4t1/sby_w816_prop"
+ },
+ {
+  "spec_property": "LIFObuffer: reset-while-full drops FULL",
+  "case": "LIFObuffer",
+  "subject": "reference",
+  "status": "FAIL",
+  "evidence": "/home/unnitools/runs/deep/spec/LIFObuffer_reference/sby_lifo_prop"
+ },
+ {
+  "spec_property": "fsm: sequence 1000011 must not MATCH",
+  "case": "fsm",
+  "subject": "reference",
+  "status": "PASS",
+  "evidence": "/home/unnitools/runs/deep/spec/fsm_reference/sby_fsm_prop"
+ },
+ {
+  "spec_property": "fsm: same, on the GPT-4 t2 design",
+  "case": "fsm",
+  "subject": "gpt4t2",
+  "status": "FAIL",
+  "evidence": "/home/unnitools/runs/deep/spec/fsm_gpt4t2/sby_fsm_prop"
+ },
+ {
+  "spec_property": "square_wave: cover wave_out=1 reachable (vacuity)",
+  "case": "square_wave",
+  "subject": "reference",
+  "status": "PASS",
+  "evidence": "/home/unnitools/runs/deep/spec/square_wave_reference/sby_sqw_prop"
+ },
+ {
+  "case": "square_wave",
+  "subject": "const0-mutant(F.6)",
+  "spec_property": "cover wave_out=1 reachable (vacuity)",
+  "status": "FAIL",
+  "evidence": "/home/unnitools/runs/deep/spec/square_wave_mut/sby_sqw_prop"
+ },
+ {
+  "case": "square_wave",
+  "subject": "const0-mutant(F.6)",
+  "spec_property": "official testbench verdict on the same mutant",
+  "status": "TB pass",
+  "evidence": "/home/unnitools/runs/deep/spec/square_wave_mut"
+ }
+]
