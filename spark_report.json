@@ -284,9 +284,9 @@
   }
  ],
  "chain": {
-  "last_update": "dry run complete (forced C2): stop+log+push verified",
-  "phase": "launch",
-  "status": "real chain starting in tmux",
-  "stop": null
+  "last_update": "2026-10-19 03:50:37",
+  "phase": "PUSH",
+  "status": "FAILED: git push failed twice: A18 C3: 7B shakedowns done + checked (params, extraction, cap, scorer); 3B steady refresh",
+  "stop": "STOP \u2014 PUSH failed: git push failed twice: A18 C3: 7B shakedowns done + checked (params, extraction, cap, scorer); 3B steady refresh"
  }
 }

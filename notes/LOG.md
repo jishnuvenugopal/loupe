@@ -651,3 +651,5 @@ C3 PASS 7b-base
 - 2026-10-19 03:38 — [chain] C3: 7b-base PASS (params/§6.2, extraction, cap, no scorer crash; 
 - 2026-10-19 03:38 — [chain] C3 (C4 prep): throughput-only refresh 3b-rl
 - 2026-10-19 03:43 — [chain] C3 (C4 prep): throughput-only refresh 3b-base
+- 2026-10-19 03:49 — [chain] PUSH FAILED (A18 C3: 7B shakedowns done + checked (params, extraction, cap, scorer); 3B steady refresh); retry in 60s
+- 2026-10-19 03:50 — [chain] STOP — PUSH failed: git push failed twice: A18 C3: 7B shakedowns done + checked (params, extraction, cap, scorer); 3B steady refresh
