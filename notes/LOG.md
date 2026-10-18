@@ -44,3 +44,14 @@
   (F.1 106/10; F.2 gate MATCH; F.3 held valid_out; F.4 rise+down; F.5 200/200; F.6 TB passes
   const-0; F.7 FULL stays 1).
 - Freeze: SCORER_SHA256 written; commit + local tag scorer-v1 (push awaits operator repo).
+
+## 2026-10-17 22:20 — Phase 1b (push side) completed for the deep session
+- gh signed in (operator). REPO = jishnuvenugopal/rte-strict-eval (PRIVATE, was empty; the only
+  private repo on the account — name recorded as-is per rule 9).
+- .gitignore (brief §4) added; __pycache__ untracked before first push.
+- Appendix G4 pre-push guard installed at .git/hooks/pre-push and tested in scratch repos:
+  6/6 (koder refused, 60MB refused, safetensors refused, text-only allowed, main refused,
+  wrong-URL refused).
+- First push: spark (5 commits) + tag scorer-v1. ls-remote confirms both refs.
+- koder/ scaffold NOT created here (the other session owns Phase 1b's koder part; nothing of
+  it is committed, per the local-exclude rule).
