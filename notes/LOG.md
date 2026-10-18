@@ -489,3 +489,6 @@
 - 2026-10-19 00:51 — [chain] A18 §8 chain start (pid 270642, force_fail=C2, C2 deadline 09:00)
 - 2026-10-19 00:51 — [chain] C1: working tree not clean
 - 2026-10-19 00:51 — [chain] STOP — C1 failed: code/PREREG/push consistency check failed (see log above)
+- 2026-10-19 00:51 — [chain] A18 §8 chain start (pid 270854, force_fail=C2, C2 deadline 09:00)
+- 2026-10-19 00:51 — [chain] C1 PASS: items 1-5+7 committed, pushed, PREREG sha256 final
+- 2026-10-19 00:51 — [chain] STOP — C2 failed: forced failure (dry run)

@@ -5,6 +5,7 @@ Updated 19 Oct 2026, 00:51 UTC+08 (A18 overnight chain).
 
 ## 1. Status
 
+- [00:51] C2: FAILED: forced failure (dry run)
 - [00:51] C1: FAILED: code/PREREG/push consistency check failed (see log above)
 - Session completed: Phase 1b (koder scaffold), **Phase 5 complete (H0 a–d)**,
   Phase 6 step 4 (GRPO trial, PASSED), step 3 first half (3B-RL lane, DONE),
@@ -206,4 +207,4 @@ STOP — waiting for operator review of PREREG.md and the message "G0 approved"
 - Dead background jobs from the crashed session were removed (idle
   `grpo-trial` container, old A16 watcher).
 
-STOP — C1 failed: code/PREREG/push consistency check failed (see log above)
+STOP — C2 failed: forced failure (dry run)
