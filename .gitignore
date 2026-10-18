@@ -1,0 +1,7 @@
+*.safetensors
+*.vcd
+sim_*
+__pycache__/
+*.pyc
+*.log
+runs/
