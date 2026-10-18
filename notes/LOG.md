@@ -181,3 +181,13 @@
   (shakedown/shakedown_run.py, ~1-2h GPU total), PREREG "Measured before G0" refresh,
   pytorch image digest record, 8x weights verification.
 - SPARK_REPORT.md + spark_report.json updated (docker lane results, deviations, open items).
+
+## 2026-10-18 19:00 — CORRECTION + re-run: GRPO trial version record
+- Discovered via requirements.lock that the first successful GRPO trial had actually run on
+  trl 1.13.0 (my version-stepping loop's last install), not 1.15.0 as reported. The metrics
+  JSON recorded the truth (trl 1.13.0). Per the brief's "newest TRL whose stated support
+  covers the container's vLLM" (= 1.15.0, range 0.21.0-0.31.0), reinstalled trl==1.15.0 and
+  RE-RAN the 2-step trial: exit 0, train_s 172.6, reward_wall_s 21.6 (128 calls),
+  zero_advantage_fraction 0.812, peak_gpu_alloc matches. grpo_trial_S.json now holds the
+  1.15.0 run; requirements.lock refreshed from the container (trl==1.15.0, peft==0.21.2).
+  Earlier LOG wording implied the first run was on 1.15.0 — it was not; both runs green.
