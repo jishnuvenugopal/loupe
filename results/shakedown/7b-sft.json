@@ -1,0 +1,563 @@
+{
+ "arm": "7b-sft",
+ "model": "zhuyaoyu/CodeV-R1-Distill-Qwen-7B",
+ "revision": "8fdb92e328cb2a98ef9a3f9dcd82995a2112bd9c",
+ "T": 0.6,
+ "max_tokens": 16384,
+ "shakedown_tasks": {
+  "ve": [
+   "Prob007_wire",
+   "Prob027_fadd",
+   "Prob029_m2014_q4g",
+   "Prob036_ringer",
+   "Prob058_alwaysblock2",
+   "Prob063_review2015_shiftcount",
+   "Prob071_always_casez",
+   "Prob144_conwaylife"
+  ],
+  "rtllm": [
+   "LFSR",
+   "accu",
+   "adder_16bit",
+   "adder_32bit",
+   "adder_8bit",
+   "comparator_3bit",
+   "comparator_4bit",
+   "edge_detect"
+  ]
+ },
+ "gen_wall_s": 1544.4,
+ "completion_tokens": {
+  "mean": 2939,
+  "p95": 8058,
+  "max": 8505,
+  "cap_hits": 0
+ },
+ "extraction_ok": 16,
+ "module_name_ok": 16,
+ "verdicts": {
+  "pass": 12,
+  "fail": 2,
+  "compile_error": 2,
+  "timeout": 0
+ },
+ "strict": {
+  "DIFFERENT": 2,
+  "UNBOUNDED-EQ": 10,
+  "BMC-10-EQ-ONLY": 0,
+  "UNKNOWN": 0
+ },
+ "official_passes_from_length": 0,
+ "per_sample": [
+  {
+   "task_id": "Prob007_wire",
+   "bench": "ve",
+   "sample_idx": 0,
+   "n_completion_tokens": 265,
+   "finish_reason": "stop",
+   "extract_ok": true,
+   "module_name_ok": true,
+   "score": {
+    "task": "Prob007_wire",
+    "bench": "ve",
+    "module_name_ok": true,
+    "tb": "pass",
+    "samples": 120,
+    "nonvacuous": true,
+    "extract_ok": true,
+    "lint_warnings": 1,
+    "synth": {
+     "latch": false
+    },
+    "reset": {
+     "reset": null
+    },
+    "bmc": "equivalent",
+    "pdr": "equivalent",
+    "tind": "equivalent",
+    "class": "UNBOUNDED-EQ",
+    "equiv": "equivalent",
+    "depth": 10,
+    "cex": null,
+    "scorer_sha256": "14d39dfdad52ffd57aec628355b9cee2d09001e330096dbe0c8cf8986977df52"
+   }
+  },
+  {
+   "task_id": "Prob027_fadd",
+   "bench": "ve",
+   "sample_idx": 0,
+   "n_completion_tokens": 1039,
+   "finish_reason": "stop",
+   "extract_ok": true,
+   "module_name_ok": true,
+   "score": {
+    "task": "Prob027_fadd",
+    "bench": "ve",
+    "module_name_ok": true,
+    "tb": "pass",
+    "samples": 214,
+    "nonvacuous": true,
+    "extract_ok": true,
+    "lint_warnings": 1,
+    "synth": {
+     "latch": false
+    },
+    "reset": {
+     "reset": null
+    },
+    "bmc": "equivalent",
+    "pdr": "equivalent",
+    "tind": "equivalent",
+    "class": "UNBOUNDED-EQ",
+    "equiv": "equivalent",
+    "depth": 10,
+    "cex": null,
+    "scorer_sha256": "14d39dfdad52ffd57aec628355b9cee2d09001e330096dbe0c8cf8986977df52"
+   }
+  },
+  {
+   "task_id": "Prob029_m2014_q4g",
+   "bench": "ve",
+   "sample_idx": 0,
+   "n_completion_tokens": 823,
+   "finish_reason": "stop",
+   "extract_ok": true,
+   "module_name_ok": true,
+   "score": {
+    "task": "Prob029_m2014_q4g",
+    "bench": "ve",
+    "module_name_ok": true,
+    "tb": "pass",
+    "samples": 100,
+    "nonvacuous": true,
+    "extract_ok": true,
+    "lint_warnings": 1,
+    "synth": {
+     "latch": false
+    },
+    "reset": {
+     "reset": null
+    },
+    "bmc": "equivalent",
+    "pdr": "equivalent",
+    "tind": "equivalent",
+    "class": "UNBOUNDED-EQ",
+    "equiv": "equivalent",
+    "depth": 10,
+    "cex": null,
+    "scorer_sha256": "14d39dfdad52ffd57aec628355b9cee2d09001e330096dbe0c8cf8986977df52"
+   }
+  },
+  {
+   "task_id": "Prob036_ringer",
+   "bench": "ve",
+   "sample_idx": 0,
+   "n_completion_tokens": 1134,
+   "finish_reason": "stop",
+   "extract_ok": true,
+   "module_name_ok": true,
+   "score": {
+    "task": "Prob036_ringer",
+    "bench": "ve",
+    "module_name_ok": true,
+    "tb": "pass",
+    "samples": 19,
+    "nonvacuous": true,
+    "extract_ok": true,
+    "lint_warnings": 1,
+    "synth": {
+     "latch": false
+    },
+    "reset": {
+     "reset": null
+    },
+    "bmc": "equivalent",
+    "pdr": "equivalent",
+    "tind": "equivalent",
+    "class": "UNBOUNDED-EQ",
+    "equiv": "equivalent",
+    "depth": 10,
+    "cex": null,
+    "scorer_sha256": "14d39dfdad52ffd57aec628355b9cee2d09001e330096dbe0c8cf8986977df52"
+   }
+  },
+  {
+   "task_id": "Prob058_alwaysblock2",
+   "bench": "ve",
+   "sample_idx": 0,
+   "n_completion_tokens": 3554,
+   "finish_reason": "stop",
+   "extract_ok": true,
+   "module_name_ok": true,
+   "score": {
+    "task": "Prob058_alwaysblock2",
+    "bench": "ve",
+    "module_name_ok": true,
+    "tb": "compile_error",
+    "nonvacuous": false,
+    "extract_ok": true,
+    "lint_warnings": 1,
+    "synth": {
+     "latch": false
+    },
+    "equiv": "skipped",
+    "depth": 10,
+    "reset": null,
+    "scorer_sha256": "14d39dfdad52ffd57aec628355b9cee2d09001e330096dbe0c8cf8986977df52"
+   }
+  },
+  {
+   "task_id": "Prob063_review2015_shiftcount",
+   "bench": "ve",
+   "sample_idx": 0,
+   "n_completion_tokens": 1200,
+   "finish_reason": "stop",
+   "extract_ok": true,
+   "module_name_ok": true,
+   "score": {
+    "task": "Prob063_review2015_shiftcount",
+    "bench": "ve",
+    "module_name_ok": true,
+    "tb": "fail",
+    "samples": 2071,
+    "nonvacuous": true,
+    "extract_ok": true,
+    "lint_warnings": 1,
+    "synth": {
+     "latch": false
+    },
+    "equiv": "skipped",
+    "depth": 10,
+    "reset": null,
+    "scorer_sha256": "14d39dfdad52ffd57aec628355b9cee2d09001e330096dbe0c8cf8986977df52"
+   }
+  },
+  {
+   "task_id": "Prob071_always_casez",
+   "bench": "ve",
+   "sample_idx": 0,
+   "n_completion_tokens": 4232,
+   "finish_reason": "stop",
+   "extract_ok": true,
+   "module_name_ok": true,
+   "score": {
+    "task": "Prob071_always_casez",
+    "bench": "ve",
+    "module_name_ok": true,
+    "tb": "pass",
+    "samples": 346,
+    "nonvacuous": true,
+    "extract_ok": true,
+    "lint_warnings": 1,
+    "synth": {
+     "latch": false
+    },
+    "reset": {
+     "reset": null
+    },
+    "bmc": "equivalent",
+    "pdr": "equivalent",
+    "tind": "equivalent",
+    "class": "UNBOUNDED-EQ",
+    "equiv": "equivalent",
+    "depth": 10,
+    "cex": null,
+    "scorer_sha256": "14d39dfdad52ffd57aec628355b9cee2d09001e330096dbe0c8cf8986977df52"
+   }
+  },
+  {
+   "task_id": "Prob144_conwaylife",
+   "bench": "ve",
+   "sample_idx": 0,
+   "n_completion_tokens": 8505,
+   "finish_reason": "stop",
+   "extract_ok": true,
+   "module_name_ok": true,
+   "score": {
+    "task": "Prob144_conwaylife",
+    "bench": "ve",
+    "module_name_ok": true,
+    "tb": "fail",
+    "samples": 5023,
+    "nonvacuous": true,
+    "extract_ok": true,
+    "lint_warnings": 1,
+    "synth": {
+     "latch": false
+    },
+    "equiv": "skipped",
+    "depth": 10,
+    "reset": null,
+    "scorer_sha256": "14d39dfdad52ffd57aec628355b9cee2d09001e330096dbe0c8cf8986977df52"
+   }
+  },
+  {
+   "task_id": "LFSR",
+   "bench": "rtllm",
+   "sample_idx": 0,
+   "n_completion_tokens": 3102,
+   "finish_reason": "stop",
+   "extract_ok": true,
+   "module_name_ok": true,
+   "score": {
+    "task": "LFSR",
+    "bench": "rtllm",
+    "module_name_ok": true,
+    "tb": "pass",
+    "nonvacuous": true,
+    "extract_ok": true,
+    "lint_warnings": 1,
+    "synth": {
+     "latch": false
+    },
+    "reset": {
+     "reset": "rst",
+     "active": 1
+    },
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT",
+    "equiv": "different",
+    "depth": 10,
+    "cex": "/home/unnitools/runs/shakedown/score_7b-sft/rtllm_LFSR_0/cex",
+    "scorer_sha256": "14d39dfdad52ffd57aec628355b9cee2d09001e330096dbe0c8cf8986977df52"
+   }
+  },
+  {
+   "task_id": "accu",
+   "bench": "rtllm",
+   "sample_idx": 0,
+   "n_completion_tokens": 4260,
+   "finish_reason": "stop",
+   "extract_ok": true,
+   "module_name_ok": true,
+   "score": {
+    "task": "accu",
+    "bench": "rtllm",
+    "module_name_ok": true,
+    "tb": "pass",
+    "nonvacuous": true,
+    "extract_ok": true,
+    "lint_warnings": 1,
+    "synth": {
+     "latch": false
+    },
+    "reset": {
+     "reset": "rst_n",
+     "active": 0
+    },
+    "bmc": "different",
+    "pdr": "different",
+    "tind": "different",
+    "class": "DIFFERENT",
+    "equiv": "different",
+    "depth": 10,
+    "cex": "/home/unnitools/runs/shakedown/score_7b-sft/rtllm_accu_0/cex",
+    "scorer_sha256": "14d39dfdad52ffd57aec628355b9cee2d09001e330096dbe0c8cf8986977df52"
+   }
+  },
+  {
+   "task_id": "adder_16bit",
+   "bench": "rtllm",
+   "sample_idx": 0,
+   "n_completion_tokens": 3037,
+   "finish_reason": "stop",
+   "extract_ok": true,
+   "module_name_ok": true,
+   "score": {
+    "task": "adder_16bit",
+    "bench": "rtllm",
+    "module_name_ok": true,
+    "tb": "pass",
+    "nonvacuous": true,
+    "extract_ok": true,
+    "lint_warnings": 1,
+    "synth": {
+     "latch": false
+    },
+    "reset": {
+     "reset": null
+    },
+    "bmc": "equivalent",
+    "pdr": "equivalent",
+    "tind": "equivalent",
+    "class": "UNBOUNDED-EQ",
+    "equiv": "equivalent",
+    "depth": 10,
+    "cex": null,
+    "scorer_sha256": "14d39dfdad52ffd57aec628355b9cee2d09001e330096dbe0c8cf8986977df52"
+   }
+  },
+  {
+   "task_id": "adder_32bit",
+   "bench": "rtllm",
+   "sample_idx": 0,
+   "n_completion_tokens": 8058,
+   "finish_reason": "stop",
+   "extract_ok": true,
+   "module_name_ok": true,
+   "score": {
+    "task": "adder_32bit",
+    "bench": "rtllm",
+    "module_name_ok": true,
+    "tb": "compile_error",
+    "nonvacuous": false,
+    "extract_ok": true,
+    "lint_warnings": 2,
+    "synth": null,
+    "equiv": "skipped",
+    "depth": 10,
+    "reset": null,
+    "scorer_sha256": "14d39dfdad52ffd57aec628355b9cee2d09001e330096dbe0c8cf8986977df52"
+   }
+  },
+  {
+   "task_id": "adder_8bit",
+   "bench": "rtllm",
+   "sample_idx": 0,
+   "n_completion_tokens": 1310,
+   "finish_reason": "stop",
+   "extract_ok": true,
+   "module_name_ok": true,
+   "score": {
+    "task": "adder_8bit",
+    "bench": "rtllm",
+    "module_name_ok": true,
+    "tb": "pass",
+    "nonvacuous": true,
+    "extract_ok": true,
+    "lint_warnings": 1,
+    "synth": {
+     "latch": false
+    },
+    "reset": {
+     "reset": null
+    },
+    "bmc": "equivalent",
+    "pdr": "equivalent",
+    "tind": "equivalent",
+    "class": "UNBOUNDED-EQ",
+    "equiv": "equivalent",
+    "depth": 10,
+    "cex": null,
+    "scorer_sha256": "14d39dfdad52ffd57aec628355b9cee2d09001e330096dbe0c8cf8986977df52"
+   }
+  },
+  {
+   "task_id": "comparator_3bit",
+   "bench": "rtllm",
+   "sample_idx": 0,
+   "n_completion_tokens": 1318,
+   "finish_reason": "stop",
+   "extract_ok": true,
+   "module_name_ok": true,
+   "score": {
+    "task": "comparator_3bit",
+    "bench": "rtllm",
+    "module_name_ok": true,
+    "tb": "pass",
+    "nonvacuous": true,
+    "extract_ok": true,
+    "lint_warnings": 1,
+    "synth": {
+     "latch": false
+    },
+    "reset": {
+     "reset": null
+    },
+    "bmc": "equivalent",
+    "pdr": "equivalent",
+    "tind": "equivalent",
+    "class": "UNBOUNDED-EQ",
+    "equiv": "equivalent",
+    "depth": 10,
+    "cex": null,
+    "scorer_sha256": "14d39dfdad52ffd57aec628355b9cee2d09001e330096dbe0c8cf8986977df52"
+   }
+  },
+  {
+   "task_id": "comparator_4bit",
+   "bench": "rtllm",
+   "sample_idx": 0,
+   "n_completion_tokens": 2039,
+   "finish_reason": "stop",
+   "extract_ok": true,
+   "module_name_ok": true,
+   "score": {
+    "task": "comparator_4bit",
+    "bench": "rtllm",
+    "module_name_ok": true,
+    "tb": "pass",
+    "nonvacuous": true,
+    "extract_ok": true,
+    "lint_warnings": 1,
+    "synth": {
+     "latch": false
+    },
+    "reset": {
+     "reset": null
+    },
+    "bmc": "equivalent",
+    "pdr": "equivalent",
+    "tind": "equivalent",
+    "class": "UNBOUNDED-EQ",
+    "equiv": "equivalent",
+    "depth": 10,
+    "cex": null,
+    "scorer_sha256": "14d39dfdad52ffd57aec628355b9cee2d09001e330096dbe0c8cf8986977df52"
+   }
+  },
+  {
+   "task_id": "edge_detect",
+   "bench": "rtllm",
+   "sample_idx": 0,
+   "n_completion_tokens": 3150,
+   "finish_reason": "stop",
+   "extract_ok": true,
+   "module_name_ok": true,
+   "score": {
+    "task": "edge_detect",
+    "bench": "rtllm",
+    "module_name_ok": true,
+    "tb": "pass",
+    "nonvacuous": true,
+    "extract_ok": true,
+    "lint_warnings": 1,
+    "synth": {
+     "latch": false
+    },
+    "reset": {
+     "reset": "rst_n",
+     "active": 0
+    },
+    "bmc": "equivalent",
+    "pdr": "equivalent",
+    "tind": "equivalent",
+    "class": "UNBOUNDED-EQ",
+    "equiv": "equivalent",
+    "depth": 10,
+    "cex": null,
+    "scorer_sha256": "14d39dfdad52ffd57aec628355b9cee2d09001e330096dbe0c8cf8986977df52"
+   }
+  }
+ ],
+ "throughput": {
+  "ve": {
+   "wall_s": 508.7,
+   "tokens": 55900,
+   "tok_per_s": 109.9,
+   "load_s": 161.6,
+   "gen_wall_s": 326.4,
+   "steady_tok_per_s": 171.3
+  },
+  "rtllm": {
+   "wall_s": 1764.6,
+   "tokens": 397244,
+   "tok_per_s": 225.1,
+   "load_s": 142.8,
+   "gen_wall_s": 1600.0,
+   "steady_tok_per_s": 248.3
+  }
+ }
+}

@@ -26,7 +26,6 @@
    "edge_detect"
   ]
  },
- "gen_wall_s": 330.7,
  "completion_tokens": {
   "mean": 793,
   "p95": 2048,
@@ -47,6 +46,7 @@
   "BMC-10-EQ-ONLY": 2,
   "UNKNOWN": 0
  },
+ "official_passes_from_length": 0,
  "per_sample": [
   {
    "task_id": "Prob007_wire",
@@ -475,14 +475,20 @@
  ],
  "throughput": {
   "ve": {
-   "wall_s": 143.4,
-   "tokens": 27791,
-   "tok_per_s": 193.9
+   "wall_s": 177.1,
+   "tokens": 27839,
+   "tok_per_s": 157.2,
+   "load_s": 90.7,
+   "gen_wall_s": 66.9,
+   "steady_tok_per_s": 416.1
   },
   "rtllm": {
-   "wall_s": 147.7,
-   "tokens": 46642,
-   "tok_per_s": 315.8
+   "wall_s": 178.0,
+   "tokens": 46451,
+   "tok_per_s": 260.9,
+   "load_s": 85.4,
+   "gen_wall_s": 72.4,
+   "steady_tok_per_s": 641.6
   }
  }
 }

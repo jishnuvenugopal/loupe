@@ -500,3 +500,154 @@
 - 2026-10-19 00:53 — [chain] C3: shakedown 7b-rl (Phase 6 step 1)
 - 2026-10-19 00:55 — [chain-fix] run_overnight.py: container path mapping made explicit (REPO->/work, ~/runs/gen->/runs); the cut-subset prompt file lives under ~/runs/gen and the old /work-relative join produced the wrong in-container path. Unit-checked both mappings. run_overnight.py is machinery, not in the PREREG 'Analysis code' pin list.
 - 2026-10-19 01:08 — [chain-fix] projection.py: hard guard added — no cut decision while any arm lacks shakedown numbers (C4 needs every arm); --allow-pending for tests only. ots CLI smoke-tested (stamp+verify OK on a scratch file).
+{
+ "arm": "7b-rl",
+ "module_name_ok": 16,
+ "cap_hits": 0,
+ "crashes": 0,
+ "effective_params": {
+  "temperature": "1.0",
+  "top_p": "1.0",
+  "top_k": "-1",
+  "min_p": "0.0",
+  "repetition_penalty": "1.0",
+  "max_tokens": "16384",
+  "n": "1",
+  "seed": "670498303"
+ },
+ "official_passes_from_length": 0,
+ "verdicts": {
+  "pass": 15,
+  "fail": 1,
+  "compile_error": 0,
+  "timeout": 0
+ },
+ "strict": {
+  "DIFFERENT": 3,
+  "UNBOUNDED-EQ": 12,
+  "BMC-10-EQ-ONLY": 0,
+  "UNKNOWN": 0
+ },
+ "throughput": {
+  "ve": {
+   "wall_s": 823.5,
+   "tokens": 172288,
+   "tok_per_s": 209.2,
+   "load_s": 145.6,
+   "gen_wall_s": 665.4,
+   "steady_tok_per_s": 258.9
+  },
+  "rtllm": {
+   "wall_s": 1826.5,
+   "tokens": 504706,
+   "tok_per_s": 276.3,
+   "load_s": 160.9,
+   "gen_wall_s": 1641.1,
+   "steady_tok_per_s": 307.5
+  }
+ }
+}
+C3 PASS 7b-rl
+- 2026-10-19 02:15 — [chain] C3: 7b-rl PASS (params/§6.2, extraction, cap, no scorer crash; 
+- 2026-10-19 02:15 — [chain] C3: shakedown 7b-sft (Phase 6 step 1)
+{
+ "arm": "7b-sft",
+ "module_name_ok": 16,
+ "cap_hits": 0,
+ "crashes": 0,
+ "effective_params": {
+  "temperature": "0.6",
+  "top_p": "1.0",
+  "top_k": "-1",
+  "min_p": "0.0",
+  "repetition_penalty": "1.0",
+  "max_tokens": "16384",
+  "n": "1",
+  "seed": "670498303"
+ },
+ "official_passes_from_length": 0,
+ "verdicts": {
+  "pass": 12,
+  "fail": 2,
+  "compile_error": 2,
+  "timeout": 0
+ },
+ "strict": {
+  "DIFFERENT": 2,
+  "UNBOUNDED-EQ": 10,
+  "BMC-10-EQ-ONLY": 0,
+  "UNKNOWN": 0
+ },
+ "throughput": {
+  "ve": {
+   "wall_s": 508.7,
+   "tokens": 55900,
+   "tok_per_s": 109.9,
+   "load_s": 161.6,
+   "gen_wall_s": 326.4,
+   "steady_tok_per_s": 171.3
+  },
+  "rtllm": {
+   "wall_s": 1764.6,
+   "tokens": 397244,
+   "tok_per_s": 225.1,
+   "load_s": 142.8,
+   "gen_wall_s": 1600.0,
+   "steady_tok_per_s": 248.3
+  }
+ }
+}
+C3 PASS 7b-sft
+- 2026-10-19 03:19 — [chain] C3: 7b-sft PASS (params/§6.2, extraction, cap, no scorer crash; 
+- 2026-10-19 03:19 — [chain] C3: shakedown 7b-base (Phase 6 step 1)
+{
+ "arm": "7b-base",
+ "module_name_ok": 16,
+ "cap_hits": 0,
+ "crashes": 0,
+ "effective_params": {
+  "temperature": "1.0",
+  "top_p": "1.0",
+  "top_k": "-1",
+  "min_p": "0.0",
+  "repetition_penalty": "1.0",
+  "max_tokens": "16384",
+  "n": "1",
+  "seed": "670498303"
+ },
+ "official_passes_from_length": 0,
+ "verdicts": {
+  "pass": 5,
+  "fail": 5,
+  "compile_error": 6,
+  "timeout": 0
+ },
+ "strict": {
+  "DIFFERENT": 1,
+  "UNBOUNDED-EQ": 4,
+  "BMC-10-EQ-ONLY": 0,
+  "UNKNOWN": 0
+ },
+ "throughput": {
+  "ve": {
+   "wall_s": 206.1,
+   "tokens": 11455,
+   "tok_per_s": 55.6,
+   "load_s": 146.5,
+   "gen_wall_s": 37.4,
+   "steady_tok_per_s": 306.3
+  },
+  "rtllm": {
+   "wall_s": 487.3,
+   "tokens": 34536,
+   "tok_per_s": 70.9,
+   "load_s": 153.6,
+   "gen_wall_s": 309.7,
+   "steady_tok_per_s": 111.5
+  }
+ }
+}
+C3 PASS 7b-base
+- 2026-10-19 03:38 — [chain] C3: 7b-base PASS (params/§6.2, extraction, cap, no scorer crash; 
+- 2026-10-19 03:38 — [chain] C3 (C4 prep): throughput-only refresh 3b-rl
+- 2026-10-19 03:43 — [chain] C3 (C4 prep): throughput-only refresh 3b-base
