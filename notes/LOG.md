@@ -156,3 +156,19 @@
   3B-Instruct downloading; pytorch image queued after vLLM in pull script.
 - Shakedown harness dry-run: seeded task selection OK (8 VE-gated + 8 RTLLM-usable,
   Random(42); pools 149/40); requirements.lock written (host venv).
+
+## 2026-10-18 18:20-18:55 — machinery smoke + GRPO two-step trial (Phase 6 step 4) PASSED
+- gen_vllm.py end-to-end smoke in the vLLM container with the verified 1.5B (2 VE prompts,
+  T 0.6, max 512, n 1, labelled machinery-smoke): rows match the §8 schema exactly, per-task
+  seed set, prompt_sha256 = prompts/built values, finish_reason 'stop', <think> format OK.
+- TRL pick per brief rule: trl 1.16.0 declares vLLM 0.22.0-0.31.0 (container has 0.21.0) ->
+  stepped down: 1.15.0 declares 0.21.0-0.31.0 = the newest covering release. RECORDED:
+  trl 1.15.0 + peft 0.21.2 + vllm 0.21.0+2325b6f0.nvinternal.26.05.post1 + torch 2.12.0a0+nv26.05.
+- GRPO trial (arm S, 2 steps, brief's GRPOConfig verbatim; max_prompt_length not offered in
+  trl 1.15 -> not set): train_runtime 171.3 s (step 88.6/73.7 s); 128 reward calls, reward wall
+  17.1 s (7.7 + 9.4 s/step, ~0.13 s/call — TB+formal via frozen scorer machinery in-container);
+  zero-advantage fraction 0.812 (13/16 groups; TRL frac_reward_zero_std 0.875/0.75 agrees);
+  mean reward 0.016 -> 0.047; peak GPU alloc 52.25 GiB. results/shakedown/grpo_trial_S.json.
+  Lane verdict: vLLM-container colocate WORKS; pytorch+trl==0.26.1 fallback not needed.
+  Fixes en route (recorded): /bench + /root/eda mounts for in-container reward; GRPO_WORK_DIR
+  resolution; conditional max_prompt_length.

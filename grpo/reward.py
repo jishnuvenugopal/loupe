@@ -25,11 +25,16 @@ import tempfile
 
 REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, os.path.join(REPO, "deep"))
-sys.path.insert(0, os.path.expanduser("~/bench/CodeV-R1/test/utils"))
+for _cand in (os.path.expanduser("~/bench/CodeV-R1/test/utils"), "/bench/CodeV-R1/test/utils"):
+    if os.path.isdir(_cand):
+        sys.path.insert(0, _cand)
 import common as C  # frozen scorer machinery (scorer-v1)
 from verilog_extractor import extract_verilog_code
 
-EDA = C.EDA if hasattr(C, "EDA") else os.path.expanduser("~/eda/oss-cad-suite/bin")
+EDA = os.environ.get("EDA_BIN") or (C.EDA if hasattr(C, "EDA") else os.path.expanduser("~/eda/oss-cad-suite/bin"))
+if os.path.isdir(EDA) and EDA != C.EDA:
+    C.EDA = EDA
+    C.ENV = dict(os.environ, PATH=EDA + ":" + os.environ["PATH"])
 FORMAL_CAP_S = 10
 SIM_VECTORS = 10000
 
@@ -52,13 +57,21 @@ def tb_verdict(work, code, tb, tb_res):
     return ("pass" if got == tb_res else "fail"), got
 
 
+def _work_base():
+    for c in (os.environ.get("GRPO_WORK_DIR"),
+              os.path.expanduser("~/runs/grpo"), "/runs/grpo"):
+        if c and os.path.isdir(c):
+            return c
+    return None  # tempfile default (/tmp)
+
+
 def reward_for_row(row, completion, mode="strict"):
     """row: dataset dict with instruction/output/tb/tb_result. Returns (reward, info)."""
     code = extract_verilog_code(completion)
     if not code.strip():
         return 0.0, {"reason": "extract_fail"}
     tb_res = row["tb_result"] or ""
-    with tempfile.TemporaryDirectory(dir=os.path.expanduser("~/runs/grpo")) as work:
+    with tempfile.TemporaryDirectory(dir=_work_base()) as work:
         verdict, got = tb_verdict(work, code, row["tb"], tb_res)
         info = {"tb": verdict}
         if verdict != "pass" or not tb_res.strip():
@@ -141,5 +154,7 @@ if __name__ == "__main__":
     row = json.load(open(sys.argv[1]))
     completion = open(sys.argv[2]).read()
     mode = sys.argv[3] if len(sys.argv) > 3 else "strict"
-    os.makedirs(os.path.expanduser("~/runs/grpo"), exist_ok=True)
+    b = _work_base()
+    if b:
+        os.makedirs(b, exist_ok=True)
     print(json.dumps(reward_for_row(row, completion, mode)))
