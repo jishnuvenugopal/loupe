@@ -204,7 +204,7 @@ No anchor exists for the VeriReason family.
 
 ## Analysis code (A16 §3 step 8 — frozen before G0; revised by A17 items 1–4
 and by A18 items 1–5)
-All under `scoring/`, commit `<A18 code commit>` (A17 revision `c336f68`; A16 originals in history at `bc02bb9`):
+All under `scoring/`, commit `c83f842` (A18 revision; A17 revision `c336f68`; A16 originals in history at `bc02bb9`):
 - `scoring/extract.py` sha256 `e36b36e78fde106d02d4dd38a22237ed8a4a0d77dd787fe4c2fed5f0811aa195` — CodeV-R1 `extract_verilog_code`
   @ `277ac46` verbatim (defaults) + the module-name check.
 - `scoring/stats.py` sha256 `f4c74a74df1a0974794b3b4d4da189caef9d51ba94e57cda2c2edaa3bbb0120b` — the statistics below; A18 items 1–4: `ci95_all_tasks`
