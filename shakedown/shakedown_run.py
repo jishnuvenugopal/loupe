@@ -1,0 +1,214 @@
+#!/usr/bin/env python3
+"""Phase 6 shakedown orchestrator (brief §5 Phase 6 steps 1-3).
+
+Runs on the HOST. For each requested arm whose weights are complete:
+  1. 16 seeded shakedown tasks (8 VE gated + 8 RTLLM usable,
+     random.Random(42).sample, list saved to results/shakedown/tasks.json),
+     n = 1, at the arm's §6.2 protocol, inside the vLLM container.
+  2. Extraction (CodeV extractor) + module-name check + score.py verdicts.
+  3. Throughput: 22 prompts x n = 3 concurrent, aggregate tok/s + wall.
+Everything is labelled shakedown; generations live under ~/runs/shakedown and
+are deleted at the end of the phase (never scored for results).
+
+Usage: python3 shakedown/shakedown_run.py --arm 7b-rl [--skip-gen] [--skip-throughput]
+"""
+import argparse
+import glob
+import json
+import os
+import random
+import shutil
+import statistics
+import subprocess
+import sys
+import time
+
+REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+RUNS = os.path.expanduser("~/runs/shakedown")
+PY = os.path.expanduser("~/.venvs/host/bin/python3")
+IMAGE = "nvcr.io/nvidia/vllm:26.05.post1-py3"
+VE_GATE = json.load(open(os.path.join(REPO, "results/pilot_repro/ve_gate_summary.json")))
+VE_KEPT = sorted(r["task"] for r in VE_GATE
+                 if r["tb_icarus"] == "pass" and r["class"] in ("UNBOUNDED-EQ", "BMC-10-EQ-ONLY"))
+RTLLM_USABLE_EXTRA = ["multi_8bit", "multi_pipe_8bit"]
+RTLLM_38 = ["JC_counter", "LFSR", "LIFObuffer", "RAM", "ROM", "accu", "adder_16bit",
+            "adder_32bit", "adder_8bit", "adder_bcd", "alu", "asyn_fifo", "barrel_shifter",
+            "calendar", "comparator_3bit", "comparator_4bit", "counter_12", "edge_detect",
+            "fixed_point_adder", "freq_div", "freq_divbyfrac", "freq_divbyodd", "fsm",
+            "instr_reg", "multi_16bit", "multi_booth_8bit", "parallel2serial", "pe",
+            "pulse_detect", "right_shifter", "sequence_detector", "serial2parallel",
+            "signal_generator", "square_wave", "sub_64bit", "traffic_light",
+            "up_down_counter", "width_8to16"]
+RTLLM_USABLE = sorted(RTLLM_38 + RTLLM_USABLE_EXTRA)
+
+ARMS = {
+    # arm -> (repo_id, revision, family, T, max_tokens, dtype_note)
+    "7b-base": ("Qwen/Qwen2.5-Coder-7B-Instruct",
+                "c03e6d358207e414f1eca0bb1891e29f1db0e242", "codev", 1.0, 16384),
+    "7b-sft": ("zhuyaoyu/CodeV-R1-Distill-Qwen-7B",
+               "8fdb92e328cb2a98ef9a3f9dcd82995a2112bd9c", "codev", 0.6, 16384),
+    "7b-rl": ("zhuyaoyu/CodeV-R1-RL-Qwen-7B",
+              "286cf433f596f1b8525529c1163eb81c19425c22", "codev", 1.0, 16384),
+    "3b-rl": ("Nellyw888/VeriReason-Qwen2.5-3b-RTLCoder-Verilog-GRPO-reasoning-tb",
+              "3b93ce1bd7e5d90dae8761363a9c6862d0ed583a", "verireason", 0.2, 2048),
+    "3b-sft": ("Nellyw888/Qwen2.5-3b-sft-reasoning",
+               "1f0b7fac9c057b32cba9107a854518be92e45c91", "verireason", 0.2, 2048),
+}
+TOP_P = {"ve": 1.0, "rtllm": 0.95}  # VeriReason 0.95 both (§6.2)
+
+
+def snapshot(repo_id, rev):
+    p = os.path.expanduser(f"~/hf/hub/models--{repo_id.replace('/', '--')}/snapshots/{rev}")
+    return p if os.path.isdir(p) else None
+
+
+def shards_complete(repo_id, rev):
+    p = snapshot(repo_id, rev)
+    if not p:
+        return False
+    # complete = no .incomplete blobs remain for this model
+    blobs = os.path.expanduser(f"~/hf/hub/models--{repo_id.replace('/', '--')}/blobs")
+    return not glob.glob(os.path.join(blobs, "*.incomplete")) and bool(glob.glob(os.path.join(p, "*.safetensors")))
+
+
+def shakedown_tasks():
+    ve = sorted(random.Random(42).sample(VE_KEPT, 8))
+    rt = sorted(random.Random(42).sample(RTLLM_USABLE, 8))
+    return ve, rt
+
+
+def docker_gen(arm, model_path, rev, family, prompt_file, out_file, n, max_tokens, temperature, extra_env=""):
+    if family == "verireason":
+        top_p_note = 0.95  # §6.2: VeriReason arms top_p 0.95 on both benchmarks
+    else:
+        top_p_note = TOP_P["ve"] if "_ve" in os.path.basename(prompt_file) else TOP_P["rtllm"]
+    cmd = (f"sg docker -c 'docker run --rm --gpus all "
+           f"-v {os.path.expanduser(\"~/hf\")}:/models-hf "
+           f"-v {REPO}:/work -v {RUNS}:/runs {extra_env} {IMAGE} "
+           f"python3 /work/gen/gen_vllm.py --arm {arm} --model {model_path} --revision {rev} "
+           f"--prompts {prompt_file} --system /work/prompts/system_prompts/{family}.txt "
+           f"--n {n} --max-tokens {max_tokens} --temperature {temperature} --top-p {top_p_note} "
+           f"--out {out_file}'")
+    return subprocess.run(["bash", "-c", cmd], capture_output=True, text=True)
+
+
+def extract_and_score(arm):
+    sys.path.insert(0, os.path.expanduser("~/bench/CodeV-R1/test/utils"))
+    from verilog_extractor import extract_verilog_code
+    gen_file = os.path.join(RUNS, f"{arm}_shakedown.jsonl")
+    rows = [json.loads(l) for l in open(gen_file)]
+    recs = []
+    for r in rows:
+        code = extract_verilog_code(r["completion"])
+        want = "TopModule" if r["bench"] == "ve" else r["task_id"]
+        name_ok = bool(code.strip()) and want in code
+        rec = {"task_id": r["task_id"], "bench": r["bench"], "sample_idx": r["sample_idx"],
+               "n_completion_tokens": r["n_completion_tokens"],
+               "finish_reason": r["finish_reason"],
+               "extract_ok": bool(code.strip()), "module_name_ok": name_ok}
+        sdir = os.path.join(RUNS, f"score_{arm}", f"{r['bench']}_{r['task_id']}_{r['sample_idx']}")
+        sf = os.path.join(sdir, "sample.v")
+        os.makedirs(sdir, exist_ok=True)
+        open(sf, "w").write(code if code.strip() else "// extraction failed\n")
+        p = subprocess.run([PY, os.path.join(REPO, "scorer/score.py"), "--bench", r["bench"],
+                            "--task", r["task_id"], "--sample", sf, "--out", sdir],
+                           capture_output=True, text=True, timeout=1800)
+        try:
+            rec["score"] = json.loads(p.stdout.strip().splitlines()[-1])
+        except Exception:
+            rec["score"] = {"error": p.stderr[-300:]}
+        recs.append(rec)
+    return recs
+
+
+def main():
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--arm", required=True, choices=sorted(ARMS))
+    ap.add_argument("--skip-gen", action="store_true")
+    ap.add_argument("--skip-throughput", action="store_true")
+    args = ap.parse_args()
+    repo_id, rev, family, T, maxtok = ARMS[args.arm]
+
+    if not shards_complete(repo_id, rev):
+        print(f"weights for {args.arm} not complete yet; nothing done")
+        sys.exit(2)
+    model_path = snapshot(repo_id, rev).replace(os.path.expanduser("~/hf"), "/models-hf")
+
+    ve, rt = shakedown_tasks()
+    os.makedirs(os.path.join(REPO, "results/shakedown"), exist_ok=True)
+    tasks_path = os.path.join(REPO, "results/shakedown/tasks.json")
+    if not os.path.isfile(tasks_path):
+        json.dump({"seed": 42, "ve": ve, "rtllm": rt,
+                   "ve_pool": len(VE_KEPT), "rtllm_pool": len(RTLLM_USABLE)},
+                  open(tasks_path, "w"), indent=1)
+    os.makedirs(os.path.join(RUNS, "prompts"), exist_ok=True)
+    for bench, tasks in (("ve", ve), ("rtllm", rt)):
+        rows = [json.loads(l) for l in open(os.path.join(REPO, f"prompts/built/{family}_{bench}.jsonl"))]
+        sel = [r for r in rows if r["task_id"] in tasks]
+        json.dump(sel, open(os.path.join(RUNS, f"prompts/{family}_{bench}_16.jsonl"), "w"))
+        assert len(sel) == len(tasks), (bench, len(sel), len(tasks))
+
+    report = {"arm": args.arm, "model": repo_id, "revision": rev, "T": T,
+              "max_tokens": maxtok, "shakedown_tasks": {"ve": ve, "rtllm": rt}}
+    if not args.skip_gen:
+        t0 = time.time()
+        for bench in ("ve", "rtllm"):
+            pf = f"/runs/prompts/{family}_{bench}_16.jsonl"
+            of = f"/runs/{args.arm}_shakedown_{bench}.jsonl"
+            p = docker_gen(args.arm, model_path, rev, family, pf, of, 1, maxtok, T)
+            print(p.stdout[-2000:], p.stderr[-2000:])
+        # merge per-bench shakedown outputs
+        rows = []
+        for bench in ("ve", "rtllm"):
+            f = os.path.join(RUNS, f"{args.arm}_shakedown_{bench}.jsonl")
+            if os.path.isfile(f):
+                rows += [json.loads(l) for l in open(f)]
+        with open(os.path.join(RUNS, f"{args.arm}_shakedown.jsonl"), "w") as f:
+            for r in rows:
+                f.write(json.dumps(r, ensure_ascii=False) + "\n")
+        report["gen_wall_s"] = round(time.time() - t0, 1)
+
+    recs = extract_and_score(args.arm)
+    toks = sorted(r["n_completion_tokens"] for r in recs)
+    report["completion_tokens"] = {
+        "mean": round(statistics.mean(toks)), "p95": toks[int(0.95 * len(toks)) - 1],
+        "max": max(toks), "cap_hits": sum(r["finish_reason"] == "length" for r in recs)}
+    report["extraction_ok"] = sum(r["extract_ok"] for r in recs)
+    report["module_name_ok"] = sum(r["module_name_ok"] for r in recs)
+    report["verdicts"] = {v: sum(1 for r in recs if (r.get("score") or {}).get("tb") == v)
+                          for v in ("pass", "fail", "compile_error", "timeout")}
+    report["strict"] = {c: sum(1 for r in recs if (r.get("score") or {}).get("class") == c)
+                        for c in ("DIFFERENT", "UNBOUNDED-EQ", "BMC-10-EQ-ONLY", "UNKNOWN")}
+    report["per_sample"] = recs
+
+    if not args.skip_throughput:
+        # 22 prompts x n = 3 from the same built prompt files (first 22 tasks)
+        for bench in ("ve", "rtllm"):
+            src = os.path.join(REPO, f"prompts/built/{family}_{bench}.jsonl")
+            rows = [json.loads(l) for l in open(src)][:22 if bench == "ve" else 22]
+            json.dump(rows, open(os.path.join(RUNS, f"prompts/{family}_{bench}_tp.jsonl"), "w"))
+        tput = {}
+        for bench in ("ve", "rtllm"):
+            pf = f"/runs/prompts/{family}_{bench}_tp.jsonl"
+            of = f"/runs/{args.arm}_tp_{bench}.jsonl"
+            t0 = time.time()
+            p = docker_gen(args.arm, model_path, rev, family, pf, of, 3, maxtok, T)
+            wall = time.time() - t0
+            ntok = 0
+            f = os.path.join(RUNS, f"{args.arm}_tp_{bench}.jsonl")
+            if os.path.isfile(f):
+                ntok = sum(json.loads(l)["n_completion_tokens"] for l in open(f))
+            tput[bench] = {"wall_s": round(wall, 1), "tokens": ntok,
+                           "tok_per_s": round(ntok / wall, 1) if wall else None}
+            print(p.stdout[-1500:], p.stderr[-1500:])
+        report["throughput"] = tput
+
+    with open(os.path.join(REPO, f"results/shakedown/{args.arm}.json"), "w") as f:
+        json.dump(report, f, indent=1)
+    print(json.dumps({k: report[k] for k in ("completion_tokens", "extraction_ok",
+                                             "module_name_ok", "verdicts", "strict", "throughput")
+                      if k in report}, indent=1))
+
+
+if __name__ == "__main__":
+    main()

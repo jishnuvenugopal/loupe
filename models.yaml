@@ -78,7 +78,10 @@ hf_tags: ["license:other"]
 n_safetensors_remote: 2
 n_safetensors_local: 0
 hash_mismatches: []
-card_files_copied: []
+card_files_copied: ["README.md", "LICENSE", "config.json", "generation_config.json", "tokenizer_config.json"]
+chat_template_sha256: "06d9597b76804e7ec3014f7fa84bf176654ac3695d6c604fe70deb062d724ede"
+config_name_or_path: null
+generation_config: {"bos_token_id": 151643, "do_sample": false, "eos_token_id": 151643, "max_new_tokens": 2048, "transformers_version": "4.43.1"}
 
 arm: 3b-sft
 id: "Nellyw888/Qwen2.5-3b-sft-reasoning"
@@ -113,12 +116,12 @@ id: "Qwen/Qwen2.5-Coder-1.5B-Instruct"
 revision: "2e1fd397ee46e1388853d2af2c993145b0f1098a"
 dtype: "bfloat16"
 size_gb: 3.1
-status: "incomplete"
+status: "verified"
 declared_base: null
 licence_evidence: "license:apache-2.0"
 hf_tags: ["license:apache-2.0"]
 n_safetensors_remote: 1
-n_safetensors_local: 0
+n_safetensors_local: 1
 hash_mismatches: []
 card_files_copied: ["README.md", "LICENSE", "config.json", "generation_config.json", "tokenizer_config.json"]
 chat_template_sha256: "2e2d2512cfe46af53dc1eed45368ecaab26ac4461c480e6b69fe571cf0ceaa75"

@@ -125,3 +125,23 @@
   (290/290, kill 438/438, TB false-pass 17.1%), contamination 0, shakedown status incl. the
   docker-blocked generation throughput and the two operator options at G0.
 - SPARK_REPORT.md + spark_report.json written per §8 (8 sections / 8 keys). STOP line at end.
+
+## 2026-10-18 15:50-16:40 — operator unblocked docker/apt; container lane prep
+- Operator did step 1: apt packages present (tmux/jq/htop/git-lfs OK); user added to docker
+  group. Agent shells predate usermod -> `sg docker -c` used (works: Server 29.2.1, systemd
+  cgroup v2, nvidia-smi 580.173.02 CUDA 13.0).
+- models/pull_images.sh started (background, ~/runs/image_pulls.log): vLLM 26.05.post1-py3
+  then pytorch 25.11-py3, digests to be recorded on completion.
+- grpo-base (Qwen2.5-Coder-1.5B-Instruct) VERIFIED (1/1 shards sha256 = API lfs.sha256).
+  3B raw downloading (xet chunks share storage with ~/.cache; du undercounts - hash is the
+  real check). verify_weights.py reruns incrementally.
+- Harness written for Phase 6 (ready to run when images+weights land):
+  gen/gen_vllm.py (§6.2 row format, resumable, per-task seed, explicit SamplingParams,
+  generation_config="vllm", chat template via model tokenizer); shakedown/shakedown_run.py
+  (16 seeded tasks = Random(42).sample of 8 VE-gated + 8 RTLLM-usable, n=1, per-arm protocol
+  incl. VeriReason top_p 0.95 both; extraction + score.py verdicts; 22x3 throughput mode);
+  grpo/reward.py (W/S rewards; dataset TB vs tb_result + non-vacuity + formal capped 10 s
+  via frozen deep/common.py + 10k-vector differential sim fallback) and grpo/train_grpo.py
+  (brief's GRPOConfig verbatim, LoRA r16 a32 all-linear, 1.5B base).
+- reward.py smoke-tested on dataset row 0: golden completion -> 1.0 (tb pass exact, formal
+  UNBOUNDED-EQ); mangled completion (dropped VNB term) -> 0.0 (tb fail). Both controls green.
