@@ -1,0 +1,125 @@
+{
+ "params": {
+  "ngram_words": 5,
+  "num_perm": 128,
+  "jaccard_threshold": 0.8,
+  "lsh_threshold": 0.8,
+  "exact_rule": "whitespace-normalised equality"
+ },
+ "datasets": {
+  "codev_sft": {
+   "path": "/home/unnitools/hf/hub/datasets--zhuyaoyu--CodeV-R1-dataset/snapshots/9ab06ff546c597b66e124839a6f60c5330083424",
+   "files": {
+    "codev_r1_sft.jsonl": {
+     "sha256": "6adce4c38e22633298ba7a80650711415d44fbf3cc9a8dcdd7680a480d3e2682",
+     "pin_ok": true,
+     "size_bytes": 2267179479,
+     "rows": 87321,
+     "spec_overlaps": 0,
+     "ref_overlaps_secondary": 0
+    }
+   },
+   "total_overlaps": 0
+  },
+  "codev_rl_train": {
+   "path": "/home/unnitools/hf/hub/datasets--zhuyaoyu--CodeV-R1-dataset/snapshots/9ab06ff546c597b66e124839a6f60c5330083424",
+   "files": {
+    "codev_r1_rl_train.parquet": {
+     "sha256": "9a531077fb28d20f99023bd5f00476610d3be7c715ea85c2e4a639abbc9db4fd",
+     "pin_ok": true,
+     "size_bytes": 29127426,
+     "rows": 3033,
+     "spec_overlaps": 0,
+     "ref_overlaps_secondary": 0
+    }
+   },
+   "total_overlaps": 0
+  },
+  "codev_rl_val": {
+   "path": "/home/unnitools/hf/hub/datasets--zhuyaoyu--CodeV-R1-dataset/snapshots/9ab06ff546c597b66e124839a6f60c5330083424",
+   "files": {
+    "codev_r1_rl_val.parquet": {
+     "sha256": "7dbf5534968516f7515adcd0234697d6f8caa767b24d46adc3b1e881626bae1b",
+     "pin_ok": true,
+     "size_bytes": 973878,
+     "rows": 100,
+     "spec_overlaps": 0,
+     "ref_overlaps_secondary": 0
+    }
+   },
+   "total_overlaps": 0
+  },
+  "rtlcoder_small_7b": {
+   "path": "/home/unnitools/hf/hub/datasets--Nellyw888--RTL-Coder_small/snapshots/801eea76297a75ad4e1facdfccdc68aff6c89121",
+   "files": {
+    "randomized_filtered_data_7b.jsonl": {
+     "sha256": "(not pinned)",
+     "pin_ok": true,
+     "size_bytes": 1489849,
+     "rows": 1310,
+     "spec_overlaps": 0,
+     "ref_overlaps_secondary": 0
+    }
+   },
+   "total_overlaps": 0
+  },
+  "rtlcoder_small_fixed": {
+   "path": "/home/unnitools/hf/hub/datasets--Nellyw888--RTL-Coder_small/snapshots/801eea76297a75ad4e1facdfccdc68aff6c89121",
+   "files": {
+    "randomized_filtered_data_fixed.jsonl": {
+     "sha256": "(not pinned)",
+     "pin_ok": true,
+     "size_bytes": 1171807,
+     "rows": 1339,
+     "spec_overlaps": 0,
+     "ref_overlaps_secondary": 0
+    }
+   },
+   "total_overlaps": 0
+  },
+  "rtlcoder_reasoning": {
+   "path": "/home/unnitools/hf/hub/datasets--Nellyw888--RTL-Coder_7b_reasoning/snapshots/528eb9b7258581cc0123e3ac2d6b747cf388d8cd",
+   "files": {
+    "train.jsonl": {
+     "sha256": "(not pinned)",
+     "pin_ok": true,
+     "size_bytes": 3676469,
+     "rows": 1300,
+     "spec_overlaps": 0,
+     "ref_overlaps_secondary": 0
+    }
+   },
+   "total_overlaps": 0
+  },
+  "verireason_tb": {
+   "path": "/home/unnitools/hf/hub/datasets--Nellyw888--VeriReason-RTL-Coder_7b_reasoning_tb/snapshots/42823db968114c25da260dece0e4bea8ab20d573",
+   "files": {
+    "train_tb_filtered.jsonl": {
+     "sha256": "(not pinned)",
+     "pin_ok": true,
+     "size_bytes": 11833942,
+     "rows": 1149,
+     "spec_overlaps": 0,
+     "ref_overlaps_secondary": 0
+    }
+   },
+   "total_overlaps": 0
+  },
+  "verireason_tb_simple": {
+   "path": "/home/unnitools/hf/hub/datasets--Nellyw888--VeriReason-RTL-Coder_7b_reasoning_tb_simple/snapshots/61cc6a2a326dc96cb93bceb0e2040b953f0cb0a5",
+   "files": {
+    "processed_entries.jsonl": {
+     "sha256": "(not pinned)",
+     "pin_ok": true,
+     "size_bytes": 7673835,
+     "rows": 743,
+     "spec_overlaps": 0,
+     "ref_overlaps_secondary": 0
+    }
+   },
+   "total_overlaps": 0
+  }
+ },
+ "n_benchmark_specs": 206,
+ "n_benchmark_refs": 206
+}

@@ -1,23 +1,28 @@
 #!/usr/bin/env python3
-"""shakedown/projection.py — overnight projection (A16 §3 steps 5 and 6).
+"""shakedown/projection.py — overnight projection (A16 §3 steps 5 and 6;
+A18 §8 C4: steady-state tok/s + per-arm load time, cut ladder to <= 9 h).
 
-Reads the shakedown results (per-arm mean completion tokens + tok/s) and the
-scoring-speed proxy, and prints:
+  1. Generation (C4 form): hours = sum over arm x bench of
+        load_s + (tasks x n x mean completion tokens) / steady-state tok/s
+     where steady tok/s = throughput-batch tokens / gen_wall_s (model load
+     excluded; the load is paid once per docker run, i.e. per arm x bench) —
+     from results/shakedown/<arm>.json throughput[bench].{steady_tok_per_s,
+     load_s}. Arms missing the steady split fall back to the load-inclusive
+     wall rate and are flagged (re-run shakedown --throughput-only).
+  2. Cut ladder (A16 §3 step 5 order), applied in sequence until the
+     steady-state projection is at most 9 h (A18 §8 C4):
+        (1) VerilogEval seeded subset of 60 (gen/ve_subset60.txt,
+            random.Random(0).sample(sorted(ve_ids), 60), pinned pre-G0)
+        (2) n 3 -> 2 (both benchmarks)
+        (3) drop the 7B base arm
+        (4) drop the 3B base arm
+     Never max tokens, never an SFT arm. The step applied (or "none") is
+     written to results/shakedown/projection.json for PREREG.
+  3. RTLLM n = 5 option: A18 §8 C4 fixes it to NO (still shown for the record).
 
-  1. Generation: expected tokens = sum over arms x benchmarks of
-     tasks x n x mean completion tokens; hours = sum per arm of tokens /
-     that arm's measured tok/s (per benchmark). Compared with the 10 h window
-     (21:00-07:00). If it does not fit, applies the cut order in sequence:
-     (a) VerilogEval seeded subset of 60, (b) n 3 -> 2, (c) drop base arms
-     (7B base first, then 3B base). Never max tokens, never an SFT arm.
-     Also projects the RTLLM n = 5 operator option.
-  2. Scoring: (156+50) x n x arms official-testbench runs, of which
-     (143+38) x n x arms also get the formal check, at the measured
-     amortized samples/s (and a pessimistic all-formal bound), vs the 4.5 h
-     morning window (08:00-12:30).
+Scoring projection unchanged (A17 item 5 counts).
 
-Usage: python3 shakedown/projection.py [--rtllm-n 3|5] [--arms 7b-rl,7b-sft,...]
-Missing shakedown files are skipped with a warning (7B pending as of 18 Oct).
+Usage: python3 shakedown/projection.py [--window 9.0] [--json-out FILE]
 """
 import argparse
 import json
@@ -25,13 +30,11 @@ import os
 
 REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 TASKS = {"ve": 156, "rtllm": 50}          # official benchmark sizes
-GATED = {"ve": 144, "rtllm": 37}          # A17 item 2 strict gate (BMC-only refs out)
-WINDOW_GEN_H = 10.0
+GATED = {"ve": 144, "rtllm": 37}          # A17 item 2 strict gate
 WINDOW_SCORE_H = 4.5
-CUT_VE_SUBSET = 60
-
-# overnight arm order (A16 §3 step 4); 3b-sft dropped by H0-a
+VE_SUBSET = 60
 ORDER = ["7b-rl", "7b-sft", "3b-rl", "3b-base", "7b-base"]
+CUTS = ["none", "ve-subset-60", "n-3-to-2", "drop-7b-base", "drop-3b-base"]
 
 
 def load(arm):
@@ -39,81 +42,112 @@ def load(arm):
     if not os.path.isfile(p):
         return None
     d = json.load(open(p))
-    return {"mean_tok": d["completion_tokens"]["mean"],
-            "tok_s": {b: d["throughput"][b]["tok_per_s"] for b in ("ve", "rtllm")}}
+    out = {"mean_tok": d["completion_tokens"]["mean"], "cells": {}}
+    for b in ("ve", "rtllm"):
+        t = d.get("throughput", {}).get(b, {})
+        out["cells"][b] = {
+            "steady_tok_per_s": t.get("steady_tok_per_s") or t.get("tok_per_s"),
+            "load_s": t.get("load_s"),
+            "steady": t.get("steady_tok_per_s") is not None,
+            "wall_tok_per_s": t.get("tok_per_s")}
+    return out
 
 
-def gen_projection(arms, n, ve_tasks, rtllm_n=None):
-    rows, total_h = [], 0.0
+def gen_projection(arms, n, ve_tasks):
+    rows, total_h, flagged = [], 0.0, []
     for arm in arms:
         d = load(arm)
         if d is None:
-            rows.append((arm, None, None, None))
+            rows.append((arm, None))
             continue
-        h = 0.0
-        for bench, n_b in (("ve", n), ("rtllm", rtllm_n or n)):
+        h_arm = 0.0
+        for bench, n_b in (("ve", n), ("rtllm", n)):
             cnt = TASKS[bench]
             if bench == "ve" and ve_tasks is not None:
                 cnt = ve_tasks
+            c = d["cells"][bench]
+            if not c["steady"]:
+                flagged.append(f"{arm}/{bench}")
             t = cnt * n_b * d["mean_tok"]
-            h += t / d["tok_s"][bench] / 3600.0  # hours
-        rows.append((arm, d["mean_tok"], d["tok_s"], h))
-        total_h += h
-    return rows, total_h
+            h_arm += t / c["steady_tok_per_s"] / 3600.0
+            h_arm += (c["load_s"] or 0.0) / 3600.0
+        rows.append((arm, d["mean_tok"], h_arm))
+        total_h += h_arm
+    return rows, total_h, flagged
 
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--rtllm-n", type=int, default=0, help="option: RTLLM n (e.g. 5)")
-    ap.add_argument("--arms", default=",".join(ORDER))
+    ap.add_argument("--window", type=float, default=9.0, help="steady-state cut-off hours (A18 C4)")
+    ap.add_argument("--rtllm-n", type=int, default=5, help="recorded option only (A18: NO)")
+    ap.add_argument("--json-out", default=os.path.join(REPO, "results/shakedown/projection.json"))
     args = ap.parse_args()
-    arms = args.arms.split(",")
-    n = 3
 
-    def report(tag, ve_tasks, rn):
-        rows, total = gen_projection(arms, n, ve_tasks, rn)
-        print(f"--- generation projection [{tag}] ---")
-        for arm, mt, ts, h in rows:
-            if h is None:
-                print(f"  {arm:9s} PENDING (no shakedown numbers yet)")
-            else:
-                print(f"  {arm:9s} mean_tok={mt:5d} tok/s ve/rtllm={ts['ve']}/{ts['rtllm']} -> {h:.2f} h")
-        print(f"  TOTAL {total:.2f} h of {WINDOW_GEN_H} h window"
-              f" -> {'FITS' if total <= WINDOW_GEN_H else 'DOES NOT FIT'}")
-        return total
+    res = {"mode": "steady-state + per-arm load", "window_h": args.window,
+           "rtllm_n5": "no (A18 §8 C4 fixed choice)",
+           "arms": ORDER, "steps": []}
 
-    report(f"full plan, n={n}", None, None)
-    if args.rtllm_n:
-        report(f"RTLLM n={args.rtllm_n}", None, args.rtllm_n)
+    def report(tag, arms, ve_tasks, n):
+        rows, total, flagged = gen_projection(arms, n, ve_tasks)
+        print(f"--- steady-state projection [{tag}] ---")
+        detail = {}
+        for r in rows:
+            if r[1] is None:
+                print(f"  {r[0]:9s} PENDING (no shakedown numbers)")
+                continue
+            print(f"  {r[0]:9s} mean_tok={r[1]:5d} -> {r[2]:.2f} h")
+            detail[r[0]] = {"mean_tok": r[1], "hours": round(r[2], 3)}
+        print(f"  TOTAL {total:.2f} h of {args.window} h window"
+              f" -> {'FITS' if total <= args.window else 'DOES NOT FIT'}")
+        if flagged:
+            print(f"  WARNING: no steady split for {flagged} (wall rate used)")
+        return total, detail, flagged
 
-    # cut ladder (only meaningful when all arms have numbers)
-    if all(load(a) for a in arms):
-        t = report("cut 1: VE seeded subset of 60", CUT_VE_SUBSET, None)
-        if t > WINDOW_GEN_H:
-            t = report("cut 2: n 3 -> 2", CUT_VE_SUBSET, 2)
-        if t > WINDOW_GEN_H:
-            report("cut 3: drop 7B base then 3B base (re-run with --arms)", CUT_VE_SUBSET, 2)
+    # ladder in order until it fits (A16 §3 step 5 order; A18 C4 target 9 h)
+    ladder = [("none", ORDER, None, 3),
+              ("ve-subset-60", ORDER, VE_SUBSET, 3),
+              ("n-3-to-2", ORDER, VE_SUBSET, 2),
+              ("drop-7b-base", [a for a in ORDER if a != "7b-base"], VE_SUBSET, 2),
+              ("drop-3b-base", [a for a in ORDER if a not in ("7b-base", "3b-base")], VE_SUBSET, 2)]
+    applied = None
+    for tag, arms, ve_tasks, n in ladder:
+        total, detail, flagged = report(tag, arms, ve_tasks, n)
+        res["steps"].append({"step": tag, "total_h": round(total, 3),
+                             "n": n, "ve_tasks": ve_tasks or TASKS["ve"], "arms": arms})
+        if applied is None and total <= args.window:
+            applied = tag
+        if applied is not None:
+            break
+    res["cut_applied"] = applied
+    print(f"\nCUT APPLIED: {applied} (RTLLM n=5: {res['rtllm_n5']}; "
+          f"overlap probe: skipped — score nothing until generation ends)")
 
-    # --- scoring projection (A16 §3 step 6) ---
+    # scoring projection (A16 §3 step 6; A17 item 5 counts) — unchanged rules
     sp = json.load(open(os.path.join(REPO, "results/shakedown/scoring_speed.json")))
-    rate = sp["throughput_samples_per_s_at_workers"]          # amortized, measured
-    workers = sp["workers"]
+    rate = sp["throughput_samples_per_s_at_workers"]
     stage = sp["aggregate_stage_s"]
-    n_arms = len(arms)
+    workers = sp["workers"]
+    n_arms = len(ORDER)
+    ve_tasks_after = VE_SUBSET if applied in ("ve-subset-60", "n-3-to-2",
+                                              "drop-7b-base", "drop-3b-base") else TASKS["ve"]
+    n_after = 2 if applied in ("n-3-to-2", "drop-7b-base", "drop-3b-base") else 3
     for tag, rn in (("n=3", 3), ("RTLLM n=5", 5)):
-        tb_runs = (TASKS["ve"] * 3 + TASKS["rtllm"] * rn) * n_arms
-        formal = (GATED["ve"] * 3 + GATED["rtllm"] * rn) * n_arms
+        tb_runs = (ve_tasks_after * n_after + TASKS["rtllm"] * max(n_after, 1 if rn == 3 else rn)) * n_arms
+        formal = (min(GATED["ve"], ve_tasks_after) * n_after
+                  + GATED["rtllm"] * max(n_after, 1 if rn == 3 else rn)) * n_arms
         h_meas = tb_runs / rate / 3600
-        # pessimistic bound: every formal-eligible sample passes and pays full
-        # formal stage; formal s per pass from the proxy = stage.formal / passes
         passes = sum(v for k, v in sp.get("verdict_tally", {}).items() if k == "pass")
         fpp = stage["formal"] / max(passes, 1)
         h_pess = (formal * fpp / workers + tb_runs * 0.2 / workers) / 3600
-        print(f"--- scoring projection [{tag}] ---")
+        print(f"--- scoring projection [{tag}, after cut '{applied}'] ---")
         print(f"  official TB runs: {tb_runs} ({formal} also formal) across {n_arms} arms")
-        print(f"  measured-rate estimate: {h_meas:.2f} h | pessimistic all-pass bound: {h_pess:.2f} h"
-              f" | window {WINDOW_SCORE_H} h -> "
-              f"{'FITS' if max(h_meas, h_pess) <= WINDOW_SCORE_H else 'CHECK'}")
+        print(f"  measured-rate: {h_meas:.2f} h | pessimistic: {h_pess:.2f} h | window {WINDOW_SCORE_H} h")
+        res["scoring_" + tag.replace("=", "").replace(" ", "_")] = {
+            "tb_runs": tb_runs, "formal": formal, "h_measured": round(h_meas, 3),
+            "h_pessimistic": round(h_pess, 3), "window_h": WINDOW_SCORE_H}
+
+    json.dump(res, open(args.json_out, "w"), indent=1)
+    print(f"wrote {args.json_out}")
 
 
 if __name__ == "__main__":

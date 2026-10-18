@@ -21,6 +21,8 @@ import json
 import os
 import time
 
+T_START = time.time()
+
 
 def task_seed(task_id: str) -> int:
     return int(hashlib.sha256(task_id.encode()).hexdigest()[:8], 16)
@@ -42,6 +44,9 @@ def main():
     ap.add_argument("--gpu-mem", type=float, default=0.85)
     ap.add_argument("--limit", type=int, default=0, help="only first K tasks (shakedown)")
     ap.add_argument("--log-effective-params", default="")
+    ap.add_argument("--timing-out", default="",
+                    help="optional json: load_s, gen_wall_s, n_prompts, n_samples, tokens "
+                         "(measurement only; changes nothing about sampling)")
     args = ap.parse_args()
 
     from transformers import AutoTokenizer
@@ -69,9 +74,11 @@ def main():
         text = tok.apply_chat_template(msgs, add_generation_prompt=True, tokenize=False)
         rendered.append((r, text))
 
+    t_load0 = time.time()
     llm = LLM(model=args.model, dtype="bfloat16", max_model_len=args.max_model_len,
               gpu_memory_utilization=args.gpu_mem, seed=0,
               enable_prefix_caching=True, generation_config="vllm")
+    load_s = time.time() - t_load0
 
     os.makedirs(os.path.dirname(args.out), exist_ok=True)
     # batched generation: all pending tasks in ONE llm.generate call so vLLM
@@ -91,6 +98,14 @@ def main():
     t0 = time.time()
     results = llm.generate(texts, sps)
     t1 = time.time()
+    n_samples = sum(len(r.outputs) for r in results)
+    n_tokens = sum(len(o.token_ids) for r in results for o in r.outputs)
+    if args.timing_out:
+        with open(args.timing_out, "w") as f:
+            json.dump({"load_s": round(load_s, 1), "gen_wall_s": round(t1 - t0, 1),
+                       "container_start_to_load_s": round(t_load0 - T_START, 1),
+                       "n_prompts": len(texts), "n_samples": n_samples,
+                       "tokens": n_tokens, "arm": args.arm}, f, indent=1)
     with open(args.out, "a", encoding="utf-8") as out:
         for (r, _), res in zip(rendered, results):
             seed = task_seed(r["task_id"])

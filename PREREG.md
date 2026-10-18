@@ -147,8 +147,12 @@ field (`score.py` stays frozen: `equiv = "equivalent"` only for `UNBOUNDED-EQ`;
 proved equivalent (`UNBOUNDED-EQ`) · bounded only (`BMC-N-EQ-ONLY`: equivalent
 up to depth d, no unbounded proof) · proved wrong (`DIFFERENT`, has a
 counterexample) · unverified (`UNKNOWN` timeout/engine error, and `equiv
-"error"` port/read failures) · vacuous (flag: the testbench run checked
-nothing; reported with each class).
+"error"` port/read failures) · vacuous (**a flag, not a class slot — A18
+item 4**: a vacuous pass keeps its proof class — a vacuous pass with a
+counterexample counts in `different` AND in the flag; `vacuous` appears as a
+class slot only when the proof itself is fine (UNBOUNDED-EQ), so the class
+counts add up to official passes minus proved-correct passes; the flag count
+`vacuous_passes` is reported beside the classes).
 - **proved correct** = official pass AND non-vacuous AND `UNBOUNDED-EQ`
 - **correct within depth d** = official pass AND non-vacuous AND (`UNBOUNDED-EQ`
   or `BMC-N-EQ-ONLY`)
@@ -161,7 +165,8 @@ nothing; reported with each class).
 The three nest: proved wrong ≤ not correct within depth d ≤ not proved
 correct; companion→primary step = bounded-only share; floor→companion step =
 unverified share (plus any vacuous passes). All three plus class counts
-(`different`, `bounded-only`, `timeout`, `error`, `vacuous`) reported for every
+(`different`, `bounded-only`, `timeout`, `error`, `vacuous`) and the vacuous
+flag count `vacuous_passes` (every vacuous official pass) reported for every
 arm × benchmark, with every counterexample published. **Wording rule**: the
 primary share is never called "false passes" or "wrong"; every headline number
 appears with the proved-wrong floor beside it.
@@ -189,22 +194,52 @@ released runner (`test/benchmark_runner.sh` @ `277ac46`) passes T 1.0 for
 VerilogEval v2 for every model and leaves top_p at the sampler default (0.95).
 RTLLM v2: 36.1 / 57.2 / 68.0, loose check only (their v2.0 with VCS; ours v2.1
 with Icarus — 9 of 50 spec texts differ between the versions, see Prompts).
+**A18 item 1**: G1b tests each anchor against the ALL-task point
+`official_pass_at_1_all_tasks` and its ALL-task task-clustered bootstrap
+interval `ci95_all_tasks` (a bootstrap over all 156 / 50 tasks — never over
+the gated task set, whose interval belongs to the strict metrics). Pass:
+anchor inside `ci95_all_tasks` or within ±8 pp of the all-task point.
+Tested pre-G0 on a case where the two sets differ (`tests/test_a18_stats.py`).
 No anchor exists for the VeriReason family.
 
-## Analysis code (A16 §3 step 8 — frozen before G0; revised by A17 items 1–4)
-All under `scoring/`, commit `c336f68` (A17 revision; A16 originals in history at `bc02bb9`):
+## Analysis code (A16 §3 step 8 — frozen before G0; revised by A17 items 1–4
+and by A18 items 1–5)
+All under `scoring/`, commit `<A18 code commit>` (A17 revision `c336f68`; A16 originals in history at `bc02bb9`):
 - `scoring/extract.py` sha256 `e36b36e78fde106d02d4dd38a22237ed8a4a0d77dd787fe4c2fed5f0811aa195` — CodeV-R1 `extract_verilog_code`
   @ `277ac46` verbatim (defaults) + the module-name check.
-- `scoring/stats.py` sha256 `52835994f79c0219adfd66a9c62ab9378ac1a7e62260d5e8876ee4b40b93ee3d` — the statistics below; tested on the
-  pilot's 290 verdicts and the shakedown verdicts (A17 item 2 re-run on the new
-  gates: pilot GPT-4 14.89% / GPT-3.5 13.79% not-proved-correct; 3b-rl 20%/33.3%;
-  3b-base 50%/50% with bounded-only 1 of 2 passes each — see notes/LOG.md 21:30).
+- `scoring/stats.py` sha256 `f4c74a74df1a0974794b3b4d4da189caef9d51ba94e57cda2c2edaa3bbb0120b` — the statistics below; A18 items 1–4: `ci95_all_tasks`
+  (all-task task-clustered bootstrap of official pass@1 for G1b), vacuous as a
+  flag (`vacuous_passes` beside the classes; class counts add up to official
+  passes minus proved-correct), gate files hard-required (missing/empty =
+  error), dedup keys `str(sample_idx)` on both sides with the collapsed-row
+  count reported and a no-match map an error; H1/H1-floor/H2 paired contrasts
+  on the same task draws. Tested on the pilot's 290 verdicts (GPT-4 op 47 /
+  npc 14.89% / GPT-3.5 op 29 / 13.79% — unchanged by A18), the shakedown
+  verdicts, and `tests/test_a18_stats.py` (sets-differ case included).
 - `scoring/run_scoring.py` sha256 `2ea7f37583db9320627510dade425545216cb90c31ea7f04832cf45020f4268a` — drives `scorer/score.py` over
   `~/runs/gen/<arm>.jsonl` → `scores/<arm>.jsonl`, resumable, scorer commit +
   sha256 recorded in every row.
 - `scoring/showcex.py` sha256 `51d4b2cbabe7127b7de56a2ef68552222f8a42294938dc4ed1b45e56e9ef058f` — brief Appendix A.8 verbatim
   (counterexample tables; homed in `scoring/` so the frozen `scorer/` tree stays
   byte-identical to tag `scorer-v1`).
+- `scoring/dedup.py` sha256 `fb2fe4ce1f186197459e786557c45898d51355d56d2d619499422cfd2d86e423` — A18 item 5: builds the dedup map
+  exactly as PREREG states (exact: sha256 of the extracted code with comments
+  and whitespace removed; normalised: the Yosys RTLIL recipe with
+  `attribute \src` lines removed; union within arm × task), output keys in the
+  documented `arm|bench|task|sample_idx` form that `stats.py` reads. Tested
+  synthetic (60→20 with formatting and wire-declaration variants joining), and
+  end-to-end on the pilot 290 + shakedown 32 rows (`tests/test_a18_dedup_blind40.py`).
+- `scoring/blind40.py` sha256 `c6688f39d4e12ea61bb9e65ffe5bcc96c8f88d311806e468d809e0637b7c06df` — A18 item 5: the blind-40 draw and
+  packet writer (population, strata, `random.Random(0)`, largest-remainder
+  allocation, id assignment, packet contents, key file — all as this PREREG
+  states; the population is listed sorted by (arm, bench, task, sample index)
+  before sampling so the draw cannot depend on file order). Also the unblind
+  step (class shares with Wilson 95%). Tested as dedup.py above.
+- `scoring/contamination.py` sha256 `b362c1576c8a62d454538834fa04dc33b97b4676a0b0e4b103dbc84accf27f49` — the main contamination
+  check (rules and revisions fixed in the Analysis plan; positive control
+  green: exact spec, exact reference and a one-word mutant at J 0.95 all
+  detected). Machinery run 18 Oct 23:40–00:05: 0 overlap rows over all eight
+  dataset files; re-run as part of Phase 10.
 
 ## Analysis plan (A16 §6 steps 3–7 short form; A17 items 1–2)
 - **Extraction gate G2**: `scoring/extract.py` over every arm; pass iff ≥ 95% of
@@ -218,10 +253,12 @@ All under `scoring/`, commit `c336f68` (A17 revision; A16 originals in history a
   and `vacuous` as a flag reported with each class.
 - **Gates (A17 item 2)**: official pass@1 for G1b on all 156 / 50 tasks; every
   strict metric on `scoring/gates/ve_strict.txt` (144) and `rtllm_strict.txt`
-  (37) only. Headline RTLLM tables use the **33** designs other than `accu`,
-  `LIFObuffer`, `RAM`, `square_wave` (reported apart in their own table);
-  sensitivity rows: all 37 (`--rtllm-all37`) and the wide 149 / 40 gate for the
-  within-depth-d companion (`--wide-gate`, BMC-only references back in).
+  (37) only. **A18 item 3**: a missing or empty gate file is a hard error in
+  `stats.py` (never a silent no-gate fallback). Headline RTLLM tables use the
+  **33** designs other than `accu`, `LIFObuffer`, `RAM`, `square_wave`
+  (reported apart in their own table); sensitivity rows: all 37
+  (`--rtllm-all37`) and the wide 149 / 40 gate for the within-depth-d
+  companion (`--wide-gate`, BMC-only references back in).
 - **Three nested shares** (primary / companion / floor, definitions in Primary
   outcome) with task-clustered bootstrap CIs; the steps between them are the
   bounded-only and unverified shares; class counts per arm × benchmark.
@@ -229,9 +266,11 @@ All under `scoring/`, commit `c336f68` (A17 revision; A16 originals in history a
   sha256 of extracted code with comments/whitespace removed; normalised
   duplicates by sha256 of `yosys -p "read_verilog -sv; hierarchy -top; proc;
   opt_clean; rename -enumerate; write_rtlil"` output with `attribute \src`
-  lines removed. Keyed `(arm, bench, task, sample_idx)` (A17 item 4).
-  Unique-design counts + per-unique-design shares as sensitivity rows; the
-  primary metric stays per sample.
+  lines removed. Keyed `(arm, bench, task, sample_idx)` (A17 item 4), map
+  form `arm|bench|task|sample_idx` with `sample_idx` a string on both sides
+  (A18 item 2); the collapsed-row count is reported, and a map matching no
+  row is an error. Unique-design counts + per-unique-design shares as
+  sensitivity rows; the primary metric stays per sample.
 - **Contamination**: five datasets at pinned revisions (CodeV-R1-dataset
   `9ab06ff`, RTL-Coder_small `801eea7`, RTL-Coder_7b_reasoning `528eb9b`,
   VeriReason tb `42823db` 1,149 rows, tb_simple `61cc6a2` 743 rows), MinHash
@@ -248,12 +287,14 @@ All under `scoring/`, commit `c336f68` (A17 revision; A16 originals in history a
 - **Blind sample of 40**: population = unique official passes of class
   `different` or `vacuous`, all arms, excluding the four reported-apart
   designs (bounded-only and unverified passes have no counterexample to judge,
-  so they are not in it); stratified by arm × benchmark, proportional
-  largest-remainder allocation, `random.Random(0)`; packets blind to
-  arm/model/family/index; key outside the repo (sha256 committed); operator
-  labels `real bug` / `reference wrong` / `allowed by spec` / `unclear` /
-  `scorer artefact`; class shares with Wilson 95% intervals, overall and per
-  family. Limitation: blind labels are a single rater (the study author).
+  so they are not in it); the population is listed sorted by (arm, bench,
+  task, sample index) before sampling (A18 item 5); stratified by arm ×
+  benchmark, proportional largest-remainder allocation, `random.Random(0)`;
+  packets blind to arm/model/family/index; key outside the repo (sha256
+  committed); operator labels `real bug` / `reference wrong` / `allowed by
+  spec` / `unclear` / `scorer artefact`; class shares with Wilson 95% intervals,
+  overall and per family. Limitation: blind labels are a single rater (the
+  study author).
 
 ## Contamination
 MinHash (5-gram word shingles, 128 permutations, J ≥ 0.8) + normalised exact
@@ -266,6 +307,13 @@ exclude from GRPO prompts. Reward-oracle check: 30/30 seeded rows reproduce
 GRPO reward oracle.
 
 ## Measured before G0 (shakedown)
+- 3B base: 7 of 9 shakedown compile errors were finished outputs with an
+  unclosed `<think>` and no fenced code, where the extractor's fallback took
+  draft module text from the reasoning; 2 were cap hits. The 3B base's
+  official pass@1 therefore includes format failures; this is reported, not
+  corrected. The primary shares are conditional on official passes and are
+  not affected. (A18 item 7; the 7B shakedown report adds, per arm, the number
+  of official passes that came from outputs with `finish_reason = length`.)
 - Scoring speed (timing proxy on RTLLM-shipped GPT-4 designs, not study-arm
   samples): 0.466 samples/s at WORKERS=18 (≈2.1 s/sample); formal dominates
   (96% of EDA time) — `results/shakedown/scoring_speed.json`.
@@ -308,6 +356,15 @@ GRPO reward oracle.
   `~/runs/7b_watcher.log`).
 - Anchor detail (A17 item 8): testbench 290/290; equiv 280/290 — the
   `synchronizer` rows are recorded differently, not judged differently.
+- A18 items 1–4: G1b's interval is the all-task `ci95_all_tasks` (not the
+  gated bootstrap); dedup keys are `str(sample_idx)` on both sides with the
+  collapsed-row count reported and a no-match map an error; gate files are
+  hard-required; `vacuous` is a flag (each pass keeps its proof class).
+- A18 item 6 (7B download): the flat `du` readings were an artifact — the
+  hub 2.2.0 xet backend stores reconstructed blobs in a shared CAS outside
+  each repo directory, so per-repo `du` undercounts; all three 7B weight
+  sets were in fact complete and hash-verified (8 of 8) at 18 Oct 23:58;
+  no restart was needed (`notes/LOG.md`).
 
 ## Licences
 7B and 1.5B Qwen bases: Apache-2.0. Qwen2.5-Coder-3B family: Qwen Research

@@ -378,3 +378,111 @@
   ≤9 h steady-state" + release-of-generations note attached to the 7B shakedown
   instructions (PREREG "Measured before G0" updated accordingly; the untested
   "determinism holds at the pinned settings" sentence removed).
+
+## 2026-10-19 00:05 — AMENDMENT A18 received (last fixes + conditional G0); applied
+- Operator verified A17 independently (pilot shares GPT-4 7/47, GPT-3.5 4/29; gates
+  match proof classes; PREREG sha256s match). A18 = items 1-7 now + §8 conditional
+  G0 tonight (C1-C5 in order, then G0 steps, Phase 8, Phase 10, ots upgrade at
+  T_stamp+6h). Copy at koder/docs/brief-spark-addendum-A18.md. Phase at receipt:
+  6 of 9, 7B downloads outstanding, G0 NOT reached, zero evaluation samples -> clean.
+- Dead background jobs from the crashed session cleaned: `grpo-trial` container
+  (6 h idle, results already recorded) stopped+removed; old A16 watcher (pid 263525)
+  killed — superseded by shakedown/overnight_chain.sh.
+
+## 2026-10-18 23:52–00:05 — A18 item 6: the 7B download (root cause found; already complete)
+- Two byte readings 5 min apart (~/runs/7b_bytes_readings.log), per repo (bytes,
+  incomplete blobs): 7B-Instruct 2,835,735,867 / 23; Distill 5,097,785 / 7;
+  RL 1,211,605,047 / 4 — FLAT between 23:56 and 00:01.
+- Cause 1 (why nothing was moving): NO download process was alive — the earlier
+  session's fetch jobs died with it (last blob write 22:16). Disk fine (3.4 T free).
+- Cause 2 (why du looked stuck at ~2.7/15.2 GB all evening): hub 2.2.0's xet
+  backend reconstructs blobs into a SHARED content-addressed store at
+  ~/hf/hub/blobs/xx/… OUTSIDE each models--*/ tree; per-repo du therefore
+  undercounts (the model dir holds only symlinks + orphaned .incomplete partials
+  from the dead concurrent fetches A and B).
+- Restarted models/fetch.sh 23:56 to be sure: hf download returned rc=0 instantly
+  for all three 7Bs (snapshot symlinks all resolve). Then models/verify_weights.py:
+  **all 8 weight sets verified (8 of 8) at 18 Oct 23:58** — every 7B shard sha256
+  matches the Hub lfs.sha256 (results/h0/weights_sha256.tsv). No hf_transfer needed;
+  no restart of actual transfers was needed. Orphaned *.incomplete partials deleted.
+- Consequence: A18 §8 C2's evidence already exists; the chain re-verifies at C2.
+
+## 2026-10-19 00:05–00:50 — A18 items 1-4 (stats.py) + tests
+- Item 1: bootstrap_official() added; analyze() now emits ci95_all_tasks (task-
+  clustered bootstrap of official pass@1 over ALL tasks, tm_all) beside the gated
+  ci95. PREREG G1b section states: anchor tested against official_pass_at_1_all_tasks
+  + ci95_all_tasks. Tested on a sets-differ case (RTLLM 33/50; gated 40% pass,
+  non-gated 100%): all-task point 0.60 vs gated 0.40; interval centred on the
+  all-task point (tests/test_a18_stats.py, 5 checks).
+- Item 2: dedup keys str(sample_idx) both sides (map parse + row lookup); analyze
+  reports dedup {map_keys, rows_in, rows_matched, rows_after, rows_collapsed};
+  a map matching no row exits with an error. Tested: 60 identical-sample rows ->
+  20 after (40 collapsed, all matched); int-row/str-key cross case; no-match error.
+- Item 3: load_gates hard-errors on missing OR empty gate file (all four required);
+  tested both cases + real gates (144/37/4/8).
+- Item 4: a16_class keeps each pass in its PROOF class (vacuous DIFFERENT ->
+  'different'); 'vacuous' returned only when the proof is fine (UNBOUNDED-EQ) and
+  vacuity is the sole failure; metrics adds vacuous_passes (flag count) beside
+  classes. Verified: class counts sum to official_pass_count - proved_correct_count;
+  floor includes vacuous DIFFERENT; nesting holds. run_scoring rows inherit the new
+  per-row class (same import).
+- Pilot smoke re-run on the A18 code: GPT-4 op 47 npc 14.89% (7 different),
+  GPT-3.5 op 29 npc 13.79% (4 different) — unchanged from A17; vacuous_passes 0
+  (pilot rows assume nonvacuous); ci95_all_tasks now present and distinct from the
+  gated interval. H1/H1-floor/H2 paired contrasts (h2_pass1_gap added) run on the
+  pilot pair: all 'not resolved'.
+
+## 2026-10-19 00:50–01:20 — A18 item 5: scoring/dedup.py + scoring/blind40.py (+ contamination)
+- dedup.py: exact rule (comments+all-whitespace stripped sha256 of extracted code)
+  + normalised rule (yosys read_verilog -sv; hierarchy -top; proc; opt_clean;
+  rename -enumerate; write_rtlil; 'attribute \src' lines removed), union-find
+  within arm x task, design keys namespaced by task (identical code across tasks
+  never merges), keys 'arm|bench|task|sample_idx' (str). Verified the normalised
+  rule joins a formatting-variant AND an explicit-wire-declaration variant of the
+  same design (identical RTLIL hash) while a genuinely different design stays
+  separate. yosys failures reported, never silent.
+- blind40.py: population = unique official passes of class different/vacuous
+  (dedup-keyed), apart designs excluded, SORTED by (arm, bench, task, sample_idx)
+  BEFORE sampling; strata arm x bench; largest-remainder allocation; single
+  random.Random(0) for stratum draws and ids; packets (spec/reference/extracted
+  code/TB result/cex table) scrubbed against arm/model/family/index tokens;
+  labels_template.csv; --unblind with Wilson 95% (overall + per family).
+- tests/test_a18_dedup_blind40.py: synthetic (60->20; allocation/determinism/scrub/
+  apart-exclusion/ordering) + END-TO-END on the pilot 290 rows (real gen.v code,
+  real specs/references) and the 3B shakedown 32 rows: dedup 322/322 keys; packets
+  blind + complete; unblind round-trip with Wilson intervals. ALL PASS.
+- contamination.py written per PREREG rules (MinHash 5-gram/128-perm LSH@0.8 +
+  exact Jaccard>=0.8 + whitespace-collapsed exact; statements-vs-specs primary,
+  code-vs-references secondary; five datasets, eight files, three pinned sha256s
+  verified byte-exact). Machinery run on the real data: 0 overlap rows over
+  ~97k dataset rows; positive controls green (exact VE spec, exact RTLLM spec,
+  code-vs-reference; one-word mutant correctly still flagged at J 0.95 per the
+  pre-registered threshold). Re-runs inside Phase 10.
+
+## 2026-10-19 01:20–01:45 — A18 §8 machinery (chain, C3/C4/C5 helpers, runners)
+- shakedown_run.py: official_passes_from_length recorded (item 7); throughput runs
+  now write load_s/gen_wall_s/steady_tok_per_s via gen_vllm.py --timing-out
+  (measurement only, sampling unchanged); --skip-score mode for the 3B steady
+  refresh. gen_vllm.py timing hook (load_s, gen_wall_s, tokens).
+- shakedown/c3_check.py: per-arm hard checks (effective SamplingParams == §6.2;
+  >=14/16 module+name; <=4/16 cap hits; no scorer crash; 16 samples), --force-fail
+  for the dry run.
+- shakedown/projection.py rewritten: steady-state tok/s + per-arm(-per-bench) load;
+  ladder none -> ve-subset-60 -> n-3-to-2 -> drop-7b-base -> drop-3b-base until
+  <= 9 h; cut written to results/shakedown/projection.json (+ gen/cut.txt by the
+  chain). VE subset rule pinned pre-G0: gen/ve_subset60.txt =
+  random.Random(0).sample(sorted(ve_ids), 60).
+- gen/run_overnight.py (+ .sh wrapper): docker-driven per arm x bench with pinned
+  flags; cut applied only from gen/cut.txt; throughput checks at 30 min (watcher
+  thread) and at the first 3B arm; resumable; logs per run.
+- scoring/phase10.py: freeze checks -> G2 -> contamination -> per-arm run_scoring
+  in A16 order with G1b checked per CodeV arm (all-task point+interval) ->
+  stats/sensitivities (all37, wide, dedup, drop-tasks, H1/H2 pairs) -> apart table
+  -> blind40 packets+key sha -> summary.md + official_vs_strict.{csv,png}.
+- shakedown/prereg_finalize.py (C5): fills date/7B numbers/overlap-probe skip/cut/
+  verification time/7B template provenance/G0 sentence; fails on leftovers.
+  Dry-run validated against the current PREREG (only measured inputs pending).
+- shakedown/overnight_chain.sh: the whole §8 chain from C2 (C1 verified at entry)
+  under tmux; hard checks logged to notes/LOG.md; every stop path writes
+  SPARK_REPORT.md via shakedown/report_status.py and pushes; CHAIN_FORCE_FAIL=<C>
+  for the dry run; ots upgrade scheduled at T_stamp+6h as a detached job.

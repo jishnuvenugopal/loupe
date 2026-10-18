@@ -11,8 +11,13 @@ pass (tb == "pass"), read from the frozen score.py verdict `class` field:
   unverified        : UNKNOWN (timeout or engine error) or equiv == "error"
                       (port/read failures); reported as `timeout` when an engine
                       said timeout, else `error`
-  vacuous           : tb passed but checked nothing (nonvacuous false) — a flag
-                      reported with each class; it overrides the class count slot
+  vacuous           : tb passed but checked nothing (nonvacuous false) — a FLAG
+                      (A18 item 4): a vacuous pass stays in its proof class
+                      (`different`, `bounded-only`, ...); `vacuous` appears as a
+                      class slot only when the proof itself is fine (UNBOUNDED-EQ)
+                      and vacuity is the sole reason the pass is not proved
+                      correct; the flag count `vacuous_passes` is reported beside
+                      the classes
 
 Definitions (PREREG.md):
   proved correct            = official pass AND non-vacuous AND UNBOUNDED-EQ
@@ -53,14 +58,28 @@ square_wave, listed in rtllm_apart.txt); --rtllm-all37 is the sensitivity.
 Adapters (pre-G0 smoke tests, A17 item 2): --scores (canonical run_scoring
 rows), --pilot (deep RUN2 290), --shakedown (results/shakedown/<arm>.json).
 
+A18 item 1: `official_pass_at_1_all_tasks` (all tasks, the G1b point) now has
+its own interval, `ci95_all_tasks` — a task-clustered bootstrap of official
+pass@1 over ALL tasks (`tm_all`), never over the gated set. G1b tests the
+anchor against that point and that interval.
+
+A18 item 2: the --dedup map keys are parsed with sample_idx normalised to str
+on both sides (run_scoring rows carry an int); the number of rows collapsed is
+reported, and a map that matches no row is an error, not a silent no-op.
+
+A18 item 3: all four gate files must exist and be non-empty; a missing/empty
+gate file is an error, never a silent no-gate fallback.
+
 Sensitivities: --drop-tasks (contamination), --dedup (per-unique-design, keyed
 (arm, bench, task, sample_idx) — A17 item 4), --rtllm-all37, --wide-gate.
 """
 import argparse
 import json
 import os
+import sys
 
 GATES_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "gates")
+GATE_FILES = ("ve_strict.txt", "rtllm_strict.txt", "rtllm_apart.txt", "wide_bmc.txt")
 N_RESAMPLES = 10_000
 CLASSES = ("different", "bounded-only", "timeout", "error", "vacuous")
 
@@ -85,15 +104,16 @@ def a16_class(tb, equiv, nonvacuous, vclass=None):
     """A17 item 1 class of an official pass (name kept: run_scoring imports it).
 
     vclass is the frozen score.py verdict["class"]: UNBOUNDED-EQ, BMC-N-EQ-ONLY,
-    DIFFERENT, UNKNOWN. vacuous overrides (flag reported with each class).
+    DIFFERENT, UNKNOWN. A18 item 4: each pass stays in its PROOF class — a
+    vacuous pass with a counterexample is `different` (and is counted in the
+    flag count `vacuous_passes` separately). `vacuous` is returned only when
+    the proof class itself is fine (UNBOUNDED-EQ / equivalent) and vacuity is
+    the sole reason the pass is not proved correct. With this ordering the
+    class counts add up to official_pass_count - proved_correct_count exactly.
     Returns None for non-passes and for proved-correct passes.
     """
     if tb != "pass":
         return None
-    if tb == "pass" and nonvacuous and vclass == "UNBOUNDED-EQ":
-        return None  # proved correct
-    if not nonvacuous:
-        return "vacuous"
     if vclass == "DIFFERENT" or equiv == "different":
         return "different"
     if vclass and vclass.startswith("BMC-"):
@@ -102,8 +122,10 @@ def a16_class(tb, equiv, nonvacuous, vclass=None):
         return "timeout" if equiv == "timeout" else "error"
     if equiv == "timeout":
         return "timeout"
-    if equiv == "equivalent":  # nonvacuous equivalent without vclass: proved
-        return None
+    if not nonvacuous:
+        return "vacuous"  # proof class fine; vacuity is the only failure
+    if vclass == "UNBOUNDED-EQ" or equiv == "equivalent":
+        return None  # proved correct
     return "error"
 
 
@@ -169,13 +191,20 @@ def load_rows(paths, source):
 
 
 def load_gates(wide=False, rtllm_all37=False):
+    """A18 item 3: every gate file must exist and be non-empty — a missing or
+    empty gate file is a hard error (it used to silently keep every task)."""
     def rd(f):
         p = os.path.join(GATES_DIR, f)
-        return set(l.strip() for l in open(p)) if os.path.isfile(p) else None
+        if not os.path.isfile(p):
+            sys.exit(f"error: gate file missing: {p} (A18 item 3 — no silent no-gate fallback)")
+        s = set(l.strip() for l in open(p) if l.strip())
+        if not s:
+            sys.exit(f"error: gate file empty: {p} (A18 item 3)")
+        return s
     ve, rt = rd("ve_strict.txt"), rd("rtllm_strict.txt")
-    apart = rd("rtllm_apart.txt") or set()
+    apart = rd("rtllm_apart.txt")
     if wide:  # 149 / 40: the BMC-only references go back in (companion only)
-        wb = rd("wide_bmc.txt") or set()
+        wb = rd("wide_bmc.txt")
         ve = (ve | {t for t in wb if t.startswith("Prob")})
         rt = rt | {t for t in wb if not t.startswith("Prob")}
     if not rtllm_all37:
@@ -212,6 +241,7 @@ def metrics(task_map, keys):
         c = a16_class(r["tb"], r["equiv"], r["nonvacuous"], r["vclass"])
         if c:
             cls[c] += 1
+    vacuous_passes = sum(1 for r in op if not r["nonvacuous"])
     return {
         "tasks": n_tasks, "samples": samples,
         "official_pass_count": len(op),
@@ -224,6 +254,9 @@ def metrics(task_map, keys):
         "not_correct_within_d_share": (len(op) - len(cw)) / len(op) if op else None,
         "proved_wrong_share": len(pw) / len(op) if op else None,
         "classes": cls,
+        # A18 item 4: vacuous is a flag — every vacuous official pass is counted
+        # here, beside the classes (a vacuous pass keeps its proof class above)
+        "vacuous_passes": vacuous_passes,
     }
 
 
@@ -274,23 +307,52 @@ def bootstrap(task_map, keys, rng):
     return out
 
 
+def bootstrap_official(task_map, keys, rng):
+    """A18 item 1: task-clustered bootstrap of OFFICIAL pass@1 only, over the
+    given task set (all tasks for G1b — never the gated set)."""
+    keys = sorted(set(keys))
+    vals = []
+    for _ in range(N_RESAMPLES):
+        draw = [keys[rng.integers(len(keys))] for _ in range(len(keys))]
+        n = 0
+        s = 0.0
+        for k in draw:
+            if k in task_map:
+                rows = task_map[k]
+                s += sum(r["tb"] == "pass" for r in rows) / len(rows)
+                n += 1
+        if n:
+            vals.append(s / n)
+    if not vals:
+        return [None, None]
+    vals.sort()
+    return [vals[int(0.025 * len(vals))], vals[min(len(vals) - 1, int(0.975 * len(vals)))]]
+
+
 def _rng():
     import numpy.random
     return numpy.random.default_rng(0)
 
 
 def paired_contrast(map_a, map_b, keys, metric, rng):
-    """H1 (primary share) / H1-floor (proved-wrong share) on the SAME draws."""
+    """H1 (primary share) / H1-floor (proved-wrong share) / H2 (gap in official
+    pass@1 minus the same gap in strict pass@1) on the SAME task draws."""
     keys = sorted(set(keys))
     out = {}
-    for name in (metric, metric + "_floor"):
+    for name in (metric, metric + "_floor", "h2_pass1_gap"):
         v = []
         for _ in range(N_RESAMPLES):
             draw = [keys[rng.integers(len(keys))] for _ in range(len(keys))]
             ma = _boot_draw(map_a, keys, draw)
             mb = _boot_draw(map_b, keys, draw)
             ka = "proved_wrong_share" if name.endswith("_floor") else metric
-            if ma.get(ka) is not None and mb.get(ka) is not None:
+            if name == "h2_pass1_gap":
+                ka = None
+                if all(ma.get(x) is not None and mb.get(x) is not None
+                       for x in ("official_pass_at_1", "strict_pass_at_1")):
+                    v.append((ma["official_pass_at_1"] - mb["official_pass_at_1"])
+                             - (ma["strict_pass_at_1"] - mb["strict_pass_at_1"]))
+            elif ma.get(ka) is not None and mb.get(ka) is not None:
                 v.append(ma[ka] - mb[ka])
         v.sort()
         if not v:
@@ -304,32 +366,46 @@ def paired_contrast(map_a, map_b, keys, metric, rng):
 
 def analyze(rows, drop_tasks=(), dedup=None, wide=False, rtllm_all37=False, pairs=()):
     gates = load_gates(wide=wide, rtllm_all37=rtllm_all37)
-    if dedup:  # A17 item 4: key (arm, bench, task, sample_idx)
+    dedup_meta = None
+    if dedup:  # A17 item 4 key (arm, bench, task, sample_idx); A18 item 2:
+        # sample_idx normalised to str on both sides; collapsed rows reported;
+        # a map matching no row is an error
         keep = {}
+        matched = 0
+        n_in = len(rows)
         for r in rows:
-            k = (r["arm"], r["bench"], r["task"], r["sample_idx"])
+            k = (r["arm"], r["bench"], r["task"], str(r["sample_idx"]))
             h = dedup.get(k)
             if h is None:
                 keep[("id", id(r))] = r
             else:
+                matched += 1
                 keep.setdefault((r["arm"], r["bench"], h), r)
+        if matched == 0:
+            sys.exit("error: --dedup map given but it matched no row (A18 item 2 "
+                     "— check the arm|bench|task|sample_idx keys)")
         rows = list(keep.values())
+        dedup_meta = {"map_keys": len(dedup), "rows_in": n_in, "rows_matched": matched,
+                      "rows_after": len(rows), "rows_collapsed": n_in - len(rows)}
     if drop_tasks:
         rows = [r for r in rows if r["task"] not in drop_tasks]
 
     def gated(r):
-        g = gates[r["bench"]]
-        return g is None or r["task"] in g
+        return r["task"] in gates[r["bench"]]  # load_gates guarantees a set (A18 item 3)
 
     arms = sorted({r["arm"] for r in rows})
     out = {"arms": {}, "pairs": {}, "n_resamples": N_RESAMPLES,
            "gates": {"ve": len(gates["ve"]), "rtllm": len(gates["rtllm"]),
                      "wide": wide, "rtllm_all37": rtllm_all37}}
+    if dedup_meta is not None:
+        out["dedup"] = dedup_meta
     for arm in arms:
         out["arms"][arm] = {}
         for bench in sorted({r["bench"] for r in rows if r["arm"] == arm}):
             sub = [r for r in rows if r["arm"] == arm and r["bench"] == bench]
-            # official pass@1 on ALL tasks (G1b); strict metrics on the gate only
+            # official pass@1 on ALL tasks (G1b); strict metrics on the gate only.
+            # A18 item 1: G1b's interval comes from an all-task bootstrap
+            # (ci95_all_tasks), never from the gated set.
             tm_all = by_task(sub)
             tm = by_task([r for r in sub if gated(r)])
             keys = list(tm)
@@ -337,7 +413,11 @@ def analyze(rows, drop_tasks=(), dedup=None, wide=False, rtllm_all37=False, pair
             m["official_pass_at_1_all_tasks"] = (
                 sum(sum(r["tb"] == "pass" for r in v) / len(v) for v in tm_all.values())
                 / len(tm_all)) if tm_all else None
-            out["arms"][arm][bench] = {"point": m, "ci95": bootstrap(tm, keys, _rng())}
+            out["arms"][arm][bench] = {
+                "point": m,
+                "ci95": bootstrap(tm, keys, _rng()),
+                "ci95_all_tasks": bootstrap_official(tm_all, list(tm_all), _rng()),
+            }
     for name, ra, rb in pairs:
         ma_all = by_task([r for r in rows if r["arm"] == ra and gated(r)])
         mb_all = by_task([r for r in rows if r["arm"] == rb and gated(r)])
@@ -382,7 +462,7 @@ def main():
         dedup = {}
         for k, v in raw.items():
             a, b, t, s = json.loads(k) if k.startswith("[") else k.split("|", 3)
-            dedup[(a, b, t, s)] = v
+            dedup[(a, b, t, str(s))] = v  # A18 item 2: str() on both sides
     pairs = []
     for p in args.pair:
         n, a, b = p.split(":")

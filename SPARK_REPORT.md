@@ -1,6 +1,6 @@
 # SPARK REPORT — strict re-scoring, DGX Spark lane
 
-Updated 18 Oct 2026, ~16:10 UTC. Machine `spark-cff9`. Repo
+Updated 19 Oct 2026, ~01:50 +08 (A18 session). Machine `spark-cff9`. Repo
 `jishnuvenugopal/rte-strict-eval` (PRIVATE), branch `spark`, tag `scorer-v1` pushed.
 
 ## 1. Status
@@ -9,15 +9,19 @@ Updated 18 Oct 2026, ~16:10 UTC. Machine `spark-cff9`. Repo
   Phase 6 step 4 (GRPO trial, PASSED), step 3 first half (3B-RL lane, DONE),
   step 5 (scoring-speed proxy), Phase 7 PREREG draft (updated for H0-a).
   **Phase 1 exit check PASSED** after the operator's docker fix.
-- In progress (background): the three 7B downloads (last in queue, ~7 h at the
-  current uplink; 7B-RL at 1/4 shards); hash verification is scripted.
+- In progress (background, tmux): **A18 §8 overnight chain**
+  (`shakedown/overnight_chain.sh`): C2 weights already verified (8/8 at 18 Oct
+  23:58 — §12), then C3 7B shakedown, C4 projection+cut, C5 PREREG final, G0
+  steps (tag + `ots stamp`), Phase 8 generation, Phase 10 scoring/analysis,
+  `ots upgrade` at T_stamp+6h. Every stop path updates this report and pushes.
 - Pending next interactive session: 7B shakedown steps 1–2 when the 7Bs land
   (harness proven on the 3B-RL lane), 3B-SFT-loaded-as-bf16 throughput check
   (weights already verified), PREREG "Measured before G0" refresh.
 - Last gates: G1-Spark passed; **H0 complete**; GRPO trial lane green;
   **G0 not requested yet**.
 - `STOP — waiting for operator review of PREREG.md and the message "G0 approved"`
-  (7B shakedown numbers land tomorrow morning, before any approval need).
+  superseded by **A18 §8** (the operator's G0 approval, conditional on C1–C5,
+  executed autonomously tonight by the chain).
 
 ## 2. Machine
 
@@ -164,3 +168,39 @@ Messages waited for (exactly): `G0 approved`; `RTLLM n = 5` or `cut <step>`
 `G3 pass, start GRPO`. (`Spark runs 3B` retired — standing per A16.)
 
 STOP — waiting for operator review of PREREG.md and the message "G0 approved"
+
+## 12. Amendment A18 (18 Oct 2026, ~23:50 +08) — last fixes + conditional G0
+
+- **Operator verified A17 independently** (pilot shares, gate proof classes,
+  PREREG sha256s) and issued A18: items 1–7 + §8, a conditional G0 that takes
+  effect only when C1–C5 pass in order. Copy: `koder/docs/brief-spark-addendum-A18.md`.
+- **Item 6 root cause (7B download): the downloads were already complete.**
+  Two byte readings 5 min apart were flat (`~/runs/7b_bytes_readings.log`),
+  because (a) no fetch process was alive (died with the earlier session; last
+  blob write 22:16), and (b) hub 2.2.0's xet backend reconstructs blobs into a
+  shared CAS (`~/hf/hub/blobs/xx/`) outside each repo dir, so per-repo `du`
+  undercounts — the "2.7/15.2 GB" readings were an artifact. `models/
+  verify_weights.py`: **8/8 weight sets hash-verified at 18 Oct 23:58**; no
+  restart or `hf_transfer` needed; orphaned `.incomplete` partials deleted.
+- **Items 1–4** (`scoring/stats.py` + `tests/test_a18_stats.py`, all green):
+  `ci95_all_tasks` (all-task bootstrap for G1b), dedup `str(sample_idx)` keys
+  + collapsed-row report + no-match error, gate files hard-required, vacuous
+  as a flag (class counts now add up). Pilot smoke unchanged (GPT-4 14.89%,
+  GPT-3.5 13.79%).
+- **Item 5**: `scoring/dedup.py` + `scoring/blind40.py` written, tested on
+  synthetic + pilot-290 + shakedown-32 rows (`tests/test_a18_dedup_blind40.py`),
+  committed, sha256 in PREREG "Analysis code" (with `scoring/contamination.py`,
+  whose machinery run found 0 overlaps with positive controls green).
+- **Item 7**: the 3B-base note is in PREREG "Measured before G0" verbatim;
+  `shakedown_run.py` now records `official_passes_from_length` per arm (the 7B
+  shakedown reports will carry it).
+- **§8 machinery**: `shakedown/overnight_chain.sh` (C1 entry check → C2 → C3
+  [`shakedown/c3_check.py`] → C4 [`shakedown/projection.py` steady-state +
+  ladder ≤ 9 h] → C5 [`shakedown/prereg_finalize.py`] → G0 steps → Phase 8
+  [`gen/run_overnight.py`, docker-driven, cuts only from `gen/cut.txt`,
+  throughput checks at 30 min + first 3B arm] → Phase 10
+  [`scoring/phase10.py`] → `ots upgrade` at T_stamp+6h). Every condition is a
+  hard check logged to `notes/LOG.md`; every stop path writes this report and
+  pushes. Dry-run with a forced failure verified before the real launch.
+- Dead background jobs from the crashed session were removed (idle
+  `grpo-trial` container, old A16 watcher).
