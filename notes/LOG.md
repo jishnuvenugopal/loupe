@@ -191,3 +191,13 @@
   zero_advantage_fraction 0.812, peak_gpu_alloc matches. grpo_trial_S.json now holds the
   1.15.0 run; requirements.lock refreshed from the container (trl==1.15.0, peft==0.21.2).
   Earlier LOG wording implied the first run was on 1.15.0 — it was not; both runs green.
+
+## 2026-10-18 19:05-19:20 — prep while transfers run
+- requirements.lock: host venv + vllm-container pip freeze (trl 1.15.0/peft 0.21.2);
+  pytorch-container freeze pending image arrival.
+- gen_vllm.py resume verified in-container (already_done=2 todo=0, no dupes).
+- shakedown extract+score path dry-run on machinery smoke: found + fixed a real bug
+  (score.py rmtree's --out, so sample inputs now live in samples_<arm>/ outside it);
+  end-to-end verdicts behave correctly (lowercase top_module -> name_ok False ->
+  compile_error: the G2 name gate working as designed on a truncated smoke completion).
+- gen/make_manifest.py (Phase 8 step 5 manifests) + gen/README.md (rsync prep, do-not-run).

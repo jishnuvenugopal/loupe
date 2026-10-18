@@ -108,8 +108,9 @@ def extract_and_score(arm):
                "finish_reason": r["finish_reason"],
                "extract_ok": bool(code.strip()), "module_name_ok": name_ok}
         sdir = os.path.join(RUNS, f"score_{arm}", f"{r['bench']}_{r['task_id']}_{r['sample_idx']}")
-        sf = os.path.join(sdir, "sample.v")
-        os.makedirs(sdir, exist_ok=True)
+        sam_dir = os.path.join(RUNS, f"samples_{arm}")
+        sf = os.path.join(sam_dir, f"{r['bench']}_{r['task_id']}_{r['sample_idx']}.v")
+        os.makedirs(sam_dir, exist_ok=True)  # NB: score.py rmtree's --out; keep inputs outside it
         open(sf, "w").write(code if code.strip() else "// extraction failed\n")
         p = subprocess.run([PY, os.path.join(REPO, "scorer/score.py"), "--bench", r["bench"],
                             "--task", r["task_id"], "--sample", sf, "--out", sdir],
