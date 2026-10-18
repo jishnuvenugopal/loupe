@@ -81,6 +81,8 @@ def main():
     ap.add_argument("--window", type=float, default=9.0, help="steady-state cut-off hours (A18 C4)")
     ap.add_argument("--rtllm-n", type=int, default=5, help="recorded option only (A18: NO)")
     ap.add_argument("--json-out", default=os.path.join(REPO, "results/shakedown/projection.json"))
+    ap.add_argument("--allow-pending", action="store_true",
+                    help="test only: allow a cut decision with missing arms")
     args = ap.parse_args()
 
     res = {"mode": "steady-state + per-arm load", "window_h": args.window,
@@ -109,6 +111,12 @@ def main():
               ("n-3-to-2", ORDER, VE_SUBSET, 2),
               ("drop-7b-base", [a for a in ORDER if a != "7b-base"], VE_SUBSET, 2),
               ("drop-3b-base", [a for a in ORDER if a not in ("7b-base", "3b-base")], VE_SUBSET, 2)]
+    # hard guard: no cut decision while any arm is unmeasured (A18 C4 needs
+    # every arm's steady-state numbers; PENDING here means C3 did not finish)
+    if any(load(a) is None for a in ORDER) and not args.allow_pending:
+        missing = [a for a in ORDER if load(a) is None]
+        print(f"ERROR: no cut decision possible; shakedown numbers missing for {missing}")
+        return 1
     applied = None
     for tag, arms, ve_tasks, n in ladder:
         total, detail, flagged = report(tag, arms, ve_tasks, n)

@@ -499,3 +499,4 @@
 - 2026-10-19 00:53 — [chain] pushed: A18 C2: 8/8 weights verified at 2026-10-19 00:52
 - 2026-10-19 00:53 — [chain] C3: shakedown 7b-rl (Phase 6 step 1)
 - 2026-10-19 00:55 — [chain-fix] run_overnight.py: container path mapping made explicit (REPO->/work, ~/runs/gen->/runs); the cut-subset prompt file lives under ~/runs/gen and the old /work-relative join produced the wrong in-container path. Unit-checked both mappings. run_overnight.py is machinery, not in the PREREG 'Analysis code' pin list.
+- 2026-10-19 01:08 — [chain-fix] projection.py: hard guard added — no cut decision while any arm lacks shakedown numbers (C4 needs every arm); --allow-pending for tests only. ots CLI smoke-tested (stamp+verify OK on a scratch file).
