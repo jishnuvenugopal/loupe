@@ -201,3 +201,19 @@
   end-to-end verdicts behave correctly (lowercase top_module -> name_ok False ->
   compile_error: the G2 name gate working as designed on a truncated smoke completion).
 - gen/make_manifest.py (Phase 8 step 5 manifests) + gen/README.md (rsync prep, do-not-run).
+
+## 2026-10-18 19:05-19:45 — Phase 6 step 3 (3B lane, first half): 3B-RL shakedown DONE
+- Weights 3b-rl verified (4/8 total). shakedown_run.py --arm 3b-rl (VeriReason protocol
+  T 0.2, top_p 0.95, max 2048, n 1): 16 seeded tasks (Random(42); 8 VE gated + 8 RTLLM usable).
+- Results (results/shakedown/3b-rl.json): completion tokens mean 812 / p95 1930 / max 2048,
+  cap hits 1/16; extraction 15/16, module-name 15/16 (G2 note: 93.75% on this lane);
+  official TB 8 pass / 3 fail / 5 compile_error; strict on passes: 5 UNBOUNDED-EQ,
+  2 DIFFERENT, 1 UNKNOWN -> the false-pass phenomenon is present on this arm (shakedown
+  evidence only, never a result).
+- Throughput (batched driver, 22 prompts x n=3 = 66 concurrent, wall includes model load):
+  VE 182.1 tok/s (154.3 s, 28,087 tok); RTLLM 354.1 tok/s (161.7 s, 57,264 tok).
+- Fixed en route: gen_vllm.py now batches ALL pending tasks in one llm.generate call with
+  per-task SamplingParams seeds (the old sequential loop measured latency, not throughput;
+  first VE number 66.8 tok/s was sequential-mode -> superseded); shakedown subset writers
+  emitted JSON arrays where the driver reads JSONL -> now JSONL; sample inputs moved outside
+  score.py --out (it rmtree's the dir). All fixes verified by re-run.

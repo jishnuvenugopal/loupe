@@ -1,0 +1,25 @@
+{
+ "seed": 42,
+ "ve": [
+  "Prob007_wire",
+  "Prob027_fadd",
+  "Prob029_m2014_q4g",
+  "Prob036_ringer",
+  "Prob058_alwaysblock2",
+  "Prob063_review2015_shiftcount",
+  "Prob071_always_casez",
+  "Prob144_conwaylife"
+ ],
+ "rtllm": [
+  "LFSR",
+  "accu",
+  "adder_16bit",
+  "adder_32bit",
+  "adder_8bit",
+  "comparator_3bit",
+  "comparator_4bit",
+  "edge_detect"
+ ],
+ "ve_pool": 149,
+ "rtllm_pool": 40
+}

@@ -74,20 +74,27 @@ def main():
               enable_prefix_caching=True, generation_config="vllm")
 
     os.makedirs(os.path.dirname(args.out), exist_ok=True)
+    # batched generation: all pending tasks in ONE llm.generate call so vLLM
+    # schedules them concurrently (throughput mode per brief Phase 6 step 1);
+    # per-task seeds via one SamplingParams per prompt.
+    texts = [t for _, t in rendered]
+    sps = [SamplingParams(
+              temperature=args.temperature, top_p=args.top_p, top_k=-1, min_p=0.0,
+              repetition_penalty=1.0, max_tokens=args.max_tokens, n=args.n,
+              seed=task_seed(r["task_id"])) for r, _ in rendered]
+    if args.log_effective_params and not os.path.isfile(args.log_effective_params):
+        with open(args.log_effective_params, "w") as f:
+            json.dump({"SamplingParams": str(sps[0]), "task_id": rendered[0][0]["task_id"],
+                       "seed": task_seed(rendered[0][0]["task_id"]), "arm": args.arm,
+                       "note": "one SamplingParams per task; seed = int(sha256(task_id)[:8],16)"},
+                     f, indent=1)
+    t0 = time.time()
+    results = llm.generate(texts, sps)
+    t1 = time.time()
     with open(args.out, "a", encoding="utf-8") as out:
-        for r, text in rendered:
+        for (r, _), res in zip(rendered, results):
             seed = task_seed(r["task_id"])
-            sp = SamplingParams(
-                temperature=args.temperature, top_p=args.top_p, top_k=-1, min_p=0.0,
-                repetition_penalty=1.0, max_tokens=args.max_tokens, n=args.n, seed=seed)
-            if args.log_effective_params and not os.path.isfile(args.log_effective_params):
-                with open(args.log_effective_params, "w") as f:
-                    json.dump({"SamplingParams": str(sp), "task_id": r["task_id"],
-                               "seed": seed, "arm": args.arm}, f, indent=1)
-            t0 = time.time()
-            outs = llm.generate([text], sp)
-            t1 = time.time()
-            for i, o in enumerate(outs[0].outputs):
+            for i, o in enumerate(res.outputs):
                 out.write(json.dumps({
                     "arm": args.arm, "model": args.model, "revision": args.revision,
                     "bench": r["bench"], "task_id": r["task_id"], "sample_idx": i,
@@ -97,7 +104,8 @@ def main():
                     "started_at": t0, "finished_at": t1,
                 }, ensure_ascii=False) + "\n")
                 out.flush()
-            print(f"done {r['task_id']} ({t1 - t0:.1f}s)", flush=True)
+            print(f"done {r['task_id']} ({len(res.outputs)} samples)", flush=True)
+    print(f"batch wall: {t1 - t0:.1f}s for {len(texts)} prompts x n={args.n}", flush=True)
 
 
 if __name__ == "__main__":

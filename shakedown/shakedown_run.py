@@ -148,7 +148,9 @@ def main():
     for bench, tasks in (("ve", ve), ("rtllm", rt)):
         rows = [json.loads(l) for l in open(os.path.join(REPO, f"prompts/built/{family}_{bench}.jsonl"))]
         sel = [r for r in rows if r["task_id"] in tasks]
-        json.dump(sel, open(os.path.join(RUNS, f"prompts/{family}_{bench}_16.jsonl"), "w"))
+        with open(os.path.join(RUNS, f"prompts/{family}_{bench}_16.jsonl"), "w") as f:
+            for r in sel:
+                f.write(json.dumps(r, ensure_ascii=False) + "\n")
         assert len(sel) == len(tasks), (bench, len(sel), len(tasks))
 
     report = {"arm": args.arm, "model": repo_id, "revision": rev, "T": T,
@@ -188,8 +190,10 @@ def main():
         # 22 prompts x n = 3 from the same built prompt files (first 22 tasks)
         for bench in ("ve", "rtllm"):
             src = os.path.join(REPO, f"prompts/built/{family}_{bench}.jsonl")
-            rows = [json.loads(l) for l in open(src)][:22 if bench == "ve" else 22]
-            json.dump(rows, open(os.path.join(RUNS, f"prompts/{family}_{bench}_tp.jsonl"), "w"))
+            rows = [json.loads(l) for l in open(src)][:22]
+            with open(os.path.join(RUNS, f"prompts/{family}_{bench}_tp.jsonl"), "w") as f:
+                for r in rows:
+                    f.write(json.dumps(r, ensure_ascii=False) + "\n")
         tput = {}
         for bench in ("ve", "rtllm"):
             pf = f"/runs/prompts/{family}_{bench}_tp.jsonl"
