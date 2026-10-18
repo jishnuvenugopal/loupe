@@ -64,19 +64,22 @@ hf_tags: ["license:other"]
 n_safetensors_remote: 2
 n_safetensors_local: 0
 hash_mismatches: []
-card_files_copied: []
+card_files_copied: ["README.md", "LICENSE", "config.json", "generation_config.json", "tokenizer_config.json"]
+chat_template_sha256: "2e2d2512cfe46af53dc1eed45368ecaab26ac4461c480e6b69fe571cf0ceaa75"
+config_name_or_path: null
+generation_config: {"bos_token_id": 151643, "pad_token_id": 151643, "do_sample": true, "eos_token_id": [151645, 151643], "repetition_penalty": 1.05, "temperature": 0.7, "top_p": 0.8, "top_k": 20, "transformers_version": "4.43.1"}
 
 arm: 3b-base-raw
 id: "Qwen/Qwen2.5-Coder-3B"
 revision: "09d9bc5d376b0cfa0100a0694ea7de7232525803"
 dtype: "bfloat16"
 size_gb: 6.2
-status: "incomplete"
+status: "verified"
 declared_base: "declared base of the GRPO model card (base_model: Qwen/Qwen2.5-Coder-3B)"
 licence_evidence: "license:other (Qwen Research License), non-commercial"
 hf_tags: ["license:other"]
 n_safetensors_remote: 2
-n_safetensors_local: 0
+n_safetensors_local: 2
 hash_mismatches: []
 card_files_copied: ["README.md", "LICENSE", "config.json", "generation_config.json", "tokenizer_config.json"]
 chat_template_sha256: "06d9597b76804e7ec3014f7fa84bf176654ac3695d6c604fe70deb062d724ede"

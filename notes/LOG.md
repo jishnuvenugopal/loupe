@@ -145,3 +145,14 @@
   (brief's GRPOConfig verbatim, LoRA r16 a32 all-linear, 1.5B base).
 - reward.py smoke-tested on dataset row 0: golden completion -> 1.0 (tb pass exact, formal
   UNBOUNDED-EQ); mangled completion (dropped VNB term) -> 0.0 (tb fail). Both controls green.
+
+## 2026-10-18 17:20-18:10 — docker lane live
+- vLLM image pulled: nvcr.io/nvidia/vllm:26.05.post1-py3 (20.4GB). Digest recorded above/SPARK_REPORT.
+- PHASE 1 EXIT CHECK PASSED via `sg docker -c 'docker run --rm --gpus all ...'`:
+  torch 2.12.0a0+5aff3928d8.nv26.05, cuda available True, device "NVIDIA GB10",
+  vllm 0.21.0+2325b6f0.dev. (Container prints recommended flags: --ipc=host
+  --ulimit memlock=-1 --ulimit stack=67108864 — will use for generation runs.)
+- Weights verified so far: grpo-base (1.5B) + 3b-base-raw (Qwen2.5-Coder-3B), both sha256=API.
+  3B-Instruct downloading; pytorch image queued after vLLM in pull script.
+- Shakedown harness dry-run: seeded task selection OK (8 VE-gated + 8 RTLLM-usable,
+  Random(42); pools 149/40); requirements.lock written (host venv).
