@@ -55,3 +55,20 @@
 - First push: spark (5 commits) + tag scorer-v1. ls-remote confirms both refs.
 - koder/ scaffold NOT created here (the other session owns Phase 1b's koder part; nothing of
   it is committed, per the local-exclude rule).
+
+## 2026-10-18 14:55-15:00 — Phase 1b (koder scaffold) completed
+- .git/info/exclude appended: koder/ AGENTS.md CLAUDE.md .claude/ .agents/ .pi/ (local only).
+- koder/ scaffolded per Appendix G, byte-for-byte templates: AGENTS.md (Project section filled:
+  strict re-scoring of CodeV-R1 7B / VeriReason 3B on RTLLM v2.1 + VerilogEval v2, product code
+  scorer/ + deep/), STATE.md, issues/, skills/open/ + skills/close/ (SKILL.md + references,
+  bin/scratch-invariant.sh executable, gate run: clean), docs/brief-spark-v1.md = copy of master brief.
+- Adapter symlinks: AGENTS.md -> koder/AGENTS.md, CLAUDE.md -> koder/AGENTS.md,
+  .claude|.agents|.pi/skills/{open,close} -> ../../koder/skills/{open,close}.
+- DEVIATION (recorded): koder/STATE.md written with current facts (Phases 0-3 already done when
+  koder was initialized) instead of the brief's literal Phase-2/3-in-Future template text; same shape.
+- koder local git: `git -C koder init -b main`, commit 5f8d398 "koder init". No remote added.
+- Exit checks: git ls-files | grep -E '^(koder/|AGENTS.md|CLAUDE.md)' -> empty; scratch gate clean;
+  git -C koder log shows 5f8d398; ls-remote origin shows refs/heads/spark (verified earlier today).
+- Machine note for later phases: docker daemon NOT accessible (user not in docker group; no
+  passwordless sudo) -> H0-a and Phase 6 container steps blocked on operator. python3 -m venv works
+  without apt python3-venv (tested in /tmp; pip 24.0). Disk 3.5T free.
