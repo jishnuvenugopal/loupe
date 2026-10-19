@@ -57,14 +57,32 @@ def gen_files(arm):
     return sorted(glob.glob(os.path.join(RUNS, f"{arm}_*.jsonl")))
 
 
+# A18 items 1-5 added these test files AFTER tag scorer-v1 (committed in the
+# pre-G0 revision c83f842). They are excluded from the scorer-v1 diff but
+# pinned to their c83f842 content, so the exclusion cannot smuggle changes.
+A18_TEST_ADDS = {
+    "tests/test_a18_stats.py":
+        "57ce646df5c43a920c258aeccf74f94db2349681c6abe4a7d8e70cc8fde8247b",
+    "tests/test_a18_dedup_blind40.py":
+        "062d6261823ba22d97be4551e810529ab54b8ce4ccd293887673ddcfee36110b",
+}
+
+
 def freeze_check():
     p1 = run(["git", "-C", REPO, "diff", "--quiet", "scorer-v1", "--", "scorer",
-              "tests", ":(exclude)scorer/__pycache__"], capture_output=True)
+              "tests", ":(exclude)scorer/__pycache__"]
+             + [f":(exclude){p}" for p in A18_TEST_ADDS], capture_output=True)
     p2 = run(["sha256sum", "-c", "results/pilot_repro/SCORER_SHA256"],
              cwd=REPO, capture_output=True, text=True)
-    ok = p1.returncode == 0 and p2.returncode == 0
-    log(f"phase10 freeze check: diff rc={p1.returncode} sha256 rc={p2.returncode}"
-        + ("" if ok else " FAILED"))
+    pinned_ok = True
+    for p, want in A18_TEST_ADDS.items():
+        got = hashlib.sha256(open(os.path.join(REPO, p), "rb").read()).hexdigest()
+        if got != want:
+            pinned_ok = False
+            log(f"phase10 freeze check: {p} sha256 {got} != pinned c83f842 {want}")
+    ok = p1.returncode == 0 and p2.returncode == 0 and pinned_ok
+    log(f"phase10 freeze check: diff rc={p1.returncode} sha256 rc={p2.returncode} "
+        f"a18-test pins ok={pinned_ok}" + ("" if ok else " FAILED"))
     if not ok:
         log(p2.stdout[-500:] + p2.stderr[-500:])
     return ok

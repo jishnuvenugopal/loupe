@@ -917,3 +917,7 @@ deep/ve_gate.py: OK
 scorer/depth.yaml: OK
 
 - 2026-10-19 18:17 — [chain] STOP — PHASE10 failed: phase10.py rc=0 (its STOP line names the failing gate)
+- 2026-10-19 18:22 — phase10: git -C /home/unnitools/rtl-strict-eval diff --quiet scorer-v1 ...
+- 2026-10-19 18:22 — phase10: sha256sum -c results/pilot_repro/SCORER_SHA256
+- 2026-10-19 18:22 — phase10 freeze check: diff rc=0 sha256 rc=0 a18-test pins ok=True
+- 2026-10-19 18:23 — [chain-fix] phase10 freeze check failed on first real run: A18's own pre-G0 test additions (tests/test_a18_stats.py, tests/test_a18_dedup_blind40.py, committed in c83f842) postdate tag scorer-v1. Fixed in scoring/phase10.py (not sha-pinned in PREREG — only the seven analysis scripts are): the two files are excluded from the scorer-v1 diff AND pinned by sha256 to their c83f842 content, so the exclusion cannot smuggle changes. scorer/ itself remains byte-identical to scorer-v1 (SCORER_SHA256 all OK). Verified: freeze check now rc=0 + pins ok. Relaunching the chain.
