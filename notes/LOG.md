@@ -721,3 +721,11 @@ PREREG finalized (2026-10-19 10:41)
 - 2026-10-19 10:41 — [chain] pushed: A18 C5: PREREG finalized (7B numbers, cut none, verification time, G0 sentence)
 - 2026-10-19 10:41 — [chain] G0 step 1 PASS: tag g0-prereg = f8f23aaa87b53a9eb9357fa9ffe962430d26642c pushed and visible via ls-remote
 - 2026-10-19 10:41 — [chain] G0 step 2 PASS: PREREG.md.ots stamped (10:41)
+- 2026-10-19 10:41 — [chain] pushed: A18 G0 steps: tag g0-prereg pushed (ls-remote verified) + PREREG.md.ots stamped
+- 2026-10-19 10:41 — [chain] ots upgrade scheduled for 16:41 (background, pid 293226)
+- 2026-10-19 10:41 — [chain] phase 8: overnight generation starts (cut=none, order 7b-rl 7b-sft 3b-rl 3b-base 7b-base)
+- 2026-10-19 10:41 — phase8 start: arms=['7b-rl', '7b-sft', '3b-rl', '3b-base', '7b-base'] n=3 cut=none (RTLLM n=5: no — A18 §8 C4; overlap probe skipped — score nothing until generation ends)
+- 2026-10-19 10:41 — phase8: generating 7b-rl/ve (T=1.0, top_p=1.0, n=3, max_tokens=16384, mml=20480, cut=none)
+- 2026-10-19 10:41 — phase8: 7b-rl/ve rc=2 wall=0.0 min log=/home/unnitools/runs/gen/log_7b-rl_ve.txt
+- 2026-10-19 10:41 — phase8: 7b-rl/ve FAILED rc=2 — stopping the arm ladder
+- 2026-10-19 10:41 — [chain] STOP — PHASE8 failed: generation runner rc!=0 (see notes/LOG.md and ~/runs/gen/log_*)

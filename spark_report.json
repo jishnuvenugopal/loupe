@@ -284,9 +284,9 @@
   }
  ],
  "chain": {
-  "last_update": "2026-10-19 10:37:52",
-  "phase": "C5",
-  "status": "FAILED: placeholders unresolved (see notes/LOG.md)",
-  "stop": "STOP \u2014 C5 failed: placeholders unresolved (see notes/LOG.md)"
+  "last_update": "2026-10-19 10:41:44",
+  "phase": "PHASE8",
+  "status": "FAILED: generation runner rc!=0 (see notes/LOG.md and ~/runs/gen/log_*)",
+  "stop": "STOP \u2014 PHASE8 failed: generation runner rc!=0 (see notes/LOG.md and ~/runs/gen/log_*)"
  }
 }
