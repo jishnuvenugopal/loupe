@@ -17,6 +17,9 @@ import re
 import time
 
 RE_TPS = re.compile(r"Avg generation throughput:\s*([\d.]+)\s*tok/s")
+# vLLM 0.21 tqdm progress lines: "... est. speed input: X toks/s, output: Y toks/s"
+RE_TQDM = re.compile(r"output:\s*([\d.]+)\s*toks/s")
+RE_PROG = re.compile(r"Processed prompts:\s+(\d+)%\|[^|]*\|\s*(\d+)/(\d+)")
 
 
 def main():
@@ -29,10 +32,17 @@ def main():
     rec = {"when": time.strftime("%Y-%m-%d %H:%M:%S"), "label": args.label,
            "log": args.log}
     if os.path.isfile(args.log):
-        tps = [float(m) for m in RE_TPS.findall(open(args.log, errors="ignore").read())]
+        txt = open(args.log, errors="ignore").read()
+        tps = [float(m) for m in RE_TPS.findall(txt)]
         rec.update({"intervals": len(tps),
                     "mean_last10_tok_s": round(sum(tps[-10:]) / min(len(tps), 10), 1) if tps else None,
                     "max_tok_s": max(tps) if tps else None})
+        if not tps:  # vLLM 0.21: tqdm cumulative output speed instead
+            tq = [float(m) for m in RE_TQDM.findall(txt)]
+            pr = RE_PROG.findall(txt)
+            rec.update({"tqdm_output_tok_s_last": tq[-1] if tq else None,
+                        "tqdm_output_tok_s_max": max(tq) if tq else None,
+                        "progress": f"{pr[-1][1]}/{pr[-1][2]} ({pr[-1][0]}%)" if pr else None})
     if args.gen_file and os.path.isfile(args.gen_file):
         rows = [json.loads(l) for l in open(args.gen_file, errors="ignore")]
         toks = sum(r.get("n_completion_tokens", 0) for r in rows)
