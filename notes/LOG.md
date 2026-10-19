@@ -802,3 +802,11 @@ PREREG finalized (2026-10-19 10:51)
 - 2026-10-19 10:51 — [chain] G0 step 1 PASS: tag g0-prereg = f8f23aaa87b53a9eb9357fa9ffe962430d26642c pushed and visible via ls-remote
 - 2026-10-19 10:51 — [chain] G0 step 2: PREREG.md.ots already stamps THIS content (digest match) — skipping re-stamp (resume)
 - 2026-10-19 10:51 — [chain] G0 step 2 PASS: PREREG.md.ots stamped (10:51)
+- 2026-10-19 10:52 — [chain] pushed: A18 G0 steps: tag g0-prereg pushed (ls-remote verified) + PREREG.md.ots stamped
+- 2026-10-19 10:52 — [chain] ots upgrade scheduled for 16:41 (detached job)
+- 2026-10-19 10:52 — [chain] phase 8: overnight generation starts (cut=none, order 7b-rl 7b-sft 3b-rl 3b-base 7b-base)
+- 2026-10-19 10:52 — phase8 start: arms=['7b-rl', '7b-sft', '3b-rl', '3b-base', '7b-base'] n=3 cut=none (RTLLM n=5: no — A18 §8 C4; overlap probe skipped — score nothing until generation ends)
+- 2026-10-19 10:52 — phase8: generating 7b-rl/ve (T=1.0, top_p=1.0, n=3, max_tokens=16384, mml=20480, cut=none)
+- 2026-10-19 14:55 — phase8: 7b-rl/ve rc=0 wall=243.5 min log=/home/unnitools/runs/gen/log_7b-rl_ve.txt
+- 2026-10-19 14:55 — phase8: generating 7b-rl/rtllm (T=1.0, top_p=0.95, n=3, max_tokens=16384, mml=20480, cut=none)
+- 2026-10-19 15:05 — [monitor] deviation note: 7b-rl/ve actual 243.5 min vs 3.58 h arm projection (ve leg 2.79 h). Cause: real mean completion 6,537 tok/sample vs shakedown 5,486 (+19%) and realized steady rate 212 tok/s vs 258.9 (-18%); compounding = 1.46x. Revised generation-end estimate ~20:30-21:30 (total ~10 h, above the 9 h window the C4 ladder targeted). No action: cut=none is the pre-registered C5 decision and mid-run cuts are not permitted; other arms projected shorter (7b-sft 2.81 h; 3b arms + 7b-base ~0.35 h each), so the overshoot is dominated by the first arm. Recorded for the run report.
