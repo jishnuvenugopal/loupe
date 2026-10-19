@@ -761,3 +761,7 @@ wrote /home/unnitools/rtl-strict-eval/results/shakedown/projection.json
 - 2026-10-19 10:46 — [chain] C4 PASS: cut applied = none (RTLLM n=5: no; overlap probe skipped)
 - 2026-10-19 10:46 — [chain] pushed: A18 C4: steady-state projection done; cut applied = none
 PREREG finalized (2026-10-19 10:46)
+- 2026-10-19 10:46 — [chain] pushed: A18 C5: PREREG finalized (7B numbers, cut none, verification time, G0 sentence)
+- 2026-10-19 10:46 — [chain] tag g0-prereg already exists (reusing)
+- 2026-10-19 10:46 — [chain] G0 step 1 PASS: tag g0-prereg = f8f23aaa87b53a9eb9357fa9ffe962430d26642c pushed and visible via ls-remote
+- 2026-10-19 10:46 — [chain] STOP — OTS failed: ots stamp PREREG.md failed

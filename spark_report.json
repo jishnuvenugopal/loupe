@@ -284,9 +284,9 @@
   }
  ],
  "chain": {
-  "last_update": "2026-10-19 10:41:44",
-  "phase": "PHASE8",
-  "status": "FAILED: generation runner rc!=0 (see notes/LOG.md and ~/runs/gen/log_*)",
-  "stop": "STOP \u2014 PHASE8 failed: generation runner rc!=0 (see notes/LOG.md and ~/runs/gen/log_*)"
+  "last_update": "2026-10-19 10:46:40",
+  "phase": "OTS",
+  "status": "FAILED: ots stamp PREREG.md failed",
+  "stop": "STOP \u2014 OTS failed: ots stamp PREREG.md failed"
  }
 }
