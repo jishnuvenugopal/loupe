@@ -730,3 +730,7 @@ PREREG finalized (2026-10-19 10:41)
 - 2026-10-19 10:41 — phase8: 7b-rl/ve FAILED rc=2 — stopping the arm ladder
 - 2026-10-19 10:41 — [chain] STOP — PHASE8 failed: generation runner rc!=0 (see notes/LOG.md and ~/runs/gen/log_*)
 - 2026-10-19 10:45 — [chain] PHASE8 stop diagnosed: quoting bug in gen_arm_bench (doubled quote before the log redirect -> bash EOF error, no generation attempted, nothing generated). Fixed. Also made the chain fully resumable: prereg_finalize idempotent (already-filled placeholders skipped, incl. the header date), ots stamp skipped when PREREG.md.ots exists and verifies, ots upgrade launched as a detached setsid job (the first scheduled job died with its tmux session; marker removed and rescheduled from the original stamp time). G0 steps from the first run stand: tag g0-prereg pushed + PREREG.md.ots stamped 10:41.
+- 2026-10-19 10:45 — [chain] A18 §8 chain start (pid 293558, force_fail=none, C2 deadline 09:00)
+- 2026-10-19 10:45 — [chain] C1 PASS: items 1-5+7 committed, pushed, PREREG sha256 final
+- 2026-10-19 10:45 — [chain] C2: waiting for 8/8 weight verification (cut-off 09:00)
+- 2026-10-19 10:46 — [chain] C2 PASS: all 8 weight sets hash-verified (8 of 8) at 2026-10-19 10:46
