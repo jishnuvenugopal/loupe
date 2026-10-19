@@ -1,0 +1,29 @@
+{
+ "arm": "3b-rl",
+ "files": [
+  {
+   "file": "3b-rl_rtllm.jsonl",
+   "rows": 150,
+   "sha256": "a2b0de359f206e52cd28d24079032b9980b588cd148100d5faa1a9b889afdcb6",
+   "truncated": 6,
+   "extracted": 145,
+   "module_name_ok": 141
+  },
+  {
+   "file": "3b-rl_ve.jsonl",
+   "rows": 468,
+   "sha256": "48b209f3197f98fd09b27a5b9a3086e17ee3f6e8debc2f44b5280d36de49df02",
+   "truncated": 18,
+   "extracted": 450,
+   "module_name_ok": 444
+  }
+ ],
+ "rows_total": 618,
+ "truncated_total": 24,
+ "extraction_rate": 0.9628,
+ "module_name_ok_rate": 0.9466,
+ "completion_tokens": {
+  "mean": 729,
+  "max": 2048
+ }
+}

@@ -284,9 +284,9 @@
   }
  ],
  "chain": {
-  "last_update": "2026-10-19 10:46:40",
-  "phase": "OTS",
-  "status": "FAILED: ots stamp PREREG.md failed",
-  "stop": "STOP \u2014 OTS failed: ots stamp PREREG.md failed"
+  "last_update": "2026-10-19 18:09:05",
+  "phase": "PHASE8",
+  "status": "FAILED: make_manifest failed",
+  "stop": "STOP \u2014 PHASE8 failed: make_manifest failed"
  }
 }

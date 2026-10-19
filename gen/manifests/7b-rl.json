@@ -1,0 +1,29 @@
+{
+ "arm": "7b-rl",
+ "files": [
+  {
+   "file": "7b-rl_rtllm.jsonl",
+   "rows": 150,
+   "sha256": "628ef1df32529ba37840eac038991bea673ff2cfaa3acbb1a36513993be52786",
+   "truncated": 1,
+   "extracted": 150,
+   "module_name_ok": 147
+  },
+  {
+   "file": "7b-rl_ve.jsonl",
+   "rows": 468,
+   "sha256": "8deff4c865d23024cae5bbc71652bfac1ca8a749a67b2a28c5d7deb856dbcfd4",
+   "truncated": 0,
+   "extracted": 468,
+   "module_name_ok": 465
+  }
+ ],
+ "rows_total": 618,
+ "truncated_total": 1,
+ "extraction_rate": 1.0,
+ "module_name_ok_rate": 0.9903,
+ "completion_tokens": {
+  "mean": 6942,
+  "max": 16384
+ }
+}

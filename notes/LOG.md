@@ -810,3 +810,35 @@ PREREG finalized (2026-10-19 10:51)
 - 2026-10-19 14:55 — phase8: 7b-rl/ve rc=0 wall=243.5 min log=/home/unnitools/runs/gen/log_7b-rl_ve.txt
 - 2026-10-19 14:55 — phase8: generating 7b-rl/rtllm (T=1.0, top_p=0.95, n=3, max_tokens=16384, mml=20480, cut=none)
 - 2026-10-19 15:05 — [monitor] deviation note: 7b-rl/ve actual 243.5 min vs 3.58 h arm projection (ve leg 2.79 h). Cause: real mean completion 6,537 tok/sample vs shakedown 5,486 (+19%) and realized steady rate 212 tok/s vs 258.9 (-18%); compounding = 1.46x. Revised generation-end estimate ~20:30-21:30 (total ~10 h, above the 9 h window the C4 ladder targeted). No action: cut=none is the pre-registered C5 decision and mid-run cuts are not permitted; other arms projected shorter (7b-sft 2.81 h; 3b arms + 7b-base ~0.35 h each), so the overshoot is dominated by the first arm. Recorded for the run report.
+- 2026-10-19 15:49 — phase8: 7b-rl/rtllm rc=0 wall=53.8 min log=/home/unnitools/runs/gen/log_7b-rl_rtllm.txt
+- 2026-10-19 15:49 — phase8: generating 7b-sft/ve (T=0.6, top_p=1.0, n=3, max_tokens=16384, mml=20480, cut=none)
+- 2026-10-19 16:42 — [chain] ots upgrade committed and pushed
+- 2026-10-19 16:58 — phase8: 7b-sft/ve rc=0 wall=68.7 min log=/home/unnitools/runs/gen/log_7b-sft_ve.txt
+- 2026-10-19 16:58 — phase8: generating 7b-sft/rtllm (T=0.6, top_p=0.95, n=3, max_tokens=16384, mml=20480, cut=none)
+- 2026-10-19 17:40 — phase8: 7b-sft/rtllm rc=0 wall=42.7 min log=/home/unnitools/runs/gen/log_7b-sft_rtllm.txt
+- 2026-10-19 17:40 — phase8: generating 3b-rl/ve (T=0.2, top_p=0.95, n=3, max_tokens=2048, mml=4096, cut=none)
+- 2026-10-19 17:45 — phase8: 3b-rl/ve rc=0 wall=4.6 min log=/home/unnitools/runs/gen/log_3b-rl_ve.txt
+- 2026-10-19 17:45 — phase8: generating 3b-rl/rtllm (T=0.2, top_p=0.95, n=3, max_tokens=2048, mml=4096, cut=none)
+- 2026-10-19 17:48 — phase8: 3b-rl/rtllm rc=0 wall=3.3 min log=/home/unnitools/runs/gen/log_3b-rl_rtllm.txt
+- 2026-10-19 17:48 — phase8: generating 3b-base/ve (T=0.2, top_p=0.95, n=3, max_tokens=2048, mml=4096, cut=none)
+- 2026-10-19 17:52 — phase8: 3b-base/ve rc=0 wall=3.8 min log=/home/unnitools/runs/gen/log_3b-base_ve.txt
+- 2026-10-19 17:52 — phase8: generating 3b-base/rtllm (T=0.2, top_p=0.95, n=3, max_tokens=2048, mml=4096, cut=none)
+- 2026-10-19 17:55 — phase8: 3b-base/rtllm rc=0 wall=2.8 min log=/home/unnitools/runs/gen/log_3b-base_rtllm.txt
+- 2026-10-19 17:55 — phase8: generating 7b-base/ve (T=1.0, top_p=1.0, n=3, max_tokens=16384, mml=20480, cut=none)
+- 2026-10-19 18:02 — phase8: 7b-base/ve rc=0 wall=7.6 min log=/home/unnitools/runs/gen/log_7b-base_ve.txt
+- 2026-10-19 18:02 — phase8: generating 7b-base/rtllm (T=1.0, top_p=0.95, n=3, max_tokens=16384, mml=20480, cut=none)
+- 2026-10-19 18:09 — phase8: 7b-base/rtllm rc=0 wall=6.2 min log=/home/unnitools/runs/gen/log_7b-base_rtllm.txt
+- 2026-10-19 18:09 — phase8: all generation done
+{"arm": "3b-base", "rows_total": 618, "truncated_total": 21, "extraction_rate": 0.966, "module_name_ok_rate": 0.9563}
+{"arm": "3b-rl", "rows_total": 618, "truncated_total": 24, "extraction_rate": 0.9628, "module_name_ok_rate": 0.9466}
+{"arm": "7b-base", "rows_total": 618, "truncated_total": 0, "extraction_rate": 0.9984, "module_name_ok_rate": 0.966}
+{"arm": "7b-rl", "rows_total": 618, "truncated_total": 1, "extraction_rate": 1.0, "module_name_ok_rate": 0.9903}
+{"arm": "7b-sft", "rows_total": 618, "truncated_total": 7, "extraction_rate": 0.9935, "module_name_ok_rate": 0.9838}
+Traceback (most recent call last):
+  File "/home/unnitools/rtl-strict-eval/gen/make_manifest.py", line 57, in <module>
+    main()
+  File "/home/unnitools/rtl-strict-eval/gen/make_manifest.py", line 34, in main
+    code = extract_verilog_code(r["completion"])
+                                ~^^^^^^^^^^^^^^
+KeyError: 'completion'
+- 2026-10-19 18:09 — [chain] STOP — PHASE8 failed: make_manifest failed

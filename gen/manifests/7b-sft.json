@@ -1,0 +1,29 @@
+{
+ "arm": "7b-sft",
+ "files": [
+  {
+   "file": "7b-sft_rtllm.jsonl",
+   "rows": 150,
+   "sha256": "04dd1a366dde04428815e68ddc6b700c93c9f37cb24ff26d17e0e3b0c9e340ff",
+   "truncated": 2,
+   "extracted": 149,
+   "module_name_ok": 146
+  },
+  {
+   "file": "7b-sft_ve.jsonl",
+   "rows": 468,
+   "sha256": "d28a9492859f7ed670c3561b9a6ff8fffaa1151a737fab4147fc7f4a4c3dd1b1",
+   "truncated": 5,
+   "extracted": 465,
+   "module_name_ok": 462
+  }
+ ],
+ "rows_total": 618,
+ "truncated_total": 7,
+ "extraction_rate": 0.9935,
+ "module_name_ok_rate": 0.9838,
+ "completion_tokens": {
+  "mean": 4483,
+  "max": 16384
+ }
+}

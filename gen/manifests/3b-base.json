@@ -1,0 +1,29 @@
+{
+ "arm": "3b-base",
+ "files": [
+  {
+   "file": "3b-base_rtllm.jsonl",
+   "rows": 150,
+   "sha256": "09d602c16a40d2b5d31905fbe4e5b4a5c0dd9edacdf85863a15efee686029de7",
+   "truncated": 9,
+   "extracted": 141,
+   "module_name_ok": 138
+  },
+  {
+   "file": "3b-base_ve.jsonl",
+   "rows": 468,
+   "sha256": "6e73a764b6cda9c86e6b8e8e35aaffc0cfe7ece6e369b8d067998a38a98cd4d5",
+   "truncated": 12,
+   "extracted": 456,
+   "module_name_ok": 453
+  }
+ ],
+ "rows_total": 618,
+ "truncated_total": 21,
+ "extraction_rate": 0.966,
+ "module_name_ok_rate": 0.9563,
+ "completion_tokens": {
+  "mean": 605,
+  "max": 2048
+ }
+}
