@@ -1,0 +1,42 @@
+{
+ "mode": "steady-state + per-arm load",
+ "window_h": 9.0,
+ "rtllm_n5": "no (A18 \u00a78 C4 fixed choice)",
+ "arms": [
+  "7b-rl",
+  "7b-sft",
+  "3b-rl",
+  "3b-base",
+  "7b-base"
+ ],
+ "steps": [
+  {
+   "step": "none",
+   "total_h": 7.458,
+   "n": 3,
+   "ve_tasks": 156,
+   "arms": [
+    "7b-rl",
+    "7b-sft",
+    "3b-rl",
+    "3b-base",
+    "7b-base"
+   ]
+  }
+ ],
+ "cut_applied": "none",
+ "scoring_n3": {
+  "tb_runs": 3090,
+  "formal": 2715,
+  "h_measured": 1.84,
+  "h_pessimistic": 0.258,
+  "window_h": 4.5
+ },
+ "scoring_RTLLM_n5": {
+  "tb_runs": 3590,
+  "formal": 3085,
+  "h_measured": 2.138,
+  "h_pessimistic": 0.293,
+  "window_h": 4.5
+ }
+}
