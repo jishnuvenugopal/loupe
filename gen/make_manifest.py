@@ -19,10 +19,14 @@ from verilog_extractor import extract_verilog_code
 
 
 def main():
-    arms = sorted({os.path.basename(p).split("_")[0] for p in glob.glob(os.path.join(GEN, "*.jsonl"))}
-                  - {"gen"})
+    # generation outputs are exactly <arm>_ve.jsonl / <arm>_rtllm.jsonl; derive
+    # the arm set from the _ve files so bookkeeping files living in ~/runs/gen
+    # (e.g. throughput_checks.jsonl) are never mistaken for an arm
+    arms = sorted(os.path.basename(p)[:-len("_ve.jsonl")]
+                  for p in glob.glob(os.path.join(GEN, "*_ve.jsonl")))
     for arm in arms:
-        files = sorted(glob.glob(os.path.join(GEN, f"{arm}_*.jsonl")))
+        files = sorted(glob.glob(os.path.join(GEN, f"{arm}_ve.jsonl"))
+                       + glob.glob(os.path.join(GEN, f"{arm}_rtllm.jsonl")))
         man = {"arm": arm, "files": []}
         tot = trunc = ext_ok = name_ok = 0
         toks = []

@@ -86,7 +86,32 @@ def in_container(path):
     raise SystemExit(f"path not mounted in container: {path}")
 
 
+def complete(arm, bench, n):
+    """True if <arm>_<bench>.jsonl already holds every (task_id, sample_idx)
+    cell (Phase 8 resume skip; keeps timing.json / effective_params intact)."""
+    out = os.path.join(RUNS, f"{arm}_{bench}.jsonl")
+    if not os.path.isfile(out):
+        return False
+    family = "codev" if arm.startswith("7b") else "verireason"
+    if bench == "ve":
+        prompts, _ = ve_prompts_file(family, cut())
+    else:
+        prompts = os.path.join(REPO, f"prompts/built/{family}_rtllm.jsonl")
+    ids = [json.loads(l)["task_id"] for l in open(prompts, encoding="utf-8")]
+    want = {(t, s) for t in ids for s in range(n)}
+    have = set()
+    with open(out, encoding="utf-8") as fh:
+        for l in fh:
+            r = json.loads(l)
+            have.add((r["task_id"], r["sample_idx"]))
+    return want <= have
+
+
 def gen_arm_bench(arm, bench, n):
+    if complete(arm, bench, n):
+        log(f"phase8: {arm}/{bench} output complete — resume skip "
+            f"(timing/log/params untouched)")
+        return 0, os.path.join(RUNS, f"log_{arm}_{bench}.txt")
     family = "codev" if arm.startswith("7b") else "verireason"
     top_p = 0.95 if family == "verireason" else TOP_P[bench]
     cut_step = cut()
@@ -139,8 +164,10 @@ def main():
     for arm in arms:
         if arm.startswith("3b") and not first_3b_check_done:
             # A16 §5 step 3: throughput check again when the first 3B arm starts
+            # (skip on resume when that arm's generation is already complete,
+            # so a re-launch never duplicates the check entry)
             prev = [a for a in arms if arms.index(a) < arms.index(arm)]
-            if prev:
+            if prev and not complete(arm, "ve", n):
                 lg = os.path.join(RUNS, f"log_{prev[-1]}_rtllm.txt")
                 check("first-3B-arm check", lg,
                       os.path.join(RUNS, f"{prev[-1]}_rtllm.jsonl"))

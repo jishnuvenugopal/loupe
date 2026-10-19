@@ -842,3 +842,4 @@ Traceback (most recent call last):
                                 ~^^^^^^^^^^^^^^
 KeyError: 'completion'
 - 2026-10-19 18:09 — [chain] STOP — PHASE8 failed: make_manifest failed
+- 2026-10-19 18:35 — [chain-fix] make_manifest crashed after writing all 5 manifests (rc=1 via KeyError 'completion'): its arm glob matched throughput_checks.jsonl as a phantom "throughput" arm. Fixed: arm set derived from *_ve.jsonl only. Also added a Phase 8 resume skip to gen/run_overnight.py (skip (arm,bench) when every (task_id,sample_idx) cell is already written) so the relaunch cannot overwrite the real timing.json records, and guarded the first-3B-arm throughput check against duplicate entries on resume. All 5 arms verified complete (618 rows each); relaunching the chain to continue at make_manifest -> releases -> Phase 10.
