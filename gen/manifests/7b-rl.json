@@ -25,5 +25,6 @@
  "completion_tokens": {
   "mean": 6942,
   "max": 16384
- }
+ },
+ "release_tar_sha256": "5095e19051575d4046a34ec80193588deee7cfdd4f652aa03577a0d720edb541"
 }
