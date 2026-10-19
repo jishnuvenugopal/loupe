@@ -84,6 +84,22 @@ def main():
        "- Generation throughput, 7B lane (A18 §8 C3, steady-state split where\n"
        "  marked): " + " | ".join(lines) + ".")
 
+    # 3B line: refresh with the steady-state split C4 used (was wall-inclusive)
+    t3 = []
+    for arm in ("3b-rl", "3b-base"):
+        rp = os.path.join(REPO, f"results/shakedown/{arm}.json")
+        d = json.load(open(rp)) if os.path.isfile(rp) else {}
+        tp = d.get("throughput", {})
+        t3.append(f"{arm} " + "/".join(
+            str(tp.get(b, {}).get("steady_tok_per_s") or tp.get(b, {}).get("tok_per_s"))
+            for b in ("ve", "rtllm")) + " tok/s")
+    do("- Generation throughput, 3B lane (A16 settings, 64 concurrent, wall includes\n"
+       "  model load): 3B-RL VE 167 / RTLLM 378 tok/s; 3B base VE 194 / RTLLM 316 tok/s\n"
+       "  (`results/shakedown/{3b-rl,3b-base}.json`). 3B generation projection ≈ 1.3 h.",
+       "- Generation throughput, 3B lane (A16 settings, 64 concurrent; A18 §8 C4\n"
+       "  steady-state split, wall was load-inclusive at draft time): "
+       + " ; ".join(t3) + " (VE/RTLLM; `results/shakedown/{3b-rl,3b-base}.json`).")
+
     # overlap probe
     do("- Overlap probe (A16 §3 step 7): PENDING — needs a 7B arm generating at 64\n"
        "  concurrent; decides only whether finished arms may be scored with WORKERS=8\n"
@@ -105,7 +121,7 @@ def main():
                    f"n = 5: **no**; overlap probe skipped (score nothing until "
                    f"generation ends). VE subset rule: `random.Random(0).sample("
                    f"sorted(ve_ids), 60)` pinned pre-G0 as `gen/ve_subset60.txt`.")
-        anchor = "- 3B generation projection ≈ 1.3 h."
+        anchor = "VE/RTLLM; `results/shakedown/{3b-rl,3b-base}.json`)."
         t2 = swap(t, anchor, anchor + "\n" + cutline)
         if t2 is None:
             errs.append("cut-record anchor not found")
