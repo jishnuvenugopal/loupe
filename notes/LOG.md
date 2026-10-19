@@ -654,3 +654,7 @@ C3 PASS 7b-base
 - 2026-10-19 03:49 — [chain] PUSH FAILED (A18 C3: 7B shakedowns done + checked (params, extraction, cap, scorer); 3B steady refresh); retry in 60s
 - 2026-10-19 03:50 — [chain] STOP — PUSH failed: git push failed twice: A18 C3: 7B shakedowns done + checked (params, extraction, cap, scorer); 3B steady refresh
 - 2026-10-19 10:35 — [chain] PUSH-failure stop diagnosed: transient network at 03:49-03:50 (the stop path worked as designed; commits 795fa8a+1680b0f pushed manually at resume). Chain made resumable: C3 arms with a green report are skipped (idempotent), the 3B steady refresh skips when the split exists, push retries 5x120s before stopping. All three 7B C3 checks re-verified green at resume: 7b-rl 16/16 name, 0 cap, 15 pass (12 UNB-EQ/3 DIFF); 7b-sft 16/16, 0 cap, 12 pass (10/2, 2 compile_error); 7b-base 16/16, 0 cap, 5 pass (4/1, 6 compile_error); official_passes_from_length = 0 on all three arms (A18 item 7). Relaunching.
+- 2026-10-19 10:35 — [chain] A18 §8 chain start (pid 292000, force_fail=none, C2 deadline 09:00)
+- 2026-10-19 10:36 — [chain] C1 PASS: items 1-5+7 committed, pushed, PREREG sha256 final
+- 2026-10-19 10:36 — [chain] C2: waiting for 8/8 weight verification (cut-off 09:00)
+- 2026-10-19 10:37 — [chain] C2 PASS: all 8 weight sets hash-verified (8 of 8) at 2026-10-19 10:37
