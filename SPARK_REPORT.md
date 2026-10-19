@@ -1,10 +1,11 @@
 # SPARK REPORT — strict re-scoring, DGX Spark lane
 
-Updated 19 Oct 2026, 03:50 UTC+08 (A18 overnight chain).
+Updated 19 Oct 2026, 10:37 UTC+08 (A18 overnight chain).
 `jishnuvenugopal/rte-strict-eval` (PRIVATE), branch `spark`, tag `scorer-v1` pushed.
 
 ## 1. Status
 
+- [10:37] C5: FAILED: placeholders unresolved (see notes/LOG.md)
 - [03:50] PUSH: FAILED: git push failed twice: A18 C3: 7B shakedowns done + checked (params, extraction, cap, scorer); 3B steady refresh
 - Session completed: Phase 1b (koder scaffold), **Phase 5 complete (H0 a–d)**,
   Phase 6 step 4 (GRPO trial, PASSED), step 3 first half (3B-RL lane, DONE),
@@ -211,4 +212,4 @@ notes/LOG.md, updated this report and pushed — verified. The REAL chain is now
 running under tmux (`tmux attach -t overnight`); its stop paths will update this
 report again.
 
-STOP — PUSH failed: git push failed twice: A18 C3: 7B shakedowns done + checked (params, extraction, cap, scorer); 3B steady refresh
+STOP — C5 failed: placeholders unresolved (see notes/LOG.md)

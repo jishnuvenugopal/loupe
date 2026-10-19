@@ -683,3 +683,7 @@ CUT APPLIED: none (RTLLM n=5: no (A18 §8 C4 fixed choice); overlap probe: skipp
   measured-rate: 2.14 h | pessimistic: 0.29 h | window 4.5 h
 wrote /home/unnitools/rtl-strict-eval/results/shakedown/projection.json
 - 2026-10-19 10:37 — [chain] C4 PASS: cut applied = none (RTLLM n=5: no; overlap probe skipped)
+- 2026-10-19 10:37 — [chain] pushed: A18 C4: steady-state projection done; cut applied = none
+PREREG FINALIZE FAILED:
+  - cut-record anchor not found
+- 2026-10-19 10:37 — [chain] STOP — C5 failed: placeholders unresolved (see notes/LOG.md)
