@@ -687,3 +687,7 @@ wrote /home/unnitools/rtl-strict-eval/results/shakedown/projection.json
 PREREG FINALIZE FAILED:
   - cut-record anchor not found
 - 2026-10-19 10:37 — [chain] STOP — C5 failed: placeholders unresolved (see notes/LOG.md)
+- 2026-10-19 10:40 — [chain] A18 §8 chain start (pid 292488, force_fail=none, C2 deadline 09:00)
+- 2026-10-19 10:40 — [chain] C1 PASS: items 1-5+7 committed, pushed, PREREG sha256 final
+- 2026-10-19 10:40 — [chain] C2: waiting for 8/8 weight verification (cut-off 09:00)
+- 2026-10-19 10:41 — [chain] C2 PASS: all 8 weight sets hash-verified (8 of 8) at 2026-10-19 10:41
