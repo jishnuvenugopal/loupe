@@ -3,7 +3,8 @@
 Draft (Phase 7), 18 Oct 2026. To be committed and pushed before any evaluation
 sample exists. At G0: tag `g0-prereg` → commit <sha>, content hash timestamped
 with OpenTimestamps (`PREREG.md.ots`, verify with `ots verify PREREG.md.ots`).
-Date: <date at G0>.
+G0: approved by the operator in advance on 18 Oct 2026, conditional on amendment A18 §8 C1–C5; each check is logged with its time in `notes/LOG.md`.
+Date: 2026-10-19 10:41 (G0 tag time).
 
 ## Question
 For each released checkpoint, what share of its official-testbench passes is
@@ -91,8 +92,7 @@ RAM, square_wave (tracked, #16/#23).
   template sha256 recorded per arm in `models.yaml`. **Template file provenance**
   (A17 item 9): 3B-RL ships `chat_template.jinja` (standalone file); 3B base /
   3B SFT / raw 3B / 1.5B embed the template in `tokenizer_config.json`; the
-  three 7B arms' provenance is recorded at weight verification (downloads were
-  in flight at draft time).
+  three 7B arms: 7b-base: embedded in tokenizer_config.json; 7b-sft: embedded in tokenizer_config.json; 7b-rl: embedded in tokenizer_config.json (recorded at weight verification).
 - Extraction: CodeV-R1's extractor (`test/utils/verilog_extractor.py` @ `277ac46`);
   module must be `TopModule` (VE) or the task name (RTLLM). Gate G2 ≥ 95%.
 
@@ -323,21 +323,18 @@ GRPO reward oracle.
   bound 0.26 h(+), vs the 4.5 h morning window → fits. RTLLM n=5 option:
   3,590 runs → 2.14 h → fits. Nothing cut for scoring time
   (`shakedown/projection.py`).
-- Generation throughput, 3B lane (A16 settings, 64 concurrent, wall includes
-  model load): 3B-RL VE 167 / RTLLM 378 tok/s; 3B base VE 194 / RTLLM 316 tok/s
-  (`results/shakedown/{3b-rl,3b-base}.json`). 3B generation projection ≈ 1.3 h.
+- Generation throughput, 3B lane (A16 settings, 64 concurrent; A18 §8 C4
+  steady-state split, wall was load-inclusive at draft time): 3b-rl 378.6/778.4 tok/s ; 3b-base 416.1/641.6 tok/s (VE/RTLLM; `results/shakedown/{3b-rl,3b-base}.json`).
+- **Cut applied (A18 §8 C4)**: `none` — steady-state projection 7.46 h → 7.46 h of the 9 h window; ladder order (VE seeded 60 → n 3→2 → drop 7B base → drop 3B base); RTLLM n = 5: **no**; overlap probe skipped (score nothing until generation ends). VE subset rule: `random.Random(0).sample(sorted(ve_ids), 60)` pinned pre-G0 as `gen/ve_subset60.txt`.
   Note: re-generating the 3B-RL shakedown at `max_model_len` 4096 (vs the first
   run's 20480) changed completions slightly — vLLM per-request seeds are not
   bitwise-deterministic across settings. **The generations are therefore the
   record**: the extracted designs and the completions (compressed) are released
   with the results under the manifest sha256 (A17 item 10).
-- Generation throughput, 7B lane: **PENDING — weights still downloading at
-  18 Oct 20:00** (7B-Instruct ~2.7/15.2 GB; Distill ~0; RL 1/4 shards). The
-  overnight projection completes when the 7B shakedown runs; the projection
-  script is `shakedown/projection.py` (cut ladder coded).
-- Overlap probe (A16 §3 step 7): PENDING — needs a 7B arm generating at 64
-  concurrent; decides only whether finished arms may be scored with WORKERS=8
-  during generation.
+- Generation throughput, 7B lane (A18 §8 C3, steady-state split where
+  marked): 7b-rl mean 5486 tok / p95 10409 / cap 0/16; extraction+name 16/16; ve 258.9 tok/s ; rtllm 307.5 tok/s; official passes from finish_reason=length: 0 | 7b-sft mean 2939 tok / p95 8058 / cap 0/16; extraction+name 16/16; ve 171.3 tok/s ; rtllm 248.3 tok/s; official passes from finish_reason=length: 0 | 7b-base mean 388 tok / p95 756 / cap 0/16; extraction+name 16/16; ve 306.3 tok/s ; rtllm 111.5 tok/s; official passes from finish_reason=length: 0.
+- Overlap probe (A16 §3 step 7): **skipped** per A18 §8 C4 — nothing is
+  scored until generation ends (the A16 §5 step 4 default).
 
 ## Deviations
 - Single machine (A16): "The x86-64 reproduction of the scorer planned for a
@@ -352,8 +349,7 @@ GRPO reward oracle.
 - A17 item-1 definitions: primary "not proved correct", in place of A16's
   "false-pass share".
 - Phase 4 exit check: 6 of 8 weights verified when this draft was written; the
-  three 7B arms are verified by the watcher (timestamp recorded at G0 from
-  `~/runs/7b_watcher.log`).
+  three 7B arms are verified at **2026-10-19 10:41** (`models/verify_weights.py`, exit check 8 of 8; `results/h0/weights_verified_at.txt`).
 - Anchor detail (A17 item 8): testbench 290/290; equiv 280/290 — the
   `synchronizer` rows are recorded differently, not judged differently.
 - A18 items 1–4: G1b's interval is the all-task `ci95_all_tasks` (not the
