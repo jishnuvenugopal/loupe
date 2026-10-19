@@ -47,14 +47,19 @@ def main():
 
     def do(old, new):
         nonlocal t
+        if new in t and old not in t:
+            return  # idempotent resume: already finalized in an earlier run
         t2 = swap(t, old, new)
         if t2 is None:
             errs.append(f"placeholder not found: {old[:70]!r}")
         else:
             t = t2
 
-    # header date
-    do("Date: <date at G0>.", f"Date: {time.strftime('%Y-%m-%d %H:%M')} (G0 tag time).")
+    # header date (idempotent across minutes: skip if a real date is present)
+    if re.search(r"Date: \d{4}-\d{2}-\d{2} \d{2}:\d{2}", t):
+        pass
+    else:
+        do("Date: <date at G0>.", f"Date: {time.strftime('%Y-%m-%d %H:%M')} (G0 tag time).")
 
     # 7B generation numbers
     lines = []

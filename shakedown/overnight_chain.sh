@@ -167,8 +167,10 @@ tagsha=$(git rev-parse g0-prereg)
 lsr=$(git ls-remote origin refs/tags/g0-prereg)
 echo "$lsr" | grep -q "$tagsha" || stop G0TAG "ls-remote does not show $tagsha for g0-prereg"
 log "G0 step 1 PASS: tag g0-prereg = $tagsha pushed and visible via ls-remote"
-date +%s > ~/runs/ots_stamp_time.txt
-if ! "$OTS" stamp PREREG.md; then
+[ -f ~/runs/ots_stamp_time.txt ] || date +%s > ~/runs/ots_stamp_time.txt
+if [ -f PREREG.md.ots ] && "$OTS" verify PREREG.md.ots >/dev/null 2>&1; then
+  log "G0 step 2: PREREG.md.ots already exists and verifies — skipping re-stamp (resume)"
+elif ! "$OTS" stamp PREREG.md; then
   stop OTS "ots stamp PREREG.md failed"
 fi
 [ -f PREREG.md.ots ] || stop OTS "ots stamp produced no PREREG.md.ots"
@@ -176,12 +178,14 @@ log "G0 step 2 PASS: PREREG.md.ots stamped ($(date '+%H:%M'))"
 push_all "A18 G0 steps: tag g0-prereg pushed (ls-remote verified) + PREREG.md.ots stamped"
 
 # ots upgrade ~6 h after the stamp, independent of the rest of the chain
-( sleep $((6*3600 - ($(date +%s) - $(cat ~/runs/ots_stamp_time.txt)) )); \
-  cd "$REPO" && "$OTS" upgrade PREREG.md.ots && git add PREREG.md.ots && \
-  git commit -qm "A18: ots upgrade PREREG.md.ots (T_stamp+6h)" && \
-  git push origin spark && echo "- $(date '+%Y-%m-%d %H:%M') — [chain] ots upgrade committed and pushed" >> "$LOGF" ) \
-  > ~/runs/ots_upgrade.log 2>&1 &
-log "ots upgrade scheduled for $(date -d "+6 hours" '+%H:%M') (background, pid $!)"
+# (one scheduler only: marker file guards against duplicate jobs on resume)
+if [ ! -f ~/runs/ots_upgrade_scheduled ]; then
+  date +%s > ~/runs/ots_upgrade_scheduled
+  setsid nohup bash "$REPO/shakedown/ots_upgrade_job.sh" >> ~/runs/ots_upgrade.log 2>&1 < /dev/null &
+  log "ots upgrade scheduled for $(date -d "@$(( $(cat ~/runs/ots_stamp_time.txt) + 6*3600 ))" '+%H:%M') (detached job)"
+else
+  log "ots upgrade already scheduled (marker present) — not duplicating"
+fi
 
 # ---------------------------------------------------------------- Phase 8
 if forced PHASE8; then stop PHASE8 "forced failure (dry run)"; fi

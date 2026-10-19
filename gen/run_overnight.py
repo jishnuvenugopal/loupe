@@ -107,7 +107,7 @@ def gen_arm_bench(arm, bench, n):
            f"--max-model-len {MML[arm]} "
            f"--log-effective-params /runs/{arm}_{bench}_effective_params.json "
            f"--timing-out /runs/{arm}_{bench}.timing.json --out /runs/{os.path.basename(out)}'"
-           + f"' > {logf} 2>&1")
+           + f" > {logf} 2>&1")
     log(f"phase8: generating {arm}/{bench} (T={TEMP[arm]}, top_p={top_p}, n={n}, "
         f"max_tokens={MAXTOK[arm]}, mml={MML[arm]}, cut={cut_step})")
     t0 = time.time()

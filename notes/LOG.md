@@ -729,3 +729,4 @@ PREREG finalized (2026-10-19 10:41)
 - 2026-10-19 10:41 — phase8: 7b-rl/ve rc=2 wall=0.0 min log=/home/unnitools/runs/gen/log_7b-rl_ve.txt
 - 2026-10-19 10:41 — phase8: 7b-rl/ve FAILED rc=2 — stopping the arm ladder
 - 2026-10-19 10:41 — [chain] STOP — PHASE8 failed: generation runner rc!=0 (see notes/LOG.md and ~/runs/gen/log_*)
+- 2026-10-19 10:45 — [chain] PHASE8 stop diagnosed: quoting bug in gen_arm_bench (doubled quote before the log redirect -> bash EOF error, no generation attempted, nothing generated). Fixed. Also made the chain fully resumable: prereg_finalize idempotent (already-filled placeholders skipped, incl. the header date), ots stamp skipped when PREREG.md.ots exists and verifies, ots upgrade launched as a detached setsid job (the first scheduled job died with its tmux session; marker removed and rescheduled from the original stamp time). G0 steps from the first run stand: tag g0-prereg pushed + PREREG.md.ots stamped 10:41.
