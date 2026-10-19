@@ -168,8 +168,9 @@ lsr=$(git ls-remote origin refs/tags/g0-prereg)
 echo "$lsr" | grep -q "$tagsha" || stop G0TAG "ls-remote does not show $tagsha for g0-prereg"
 log "G0 step 1 PASS: tag g0-prereg = $tagsha pushed and visible via ls-remote"
 [ -f ~/runs/ots_stamp_time.txt ] || date +%s > ~/runs/ots_stamp_time.txt
-if [ -f PREREG.md.ots ] && "$OTS" verify PREREG.md.ots >/dev/null 2>&1; then
-  log "G0 step 2: PREREG.md.ots already exists and verifies — skipping re-stamp (resume)"
+if [ -f PREREG.md.ots ] \
+   && [ "$("$OTS" info PREREG.md.ots 2>/dev/null | awk '/File sha256 hash:/ {print $4}')" = "$(sha256sum PREREG.md | cut -d' ' -f1)" ]; then
+  log "G0 step 2: PREREG.md.ots already stamps THIS content (digest match) — skipping re-stamp (resume)"
 elif ! "$OTS" stamp PREREG.md; then
   stop OTS "ots stamp PREREG.md failed"
 fi

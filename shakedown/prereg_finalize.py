@@ -127,7 +127,10 @@ def main():
                    f"generation ends). VE subset rule: `random.Random(0).sample("
                    f"sorted(ve_ids), 60)` pinned pre-G0 as `gen/ve_subset60.txt`.")
         anchor = "VE/RTLLM; `results/shakedown/{3b-rl,3b-base}.json`)."
-        t2 = swap(t, anchor, anchor + "\n" + cutline)
+        if cutline in t:
+            t2 = t  # idempotent resume: cut record already present
+        else:
+            t2 = swap(t, anchor, anchor + "\n" + cutline)
         if t2 is None:
             errs.append("cut-record anchor not found")
         else:

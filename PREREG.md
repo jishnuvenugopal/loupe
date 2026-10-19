@@ -326,7 +326,6 @@ GRPO reward oracle.
 - Generation throughput, 3B lane (A16 settings, 64 concurrent; A18 §8 C4
   steady-state split, wall was load-inclusive at draft time): 3b-rl 378.6/778.4 tok/s ; 3b-base 416.1/641.6 tok/s (VE/RTLLM; `results/shakedown/{3b-rl,3b-base}.json`).
 - **Cut applied (A18 §8 C4)**: `none` — steady-state projection 7.46 h → 7.46 h of the 9 h window; ladder order (VE seeded 60 → n 3→2 → drop 7B base → drop 3B base); RTLLM n = 5: **no**; overlap probe skipped (score nothing until generation ends). VE subset rule: `random.Random(0).sample(sorted(ve_ids), 60)` pinned pre-G0 as `gen/ve_subset60.txt`.
-- **Cut applied (A18 §8 C4)**: `none` — steady-state projection 7.46 h → 7.46 h of the 9 h window; ladder order (VE seeded 60 → n 3→2 → drop 7B base → drop 3B base); RTLLM n = 5: **no**; overlap probe skipped (score nothing until generation ends). VE subset rule: `random.Random(0).sample(sorted(ve_ids), 60)` pinned pre-G0 as `gen/ve_subset60.txt`.
   Note: re-generating the 3B-RL shakedown at `max_model_len` 4096 (vs the first
   run's 20480) changed completions slightly — vLLM per-request seeds are not
   bitwise-deterministic across settings. **The generations are therefore the
