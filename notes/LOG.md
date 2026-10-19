@@ -899,3 +899,21 @@ PREREG finalized (2026-10-19 18:17)
 {"arm": "7b-base", "rows_total": 618, "truncated_total": 0, "extraction_rate": 0.9984, "module_name_ok_rate": 0.966}
 {"arm": "7b-rl", "rows_total": 618, "truncated_total": 1, "extraction_rate": 1.0, "module_name_ok_rate": 0.9903}
 {"arm": "7b-sft", "rows_total": 618, "truncated_total": 7, "extraction_rate": 0.9935, "module_name_ok_rate": 0.9838}
+- 2026-10-19 18:17 — [chain] pushed: A18 phase 8: generation done; manifests + release archives + throughput checks committed
+- 2026-10-19 18:17 — [chain] phase 10: scoring + analysis (freeze checks, G2, G1b, strict, dedup, contamination, stats, blind40)
+- 2026-10-19 18:17 — phase10: start (freeze checks first)
+- 2026-10-19 18:17 — phase10: git -C /home/unnitools/rtl-strict-eval diff --quiet scorer-v1 ...
+- 2026-10-19 18:17 — phase10: sha256sum -c results/pilot_repro/SCORER_SHA256
+- 2026-10-19 18:17 — phase10 freeze check: diff rc=1 sha256 rc=0 FAILED
+- 2026-10-19 18:17 — scorer/pilot_llm_outputs.py: OK
+scorer/rtllm_audit.py: OK
+scorer/score.py: OK
+deep/analyze.py: OK
+deep/common.py: OK
+deep/fault_grade.py: OK
+deep/run_deep.py: OK
+deep/spec_oracle.py: OK
+deep/ve_gate.py: OK
+scorer/depth.yaml: OK
+
+- 2026-10-19 18:17 — [chain] STOP — PHASE10 failed: phase10.py rc=0 (its STOP line names the failing gate)

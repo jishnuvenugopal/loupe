@@ -1,10 +1,11 @@
 # SPARK REPORT — strict re-scoring, DGX Spark lane
 
-Updated 19 Oct 2026, 18:09 UTC+08 (A18 overnight chain).
+Updated 19 Oct 2026, 18:17 UTC+08 (A18 overnight chain).
 `jishnuvenugopal/rte-strict-eval` (PRIVATE), branch `spark`, tag `scorer-v1` pushed.
 
 ## 1. Status
 
+- [18:17] PHASE10: FAILED: phase10.py rc=0 (its STOP line names the failing gate)
 - [18:09] PHASE8: FAILED: make_manifest failed
 - [10:46] OTS: FAILED: ots stamp PREREG.md failed
 - [10:41] PHASE8: FAILED: generation runner rc!=0 (see notes/LOG.md and ~/runs/gen/log_*)
@@ -215,4 +216,4 @@ notes/LOG.md, updated this report and pushed — verified. The REAL chain is now
 running under tmux (`tmux attach -t overnight`); its stop paths will update this
 report again.
 
-STOP — PHASE8 failed: make_manifest failed
+STOP — PHASE10 failed: phase10.py rc=0 (its STOP line names the failing gate)

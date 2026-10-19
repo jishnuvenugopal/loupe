@@ -284,9 +284,9 @@
   }
  ],
  "chain": {
-  "last_update": "2026-10-19 18:09:05",
-  "phase": "PHASE8",
-  "status": "FAILED: make_manifest failed",
-  "stop": "STOP \u2014 PHASE8 failed: make_manifest failed"
+  "last_update": "2026-10-19 18:17:50",
+  "phase": "PHASE10",
+  "status": "FAILED: phase10.py rc=0 (its STOP line names the failing gate)",
+  "stop": "STOP \u2014 PHASE10 failed: phase10.py rc=0 (its STOP line names the failing gate)"
  }
 }
