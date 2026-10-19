@@ -46,9 +46,16 @@ push_all() { # push_all <msg>
   git add -A >/dev/null 2>&1
   if ! git diff --cached --quiet; then
     git commit -qm "$1"
-    git push origin spark >/dev/null 2>&1 || { log "PUSH FAILED ($1); retry in 60s"; sleep 60; git push origin spark >/dev/null 2>&1 || stop PUSH "git push failed twice: $1"; }
-    log "pushed: $1"
   fi
+  # transient network failures must not kill the night: 5 tries, 2 min apart
+  local tries=0
+  until git push origin spark >/dev/null 2>&1; do
+    tries=$((tries+1))
+    [ "$tries" -ge 5 ] && stop PUSH "git push failed 5 times: $1"
+    log "PUSH retry $tries for: $1 (sleep 120)"
+    sleep 120
+  done
+  log "pushed: $1"
 }
 forced() { [ "$FORCE_FAIL" = "$1" ]; }
 
@@ -93,6 +100,11 @@ done
 # ---- C3 7B shakedown (Phase 6 step 1 for all three 7B arms)
 if forced C3; then stop C3 "forced failure (dry run)"; fi
 for arm in 7b-rl 7b-sft 7b-base; do
+  if [ -f "results/shakedown/$arm.json" ] \
+     && "$PY" shakedown/c3_check.py --arm "$arm" >/dev/null 2>&1; then
+    log "C3: $arm already green (report present, checks pass) — resume skip"
+    continue
+  fi
   log "C3: shakedown $arm (Phase 6 step 1)"
   if ! "$PY" shakedown/shakedown_run.py --arm "$arm" >> ~/runs/shakedown_${arm}.log 2>&1; then
     stop C3 "shakedown_run $arm rc!=0 (log ~/runs/shakedown_${arm}.log)"
@@ -106,9 +118,20 @@ for arm in 7b-rl 7b-sft 7b-base; do
 done
 # 3B steady-state refresh (C4 needs every arm; weights already verified)
 for arm in 3b-rl 3b-base; do
-  log "C3 (C4 prep): throughput-only refresh $arm"
-  "$PY" shakedown/shakedown_run.py --arm "$arm" --skip-gen --skip-score \
-      >> ~/runs/shakedown_${arm}.log 2>&1 || log "WARN: $arm refresh rc!=0 (keeps wall rate)"
+  if "$PY" - "$arm" <<'PYEOF' >/dev/null 2>&1
+import json, os, sys
+arm = sys.argv[1]
+d = json.load(open(f"results/shakedown/{arm}.json"))
+tp = d.get("throughput", {})
+sys.exit(0 if all("steady_tok_per_s" in tp.get(b, {}) for b in ("ve", "rtllm")) else 1)
+PYEOF
+  then
+    log "C3 (C4 prep): $arm steady split already present — resume skip"
+  else
+    log "C3 (C4 prep): throughput-only refresh $arm"
+    "$PY" shakedown/shakedown_run.py --arm "$arm" --skip-gen --skip-score \
+        >> ~/runs/shakedown_${arm}.log 2>&1 || log "WARN: $arm refresh rc!=0 (keeps wall rate)"
+  fi
 done
 push_all "A18 C3: 7B shakedowns done + checked (params, extraction, cap, scorer); 3B steady refresh"
 # delete every shakedown generation from ~/runs (A16 §3 end-of-phase rule)
