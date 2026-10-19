@@ -1,10 +1,11 @@
 # SPARK REPORT — strict re-scoring, DGX Spark lane
 
-Updated 19 Oct 2026, 18:17 UTC+08 (A18 overnight chain).
+Updated 19 Oct 2026, 18:23 UTC+08 (A18 overnight chain).
 `jishnuvenugopal/rte-strict-eval` (PRIVATE), branch `spark`, tag `scorer-v1` pushed.
 
 ## 1. Status
 
+- [18:23] PHASE10: FAILED: phase10.py rc=0 (its STOP line names the failing gate)
 - [18:17] PHASE10: FAILED: phase10.py rc=0 (its STOP line names the failing gate)
 - [18:09] PHASE8: FAILED: make_manifest failed
 - [10:46] OTS: FAILED: ots stamp PREREG.md failed

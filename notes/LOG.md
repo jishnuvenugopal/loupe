@@ -977,3 +977,68 @@ PREREG finalized (2026-10-19 18:23)
 {"arm": "7b-base", "rows_total": 618, "truncated_total": 0, "extraction_rate": 0.9984, "module_name_ok_rate": 0.966}
 {"arm": "7b-rl", "rows_total": 618, "truncated_total": 1, "extraction_rate": 1.0, "module_name_ok_rate": 0.9903}
 {"arm": "7b-sft", "rows_total": 618, "truncated_total": 7, "extraction_rate": 0.9935, "module_name_ok_rate": 0.9838}
+- 2026-10-19 18:23 — [chain] pushed: A18 phase 8: generation done; manifests + release archives + throughput checks committed
+- 2026-10-19 18:23 — [chain] phase 10: scoring + analysis (freeze checks, G2, G1b, strict, dedup, contamination, stats, blind40)
+- 2026-10-19 18:23 — phase10: start (freeze checks first)
+- 2026-10-19 18:23 — phase10: git -C /home/unnitools/rtl-strict-eval diff --quiet scorer-v1 ...
+- 2026-10-19 18:23 — phase10: sha256sum -c results/pilot_repro/SCORER_SHA256
+- 2026-10-19 18:23 — phase10 freeze check: diff rc=0 sha256 rc=0 a18-test pins ok=True
+- 2026-10-19 18:23 — phase10: /home/unnitools/.venvs/host/bin/python /home/unnitools/rtl-strict-eval/scoring/extract.py --gen /home/unnitools/runs/gen/7b-rl_rtllm.jsonl
+- 2026-10-19 18:23 — phase10 G2 7b-rl 7b-rl_rtllm.jsonl: rc=0 0.98
+- 2026-10-19 18:23 — phase10: /home/unnitools/.venvs/host/bin/python /home/unnitools/rtl-strict-eval/scoring/extract.py --gen /home/unnitools/runs/gen/7b-rl_ve.jsonl
+- 2026-10-19 18:23 — phase10 G2 7b-rl 7b-rl_ve.jsonl: rc=0 0.9936
+- 2026-10-19 18:23 — phase10: /home/unnitools/.venvs/host/bin/python /home/unnitools/rtl-strict-eval/scoring/extract.py --gen /home/unnitools/runs/gen/7b-sft_rtllm.jsonl
+- 2026-10-19 18:23 — phase10 G2 7b-sft 7b-sft_rtllm.jsonl: rc=0 0.9733
+- 2026-10-19 18:23 — phase10: /home/unnitools/.venvs/host/bin/python /home/unnitools/rtl-strict-eval/scoring/extract.py --gen /home/unnitools/runs/gen/7b-sft_ve.jsonl
+- 2026-10-19 18:23 — phase10 G2 7b-sft 7b-sft_ve.jsonl: rc=0 0.9872
+- 2026-10-19 18:23 — phase10: /home/unnitools/.venvs/host/bin/python /home/unnitools/rtl-strict-eval/scoring/extract.py --gen /home/unnitools/runs/gen/3b-rl_rtllm.jsonl
+- 2026-10-19 18:23 — phase10 G2 3b-rl 3b-rl_rtllm.jsonl: rc=1 0.94
+- 2026-10-19 18:23 — G2 FAILED for 3b-rl — output:
+{"file": "/home/unnitools/runs/gen/3b-rl_rtllm.jsonl", "samples": 150, "extract_and_name_ok": 141, "share": 0.94, "g2_threshold": 0.95, "g2_pass": false}
+first 10 failing samples:
+  rtllm/adder_32bit/1
+  rtllm/adder_pipe_64bit/2
+  rtllm/asyn_fifo/2
+  rtllm/barrel_shifter/2
+  rtllm/comparator_3bit/0
+  rtllm/fixed_point_substractor/0
+  rtllm/fixed_point_substractor/1
+  rtllm/fixed_point_substractor/2
+  rtllm/multi_8bit/1
+- 2026-10-19 18:23 — phase10: /home/unnitools/.venvs/host/bin/python /home/unnitools/rtl-strict-eval/scoring/extract.py --gen /home/unnitools/runs/gen/3b-rl_ve.jsonl
+- 2026-10-19 18:23 — phase10 G2 3b-rl 3b-rl_ve.jsonl: rc=1 0.9487
+- 2026-10-19 18:23 — G2 FAILED for 3b-rl — output:
+{"file": "/home/unnitools/runs/gen/3b-rl_ve.jsonl", "samples": 468, "extract_and_name_ok": 444, "share": 0.9487, "g2_threshold": 0.95, "g2_pass": false}
+first 10 failing samples:
+  ve/Prob018_mux256to1/2
+  ve/Prob021_mux256to1v/1
+  ve/Prob030_popcount255/0
+  ve/Prob052_gates100/0
+  ve/Prob082_lfsr32/0
+  ve/Prob089_ece241_2014_q5a/2
+  ve/Prob102_circuit3/2
+  ve/Prob123_bugs_addsubz/0
+  ve/Prob123_bugs_addsubz/1
+  ve/Prob123_bugs_addsubz/2
+- 2026-10-19 18:23 — phase10: /home/unnitools/.venvs/host/bin/python /home/unnitools/rtl-strict-eval/scoring/extract.py --gen /home/unnitools/runs/gen/3b-base_rtllm.jsonl
+- 2026-10-19 18:23 — phase10 G2 3b-base 3b-base_rtllm.jsonl: rc=1 0.92
+- 2026-10-19 18:23 — G2 FAILED for 3b-base — output:
+{"file": "/home/unnitools/runs/gen/3b-base_rtllm.jsonl", "samples": 150, "extract_and_name_ok": 138, "share": 0.92, "g2_threshold": 0.95, "g2_pass": false}
+first 10 failing samples:
+  rtllm/accu/1
+  rtllm/adder_pipe_64bit/0
+  rtllm/adder_pipe_64bit/1
+  rtllm/adder_pipe_64bit/2
+  rtllm/div_16bit/1
+  rtllm/fixed_point_substractor/0
+  rtllm/fixed_point_substractor/1
+  rtllm/fixed_point_substractor/2
+  rtllm/float_multi/2
+  rtllm/radix2_div/2
+- 2026-10-19 18:23 — phase10: /home/unnitools/.venvs/host/bin/python /home/unnitools/rtl-strict-eval/scoring/extract.py --gen /home/unnitools/runs/gen/3b-base_ve.jsonl
+- 2026-10-19 18:23 — phase10 G2 3b-base 3b-base_ve.jsonl: rc=0 0.9679
+- 2026-10-19 18:23 — phase10: /home/unnitools/.venvs/host/bin/python /home/unnitools/rtl-strict-eval/scoring/extract.py --gen /home/unnitools/runs/gen/7b-base_rtllm.jsonl
+- 2026-10-19 18:23 — phase10 G2 7b-base 7b-base_rtllm.jsonl: rc=0 0.98
+- 2026-10-19 18:23 — phase10: /home/unnitools/.venvs/host/bin/python /home/unnitools/rtl-strict-eval/scoring/extract.py --gen /home/unnitools/runs/gen/7b-base_ve.jsonl
+- 2026-10-19 18:23 — phase10 G2 7b-base 7b-base_ve.jsonl: rc=0 0.9615
+- 2026-10-19 18:23 — [chain] STOP — PHASE10 failed: phase10.py rc=0 (its STOP line names the failing gate)
