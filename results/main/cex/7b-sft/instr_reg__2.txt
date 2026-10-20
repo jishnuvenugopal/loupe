@@ -1,0 +1,10 @@
+ 1 trig=0 | clk=0 data=00000000 fetch=00 rst=1 || gold/gate 
+ 2 trig=0 | clk=0 data=00000000 fetch=00 rst=1 || gold/gate 
+ 3 trig=0 | clk=0 data=00000000 fetch=00 rst=1 || gold/gate 
+ 4 trig=0 | clk=0 data=11111111 fetch=01 rst=1 || gold/gate 
+ 5 trig=0 | clk=0 data=00000000 fetch=00 rst=1 || gold/gate 
+ 6 trig=0 | clk=0 data=01000001 fetch=01 rst=1 || gold/gate 
+ 7 trig=0 | clk=0 data=00000000 fetch=00 rst=1 || gold/gate 
+ 8 trig=0 | clk=0 data=00000000 fetch=00 rst=1 || gold/gate 
+ 9 trig=0 | clk=0 data=00000000 fetch=00 rst=1 || gold/gate 
+10 trig=1 | clk=0 data=00000000 fetch=00 rst=0 || gold/gate 

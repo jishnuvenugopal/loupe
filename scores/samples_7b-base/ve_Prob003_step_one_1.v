@@ -1,0 +1,8 @@
+
+module TopModule(
+    output one
+);
+    always @(*) begin
+        one = 1;
+    end
+endmodule

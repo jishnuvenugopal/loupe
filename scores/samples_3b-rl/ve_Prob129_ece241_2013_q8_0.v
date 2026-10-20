@@ -1,0 +1,52 @@
+
+module TopModule (
+    input  wire clk,
+    input  wire aresetn,
+    input  wire x,
+    output reg  z
+);
+
+    
+    
+    
+    
+    reg [2:0] state;
+
+    always @(posedge clk or negedge aresetn) begin
+        if (!aresetn) begin
+            state <= 3'b000;
+            z <= 1'b0;
+        end else begin
+            case (state)
+                3'b000: begin
+                    if (x == 1'b1) begin
+                        state <= 3'b001;
+                    end else begin
+                        state <= 3'b000;
+                    end
+                end
+                3'b001: begin
+                    if (x == 1'b0) begin
+                        state <= 3'b010;
+                    end else begin
+                        state <= 3'b000;
+                    end
+                end
+                3'b010: begin
+                    if (x == 1'b1) begin
+                        state <= 3'b001;
+                        z <= 1'b1;
+                    end else begin
+                        state <= 3'b000;
+                        z <= 1'b0;
+                    end
+                end
+                default: begin
+                    state <= 3'b000;
+                    z <= 1'b0;
+                end
+            endcase
+        end
+    end
+
+endmodule

@@ -1,0 +1,10 @@
+ 1 trig=0 | in=1 state=0100 || gold/gate 
+ 2 trig=0 | in=1 state=1000 || gold/gate 
+ 3 trig=0 | in=1 state=0100 || gold/gate 
+ 4 trig=0 | in=0 state=1000 || gold/gate 
+ 5 trig=1 | in=1 state=0101 || gold/gate 
+ 6 trig=1 | in=1 state=0101 || gold/gate 
+ 7 trig=1 | in=1 state=0101 || gold/gate 
+ 8 trig=1 | in=0 state=0011 || gold/gate 
+ 9 trig=1 | in=1 state=0101 || gold/gate 
+10 trig=1 | in=1 state=0101 || gold/gate 

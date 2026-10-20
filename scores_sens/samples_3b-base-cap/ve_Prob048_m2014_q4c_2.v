@@ -1,0 +1,26 @@
+
+module TopModule (
+    input  clk,
+    input  d,
+    input  r,
+    output q
+);
+
+    
+    reg q_reg;
+
+    
+    always @(posedge clk or posedge r) begin
+        
+        if (r) begin
+            q_reg <= 0;
+        
+        end else begin
+            q_reg <= d;
+        end
+    end
+
+    
+    assign q = q_reg;
+
+endmodule

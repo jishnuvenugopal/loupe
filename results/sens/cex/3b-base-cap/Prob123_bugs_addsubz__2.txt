@@ -1,0 +1,10 @@
+ 1 trig=0 | a=10000000 b=01111110 do_sub=1 || gold/gate 
+ 2 trig=0 | a=01111010 b=00110111 do_sub=1 || gold/gate 
+ 3 trig=0 | a=10000100 b=01111111 do_sub=0 || gold/gate 
+ 4 trig=0 | a=10000000 b=10000000 do_sub=1 || gold/gate 
+ 5 trig=0 | a=10000000 b=11000000 do_sub=0 || gold/gate 
+ 6 trig=1 | a=00000000 b=00000000 do_sub=0 || gold/gate 
+ 7 trig=1 | a=00000000 b=00000000 do_sub=0 || gold/gate 
+ 8 trig=1 | a=00000000 b=00000000 do_sub=0 || gold/gate 
+ 9 trig=1 | a=00000000 b=00000000 do_sub=0 || gold/gate 
+10 trig=1 | a=00000000 b=00000000 do_sub=0 || gold/gate 

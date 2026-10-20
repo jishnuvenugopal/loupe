@@ -1,0 +1,10 @@
+ 1 trig=0 | clk=0 data_in=1 rst_n=0 || gold/gate 
+ 2 trig=0 | clk=0 data_in=0 rst_n=0 || gold/gate 
+ 3 trig=0 | clk=0 data_in=1 rst_n=0 || gold/gate 
+ 4 trig=0 | clk=0 data_in=0 rst_n=0 || gold/gate 
+ 5 trig=0 | clk=0 data_in=1 rst_n=1 || gold/gate 
+ 6 trig=0 | clk=0 data_in=1 rst_n=1 || gold/gate 
+ 7 trig=0 | clk=0 data_in=0 rst_n=1 || gold/gate 
+ 8 trig=0 | clk=0 data_in=0 rst_n=1 || gold/gate 
+ 9 trig=0 | clk=0 data_in=1 rst_n=1 || gold/gate 
+10 trig=1 | clk=0 data_in=0 rst_n=1 || gold/gate 

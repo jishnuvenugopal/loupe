@@ -1,0 +1,36 @@
+
+module TopModule (
+    input  wire        clk,
+    input  wire        reset,
+    input  wire [31:0] in,
+    output reg  [31:0] out
+);
+
+    
+    reg [31:0] prev_in;
+
+    
+    reg [31:0] out_reg;
+
+    always @(posedge clk) begin
+        if (reset) begin
+            out_reg <= 32'b0;
+        end else begin
+            
+            out_reg <= (prev_in & ~in);
+        end
+    end
+
+    
+    always @(posedge clk) begin
+        if (reset) begin
+            prev_in <= 32'b0;
+        end else begin
+            prev_in <= in;
+        end
+    end
+
+    
+    assign out = out_reg;
+
+endmodule

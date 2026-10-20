@@ -1,0 +1,45 @@
+
+module TopModule (
+    input  wire clk,
+    input  wire reset,
+    input  wire in,
+    output reg  out
+);
+
+    
+    reg [1:0] state;
+
+    
+    assign out = (state == 2'b00) ? 1'b1 : 1'b0;
+
+    always @(posedge clk) begin
+        if (reset) begin
+            state <= 2'b00;
+ 
+            out   <= 1'b1;
+        end else begin
+            case (state)
+                2'b00: begin 
+                    if (in == 1'b0) begin
+                        state <= 2'b01;
+ 
+                    end
+                    
+                end
+                2'b01: begin 
+                    if (in == 1'b0) begin
+                        state <= 2'b00;
+ 
+                    end
+                    
+                end
+                default: begin
+                    state <= 2'b00;
+ 
+                    out   <= 1'b1;
+                end
+            endcase
+        end
+    end
+
+endmodule

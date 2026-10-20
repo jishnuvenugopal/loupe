@@ -1,0 +1,25 @@
+
+module TopModule (
+    input  clk,
+    input  ar,
+    input  d,
+    output q
+);
+
+    
+    initial begin
+        q = 0;
+    end
+
+    
+    always @(posedge clk or posedge ar) begin
+        if (ar) begin
+            
+            q = 0;
+        end else begin
+            
+            q = d;
+        end
+    end
+
+endmodule
