@@ -1356,3 +1356,9 @@ key: /home/unnitools/runs/blind40_key.json (outside the repo; commit only its sh
 - 2026-10-21 02:04 — [chain] C1 PASS: items 1-5+7 committed, pushed, PREREG sha256 final
 - 2026-10-21 02:04 — [chain] C2: waiting for 8/8 weight verification (cut-off 09:00)
 - 2026-10-21 02:04 — [chain] C2 PASS: all 8 weight sets hash-verified (8 of 8) at 2026-10-21 02:04
+- 2026-10-21 02:05 — [chain] pushed: A18 C2: 8/8 weights verified at 2026-10-21 02:04
+- 2026-10-21 02:05 — [chain] C3: 7b-rl already green (report present, checks pass) — resume skip
+- 2026-10-21 02:05 — [chain] C3: 7b-sft already green (report present, checks pass) — resume skip
+- 2026-10-21 02:05 — [chain] C3: 7b-base already green (report present, checks pass) — resume skip
+- 2026-10-21 02:05 — [chain] C3 (C4 prep): 3b-rl steady split already present — resume skip
+- 2026-10-21 02:05 — [chain] C3 (C4 prep): 3b-base steady split already present — resume skip
