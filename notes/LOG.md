@@ -1047,3 +1047,4 @@ first 10 failing samples:
 - 2026-10-20 22:59 — phase10: sha256sum -c results/pilot_repro/SCORER_SHA256
 - 2026-10-20 22:59 — phase10 freeze check: diff rc=0 sha256 rc=0 a18-test pins ok=True
 - 2026-10-20 23:00 — [A19] operator decision on the G2 stop (verbatim instruction: "Lets do all? Lets do everything which best suits the rules we set in A19"): all three — primary preserved with pinned waivers, typo alias as the glue fix, 3B sensitivity regeneration. PREREG-A19.md written and committed BEFORE any testbench scoring ran (blind to every official pass@1 / strict-correct / H-contrast number). extract.py alias verified against all 10 primary files: shares exactly as pinned in A19 §1 (7b rtllm 1.0/0.9933/1.0; 3b-rl rtllm 0.96; waivers 3b-rl_ve 444, 3b-base_rtllm 141). Freeze check green with the A19 test pin.
+- 2026-10-20 22:59 — sens: generating 3b-rl-cap/ve (T=0.2, top_p=0.95, n=3, max_tokens=3072, mml=5120)

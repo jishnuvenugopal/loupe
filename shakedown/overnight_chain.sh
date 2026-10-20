@@ -68,6 +68,15 @@ bad=0
 for f in scoring/extract.py scoring/stats.py scoring/run_scoring.py \
          scoring/showcex.py scoring/dedup.py scoring/blind40.py; do
   want=$(grep -A2 "$f" PREREG.md | grep -oE '[0-9a-f]{64}' | head -1)
+  # A19 §5: extract.py's pin is superseded by PREREG-A19.md (PREREG.md stays
+  # byte-identical to the g0 stamp). Still byte-strict — against the amended pin.
+  if [ "$f" = "scoring/extract.py" ] && [ -f PREREG-A19.md ]; then
+    a19want=$(grep -A2 "$f" PREREG-A19.md | grep -oE '[0-9a-f]{64}' | head -1)
+    if [ -n "$a19want" ] && [ "$a19want" != "$want" ]; then
+      log "C1: extract.py pin superseded by A19 ($want -> $a19want)"
+      want=$a19want
+    fi
+  fi
   got=$(sha256sum "$f" | cut -d' ' -f1)
   if [ -z "$want" ] || [ "$want" != "$got" ]; then
     log "C1 mismatch: $f prereg=$want disk=$got"; bad=1
