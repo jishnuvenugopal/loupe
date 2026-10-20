@@ -1222,3 +1222,132 @@ PREREG finalized (2026-10-21 01:22)
 {"arm": "7b-base", "rows_total": 618, "truncated_total": 0, "extraction_rate": 0.9984, "module_name_ok_rate": 0.966}
 {"arm": "7b-rl", "rows_total": 618, "truncated_total": 1, "extraction_rate": 1.0, "module_name_ok_rate": 0.9903}
 {"arm": "7b-sft", "rows_total": 618, "truncated_total": 7, "extraction_rate": 0.9935, "module_name_ok_rate": 0.9838}
+- 2026-10-21 01:22 — [chain] pushed: A18 phase 8: generation done; manifests + release archives + throughput checks committed
+- 2026-10-21 01:22 — [chain] phase 10: scoring + analysis (freeze checks, G2, G1b, strict, dedup, contamination, stats, blind40)
+- 2026-10-21 01:22 — phase10: start (freeze checks first)
+- 2026-10-21 01:22 — phase10: git -C /home/unnitools/rtl-strict-eval diff --quiet scorer-v1 ...
+- 2026-10-21 01:22 — phase10: sha256sum -c results/pilot_repro/SCORER_SHA256
+- 2026-10-21 01:22 — phase10 freeze check: diff rc=0 sha256 rc=0 a18-test pins ok=True
+- 2026-10-21 01:22 — phase10: /home/unnitools/.venvs/host/bin/python /home/unnitools/rtl-strict-eval/scoring/extract.py --gen /home/unnitools/runs/gen/7b-rl_rtllm.jsonl
+- 2026-10-21 01:22 — phase10 G2 7b-rl 7b-rl_rtllm.jsonl: rc=0 1.0
+- 2026-10-21 01:22 — phase10: /home/unnitools/.venvs/host/bin/python /home/unnitools/rtl-strict-eval/scoring/extract.py --gen /home/unnitools/runs/gen/7b-rl_ve.jsonl
+- 2026-10-21 01:22 — phase10 G2 7b-rl 7b-rl_ve.jsonl: rc=0 0.9936
+- 2026-10-21 01:22 — phase10: /home/unnitools/.venvs/host/bin/python /home/unnitools/rtl-strict-eval/scoring/extract.py --gen /home/unnitools/runs/gen/7b-sft_rtllm.jsonl
+- 2026-10-21 01:22 — phase10 G2 7b-sft 7b-sft_rtllm.jsonl: rc=0 0.9933
+- 2026-10-21 01:22 — phase10: /home/unnitools/.venvs/host/bin/python /home/unnitools/rtl-strict-eval/scoring/extract.py --gen /home/unnitools/runs/gen/7b-sft_ve.jsonl
+- 2026-10-21 01:22 — phase10 G2 7b-sft 7b-sft_ve.jsonl: rc=0 0.9872
+- 2026-10-21 01:22 — phase10: /home/unnitools/.venvs/host/bin/python /home/unnitools/rtl-strict-eval/scoring/extract.py --gen /home/unnitools/runs/gen/3b-rl_rtllm.jsonl
+- 2026-10-21 01:22 — phase10 G2 3b-rl 3b-rl_rtllm.jsonl: rc=0 0.96
+- 2026-10-21 01:22 — phase10: /home/unnitools/.venvs/host/bin/python /home/unnitools/rtl-strict-eval/scoring/extract.py --gen /home/unnitools/runs/gen/3b-rl_ve.jsonl
+- 2026-10-21 01:22 — phase10 G2 3b-rl 3b-rl_ve.jsonl: rc=1 0.9487
+- 2026-10-21 01:22 — phase10 G2 3b-rl 3b-rl_ve.jsonl: below threshold but 444 == A19 §3 pinned count — waiver applied (reported, not corrected)
+- 2026-10-21 01:22 — phase10: /home/unnitools/.venvs/host/bin/python /home/unnitools/rtl-strict-eval/scoring/extract.py --gen /home/unnitools/runs/gen/3b-base_rtllm.jsonl
+- 2026-10-21 01:22 — phase10 G2 3b-base 3b-base_rtllm.jsonl: rc=1 0.94
+- 2026-10-21 01:22 — phase10 G2 3b-base 3b-base_rtllm.jsonl: below threshold but 141 == A19 §3 pinned count — waiver applied (reported, not corrected)
+- 2026-10-21 01:22 — phase10: /home/unnitools/.venvs/host/bin/python /home/unnitools/rtl-strict-eval/scoring/extract.py --gen /home/unnitools/runs/gen/3b-base_ve.jsonl
+- 2026-10-21 01:22 — phase10 G2 3b-base 3b-base_ve.jsonl: rc=0 0.9679
+- 2026-10-21 01:22 — phase10: /home/unnitools/.venvs/host/bin/python /home/unnitools/rtl-strict-eval/scoring/extract.py --gen /home/unnitools/runs/gen/7b-base_rtllm.jsonl
+- 2026-10-21 01:22 — phase10 G2 7b-base 7b-base_rtllm.jsonl: rc=0 1.0
+- 2026-10-21 01:22 — phase10: /home/unnitools/.venvs/host/bin/python /home/unnitools/rtl-strict-eval/scoring/extract.py --gen /home/unnitools/runs/gen/7b-base_ve.jsonl
+- 2026-10-21 01:22 — phase10 G2 7b-base 7b-base_ve.jsonl: rc=0 0.9615
+- 2026-10-21 01:22 — phase10: /home/unnitools/.venvs/host/bin/python /home/unnitools/rtl-strict-eval/scoring/contamination.py
+- 2026-10-21 01:45 — phase10 contamination rc=0: erlaps": 0, "ref_overlaps_secondary": 0}}, "total_overlaps": 0}
+verireason_tb_simple {"files": {"processed_entries.jsonl": {"sha256": "(not pinned)", "pin_ok": true, "size_bytes": 7673835, "rows": 743, "spec_overlaps": 0, "ref_overlaps_secondary": 0}}, "total_overlaps": 0}
+overlap rows: 0; overlapping statement tasks: 0
+wrote /home/unnitools/rtl-strict-eval/results/main/contamination/overlaps.csv
+
+- 2026-10-21 01:45 — phase10: /home/unnitools/.venvs/host/bin/python /home/unnitools/rtl-strict-eval/scoring/run_scoring.py --arm 7b-rl --gen /home/unnitools/runs/gen/7b-rl_rtllm.jsonl ...
+- 2026-10-21 01:45 — phase10: /home/unnitools/.venvs/host/bin/python /home/unnitools/rtl-strict-eval/scoring/run_scoring.py --arm 7b-rl --gen /home/unnitools/runs/gen/7b-rl_ve.jsonl ...
+- 2026-10-21 01:45 — phase10: /home/unnitools/.venvs/host/bin/python /home/unnitools/rtl-strict-eval/scoring/stats.py --scores /home/unnitools/rtl-strict-eval/scores/7b-base.jsonl /home/unnitools/rtl-strict-eval/scores/7b-rl.jsonl /home/unnitools/rtl-strict-eval/scores/3b-rl.jsonl ...
+- 2026-10-21 01:46 — phase10 G1b 7b-rl/ve: point=0.679 CI=[0.611, 0.744] anchor=0.688 -> PASS (rtllm loose: 0.7066666666666667 vs 0.68)
+- 2026-10-21 01:46 — phase10 G1b 7b-sft/ve: point=0.637 CI=[0.566, 0.705] anchor=0.652 -> PASS (rtllm loose: 0.6266666666666666 vs 0.572)
+- 2026-10-21 01:46 — phase10 G1b 7b-base/ve: point=0.288 CI=[0.233, 0.346] anchor=0.313 -> PASS (rtllm loose: 0.3466666666666666 vs 0.361)
+- 2026-10-21 01:46 — phase10: /home/unnitools/.venvs/host/bin/python /home/unnitools/rtl-strict-eval/scoring/run_scoring.py --arm 7b-sft --gen /home/unnitools/runs/gen/7b-sft_rtllm.jsonl ...
+- 2026-10-21 01:46 — phase10: /home/unnitools/.venvs/host/bin/python /home/unnitools/rtl-strict-eval/scoring/run_scoring.py --arm 7b-sft --gen /home/unnitools/runs/gen/7b-sft_ve.jsonl ...
+- 2026-10-21 01:46 — phase10: /home/unnitools/.venvs/host/bin/python /home/unnitools/rtl-strict-eval/scoring/stats.py --scores /home/unnitools/rtl-strict-eval/scores/7b-base.jsonl /home/unnitools/rtl-strict-eval/scores/7b-rl.jsonl /home/unnitools/rtl-strict-eval/scores/3b-rl.jsonl ...
+- 2026-10-21 01:46 — phase10 G1b 7b-rl/ve: point=0.679 CI=[0.611, 0.744] anchor=0.688 -> PASS (rtllm loose: 0.7066666666666667 vs 0.68)
+- 2026-10-21 01:46 — phase10 G1b 7b-sft/ve: point=0.637 CI=[0.566, 0.705] anchor=0.652 -> PASS (rtllm loose: 0.6266666666666666 vs 0.572)
+- 2026-10-21 01:46 — phase10 G1b 7b-base/ve: point=0.288 CI=[0.233, 0.346] anchor=0.313 -> PASS (rtllm loose: 0.3466666666666666 vs 0.361)
+- 2026-10-21 01:46 — phase10: /home/unnitools/.venvs/host/bin/python /home/unnitools/rtl-strict-eval/scoring/run_scoring.py --arm 3b-rl --gen /home/unnitools/runs/gen/3b-rl_rtllm.jsonl ...
+- 2026-10-21 01:46 — phase10: /home/unnitools/.venvs/host/bin/python /home/unnitools/rtl-strict-eval/scoring/run_scoring.py --arm 3b-rl --gen /home/unnitools/runs/gen/3b-rl_ve.jsonl ...
+- 2026-10-21 01:46 — phase10: /home/unnitools/.venvs/host/bin/python /home/unnitools/rtl-strict-eval/scoring/run_scoring.py --arm 3b-base --gen /home/unnitools/runs/gen/3b-base_rtllm.jsonl ...
+- 2026-10-21 01:46 — phase10: /home/unnitools/.venvs/host/bin/python /home/unnitools/rtl-strict-eval/scoring/run_scoring.py --arm 3b-base --gen /home/unnitools/runs/gen/3b-base_ve.jsonl ...
+- 2026-10-21 01:46 — phase10: /home/unnitools/.venvs/host/bin/python /home/unnitools/rtl-strict-eval/scoring/run_scoring.py --arm 7b-base --gen /home/unnitools/runs/gen/7b-base_rtllm.jsonl ...
+- 2026-10-21 01:46 — phase10: /home/unnitools/.venvs/host/bin/python /home/unnitools/rtl-strict-eval/scoring/run_scoring.py --arm 7b-base --gen /home/unnitools/runs/gen/7b-base_ve.jsonl ...
+- 2026-10-21 01:46 — phase10: /home/unnitools/.venvs/host/bin/python /home/unnitools/rtl-strict-eval/scoring/stats.py --scores /home/unnitools/rtl-strict-eval/scores/7b-base.jsonl /home/unnitools/rtl-strict-eval/scores/7b-rl.jsonl /home/unnitools/rtl-strict-eval/scores/3b-rl.jsonl ...
+- 2026-10-21 01:46 — phase10 G1b 7b-rl/ve: point=0.679 CI=[0.611, 0.744] anchor=0.688 -> PASS (rtllm loose: 0.7066666666666667 vs 0.68)
+- 2026-10-21 01:46 — phase10 G1b 7b-sft/ve: point=0.637 CI=[0.566, 0.705] anchor=0.652 -> PASS (rtllm loose: 0.6266666666666666 vs 0.572)
+- 2026-10-21 01:46 — phase10 G1b 7b-base/ve: point=0.288 CI=[0.233, 0.346] anchor=0.313 -> PASS (rtllm loose: 0.3466666666666666 vs 0.361)
+- 2026-10-21 01:46 — phase10: /home/unnitools/.venvs/host/bin/python /home/unnitools/rtl-strict-eval/scoring/stats.py --scores /home/unnitools/rtl-strict-eval/scores/7b-base.jsonl /home/unnitools/rtl-strict-eval/scores/7b-rl.jsonl /home/unnitools/rtl-strict-eval/scores/3b-rl.jsonl ...
+- 2026-10-21 01:47 — phase10 G1b 7b-rl/ve: point=0.679 CI=[0.611, 0.744] anchor=0.688 -> PASS (rtllm loose: 0.7066666666666667 vs 0.68)
+- 2026-10-21 01:47 — phase10 G1b 7b-sft/ve: point=0.637 CI=[0.566, 0.705] anchor=0.652 -> PASS (rtllm loose: 0.6266666666666666 vs 0.572)
+- 2026-10-21 01:47 — phase10 G1b 7b-base/ve: point=0.288 CI=[0.233, 0.346] anchor=0.313 -> PASS (rtllm loose: 0.3466666666666666 vs 0.361)
+- 2026-10-21 01:47 — phase10: /home/unnitools/.venvs/host/bin/python /home/unnitools/rtl-strict-eval/scoring/stats.py --scores /home/unnitools/rtl-strict-eval/scores/7b-base.jsonl /home/unnitools/rtl-strict-eval/scores/7b-rl.jsonl /home/unnitools/rtl-strict-eval/scores/3b-rl.jsonl ...
+- 2026-10-21 01:47 — phase10: /home/unnitools/.venvs/host/bin/python /home/unnitools/rtl-strict-eval/scoring/stats.py --scores /home/unnitools/rtl-strict-eval/scores/7b-base.jsonl /home/unnitools/rtl-strict-eval/scores/7b-rl.jsonl /home/unnitools/rtl-strict-eval/scores/3b-rl.jsonl ...
+- 2026-10-21 01:48 — phase10: /home/unnitools/.venvs/host/bin/python /home/unnitools/rtl-strict-eval/scoring/dedup.py --gen /home/unnitools/runs/gen/7b-rl_rtllm.jsonl /home/unnitools/runs/gen/7b-rl_ve.jsonl /home/unnitools/runs/gen/7b-sft_rtllm.jsonl ...
+- 2026-10-21 01:48 — phase10 dedup rc=0: ys_failures": 281,
+ "extraction_empty": 49,
+ "per_arm": {
+  "3b-base": {
+   "rows": 618,
+   "unique": 552
+  },
+  "3b-rl": {
+   "rows": 618,
+   "unique": 541
+  },
+  "7b-base": {
+   "rows": 618,
+   "unique": 567
+  },
+  "7b-rl": {
+   "rows": 618,
+   "unique": 472
+  },
+  "7b-sft": {
+   "rows": 618,
+   "unique": 460
+  }
+ }
+}
+wrote /home/unnitools/rtl-strict-eval/results/main/dedup_map.json (3090 keys)
+
+- 2026-10-21 01:48 — phase10: /home/unnitools/.venvs/host/bin/python /home/unnitools/rtl-strict-eval/scoring/stats.py --scores /home/unnitools/rtl-strict-eval/scores/7b-base.jsonl /home/unnitools/rtl-strict-eval/scores/7b-rl.jsonl /home/unnitools/rtl-strict-eval/scores/3b-rl.jsonl ...
+- 2026-10-21 01:49 — phase10: /home/unnitools/.venvs/host/bin/python /home/unnitools/rtl-strict-eval/scoring/stats.py --scores /home/unnitools/rtl-strict-eval/scores/7b-base.jsonl /home/unnitools/rtl-strict-eval/scores/7b-rl.jsonl /home/unnitools/rtl-strict-eval/scores/3b-rl.jsonl ...
+- 2026-10-21 01:49 — phase10: /home/unnitools/.venvs/host/bin/python /home/unnitools/rtl-strict-eval/scoring/stats.py --scores /home/unnitools/rtl-strict-eval/scores/7b-base.jsonl /home/unnitools/rtl-strict-eval/scores/7b-rl.jsonl /home/unnitools/rtl-strict-eval/scores/3b-rl.jsonl ...
+- 2026-10-21 01:50 — phase10: /home/unnitools/.venvs/host/bin/python /home/unnitools/rtl-strict-eval/scoring/blind40.py --scores /home/unnitools/rtl-strict-eval/scores/7b-base.jsonl /home/unnitools/rtl-strict-eval/scores/7b-rl.jsonl /home/unnitools/rtl-strict-eval/scores/3b-rl.jsonl ...
+- 2026-10-21 01:50 — phase10 blind40 rc=0: },
+  "3b-rl|rtllm": {
+   "population": 6,
+   "drawn": 3
+  },
+  "7b-base|rtllm": {
+   "population": 9,
+   "drawn": 5
+  },
+  "7b-base|ve": {
+   "population": 3,
+   "drawn": 2
+  },
+  "7b-rl|rtllm": {
+   "population": 25,
+   "drawn": 13
+  },
+  "7b-rl|ve": {
+   "population": 5,
+   "drawn": 3
+  },
+  "7b-sft|rtllm": {
+   "population": 20,
+   "drawn": 11
+  },
+  "7b-sft|ve": {
+   "population": 1,
+   "drawn": 0
+  }
+ }
+}
+key: /home/unnitools/runs/blind40_key.json (outside the repo; commit only its sha256)
+
+- 2026-10-21 01:50 — phase10 blind40 key sha256=cdb4a18bd1dc38abf126f4a904fec1297812b681f60da105636145829692c317 (key stays outside the repo)
+- 2026-10-21 01:50 — [chain] STOP — PHASE10 failed: phase10.py rc=0 (its STOP line names the failing gate)

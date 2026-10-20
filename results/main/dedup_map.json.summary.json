@@ -1,0 +1,29 @@
+{
+ "rows_in": 3090,
+ "unique_designs": 2592,
+ "rows_collapsed": 498,
+ "yosys_failures": 281,
+ "extraction_empty": 49,
+ "per_arm": {
+  "3b-base": {
+   "rows": 618,
+   "unique": 552
+  },
+  "3b-rl": {
+   "rows": 618,
+   "unique": 541
+  },
+  "7b-base": {
+   "rows": 618,
+   "unique": 567
+  },
+  "7b-rl": {
+   "rows": 618,
+   "unique": 472
+  },
+  "7b-sft": {
+   "rows": 618,
+   "unique": 460
+  }
+ }
+}

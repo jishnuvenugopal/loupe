@@ -1,0 +1,56 @@
+{
+ "7b-base": {
+  "RAM": {
+   "passes": 3,
+   "last_class": "error"
+  },
+  "square_wave": {
+   "passes": 3,
+   "last_class": "different"
+  }
+ },
+ "7b-rl": {
+  "RAM": {
+   "passes": 3,
+   "last_class": "different"
+  },
+  "accu": {
+   "passes": 3,
+   "last_class": "different"
+  },
+  "square_wave": {
+   "passes": 3,
+   "last_class": null
+  }
+ },
+ "3b-rl": {
+  "RAM": {
+   "passes": 2,
+   "last_class": "error"
+  },
+  "square_wave": {
+   "passes": 3,
+   "last_class": "different"
+  }
+ },
+ "7b-sft": {
+  "RAM": {
+   "passes": 3,
+   "last_class": "different"
+  },
+  "accu": {
+   "passes": 2,
+   "last_class": "different"
+  },
+  "square_wave": {
+   "passes": 3,
+   "last_class": "different"
+  }
+ },
+ "3b-base": {
+  "square_wave": {
+   "passes": 3,
+   "last_class": "different"
+  }
+ }
+}

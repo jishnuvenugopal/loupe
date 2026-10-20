@@ -32,15 +32,15 @@
  {
   "arm": "7b-base",
   "bench": "ve",
-  "point_all_tasks": 0.6611111111111111,
+  "point_all_tasks": 0.28846153846153844,
   "ci95_all_tasks": [
-   0.538888888888889,
-   0.7777777777777778
+   0.2329059829059829,
+   0.34615384615384603
   ],
   "anchor": 0.313,
-  "inside_ci": false,
-  "within_8pp": false,
-  "pass": false,
+  "inside_ci": true,
+  "within_8pp": true,
+  "pass": true,
   "rtllm_point_all": 0.3466666666666666,
   "rtllm_anchor_loose": 0.361
  }

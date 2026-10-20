@@ -284,9 +284,9 @@
   }
  ],
  "chain": {
-  "last_update": "2026-10-21 01:20:31",
-  "phase": "C1",
-  "status": "FAILED: code/PREREG/push consistency check failed (see log above)",
-  "stop": "STOP \u2014 C1 failed: code/PREREG/push consistency check failed (see log above)"
+  "last_update": "2026-10-21 01:50:19",
+  "phase": "PHASE10",
+  "status": "FAILED: phase10.py rc=0 (its STOP line names the failing gate)",
+  "stop": "STOP \u2014 PHASE10 failed: phase10.py rc=0 (its STOP line names the failing gate)"
  }
 }

@@ -1,0 +1,566 @@
+{
+ "arms": {
+  "3b-base": {
+   "rtllm": {
+    "point": {
+     "tasks": 37,
+     "samples": 111,
+     "official_pass_count": 28,
+     "proved_correct_count": 16,
+     "correct_within_d_count": 19,
+     "official_pass_at_1": 0.2522522522522523,
+     "strict_pass_at_1": 0.14414414414414414,
+     "strict_within_d_pass_at_1": 0.17117117117117117,
+     "not_proved_correct_share": 0.42857142857142855,
+     "not_correct_within_d_share": 0.32142857142857145,
+     "proved_wrong_share": 0.2857142857142857,
+     "classes": {
+      "different": 8,
+      "bounded-only": 3,
+      "timeout": 0,
+      "error": 1,
+      "vacuous": 0
+     },
+     "vacuous_passes": 0,
+     "official_pass_at_1_all_tasks": 0.21333333333333332
+    },
+    "ci95": {
+     "official_pass_at_1": [
+      0.13513513513513511,
+      0.3873873873873874
+     ],
+     "strict_pass_at_1": [
+      0.04504504504504504,
+      0.2612612612612613
+     ],
+     "strict_within_d_pass_at_1": [
+      0.06306306306306307,
+      0.28828828828828834
+     ],
+     "not_proved_correct_share": [
+      0.14285714285714285,
+      0.7586206896551724
+     ],
+     "not_correct_within_d_share": [
+      0.08823529411764706,
+      0.6153846153846154
+     ],
+     "proved_wrong_share": [
+      0.07142857142857142,
+      0.5555555555555556
+     ]
+    },
+    "ci95_all_tasks": [
+     0.11333333333333333,
+     0.32
+    ]
+   },
+   "ve": {
+    "point": {
+     "tasks": 144,
+     "samples": 432,
+     "official_pass_count": 54,
+     "proved_correct_count": 52,
+     "correct_within_d_count": 53,
+     "official_pass_at_1": 0.125,
+     "strict_pass_at_1": 0.12037037037037036,
+     "strict_within_d_pass_at_1": 0.12268518518518517,
+     "not_proved_correct_share": 0.037037037037037035,
+     "not_correct_within_d_share": 0.018518518518518517,
+     "proved_wrong_share": 0.018518518518518517,
+     "classes": {
+      "different": 1,
+      "bounded-only": 1,
+      "timeout": 0,
+      "error": 0,
+      "vacuous": 0
+     },
+     "vacuous_passes": 0,
+     "official_pass_at_1_all_tasks": 0.11965811965811965
+    },
+    "ci95": {
+     "official_pass_at_1": [
+      0.08333333333333331,
+      0.17129629629629625
+     ],
+     "strict_pass_at_1": [
+      0.0787037037037037,
+      0.16435185185185186
+     ],
+     "strict_within_d_pass_at_1": [
+      0.08101851851851853,
+      0.16666666666666669
+     ],
+     "not_proved_correct_share": [
+      0.0,
+      0.09523809523809523
+     ],
+     "not_correct_within_d_share": [
+      0.0,
+      0.0625
+     ],
+     "proved_wrong_share": [
+      0.0,
+      0.0625
+     ]
+    },
+    "ci95_all_tasks": [
+     0.08119658119658117,
+     0.16239316239316243
+    ]
+   }
+  },
+  "3b-rl": {
+   "rtllm": {
+    "point": {
+     "tasks": 37,
+     "samples": 111,
+     "official_pass_count": 39,
+     "proved_correct_count": 22,
+     "correct_within_d_count": 25,
+     "official_pass_at_1": 0.35135135135135137,
+     "strict_pass_at_1": 0.1981981981981982,
+     "strict_within_d_pass_at_1": 0.22522522522522523,
+     "not_proved_correct_share": 0.4358974358974359,
+     "not_correct_within_d_share": 0.358974358974359,
+     "proved_wrong_share": 0.3076923076923077,
+     "classes": {
+      "different": 12,
+      "bounded-only": 3,
+      "timeout": 0,
+      "error": 2,
+      "vacuous": 0
+     },
+     "vacuous_passes": 0,
+     "official_pass_at_1_all_tasks": 0.28
+    },
+    "ci95": {
+     "official_pass_at_1": [
+      0.2252252252252252,
+      0.4864864864864865
+     ],
+     "strict_pass_at_1": [
+      0.0990990990990991,
+      0.3063063063063064
+     ],
+     "strict_within_d_pass_at_1": [
+      0.11711711711711711,
+      0.34234234234234234
+     ],
+     "not_proved_correct_share": [
+      0.21428571428571427,
+      0.6666666666666666
+     ],
+     "not_correct_within_d_share": [
+      0.15789473684210525,
+      0.5833333333333334
+     ],
+     "proved_wrong_share": [
+      0.11428571428571428,
+      0.5263157894736842
+     ]
+    },
+    "ci95_all_tasks": [
+     0.17999999999999997,
+     0.3866666666666667
+    ]
+   },
+   "ve": {
+    "point": {
+     "tasks": 144,
+     "samples": 432,
+     "official_pass_count": 130,
+     "proved_correct_count": 127,
+     "correct_within_d_count": 127,
+     "official_pass_at_1": 0.30092592592592593,
+     "strict_pass_at_1": 0.2939814814814815,
+     "strict_within_d_pass_at_1": 0.2939814814814815,
+     "not_proved_correct_share": 0.023076923076923078,
+     "not_correct_within_d_share": 0.023076923076923078,
+     "proved_wrong_share": 0.0,
+     "classes": {
+      "different": 0,
+      "bounded-only": 0,
+      "timeout": 0,
+      "error": 3,
+      "vacuous": 0
+     },
+     "vacuous_passes": 0,
+     "official_pass_at_1_all_tasks": 0.2948717948717949
+    },
+    "ci95": {
+     "official_pass_at_1": [
+      0.2384259259259259,
+      0.36574074074074076
+     ],
+     "strict_pass_at_1": [
+      0.23148148148148145,
+      0.3587962962962962
+     ],
+     "strict_within_d_pass_at_1": [
+      0.23148148148148145,
+      0.3587962962962962
+     ],
+     "not_proved_correct_share": [
+      0.0,
+      0.07627118644067797
+     ],
+     "not_correct_within_d_share": [
+      0.0,
+      0.07627118644067797
+     ],
+     "proved_wrong_share": [
+      0.0,
+      0.0
+     ]
+    },
+    "ci95_all_tasks": [
+     0.23504273504273504,
+     0.35683760683760685
+    ]
+   }
+  },
+  "7b-base": {
+   "rtllm": {
+    "point": {
+     "tasks": 37,
+     "samples": 111,
+     "official_pass_count": 46,
+     "proved_correct_count": 29,
+     "correct_within_d_count": 31,
+     "official_pass_at_1": 0.4144144144144144,
+     "strict_pass_at_1": 0.26126126126126126,
+     "strict_within_d_pass_at_1": 0.27927927927927926,
+     "not_proved_correct_share": 0.3695652173913043,
+     "not_correct_within_d_share": 0.32608695652173914,
+     "proved_wrong_share": 0.2826086956521739,
+     "classes": {
+      "different": 13,
+      "bounded-only": 2,
+      "timeout": 0,
+      "error": 2,
+      "vacuous": 0
+     },
+     "vacuous_passes": 0,
+     "official_pass_at_1_all_tasks": 0.3466666666666666
+    },
+    "ci95": {
+     "official_pass_at_1": [
+      0.29729729729729726,
+      0.5405405405405406
+     ],
+     "strict_pass_at_1": [
+      0.15315315315315314,
+      0.3873873873873873
+     ],
+     "strict_within_d_pass_at_1": [
+      0.16216216216216217,
+      0.4054054054054054
+     ],
+     "not_proved_correct_share": [
+      0.17857142857142858,
+      0.5813953488372093
+     ],
+     "not_correct_within_d_share": [
+      0.13636363636363635,
+      0.5365853658536586
+     ],
+     "proved_wrong_share": [
+      0.12,
+      0.4716981132075472
+     ]
+    },
+    "ci95_all_tasks": [
+     0.24000000000000005,
+     0.45333333333333337
+    ]
+   },
+   "ve": {
+    "point": {
+     "tasks": 144,
+     "samples": 432,
+     "official_pass_count": 127,
+     "proved_correct_count": 121,
+     "correct_within_d_count": 123,
+     "official_pass_at_1": 0.29398148148148145,
+     "strict_pass_at_1": 0.28009259259259256,
+     "strict_within_d_pass_at_1": 0.2847222222222222,
+     "not_proved_correct_share": 0.047244094488188976,
+     "not_correct_within_d_share": 0.031496062992125984,
+     "proved_wrong_share": 0.023622047244094488,
+     "classes": {
+      "different": 3,
+      "bounded-only": 2,
+      "timeout": 0,
+      "error": 1,
+      "vacuous": 0
+     },
+     "vacuous_passes": 0,
+     "official_pass_at_1_all_tasks": 0.28846153846153844
+    },
+    "ci95": {
+     "official_pass_at_1": [
+      0.23611111111111102,
+      0.3541666666666667
+     ],
+     "strict_pass_at_1": [
+      0.22222222222222218,
+      0.3402777777777778
+     ],
+     "strict_within_d_pass_at_1": [
+      0.22685185185185178,
+      0.34490740740740744
+     ],
+     "not_proved_correct_share": [
+      0.014814814814814815,
+      0.08955223880597014
+     ],
+     "not_correct_within_d_share": [
+      0.0070921985815602835,
+      0.06722689075630252
+     ],
+     "proved_wrong_share": [
+      0.0,
+      0.056
+     ]
+    },
+    "ci95_all_tasks": [
+     0.2329059829059829,
+     0.34615384615384603
+    ]
+   }
+  },
+  "7b-rl": {
+   "rtllm": {
+    "point": {
+     "tasks": 37,
+     "samples": 111,
+     "official_pass_count": 90,
+     "proved_correct_count": 56,
+     "correct_within_d_count": 56,
+     "official_pass_at_1": 0.8108108108108109,
+     "strict_pass_at_1": 0.5045045045045046,
+     "strict_within_d_pass_at_1": 0.5045045045045046,
+     "not_proved_correct_share": 0.37777777777777777,
+     "not_correct_within_d_share": 0.37777777777777777,
+     "proved_wrong_share": 0.37777777777777777,
+     "classes": {
+      "different": 34,
+      "bounded-only": 0,
+      "timeout": 0,
+      "error": 0,
+      "vacuous": 0
+     },
+     "vacuous_passes": 0,
+     "official_pass_at_1_all_tasks": 0.7066666666666667
+    },
+    "ci95": {
+     "official_pass_at_1": [
+      0.6936936936936937,
+      0.90990990990991
+     ],
+     "strict_pass_at_1": [
+      0.3603603603603604,
+      0.6576576576576575
+     ],
+     "strict_within_d_pass_at_1": [
+      0.3603603603603604,
+      0.6576576576576575
+     ],
+     "not_proved_correct_share": [
+      0.22340425531914893,
+      0.5375
+     ],
+     "not_correct_within_d_share": [
+      0.22340425531914893,
+      0.5375
+     ],
+     "proved_wrong_share": [
+      0.22340425531914893,
+      0.5375
+     ]
+    },
+    "ci95_all_tasks": [
+     0.5933333333333333,
+     0.8199999999999998
+    ]
+   },
+   "ve": {
+    "point": {
+     "tasks": 144,
+     "samples": 432,
+     "official_pass_count": 294,
+     "proved_correct_count": 288,
+     "correct_within_d_count": 288,
+     "official_pass_at_1": 0.6805555555555556,
+     "strict_pass_at_1": 0.6666666666666666,
+     "strict_within_d_pass_at_1": 0.6666666666666666,
+     "not_proved_correct_share": 0.02040816326530612,
+     "not_correct_within_d_share": 0.02040816326530612,
+     "proved_wrong_share": 0.017006802721088437,
+     "classes": {
+      "different": 5,
+      "bounded-only": 0,
+      "timeout": 1,
+      "error": 0,
+      "vacuous": 0
+     },
+     "vacuous_passes": 0,
+     "official_pass_at_1_all_tasks": 0.6794871794871795
+    },
+    "ci95": {
+     "official_pass_at_1": [
+      0.6087962962962963,
+      0.7499999999999999
+     ],
+     "strict_pass_at_1": [
+      0.5925925925925926,
+      0.7361111111111112
+     ],
+     "strict_within_d_pass_at_1": [
+      0.5925925925925926,
+      0.7361111111111112
+     ],
+     "not_proved_correct_share": [
+      0.0033003300330033004,
+      0.04377104377104377
+     ],
+     "not_correct_within_d_share": [
+      0.0033003300330033004,
+      0.04377104377104377
+     ],
+     "proved_wrong_share": [
+      0.0,
+      0.039735099337748346
+     ]
+    },
+    "ci95_all_tasks": [
+     0.6111111111111112,
+     0.7435897435897437
+    ]
+   }
+  },
+  "7b-sft": {
+   "rtllm": {
+    "point": {
+     "tasks": 37,
+     "samples": 111,
+     "official_pass_count": 85,
+     "proved_correct_count": 56,
+     "correct_within_d_count": 56,
+     "official_pass_at_1": 0.7657657657657657,
+     "strict_pass_at_1": 0.5045045045045046,
+     "strict_within_d_pass_at_1": 0.5045045045045046,
+     "not_proved_correct_share": 0.3411764705882353,
+     "not_correct_within_d_share": 0.3411764705882353,
+     "proved_wrong_share": 0.3411764705882353,
+     "classes": {
+      "different": 29,
+      "bounded-only": 0,
+      "timeout": 0,
+      "error": 0,
+      "vacuous": 0
+     },
+     "vacuous_passes": 0,
+     "official_pass_at_1_all_tasks": 0.6266666666666666
+    },
+    "ci95": {
+     "official_pass_at_1": [
+      0.6486486486486486,
+      0.8738738738738737
+     ],
+     "strict_pass_at_1": [
+      0.3603603603603604,
+      0.6486486486486487
+     ],
+     "strict_within_d_pass_at_1": [
+      0.3603603603603604,
+      0.6486486486486487
+     ],
+     "not_proved_correct_share": [
+      0.19540229885057472,
+      0.5
+     ],
+     "not_correct_within_d_share": [
+      0.19540229885057472,
+      0.5
+     ],
+     "proved_wrong_share": [
+      0.19540229885057472,
+      0.5
+     ]
+    },
+    "ci95_all_tasks": [
+     0.5066666666666666,
+     0.7466666666666666
+    ]
+   },
+   "ve": {
+    "point": {
+     "tasks": 144,
+     "samples": 432,
+     "official_pass_count": 282,
+     "proved_correct_count": 281,
+     "correct_within_d_count": 281,
+     "official_pass_at_1": 0.6527777777777778,
+     "strict_pass_at_1": 0.650462962962963,
+     "strict_within_d_pass_at_1": 0.650462962962963,
+     "not_proved_correct_share": 0.0035460992907801418,
+     "not_correct_within_d_share": 0.0035460992907801418,
+     "proved_wrong_share": 0.0035460992907801418,
+     "classes": {
+      "different": 1,
+      "bounded-only": 0,
+      "timeout": 0,
+      "error": 0,
+      "vacuous": 0
+     },
+     "vacuous_passes": 0,
+     "official_pass_at_1_all_tasks": 0.6367521367521367
+    },
+    "ci95": {
+     "official_pass_at_1": [
+      0.5810185185185185,
+      0.7222222222222222
+     ],
+     "strict_pass_at_1": [
+      0.5787037037037036,
+      0.7199074074074076
+     ],
+     "strict_within_d_pass_at_1": [
+      0.5787037037037036,
+      0.7199074074074076
+     ],
+     "not_proved_correct_share": [
+      0.0,
+      0.011583011583011582
+     ],
+     "not_correct_within_d_share": [
+      0.0,
+      0.011583011583011582
+     ],
+     "proved_wrong_share": [
+      0.0,
+      0.011583011583011582
+     ]
+    },
+    "ci95_all_tasks": [
+     0.5662393162393163,
+     0.7051282051282051
+    ]
+   }
+  }
+ },
+ "pairs": {},
+ "n_resamples": 10000,
+ "gates": {
+  "ve": 144,
+  "rtllm": 37,
+  "wide": false,
+  "rtllm_all37": true
+ },
+ "meta": {
+  "rows": 3090,
+  "assumptions": []
+ }
+}

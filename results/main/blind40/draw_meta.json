@@ -1,0 +1,85 @@
+{
+ "population": 75,
+ "drawn": 40,
+ "seed": 0,
+ "strata": {
+  "3b-base|rtllm": {
+   "population": 5,
+   "drawn": 3
+  },
+  "3b-base|ve": {
+   "population": 1,
+   "drawn": 0
+  },
+  "3b-rl|rtllm": {
+   "population": 6,
+   "drawn": 3
+  },
+  "7b-base|rtllm": {
+   "population": 9,
+   "drawn": 5
+  },
+  "7b-base|ve": {
+   "population": 3,
+   "drawn": 2
+  },
+  "7b-rl|rtllm": {
+   "population": 25,
+   "drawn": 13
+  },
+  "7b-rl|ve": {
+   "population": 5,
+   "drawn": 3
+  },
+  "7b-sft|rtllm": {
+   "population": 20,
+   "drawn": 11
+  },
+  "7b-sft|ve": {
+   "population": 1,
+   "drawn": 0
+  }
+ },
+ "ids": {
+  "b40_8989": "rtllm|sub_64bit|0",
+  "b40_0230": "rtllm|sub_64bit|2",
+  "b40_1528": "rtllm|comparator_3bit|0",
+  "b40_6534": "rtllm|edge_detect|0",
+  "b40_0018": "rtllm|sub_64bit|1",
+  "b40_8086": "rtllm|fixed_point_adder|1",
+  "b40_5458": "rtllm|up_down_counter|2",
+  "b40_3996": "rtllm|sequence_detector|2",
+  "b40_5328": "rtllm|sequence_detector|0",
+  "b40_1031": "rtllm|fixed_point_adder|2",
+  "b40_3130": "rtllm|width_8to16|1",
+  "b40_9298": "ve|Prob079_fsm3onehot|2",
+  "b40_3632": "ve|Prob135_m2014_q6b|0",
+  "b40_3909": "rtllm|fixed_point_adder|1",
+  "b40_2334": "rtllm|alu|0",
+  "b40_8896": "rtllm|adder_bcd|1",
+  "b40_7339": "rtllm|sequence_detector|0",
+  "b40_1494": "rtllm|fixed_point_adder|0",
+  "b40_1318": "rtllm|multi_pipe_8bit|0",
+  "b40_5243": "rtllm|serial2parallel|2",
+  "b40_8322": "rtllm|up_down_counter|0",
+  "b40_8016": "rtllm|serial2parallel|1",
+  "b40_1786": "rtllm|adder_bcd|0",
+  "b40_4938": "rtllm|multi_16bit|0",
+  "b40_9031": "rtllm|instr_reg|2",
+  "b40_4769": "rtllm|fixed_point_adder|2",
+  "b40_2044": "ve|Prob094_gatesv|2",
+  "b40_8969": "ve|Prob154_fsm_ps2data|0",
+  "b40_5451": "ve|Prob154_fsm_ps2data|2",
+  "b40_8852": "rtllm|fixed_point_adder|0",
+  "b40_3329": "rtllm|multi_pipe_8bit|0",
+  "b40_9882": "rtllm|sequence_detector|0",
+  "b40_8965": "rtllm|multi_16bit|1",
+  "b40_9627": "rtllm|fsm|1",
+  "b40_4712": "rtllm|instr_reg|2",
+  "b40_7290": "rtllm|instr_reg|1",
+  "b40_1501": "rtllm|traffic_light|0",
+  "b40_9769": "rtllm|sequence_detector|1",
+  "b40_6306": "rtllm|fixed_point_adder|1",
+  "b40_5194": "rtllm|LFSR|0"
+ }
+}
