@@ -1539,3 +1539,5 @@ key: /home/unnitools/runs/blind40_key.json (outside the repo; commit only its sh
 - 2026-10-21 02:32 — phase10 summary written: results/main/summary.md
 - 2026-10-21 02:32 — phase10: complete — summary.md written; waiting for G3 review and blind labels
 - 2026-10-21 02:32 — [chain] pushed: A18 phase 10: scoring + analysis complete (results/main/summary.md)
+- 2026-10-21 02:32 — [chain] pushed: A18: phase 10 report status (STOP waiting for G3 review + blind labels)
+- 2026-10-21 02:55 — [chain] PHASE10 DONE (02:32): G2 pass (alias + waivers), G1b PASS all anchors on complete data, strict/dedup/contamination/stats/blind40 complete; summary.md + figure written; pushed. A19 §4 sensitivity: stats + side-by-side in results/sens/summary.md (3b-rl clears G2 with headroom; 3b-base rtllm still 0.94, all length; conclusions insensitive to the cap). Full A18 §8 + A19 run complete; awaiting G3 review + blind labels.

@@ -1,10 +1,11 @@
 # SPARK REPORT — strict re-scoring, DGX Spark lane
 
-Updated 21 Oct 2026, 02:32 UTC+08 (A18 overnight chain).
+Updated 21 Oct 2026, 02:50 UTC+08 (A18 overnight chain).
 `jishnuvenugopal/rte-strict-eval` (PRIVATE), branch `spark`, tag `scorer-v1` pushed.
 
 ## 1. Status
 
+- [02:50] Phase 10 + A19 sensitivity: COMPLETE. A18 §8 full run: C1-C5 PASS, G0 done (tag + ots stamp 10:41 + upgrade 16:41), Phase 8 all 10 jobs rc=0 in 7.28 h (cut=none), Phase 10 green end-to-end: G2 pass with A19 alias + 2 pinned waivers (3b-rl_ve 0.9487, 3b-base_rtllm 0.94 — reported, not corrected), G1b PASS all three 7B anchors on complete data (7b-rl 0.679 [0.611,0.744] vs 0.688; 7b-sft 0.637 [0.566,0.705] vs 0.652; 7b-base 0.288 [0.233,0.346] vs 0.313 — anchor inside the CI), strict/dedup/contamination/stats/blind40 done, summary.md + figure written. Headline contrasts: H1 RL-Distill not-proved-correct 2.4 pp [0.1, 5.1] resolved; H1-floor 2.1 pp [-0.1, 4.8] not resolved; H2 pass@1 gap 1.9 pp [0.2, 3.8] resolved. A19 §4 sensitivity (3B arms @3072/5120): 3b-rl clears G2 with headroom (0.9594/0.9867); 3b-base rtllm still 0.94 (all length) — reported as-is; conclusions insensitive to the cap (results/sens/summary.md). Note: the 00:55 G1b FAIL was a partial-file race from arm-parallel scoring helpers, not a result; recomputed clean on static 618/618 files.
 - [02:32] Phase 10: complete: G2/G1b/strict/dedup/contamination/stats/blind40 done; summary.md + figure written; blind labels pending
 - [01:50] PHASE10: FAILED: phase10.py rc=0 (its STOP line names the failing gate)
 - [01:20] C1: FAILED: code/PREREG/push consistency check failed (see log above)
