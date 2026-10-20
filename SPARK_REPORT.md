@@ -1,10 +1,11 @@
 # SPARK REPORT — strict re-scoring, DGX Spark lane
 
-Updated 21 Oct 2026, 01:50 UTC+08 (A18 overnight chain).
+Updated 21 Oct 2026, 02:32 UTC+08 (A18 overnight chain).
 `jishnuvenugopal/rte-strict-eval` (PRIVATE), branch `spark`, tag `scorer-v1` pushed.
 
 ## 1. Status
 
+- [02:32] Phase 10: complete: G2/G1b/strict/dedup/contamination/stats/blind40 done; summary.md + figure written; blind labels pending
 - [01:50] PHASE10: FAILED: phase10.py rc=0 (its STOP line names the failing gate)
 - [01:20] C1: FAILED: code/PREREG/push consistency check failed (see log above)
 - [00:55] PHASE10: FAILED: phase10.py rc=0 (its STOP line names the failing gate)
@@ -221,4 +222,4 @@ notes/LOG.md, updated this report and pushed — verified. The REAL chain is now
 running under tmux (`tmux attach -t overnight`); its stop paths will update this
 report again.
 
-STOP — PHASE10 failed: phase10.py rc=0 (its STOP line names the failing gate)
+STOP — waiting for G3 review ("G3 pass, start GRPO") and blind labels ("blind labels in")

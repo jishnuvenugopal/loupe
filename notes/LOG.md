@@ -1538,3 +1538,4 @@ key: /home/unnitools/runs/blind40_key.json (outside the repo; commit only its sh
 - 2026-10-21 02:32 — phase10 blind40 key sha256=cdb4a18bd1dc38abf126f4a904fec1297812b681f60da105636145829692c317 (key stays outside the repo)
 - 2026-10-21 02:32 — phase10 summary written: results/main/summary.md
 - 2026-10-21 02:32 — phase10: complete — summary.md written; waiting for G3 review and blind labels
+- 2026-10-21 02:32 — [chain] pushed: A18 phase 10: scoring + analysis complete (results/main/summary.md)

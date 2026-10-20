@@ -284,9 +284,9 @@
   }
  ],
  "chain": {
-  "last_update": "2026-10-21 01:50:19",
-  "phase": "PHASE10",
-  "status": "FAILED: phase10.py rc=0 (its STOP line names the failing gate)",
-  "stop": "STOP \u2014 PHASE10 failed: phase10.py rc=0 (its STOP line names the failing gate)"
+  "last_update": "2026-10-21 02:32:24",
+  "phase": "Phase 10",
+  "status": "complete: G2/G1b/strict/dedup/contamination/stats/blind40 done; summary.md + figure written; blind labels pending",
+  "stop": "STOP \u2014 waiting for G3 review (\"G3 pass, start GRPO\") and blind labels (\"blind labels in\")"
  }
 }
