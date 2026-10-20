@@ -1,0 +1,26 @@
+
+module TopModule (
+    input  clk,
+    input  areset,
+    input  load,
+    input  ena,
+    input  data [3:0],
+    output reg [3:0] q
+);
+
+always @(posedge clk) begin
+    if (areset) begin
+        q <= 4'b0000;
+  
+    end else begin
+        if (load) begin
+            q <= data;
+    
+        end else if (ena) begin
+            q <= {q[2:0], 1'b0};
+  
+        end
+    end
+end
+
+endmodule

@@ -1161,3 +1161,7 @@ wrote /home/unnitools/rtl-strict-eval/results/main/contamination/overlaps.csv
 - 2026-10-21 00:55 — phase10 G1b 7b-base/ve: point=0.661 CI=[0.539, 0.778] anchor=0.313 -> FAIL (rtllm loose: 0.3466666666666666 vs 0.361)
 - 2026-10-21 00:55 — [chain] STOP — PHASE10 failed: phase10.py rc=0 (its STOP line names the failing gate)
 - 2026-10-21 01:30 — [monitor] the 00:55 G1b FAIL for 7b-base was a race artifact, not a result: the chain's stats step globbed scores/7b-base.jsonl while the arm-level scoring helper (00:33) was still appending it — stats.json for 7b-base/ve was computed from 27 tasks / 80 samples (partial file), giving point 0.661. All seven score files now verify 618/618 unique rows and are static (helpers exited). Full-data value: 7b-base ve official all-task pass@1 = 135/468 = 0.2885 vs anchor 0.313 (2.45 pp, inside ±8 pp); rtllm 52/150 = 0.3467 vs 0.361 (loose, pass). No data was corrupted; relaunching the chain to recompute stats on the complete files (score_arm resume-skips 618/618; no concurrent writers this time).
+- 2026-10-21 01:20 — [chain] A18 §8 chain start (pid 588518, force_fail=none, C2 deadline 09:00)
+- 2026-10-21 01:20 — [chain] C1: extract.py pin superseded by A19 (e36b36e78fde106d02d4dd38a22237ed8a4a0d77dd787fe4c2fed5f0811aa195 -> 9f626ebc6808a0a140cbffbc3645bf9faaa003bfe605825c31edfb910b251b2a)
+- 2026-10-21 01:20 — [chain] C1: working tree not clean (excluding notes/LOG.md, which this chain writes)
+- 2026-10-21 01:20 — [chain] STOP — C1 failed: code/PREREG/push consistency check failed (see log above)

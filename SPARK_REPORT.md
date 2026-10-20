@@ -1,10 +1,11 @@
 # SPARK REPORT — strict re-scoring, DGX Spark lane
 
-Updated 21 Oct 2026, 00:55 UTC+08 (A18 overnight chain).
+Updated 21 Oct 2026, 01:20 UTC+08 (A18 overnight chain).
 `jishnuvenugopal/rte-strict-eval` (PRIVATE), branch `spark`, tag `scorer-v1` pushed.
 
 ## 1. Status
 
+- [01:20] C1: FAILED: code/PREREG/push consistency check failed (see log above)
 - [00:55] PHASE10: FAILED: phase10.py rc=0 (its STOP line names the failing gate)
 - [18:27] Phase 10 (G2): A18 §8 run: C1-C5 all PASS, G0 steps done (tag g0-prereg pushed, PREREG.md.ots stamped 10:41 + upgraded 16:41), Phase 8 generation complete 10:52-18:09 (7.28 h, all 10 arm x bench jobs rc=0, cut=none; manifests + deterministic release archives + throughput checks committed and pushed). Phase 10 freeze check PASS (scorer/ byte-identical to scorer-v1; the two A18 pre-G0 test files excluded from the diff and sha256-pinned to c83f842). G2 extraction gate: 7b-rl 0.9936/0.9800, 7b-sft 0.9872/0.9733, 7b-base 0.9615/0.9800 PASS; 3b-rl 0.9487 (ve, 1 sample short) / 0.9400 (rtllm, 2 short) and 3b-base 0.9679 (ve) / 0.9200 (rtllm, 5 short) FAIL the >= 0.95 threshold. Cause breakdown of all 45 failing samples: 33 are finish_reason=length hits at the A16-pinned 2048-token 3B cap (18 3b-rl/ve + 6 3b-rl/rtllm + 9 3b-base/rtllm); 12 are module-name misses concentrated on fixed_point_substractor (6) and Prob123_bugs_addsubz (3). Per PREREG (Analysis plan): on G2 failure — stop for that arm, show 10 failing samples, operator decides the glue fix; prompts never change. The 10-sample lists are in notes/LOG.md (phase10 G2 entries, 18:23). No scoring has run; nothing post-G2 has executed. Two chain bugs found and fixed en route (make_manifest phantom arm; freeze check vs A18 test additions) — both harness-side, scorer/ and scoring/ analysis code untouched, details in notes/LOG.md.
 - [18:23] PHASE10: FAILED: phase10.py rc=0 (its STOP line names the failing gate)
@@ -219,4 +220,4 @@ notes/LOG.md, updated this report and pushed — verified. The REAL chain is now
 running under tmux (`tmux attach -t overnight`); its stop paths will update this
 report again.
 
-STOP — PHASE10 failed: phase10.py rc=0 (its STOP line names the failing gate)
+STOP — C1 failed: code/PREREG/push consistency check failed (see log above)
