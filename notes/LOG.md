@@ -1105,3 +1105,47 @@ PREREG finalized (2026-10-20 23:03)
 {"arm": "7b-base", "rows_total": 618, "truncated_total": 0, "extraction_rate": 0.9984, "module_name_ok_rate": 0.966}
 {"arm": "7b-rl", "rows_total": 618, "truncated_total": 1, "extraction_rate": 1.0, "module_name_ok_rate": 0.9903}
 {"arm": "7b-sft", "rows_total": 618, "truncated_total": 7, "extraction_rate": 0.9935, "module_name_ok_rate": 0.9838}
+- 2026-10-20 23:03 — [chain] pushed: A18 phase 8: generation done; manifests + release archives + throughput checks committed
+- 2026-10-20 23:03 — [chain] phase 10: scoring + analysis (freeze checks, G2, G1b, strict, dedup, contamination, stats, blind40)
+- 2026-10-20 23:03 — phase10: start (freeze checks first)
+- 2026-10-20 23:03 — phase10: git -C /home/unnitools/rtl-strict-eval diff --quiet scorer-v1 ...
+- 2026-10-20 23:03 — phase10: sha256sum -c results/pilot_repro/SCORER_SHA256
+- 2026-10-20 23:03 — phase10 freeze check: diff rc=0 sha256 rc=0 a18-test pins ok=True
+- 2026-10-20 23:03 — phase10: /home/unnitools/.venvs/host/bin/python /home/unnitools/rtl-strict-eval/scoring/extract.py --gen /home/unnitools/runs/gen/7b-rl_rtllm.jsonl
+- 2026-10-20 23:03 — phase10 G2 7b-rl 7b-rl_rtllm.jsonl: rc=0 1.0
+- 2026-10-20 23:03 — phase10: /home/unnitools/.venvs/host/bin/python /home/unnitools/rtl-strict-eval/scoring/extract.py --gen /home/unnitools/runs/gen/7b-rl_ve.jsonl
+- 2026-10-20 23:03 — phase10 G2 7b-rl 7b-rl_ve.jsonl: rc=0 0.9936
+- 2026-10-20 23:03 — phase10: /home/unnitools/.venvs/host/bin/python /home/unnitools/rtl-strict-eval/scoring/extract.py --gen /home/unnitools/runs/gen/7b-sft_rtllm.jsonl
+- 2026-10-20 23:03 — phase10 G2 7b-sft 7b-sft_rtllm.jsonl: rc=0 0.9933
+- 2026-10-20 23:03 — phase10: /home/unnitools/.venvs/host/bin/python /home/unnitools/rtl-strict-eval/scoring/extract.py --gen /home/unnitools/runs/gen/7b-sft_ve.jsonl
+- 2026-10-20 23:03 — phase10 G2 7b-sft 7b-sft_ve.jsonl: rc=0 0.9872
+- 2026-10-20 23:03 — phase10: /home/unnitools/.venvs/host/bin/python /home/unnitools/rtl-strict-eval/scoring/extract.py --gen /home/unnitools/runs/gen/3b-rl_rtllm.jsonl
+- 2026-10-20 23:03 — phase10 G2 3b-rl 3b-rl_rtllm.jsonl: rc=0 0.96
+- 2026-10-20 23:03 — phase10: /home/unnitools/.venvs/host/bin/python /home/unnitools/rtl-strict-eval/scoring/extract.py --gen /home/unnitools/runs/gen/3b-rl_ve.jsonl
+- 2026-10-20 23:03 — phase10 G2 3b-rl 3b-rl_ve.jsonl: rc=1 0.9487
+- 2026-10-20 23:03 — phase10 G2 3b-rl 3b-rl_ve.jsonl: below threshold but 444 == A19 §3 pinned count — waiver applied (reported, not corrected)
+- 2026-10-20 23:03 — phase10: /home/unnitools/.venvs/host/bin/python /home/unnitools/rtl-strict-eval/scoring/extract.py --gen /home/unnitools/runs/gen/3b-base_rtllm.jsonl
+- 2026-10-20 23:03 — phase10 G2 3b-base 3b-base_rtllm.jsonl: rc=1 0.94
+- 2026-10-20 23:03 — phase10 G2 3b-base 3b-base_rtllm.jsonl: below threshold but 141 == A19 §3 pinned count — waiver applied (reported, not corrected)
+- 2026-10-20 23:03 — phase10: /home/unnitools/.venvs/host/bin/python /home/unnitools/rtl-strict-eval/scoring/extract.py --gen /home/unnitools/runs/gen/3b-base_ve.jsonl
+- 2026-10-20 23:03 — phase10 G2 3b-base 3b-base_ve.jsonl: rc=0 0.9679
+- 2026-10-20 23:03 — phase10: /home/unnitools/.venvs/host/bin/python /home/unnitools/rtl-strict-eval/scoring/extract.py --gen /home/unnitools/runs/gen/7b-base_rtllm.jsonl
+- 2026-10-20 23:03 — phase10 G2 7b-base 7b-base_rtllm.jsonl: rc=0 1.0
+- 2026-10-20 23:03 — phase10: /home/unnitools/.venvs/host/bin/python /home/unnitools/rtl-strict-eval/scoring/extract.py --gen /home/unnitools/runs/gen/7b-base_ve.jsonl
+- 2026-10-20 23:03 — phase10 G2 7b-base 7b-base_ve.jsonl: rc=0 0.9615
+- 2026-10-20 23:03 — phase10: /home/unnitools/.venvs/host/bin/python /home/unnitools/rtl-strict-eval/scoring/contamination.py
+- 2026-10-20 23:05 — sens: 3b-rl-cap/ve rc=0 wall=5.5 min log=/home/unnitools/runs/gen_sens/log_3b-rl-cap_ve.txt
+- 2026-10-20 23:05 — sens: generating 3b-rl-cap/rtllm (T=0.2, top_p=0.95, n=3, max_tokens=3072, mml=5120)
+- 2026-10-20 23:08 — sens: 3b-rl-cap/rtllm rc=0 wall=3.5 min log=/home/unnitools/runs/gen_sens/log_3b-rl-cap_rtllm.txt
+- 2026-10-20 23:08 — sens: generating 3b-base-cap/ve (T=0.2, top_p=0.95, n=3, max_tokens=3072, mml=5120)
+- 2026-10-20 23:13 — sens: 3b-base-cap/ve rc=0 wall=4.9 min log=/home/unnitools/runs/gen_sens/log_3b-base-cap_ve.txt
+- 2026-10-20 23:13 — sens: generating 3b-base-cap/rtllm (T=0.2, top_p=0.95, n=3, max_tokens=3072, mml=5120)
+- 2026-10-20 23:16 — sens: 3b-base-cap/rtllm rc=0 wall=3.4 min log=/home/unnitools/runs/gen_sens/log_3b-base-cap_rtllm.txt
+- 2026-10-20 23:16 — sens: all sensitivity generation done
+- 2026-10-20 23:25 — phase10 contamination rc=0: erlaps": 0, "ref_overlaps_secondary": 0}}, "total_overlaps": 0}
+verireason_tb_simple {"files": {"processed_entries.jsonl": {"sha256": "(not pinned)", "pin_ok": true, "size_bytes": 7673835, "rows": 743, "spec_overlaps": 0, "ref_overlaps_secondary": 0}}, "total_overlaps": 0}
+overlap rows: 0; overlapping statement tasks: 0
+wrote /home/unnitools/rtl-strict-eval/results/main/contamination/overlaps.csv
+
+- 2026-10-20 23:25 — phase10: /home/unnitools/.venvs/host/bin/python /home/unnitools/rtl-strict-eval/scoring/run_scoring.py --arm 7b-rl --gen /home/unnitools/runs/gen/7b-rl_rtllm.jsonl ...
+- 2026-10-20 23:20 — [A19 §4] sensitivity generation done (17 min, 4 files, ~/runs/gen_sens/). G2 under the §2 alias: 3b-rl-cap ve 0.9594 PASS, rtllm 0.9867 PASS — the 3b-rl primary shortfall was cap-driven and clears with headroom. 3b-base-cap ve 0.9637 PASS, rtllm 0.9400 STILL BELOW — all 9 remaining failures are length hits at the raised 3072 cap (truncations: ve 14, rtllm 9; 3b-rl-cap: ve 12, rtllm 2). Per PREREG-A19 §4: reported as-is, no further amendment. Sens arms are supplementary only; never merged into primary stats or blind-40.
