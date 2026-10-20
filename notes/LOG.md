@@ -1202,3 +1202,23 @@ PREREG finalized (2026-10-21 01:22)
 - 2026-10-21 01:22 — [chain] G0 step 1 PASS: tag g0-prereg = f8f23aaa87b53a9eb9357fa9ffe962430d26642c pushed and visible via ls-remote
 - 2026-10-21 01:22 — [chain] G0 step 2: PREREG.md.ots already stamps THIS content (digest match) — skipping re-stamp (resume)
 - 2026-10-21 01:22 — [chain] G0 step 2 PASS: PREREG.md.ots stamped (01:22)
+- 2026-10-21 01:22 — [chain] pushed: A18 G0 steps: tag g0-prereg pushed (ls-remote verified) + PREREG.md.ots stamped
+- 2026-10-21 01:22 — [chain] ots upgrade already scheduled (marker present) — not duplicating
+- 2026-10-21 01:22 — [chain] phase 8: overnight generation starts (cut=none, order 7b-rl 7b-sft 3b-rl 3b-base 7b-base)
+- 2026-10-21 01:22 — phase8 start: arms=['7b-rl', '7b-sft', '3b-rl', '3b-base', '7b-base'] n=3 cut=none (RTLLM n=5: no — A18 §8 C4; overlap probe skipped — score nothing until generation ends)
+- 2026-10-21 01:22 — phase8: 7b-rl/ve output complete — resume skip (timing/log/params untouched)
+- 2026-10-21 01:22 — phase8: 7b-rl/rtllm output complete — resume skip (timing/log/params untouched)
+- 2026-10-21 01:22 — phase8: 7b-sft/ve output complete — resume skip (timing/log/params untouched)
+- 2026-10-21 01:22 — phase8: 7b-sft/rtllm output complete — resume skip (timing/log/params untouched)
+- 2026-10-21 01:22 — phase8: 3b-rl/ve output complete — resume skip (timing/log/params untouched)
+- 2026-10-21 01:22 — phase8: 3b-rl/rtllm output complete — resume skip (timing/log/params untouched)
+- 2026-10-21 01:22 — phase8: 3b-base/ve output complete — resume skip (timing/log/params untouched)
+- 2026-10-21 01:22 — phase8: 3b-base/rtllm output complete — resume skip (timing/log/params untouched)
+- 2026-10-21 01:22 — phase8: 7b-base/ve output complete — resume skip (timing/log/params untouched)
+- 2026-10-21 01:22 — phase8: 7b-base/rtllm output complete — resume skip (timing/log/params untouched)
+- 2026-10-21 01:22 — phase8: all generation done
+{"arm": "3b-base", "rows_total": 618, "truncated_total": 21, "extraction_rate": 0.966, "module_name_ok_rate": 0.9563}
+{"arm": "3b-rl", "rows_total": 618, "truncated_total": 24, "extraction_rate": 0.9628, "module_name_ok_rate": 0.9466}
+{"arm": "7b-base", "rows_total": 618, "truncated_total": 0, "extraction_rate": 0.9984, "module_name_ok_rate": 0.966}
+{"arm": "7b-rl", "rows_total": 618, "truncated_total": 1, "extraction_rate": 1.0, "module_name_ok_rate": 0.9903}
+{"arm": "7b-sft", "rows_total": 618, "truncated_total": 7, "extraction_rate": 0.9935, "module_name_ok_rate": 0.9838}
