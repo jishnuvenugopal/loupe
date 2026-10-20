@@ -73,10 +73,19 @@ def extract_verilog_code(file_content, remove_head=False, add_backtick=False):
 # ---------------------------------------------------------------------------
 
 
+# A19 §2: the RTLLM task name is misspelled in the benchmark; every arm emits
+# the correctly spelled module. Alias for the G2 gate ONLY (the frozen scorer
+# keeps the misspelled name, so official passes for this task fail uniformly
+# for every arm — reported, not corrected). No other task, no fuzzy matching.
+_NAME_ALIAS = {"fixed_point_substractor": ("fixed_point_subtractor",)}
+
+
 def module_name_ok(code, bench, task_id):
     """TopModule for ve, the task name for rtllm (same regex as scorer/score.py)."""
     want = "TopModule" if bench in ("ve", "verilogeval") else task_id
-    return bool(code.strip()) and bool(re.search(rf"\bmodule\s+{re.escape(want)}\b", code))
+    names = (want,) if bench in ("ve", "verilogeval") else (want,) + _NAME_ALIAS.get(task_id, ())
+    return bool(code.strip()) and any(
+        re.search(rf"\bmodule\s+{re.escape(n)}\b", code) for n in names)
 
 
 def extract_record(completion, bench, task_id):

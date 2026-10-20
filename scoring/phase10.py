@@ -65,7 +65,16 @@ A18_TEST_ADDS = {
         "57ce646df5c43a920c258aeccf74f94db2349681c6abe4a7d8e70cc8fde8247b",
     "tests/test_a18_dedup_blind40.py":
         "062d6261823ba22d97be4551e810529ab54b8ce4ccd293887673ddcfee36110b",
+    # A19 §5: alias-scope tests, pinned like the A18 additions
+    "tests/test_a19_extract_alias.py":
+        "b8b4e6fe546220c7555a9af3b6c8f4a1cfed7d1e9013ea8205b6fe0f99fb8e69",
 }
+
+# A19 §3: primary files below the 0.95 G2 threshold after the §2 alias;
+# operator decision = report, do not correct. Pinned to the exact pass counts
+# on the immutable generation files (equality guard — any other count fails
+# hard, so the waiver can never mask a different generation).
+A19_G2_WAIVERS = {"3b-rl_ve.jsonl": 444, "3b-base_rtllm.jsonl": 141}
 
 
 def freeze_check():
@@ -103,6 +112,13 @@ def step1_g2():
                         pass
             log(f"phase10 G2 {arm} {os.path.basename(f)}: rc={p.returncode} "
                 f"{(share or {}).get('share')}")
+            ok_count = (share or {}).get("extract_and_name_ok")
+            waiver = A19_G2_WAIVERS.get(os.path.basename(f))
+            if p.returncode != 0 and waiver is not None and ok_count == waiver:
+                log(f"phase10 G2 {arm} {os.path.basename(f)}: below threshold but "
+                    f"{ok_count} == A19 §3 pinned count — waiver applied (reported, "
+                    f"not corrected)")
+                continue
             if p.returncode != 0 or (share and share.get("share") is not None
                                      and share["share"] < 0.95):
                 ok = False
