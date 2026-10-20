@@ -1351,3 +1351,8 @@ key: /home/unnitools/runs/blind40_key.json (outside the repo; commit only its sh
 
 - 2026-10-21 01:50 — phase10 blind40 key sha256=cdb4a18bd1dc38abf126f4a904fec1297812b681f60da105636145829692c317 (key stays outside the repo)
 - 2026-10-21 01:50 — [chain] STOP — PHASE10 failed: phase10.py rc=0 (its STOP line names the failing gate)
+- 2026-10-21 02:04 — [chain] A18 §8 chain start (pid 601606, force_fail=none, C2 deadline 09:00)
+- 2026-10-21 02:04 — [chain] C1: extract.py pin superseded by A19 (e36b36e78fde106d02d4dd38a22237ed8a4a0d77dd787fe4c2fed5f0811aa195 -> 9f626ebc6808a0a140cbffbc3645bf9faaa003bfe605825c31edfb910b251b2a)
+- 2026-10-21 02:04 — [chain] C1 PASS: items 1-5+7 committed, pushed, PREREG sha256 final
+- 2026-10-21 02:04 — [chain] C2: waiting for 8/8 weight verification (cut-off 09:00)
+- 2026-10-21 02:04 — [chain] C2 PASS: all 8 weight sets hash-verified (8 of 8) at 2026-10-21 02:04
