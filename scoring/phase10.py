@@ -277,10 +277,14 @@ def step8_summary(stats, stats_all37, stats_wide, stats_dedup, stats_drop, g1b_t
     if stats.get("pairs"):
         lines += ["## Secondary contrasts (exploratory; CodeV family only)", ""]
         for name, pc in stats["pairs"].items():
-            lines.append(f"- {name} ({pc['arm_a']} − {pc['arm_b']}, primary share): "
-                         f"mean {100 * pc['mean']:.1f} pp, 95% CI "
-                         f"[{100 * pc['ci95'][0]:.1f}, {100 * pc['ci95'][1]:.1f}] — "
-                         f"{'resolved' if pc['resolved'] else 'not resolved'}.")
+            lines.append(f"- {name} ({pc.get('arm_a')} − {pc.get('arm_b')}):")
+            # schema: one cell per metric, each {mean, ci95, resolved}
+            for metric, cell in pc.items():
+                if isinstance(cell, dict) and "mean" in cell:
+                    lines.append(f"  - {metric}: mean {100 * cell['mean']:.1f} pp, "
+                                 f"95% CI [{100 * cell['ci95'][0]:.1f}, "
+                                 f"{100 * cell['ci95'][1]:.1f}] — "
+                                 f"{'resolved' if cell['resolved'] else 'not resolved'}.")
         lines.append("")
     lines += ["## Sensitivity rows", "",
               f"- all 37 RTLLM designs (headline = 33): `results/main/stats_all37.json`",
