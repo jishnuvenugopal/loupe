@@ -1059,3 +1059,22 @@ first 10 failing samples:
 - 2026-10-20 23:03 — [chain] C3: 7b-base already green (report present, checks pass) — resume skip
 - 2026-10-20 23:03 — [chain] C3 (C4 prep): 3b-rl steady split already present — resume skip
 - 2026-10-20 23:03 — [chain] C3 (C4 prep): 3b-base steady split already present — resume skip
+- 2026-10-20 23:03 — [chain] pushed: A18 C3: 7B shakedowns done + checked (params, extraction, cap, scorer); 3B steady refresh
+- 2026-10-20 23:03 — [chain] C3: shakedown generations deleted from ~/runs/shakedown (reports kept in repo)
+--- steady-state projection [none] ---
+  7b-rl     mean_tok= 5486 -> 3.58 h
+  7b-sft    mean_tok= 2939 -> 2.81 h
+  3b-rl     mean_tok=  709 -> 0.33 h
+  3b-base   mean_tok=  793 -> 0.35 h
+  7b-base   mean_tok=  388 -> 0.39 h
+  TOTAL 7.46 h of 9.0 h window -> FITS
+
+CUT APPLIED: none (RTLLM n=5: no (A18 §8 C4 fixed choice); overlap probe: skipped — score nothing until generation ends)
+--- scoring projection [n=3, after cut 'none'] ---
+  official TB runs: 3090 (2715 also formal) across 5 arms
+  measured-rate: 1.84 h | pessimistic: 0.26 h | window 4.5 h
+--- scoring projection [RTLLM n=5, after cut 'none'] ---
+  official TB runs: 3590 (3085 also formal) across 5 arms
+  measured-rate: 2.14 h | pessimistic: 0.29 h | window 4.5 h
+wrote /home/unnitools/rtl-strict-eval/results/shakedown/projection.json
+- 2026-10-20 23:03 — [chain] C4 PASS: cut applied = none (RTLLM n=5: no; overlap probe skipped)
