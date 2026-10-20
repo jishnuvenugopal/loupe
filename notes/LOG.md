@@ -1165,3 +1165,8 @@ wrote /home/unnitools/rtl-strict-eval/results/main/contamination/overlaps.csv
 - 2026-10-21 01:20 — [chain] C1: extract.py pin superseded by A19 (e36b36e78fde106d02d4dd38a22237ed8a4a0d77dd787fe4c2fed5f0811aa195 -> 9f626ebc6808a0a140cbffbc3645bf9faaa003bfe605825c31edfb910b251b2a)
 - 2026-10-21 01:20 — [chain] C1: working tree not clean (excluding notes/LOG.md, which this chain writes)
 - 2026-10-21 01:20 — [chain] STOP — C1 failed: code/PREREG/push consistency check failed (see log above)
+- 2026-10-21 01:20 — [chain] A18 §8 chain start (pid 588734, force_fail=none, C2 deadline 09:00)
+- 2026-10-21 01:20 — [chain] C1: extract.py pin superseded by A19 (e36b36e78fde106d02d4dd38a22237ed8a4a0d77dd787fe4c2fed5f0811aa195 -> 9f626ebc6808a0a140cbffbc3645bf9faaa003bfe605825c31edfb910b251b2a)
+- 2026-10-21 01:20 — [chain] C1 PASS: items 1-5+7 committed, pushed, PREREG sha256 final
+- 2026-10-21 01:20 — [chain] C2: waiting for 8/8 weight verification (cut-off 09:00)
+- 2026-10-21 01:22 — [chain] C2 PASS: all 8 weight sets hash-verified (8 of 8) at 2026-10-21 01:22
