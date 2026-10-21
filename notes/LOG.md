@@ -1627,3 +1627,6 @@ key: /home/unnitools/runs/blind40_key.json (outside the repo; commit only its sh
   No other pinned file changed; grpo/, e1/, scoring/, scorer/ untouched by this fix.
 - The 14:54 heartbeat (#1) and the two "incomplete" status commits are the honest record
   of the false start; brief W/S will rerun from scratch (status != done) in the right order.
+- 2026-10-21 14:59 — [a20] supervisor up (pid 833121, inhibitor pid 833127); deadline 2026-10-30 20:00:00, end of mission 2026-10-31 23:59:00
+- 2026-10-21 14:59 — [a20] Part C starts: brief W -> brief S -> E1(base,w100,s100) -> ext W -> ext S -> E1(wext,sext) -> final
+- 2026-10-21 14:59 — [a20] grpo_brief_W: starting (steps=100 lr=1e-06 resume=none)
