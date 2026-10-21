@@ -1649,3 +1649,6 @@ a20/keepawake.sh is operator-requested housekeeping, not part of the PREREG-A20 
 pipeline; no pinned file changed.
 - 2026-10-21 18:15 — [a20] grpo_brief_W: finished rc=0 in 3.28 h
 - 2026-10-21 18:16 — [a20] grpo_brief_S: starting (steps=100 lr=1e-06 resume=none)
+- 2026-10-21 20:59 — [a20] heartbeat ots upgrade PREREG.md.ots: Success! Timestamp complete
+- 2026-10-21 20:59 — [a20] heartbeat ots upgrade PREREG-A19.md.ots: Success! Timestamp complete
+- 2026-10-21 20:59 — [a20] heartbeat ots upgrade PREREG-A20.md.ots: Success! Timestamp complete
