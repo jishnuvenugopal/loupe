@@ -1679,3 +1679,6 @@ pipeline; no pinned file changed.
 - 2026-10-21 22:05 — [a20] e1 run rc=0 arms=['base', 'w100', 's100']
 - 2026-10-21 22:06 — [a20] e1 report rc=0
 - 2026-10-21 22:06 — [a20] grpo_ext_W: starting (steps=300 lr=1e-05 resume=none)
+- 2026-10-22 02:59 — [a20] heartbeat ots upgrade PREREG.md.ots: Success! Timestamp complete
+- 2026-10-22 02:59 — [a20] heartbeat ots upgrade PREREG-A19.md.ots: Success! Timestamp complete
+- 2026-10-22 02:59 — [a20] heartbeat ots upgrade PREREG-A20.md.ots: Success! Timestamp complete
