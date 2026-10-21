@@ -4,10 +4,10 @@
  "setting": "brief",
  "steps": 100,
  "lr": 1e-06,
- "status": "incomplete",
+ "status": "done",
  "resumes": 0,
- "reason": "rc=2 with no checkpoint to resume from",
- "csv_rows": 0,
- "wall_h": 0.01,
- "finished_at": "2026-10-21 14:54"
+ "reason": "ok",
+ "csv_rows": 10,
+ "wall_h": 3.28,
+ "finished_at": "2026-10-21 18:15"
 }
