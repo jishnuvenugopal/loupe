@@ -1606,3 +1606,5 @@ key: /home/unnitools/runs/blind40_key.json (outside the repo; commit only its sh
 - 2026-10-21 14:54 — [a20] heartbeat ots upgrade PREREG-A19.md.ots: Success! Timestamp complete
 - 2026-10-21 14:54 — [a20] heartbeat ots upgrade PREREG-A20.md.ots: Failed! Timestamp not complete
 - 2026-10-21 14:54 — [a20] grpo_brief_W: INCOMPLETE — rc=2 with no checkpoint to resume from
+- 2026-10-21 14:54 — [a20] grpo_brief_S: starting (steps=100 lr=1e-06 resume=none)
+- 2026-10-21 14:54 — [a20] grpo_brief_S: INCOMPLETE — rc=2 with no checkpoint to resume from
