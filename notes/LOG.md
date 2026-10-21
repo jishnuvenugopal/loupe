@@ -1653,3 +1653,28 @@ pipeline; no pinned file changed.
 - 2026-10-21 20:59 — [a20] heartbeat ots upgrade PREREG-A19.md.ots: Success! Timestamp complete
 - 2026-10-21 20:59 — [a20] heartbeat ots upgrade PREREG-A20.md.ots: Success! Timestamp complete
 - 2026-10-21 21:36 — [a20] grpo_brief_S: finished rc=0 in 3.35 h
+- 2026-10-21 21:37 — e1: generating e1-base/ve (T=0.2, top_p=0.95, n=3, max_tokens=2048, mml=4096)
+- 2026-10-21 21:39 — e1: e1-base/ve rc=0 log=/home/unnitools/runs/gen_e1/log_e1-base_ve.txt
+- 2026-10-21 21:39 — e1: generating e1-base/rtllm (T=0.2, top_p=0.95, n=3, max_tokens=2048, mml=4096)
+- 2026-10-21 21:41 — e1: e1-base/rtllm rc=0 log=/home/unnitools/runs/gen_e1/log_e1-base_rtllm.txt
+- 2026-10-21 21:41 — e1: merging adapter /home/unnitools/runs/grpo_brief_W/final_adapter -> /home/unnitools/runs/e1_models/w100
+- 2026-10-21 21:42 — e1: merge w100 rc=0 (log ~/runs/e1_merge_w100.log)
+- 2026-10-21 21:42 — e1: generating e1-w100/ve (T=0.2, top_p=0.95, n=3, max_tokens=2048, mml=4096)
+- 2026-10-21 21:44 — e1: e1-w100/ve rc=0 log=/home/unnitools/runs/gen_e1/log_e1-w100_ve.txt
+- 2026-10-21 21:44 — e1: generating e1-w100/rtllm (T=0.2, top_p=0.95, n=3, max_tokens=2048, mml=4096)
+- 2026-10-21 21:46 — e1: e1-w100/rtllm rc=0 log=/home/unnitools/runs/gen_e1/log_e1-w100_rtllm.txt
+- 2026-10-21 21:46 — e1: merging adapter /home/unnitools/runs/grpo_brief_S/final_adapter -> /home/unnitools/runs/e1_models/s100
+- 2026-10-21 21:47 — e1: merge s100 rc=0 (log ~/runs/e1_merge_s100.log)
+- 2026-10-21 21:47 — e1: generating e1-s100/ve (T=0.2, top_p=0.95, n=3, max_tokens=2048, mml=4096)
+- 2026-10-21 21:49 — e1: e1-s100/ve rc=0 log=/home/unnitools/runs/gen_e1/log_e1-s100_ve.txt
+- 2026-10-21 21:49 — e1: generating e1-s100/rtllm (T=0.2, top_p=0.95, n=3, max_tokens=2048, mml=4096)
+- 2026-10-21 21:51 — e1: e1-s100/rtllm rc=0 log=/home/unnitools/runs/gen_e1/log_e1-s100_rtllm.txt
+- 2026-10-21 21:51 — e1 G2 e1-base_rtllm.jsonl: rc=1 share=0.9091 (exploratory: reported as-is, no waivers)
+- 2026-10-21 21:51 — e1 G2 e1-base_ve.jsonl: rc=1 share=0.9259 (exploratory: reported as-is, no waivers)
+- 2026-10-21 21:51 — e1 G2 e1-s100_rtllm.jsonl: rc=1 share=0.9192 (exploratory: reported as-is, no waivers)
+- 2026-10-21 21:51 — e1 G2 e1-s100_ve.jsonl: rc=1 share=0.919 (exploratory: reported as-is, no waivers)
+- 2026-10-21 21:51 — e1 G2 e1-w100_rtllm.jsonl: rc=1 share=0.8788 (exploratory: reported as-is, no waivers)
+- 2026-10-21 21:51 — e1 G2 e1-w100_ve.jsonl: rc=1 share=0.9306 (exploratory: reported as-is, no waivers)
+- 2026-10-21 22:05 — e1: scoring done ok=True; report: python3 e1/report.py
+- 2026-10-21 22:05 — [a20] e1 run rc=0 arms=['base', 'w100', 's100']
+- 2026-10-21 22:06 — [a20] e1 report rc=0

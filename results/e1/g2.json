@@ -1,0 +1,50 @@
+{
+ "e1-base_rtllm.jsonl": {
+  "file": "/home/unnitools/runs/gen_e1/e1-base_rtllm.jsonl",
+  "samples": 99,
+  "extract_and_name_ok": 90,
+  "share": 0.9091,
+  "g2_threshold": 0.95,
+  "g2_pass": false
+ },
+ "e1-base_ve.jsonl": {
+  "file": "/home/unnitools/runs/gen_e1/e1-base_ve.jsonl",
+  "samples": 432,
+  "extract_and_name_ok": 400,
+  "share": 0.9259,
+  "g2_threshold": 0.95,
+  "g2_pass": false
+ },
+ "e1-s100_rtllm.jsonl": {
+  "file": "/home/unnitools/runs/gen_e1/e1-s100_rtllm.jsonl",
+  "samples": 99,
+  "extract_and_name_ok": 91,
+  "share": 0.9192,
+  "g2_threshold": 0.95,
+  "g2_pass": false
+ },
+ "e1-s100_ve.jsonl": {
+  "file": "/home/unnitools/runs/gen_e1/e1-s100_ve.jsonl",
+  "samples": 432,
+  "extract_and_name_ok": 397,
+  "share": 0.919,
+  "g2_threshold": 0.95,
+  "g2_pass": false
+ },
+ "e1-w100_rtllm.jsonl": {
+  "file": "/home/unnitools/runs/gen_e1/e1-w100_rtllm.jsonl",
+  "samples": 99,
+  "extract_and_name_ok": 87,
+  "share": 0.8788,
+  "g2_threshold": 0.95,
+  "g2_pass": false
+ },
+ "e1-w100_ve.jsonl": {
+  "file": "/home/unnitools/runs/gen_e1/e1-w100_ve.jsonl",
+  "samples": 432,
+  "extract_and_name_ok": 402,
+  "share": 0.9306,
+  "g2_threshold": 0.95,
+  "g2_pass": false
+ }
+}

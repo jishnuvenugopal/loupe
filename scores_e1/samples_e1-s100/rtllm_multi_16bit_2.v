@@ -1,0 +1,43 @@
+
+module multi_16bit (
+    input clk,
+    input rst_n,
+    input start,
+    input [15:0] ain,
+    input [15:0] bin,
+    output reg [31:0] yout,
+    output reg done
+);
+
+    reg [15:0] areg, breg, yout_r;
+    reg [15:0] i;
+    reg done_r;
+
+    always @(posedge clk or negedge rst_n) begin
+        if (rst_n) begin
+            i <= 0;
+            areg <= 0;
+            breg <= 0;
+            yout_r <= 0;
+            done_r <= 0;
+        end else begin
+            if (start) begin
+                if (i < 17) begin
+                    i <= i + 1;
+                    if (areg[i-1] == 1'b1) begin
+                        yout_r <= yout_r << i - 1;
+                        yout_r <= yout_r | breg;
+                    end
+                end else if (i == 17) begin
+                    done_r <= 1;
+                end
+            end else begin
+                i <= 0;
+            end
+        end
+    end
+
+    assign yout = yout_r;
+    assign done = done_r;
+
+endmodule
