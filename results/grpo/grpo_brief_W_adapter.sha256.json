@@ -1,0 +1,12 @@
+{
+ "run_name": "grpo_brief_W",
+ "arm": "W",
+ "steps": 100,
+ "lr": 1e-06,
+ "adapter_sha256": {
+  "tokenizer.json": "f7f96da3a872b5e901575b2067c744ad336c3a3d77a21584d20024557b1bd7f0",
+  "adapter_config.json": "c60972cb54cebf98692928252d1edd6069e664267e2dbc3add4031008e1666a7",
+  "tokenizer_config.json": "61f7f97d627923f7a456573ea8c7b4b0c5da3ec72afc8bb02c1e7b336d5f038f",
+  "adapter_model.safetensors": "4e2feceb696115be52d297d9083a85f6390766afbfe8911bcf08ea7f69379989"
+ }
+}
