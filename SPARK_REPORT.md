@@ -5,6 +5,13 @@ Updated 21 Oct 2026, 02:50 UTC+08 (A18 overnight chain).
 
 ## 1. Status
 
+- [13:10] **A20** (operator, 21 Oct): `G3 pass, start GRPO` — effective once Part A
+  (this close-out) and Part B (PREREG-A20 + Phase 9/E1 code + smoke, stamped) are
+  pushed. Part A complete: results/main/g2.txt (A1), both .ots upgraded + committed
+  (A2), sens release archives + manifests (A3), notes/runlogs/ (A4), reports refreshed
+  (A5), blind-40 key re-verified + backed up (A6). Tag `phase10-results` marks this
+  commit. Next: Part B, then the unattended Part C–E chain (GRPO brief/ext arms, E1,
+  heartbeats every 6 h, blind-40 poll every 30 min; heavy work stops 30 Oct 20:00).
 - [02:50] Phase 10 + A19 sensitivity: COMPLETE. A18 §8 full run: C1-C5 PASS, G0 done (tag + ots stamp 10:41 + upgrade 16:41), Phase 8 all 10 jobs rc=0 in 7.28 h (cut=none), Phase 10 green end-to-end: G2 pass with A19 alias + 2 pinned waivers (3b-rl_ve 0.9487, 3b-base_rtllm 0.94 — reported, not corrected), G1b PASS all three 7B anchors on complete data (7b-rl 0.679 [0.611,0.744] vs 0.688; 7b-sft 0.637 [0.566,0.705] vs 0.652; 7b-base 0.288 [0.233,0.346] vs 0.313 — anchor inside the CI), strict/dedup/contamination/stats/blind40 done, summary.md + figure written. Headline contrasts: H1 RL-Distill not-proved-correct 2.4 pp [0.1, 5.1] resolved; H1-floor 2.1 pp [-0.1, 4.8] not resolved; H2 pass@1 gap 1.9 pp [0.2, 3.8] resolved. A19 §4 sensitivity (3B arms @3072/5120): 3b-rl clears G2 with headroom (0.9594/0.9867); 3b-base rtllm still 0.94 (all length) — reported as-is; conclusions insensitive to the cap (results/sens/summary.md). Note: the 00:55 G1b FAIL was a partial-file race from arm-parallel scoring helpers, not a result; recomputed clean on static 618/618 files.
 - [02:32] Phase 10: complete: G2/G1b/strict/dedup/contamination/stats/blind40 done; summary.md + figure written; blind labels pending
 - [01:50] PHASE10: FAILED: phase10.py rc=0 (its STOP line names the failing gate)
@@ -66,16 +73,13 @@ Updated 21 Oct 2026, 02:50 UTC+08 (A18 overnight chain).
 - Scorer hashes: `results/pilot_repro/SCORER_SHA256`
   (file sha256 `3428447f263d36e741a00d8d8a6bb50c4929a32b033b5e080ce43eb1f76d484e`).
 
-## 4. Models (Phase 4 — in progress)
+## 4. Models (Phase 4 — COMPLETE)
 
-- 8 pinned arms queued in `models/fetch.sh` (smallest-first; pins unchanged);
-  both GRPO datasets downloaded at pinned revisions (1,149 + 743 rows).
-- Verification: `models/verify_weights.py` checks every `*.safetensors`
-  sha256 against `?blobs=true` `lfs.sha256`, copies card text files into
-  `models/cards/<id>/`, writes `models.yaml` + `results/h0/weights_sha256.tsv`.
-  At report time: **no model fully verified yet** (downloads running); the TSV
-  and `models.yaml` carry per-arm `status` and will say `verified` per arm as
-  each completes. Exit check (8×verified) is NOT met yet.
+- **8 of 8 weight sets hash-verified** (every `*.safetensors` sha256 == Hub
+  `?blobs=true` `lfs.sha256` at the pinned revision): the three 7B arms verified
+  2026-10-19 10:41, the rest 2026-10-18 23:58 (`results/h0/weights_sha256.tsv`,
+  `models.yaml`, `results/h0/weights_verified_at.txt`). Cards copied to
+  `models/cards/<id>/`.
 - Licence notes: as PREREG "Licences"; 3B family non-commercial
   (Qwen Research License); CodeV-R1-RL has no LICENSE file (card text copied).
 
@@ -135,24 +139,59 @@ See `results/h0/H0.md` for the version with all file pointers.
 
 ## 8. Open questions for the operator
 
-1. **G0 sequencing** (see PREREG "Measured before G0"): the 7B shakedown +
-   overlap probe complete when the three 7B downloads land (~overnight); G0
-   review can follow in the morning. (docker/apt and H0-a are RESOLVED.)
-2. **Phase 4 completion**: downloads will finish after this STOP;
-   `models/verify_weights.py` reruns and the exit check is "8×verified" in
-   `models.yaml`. No operator action needed unless a hash mismatches.
+1. G0 sequencing — RESOLVED (A18 §8 conditional G0 executed 19 Oct; tag
+   `g0-prereg` + OTS stamp).
+2. Phase 4 completion — RESOLVED (8/8 weights verified, §4).
+3. (A20, open) Blind-40 labels: expected on branch `operator` as
+   `results/main/blind40/labels.csv`; Part E of A20 polls every 30 min.
+   The key is published only if the operator asks, after 31 Oct.
 
-## 9. Generation (A16 §7 — filled by Phase 8)
+## 9. Generation (A16 §7 — Phase 8, COMPLETE 19 Oct)
 
-Manifests, 30-minute throughput checks, any cut applied: pending G0 and the
-overnight run. Order (A16 §3 step 4): CodeV RL → Distill → 3B RL → 3B base →
-Qwen 7B base. No rsync step (single machine).
+- **All 10 jobs (5 arms × 2 benches) rc = 0 in 7.28 h** (10:52–18:09 +08,
+  2026-10-19), in the A16 order 7b-rl → 7b-sft → 3b-rl → 3b-base → 7b-base,
+  one vLLM container per job, cut = **none** (steady-state projection 7.46 h
+  of the 9 h window; ladder not needed).
+- Manifests: `gen/manifests/<arm>.json` for all 5 arms — 618 rows each
+  (3,090 total; 468 VE = 156×3, 150 RTLLM = 50×3), per-file sha256,
+  truncation counts (7b-rl 1, 7b-sft 7, 7b-base 0, 3b-rl 24, 3b-base 21),
+  extraction/name rates, `release_tar_sha256`.
+- Throughput checks: 30-min check + first-3B-arm check →
+  `results/gen_throughput_checks.jsonl`; effective `SamplingParams` logged per
+  arm × bench (`~/runs/gen/<arm>_<bench>_effective_params.json`, recipe in
+  runlogs); all generation logs now in `notes/runlogs/` (A4).
+- Release archives (A17 item 10 — generations are the record):
+  `results/main/releases/<arm>.tar.gz` (5) + `results/sens/releases/`
+  (3b-rl-cap, 3b-base-cap with manifests; A3). A19 §4 sensitivity arms
+  regenerated at cap 3072/mml 5120 into `~/runs/gen_sens/`
+  (`results/sens/GEN_SHA256`).
+- Overlap probe: skipped per A18 §8 C4 — nothing scored during generation.
 
-## 10. Build day (A16 §7 — filled by Phase 10)
+## 10. Build day (A16 §7 — Phase 10, COMPLETE 21 Oct 02:32)
 
-G2, G1b, the primary false-pass table, secondary contrasts, dedup,
-contamination, blind sample: pending. Analysis code pinned pre-G0 under
-`scoring/` (see PREREG "Analysis code").
+- **G2**: PASS — per-file shares in `results/main/g2.txt` (regenerated 21 Oct
+  with the A19 §2 typo alias in force): 8/10 files above 0.95; two pinned A19 §3
+  waivers (3b-rl_ve 0.9487 = 444/468; 3b-base_rtllm 0.9400 = 141/150), both
+  dominated by length hits at the 2,048 3B cap — reported, not corrected.
+- **G1b**: PASS, all three 7B VerilogEval anchors inside the all-task CI
+  (`results/main/g1b.json`): 7b-rl 0.679 [0.611, 0.744] vs 0.688; 7b-sft
+  0.637 [0.566, 0.705] vs 0.652; 7b-base 0.288 [0.233, 0.346] vs 0.313.
+  RTLLM loose: 0.707/0.627/0.347 vs 0.680/0.572/0.361. (The 00:55 G1b FAIL
+  was a partial-file race in arm-parallel scoring helpers, not a result;
+  recomputed clean on static 618/618 files per arm.)
+- **Primary table + contrasts**: `results/main/summary.md` (not-proved-correct
+  share with CI, proved-wrong floor beside it, class counts, per arm × bench;
+  H1 RL−Distill 2.4 pp [0.1, 5.1] resolved; H1-floor 2.1 pp [−0.1, 4.8] not
+  resolved; H2 1.9 pp [0.2, 3.8] resolved). Sensitivity rows (all-37, wide
+  gate, dedup, drop) and figure `official_vs_strict.png` beside it.
+- **A19 §4 sensitivity**: `results/sens/summary.md` (3b-rl clears G2 with
+  headroom at cap 3072; 3b-base rtllm still 0.94, all length; conclusions
+  insensitive to the cap).
+- Dedup: `results/main/dedup_map.json` (3,090 keys; uniques per arm 472–567
+  of 618). Contamination: 0 overlaps (`results/main/contamination/`).
+- **Blind-40**: packets drawn (`results/main/blind40/packet/`), key outside the
+  repo — only `KEY_SHA256` committed; labels pending on branch `operator`
+  (Part E of A20 polls for them).
 
 ## 11. Amendment A16
 
@@ -176,11 +215,10 @@ contamination, blind sample: pending. Analysis code pinned pre-G0 under
 - **Still pending under A16**: 7B shakedown (steps 1–2) + overlap probe (step 7)
   + full overnight projection (step 5) once the three 7B weights land.
 
-Messages waited for (exactly): `G0 approved`; `RTLLM n = 5` or `cut <step>`
-(pre-G0 only); `hold` (optional, pauses before Phase 10); `blind labels in`;
-`G3 pass, start GRPO`. (`Spark runs 3B` retired — standing per A16.)
-
-STOP — waiting for operator review of PREREG.md and the message "G0 approved"
+Messages waited for now (A20): the operator's `G3 pass, start GRPO` is carried by
+A20 itself (effective after Parts A and B are pushed); `blind labels in` is
+replaced by Part E (labels detected on branch `operator`). Nothing else is
+waited for until 31 Oct 2026.
 
 ## 12. Amendment A18 (18 Oct 2026, ~23:50 +08) — last fixes + conditional G0
 

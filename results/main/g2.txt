@@ -1,0 +1,47 @@
+# G2 gate — final output (extraction ≥ 95% per generation file)
+
+Regenerated 2026-10-21 ~13:00 +08 by running the pinned extractor
+(`scoring/extract.py`, sha256 in PREREG-A19 §5: 9f626ebc6808a0a140cbffbc3645bf9faaa003bfe605825c31edfb910b251b2a)
+over every primary generation file, with the **A19 §2 typo alias applied**
+(for RTLLM task `fixed_point_substractor` only, the correctly spelled module
+`fixed_point_subtractor` additionally counts as correct; no other task, no
+fuzzy matching, VE `TopModule` rule untouched; scorer-v1 unaffected).
+
+Command per file: `python scoring/extract.py --gen ~/runs/gen/<file>.jsonl`
+(threshold 0.95 on extract+module-name share).
+
+| file | samples | extract+name ok | share | threshold | verdict |
+|---|---|---|---|---|---|
+| 7b-rl_ve.jsonl | 468 | 465 | 0.9936 | 0.95 | PASS |
+| 7b-rl_rtllm.jsonl | 150 | 150 | 1.0000 | 0.95 | PASS |
+| 7b-sft_ve.jsonl | 468 | 462 | 0.9872 | 0.95 | PASS |
+| 7b-sft_rtllm.jsonl | 150 | 149 | 0.9933 | 0.95 | PASS |
+| 7b-base_ve.jsonl | 468 | 450 | 0.9615 | 0.95 | PASS |
+| 7b-base_rtllm.jsonl | 150 | 150 | 1.0000 | 0.95 | PASS |
+| 3b-rl_ve.jsonl | 468 | 444 | **0.9487** | 0.95 | WAIVED (A19 §3) |
+| 3b-rl_rtllm.jsonl | 150 | 144 | 0.9600 | 0.95 | PASS |
+| 3b-base_ve.jsonl | 468 | 453 | 0.9679 | 0.95 | PASS |
+| 3b-base_rtllm.jsonl | 150 | 141 | **0.9400** | 0.95 | WAIVED (A19 §3) |
+
+## The two pinned G2 waivers (PREREG-A19 §3, operator decision 20 Oct 2026)
+
+Two files remain below 0.95 after the §2 alias, dominated by
+`finish_reason=length` hits at the A16-pinned 3B cap of 2,048 completion
+tokens. Operator decision: **report, do not correct**. Extraction failures
+count as non-passes in official pass@1. The waivers are pinned to the exact
+pass counts above on the immutable generation files (equality guard in
+`scoring/phase10.py::A19_G2_WAIVERS` — any other count fails G2 hard):
+
+1. **`3b-rl_ve.jsonl`** — 444/468 = 0.9487 (18 length hits at the 2,048 cap +
+   6 genuine module-name misses, concentrated on `Prob123_bugs_addsubz`).
+2. **`3b-base_rtllm.jsonl`** — 141/150 = 0.9400 (9 length hits at the 2,048
+   cap + 0 name misses after the §2 alias).
+
+The A19 §4 sensitivity regeneration (`results/sens/`) shows the 3b-rl
+shortfall is cap-driven (0.9594 at cap 3,072) while 3b-base's rtllm shortfall
+persists (0.9400 at 3,072, all length) — reported as-is, no further
+amendment.
+
+G2 overall: **PASS** (8/10 files above threshold; 2 waived per A19 §3 with
+pinned counts; every share above is the recomputed value, byte-identical to
+the PREREG-A19 §1 table and the phase10 G2 log entries of 21 Oct 02:05).

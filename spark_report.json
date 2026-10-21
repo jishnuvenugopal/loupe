@@ -228,22 +228,297 @@
   "Phase 4 completes in background; exit check = 8x verified in models.yaml; H0-a watcher auto-runs+pushes"
  ],
  "generation": {
-  "status": "pending G0"
+  "status": "complete (Phase 8, 2026-10-19)",
+  "window": "10:52-18:09 +08 (7.28 h), all 10 jobs (5 arms x 2 benches) rc=0",
+  "order": [
+   "7b-rl",
+   "7b-sft",
+   "3b-rl",
+   "3b-base",
+   "7b-base"
+  ],
+  "cut_applied": "none (steady-state projection 7.46 h of 9 h window)",
+  "rows_total": 3090,
+  "manifests": {
+   "7b-rl": {
+    "rows": 618,
+    "truncated": 1,
+    "extraction_rate": 1.0,
+    "module_name_ok_rate": 0.9903,
+    "release_tar_sha256": "5095e19051575d4046a34ec80193588deee7cfdd4f652aa03577a0d720edb541"
+   },
+   "7b-sft": {
+    "rows": 618,
+    "truncated": 7,
+    "extraction_rate": 0.9935,
+    "module_name_ok_rate": 0.9838,
+    "release_tar_sha256": "315db3de3488af306750380cf8a29b9726082d1c11f96372d92db846654a49ec"
+   },
+   "7b-base": {
+    "rows": 618,
+    "truncated": 0,
+    "extraction_rate": 0.9984,
+    "module_name_ok_rate": 0.966,
+    "release_tar_sha256": "611adb05deca720bd1a85f918d7e1e2d9e2cf2bc4120b21d3631cacf834a7c03"
+   },
+   "3b-rl": {
+    "rows": 618,
+    "truncated": 24,
+    "extraction_rate": 0.9628,
+    "module_name_ok_rate": 0.9466,
+    "release_tar_sha256": "bbd45406a048c8c4f29a8c5d43ff9c45a30cd55fbb35fcc90e79fb61d81551a0"
+   },
+   "3b-base": {
+    "rows": 618,
+    "truncated": 21,
+    "extraction_rate": 0.966,
+    "module_name_ok_rate": 0.9563,
+    "release_tar_sha256": "8de93eebd8b7b3b8c37173117c20c53ee70da65fecf79f213392154be3dd98c2"
+   }
+  },
+  "throughput_checks": "results/gen_throughput_checks.jsonl (30-min + first-3B checks)",
+  "release_archives": "results/main/releases/<arm>.tar.gz (5 arms) + results/sens/releases/ (3b-rl-cap, 3b-base-cap + manifests)",
+  "sensitivity_regeneration": "results/sens/ (A19 \u00a74: cap 3072, mml 5120; GEN_SHA256)",
+  "logs": "notes/runlogs/ (chain + gen + sens logs, gzipped; A4)",
+  "overlap_probe": "skipped per A18 \u00a78 C4"
  },
  "g1b": {
-  "status": "pending G0"
+  "status": "PASS (all three 7B VE anchors inside ci95_all_tasks)",
+  "rows": [
+   {
+    "arm": "7b-rl",
+    "bench": "ve",
+    "point_all_tasks": 0.6794871794871795,
+    "ci95_all_tasks": [
+     0.6111111111111112,
+     0.7435897435897437
+    ],
+    "anchor": 0.688,
+    "inside_ci": true,
+    "within_8pp": true,
+    "pass": true,
+    "rtllm_point_all": 0.7066666666666667,
+    "rtllm_anchor_loose": 0.68
+   },
+   {
+    "arm": "7b-sft",
+    "bench": "ve",
+    "point_all_tasks": 0.6367521367521367,
+    "ci95_all_tasks": [
+     0.5662393162393163,
+     0.7051282051282051
+    ],
+    "anchor": 0.652,
+    "inside_ci": true,
+    "within_8pp": true,
+    "pass": true,
+    "rtllm_point_all": 0.6266666666666666,
+    "rtllm_anchor_loose": 0.572
+   },
+   {
+    "arm": "7b-base",
+    "bench": "ve",
+    "point_all_tasks": 0.28846153846153844,
+    "ci95_all_tasks": [
+     0.2329059829059829,
+     0.34615384615384603
+    ],
+    "anchor": 0.313,
+    "inside_ci": true,
+    "within_8pp": true,
+    "pass": true,
+    "rtllm_point_all": 0.3466666666666666,
+    "rtllm_anchor_loose": 0.361
+   }
+  ],
+  "evidence": "results/main/g1b.json; note: the 00:55 G1b FAIL was a partial-file race in arm-parallel scoring helpers, recomputed clean on static files"
  },
  "g2": {
-  "status": "pending G0"
+  "status": "PASS (8/10 files >= 0.95; 2 pinned A19 \u00a73 waivers, reported not corrected)",
+  "waivers": {
+   "3b-rl_ve.jsonl": {
+    "share": 0.9487,
+    "ok": 444,
+    "samples": 468
+   },
+   "3b-base_rtllm.jsonl": {
+    "share": 0.94,
+    "ok": 141,
+    "samples": 150
+   }
+  },
+  "alias": "A19 \u00a72 typo alias (fixed_point_substractor) applied, G2 gate only",
+  "evidence": "results/main/g2.txt"
  },
  "results": {
-  "status": "pending G0"
+  "status": "complete (Phase 10, 2026-10-21 02:32)",
+  "primary_table": {
+   "3b-base|rtllm": {
+    "tasks": 33,
+    "official_passes": 25,
+    "not_proved_correct_pct": 36.0,
+    "ci95_pct": [
+     10.0,
+     70.0
+    ],
+    "proved_wrong_pct": 20.0
+   },
+   "3b-base|ve": {
+    "tasks": 144,
+    "official_passes": 54,
+    "not_proved_correct_pct": 3.7,
+    "ci95_pct": [
+     0.0,
+     9.5
+    ],
+    "proved_wrong_pct": 1.9
+   },
+   "3b-rl|rtllm": {
+    "tasks": 33,
+    "official_passes": 34,
+    "not_proved_correct_pct": 35.3,
+    "ci95_pct": [
+     13.5,
+     59.3
+    ],
+    "proved_wrong_pct": 26.5
+   },
+   "3b-rl|ve": {
+    "tasks": 144,
+    "official_passes": 130,
+    "not_proved_correct_pct": 2.3,
+    "ci95_pct": [
+     0.0,
+     7.6
+    ],
+    "proved_wrong_pct": 0.0
+   },
+   "7b-base|rtllm": {
+    "tasks": 33,
+    "official_passes": 40,
+    "not_proved_correct_pct": 27.5,
+    "ci95_pct": [
+     11.4,
+     48.6
+    ],
+    "proved_wrong_pct": 22.5
+   },
+   "7b-base|ve": {
+    "tasks": 144,
+    "official_passes": 127,
+    "not_proved_correct_pct": 4.7,
+    "ci95_pct": [
+     1.5,
+     9.0
+    ],
+    "proved_wrong_pct": 2.4
+   },
+   "7b-rl|rtllm": {
+    "tasks": 33,
+    "official_passes": 81,
+    "not_proved_correct_pct": 33.3,
+    "ci95_pct": [
+     17.1,
+     50.6
+    ],
+    "proved_wrong_pct": 33.3
+   },
+   "7b-rl|ve": {
+    "tasks": 144,
+    "official_passes": 294,
+    "not_proved_correct_pct": 2.0,
+    "ci95_pct": [
+     0.3,
+     4.4
+    ],
+    "proved_wrong_pct": 1.7
+   },
+   "7b-sft|rtllm": {
+    "tasks": 33,
+    "official_passes": 77,
+    "not_proved_correct_pct": 28.6,
+    "ci95_pct": [
+     14.1,
+     45.0
+    ],
+    "proved_wrong_pct": 28.6
+   },
+   "7b-sft|ve": {
+    "tasks": 144,
+    "official_passes": 282,
+    "not_proved_correct_pct": 0.4,
+    "ci95_pct": [
+     0.0,
+     1.2
+    ],
+    "proved_wrong_pct": 0.4
+   }
+  },
+  "contrasts": {
+   "h1_rl_vs_distill": {
+    "not_proved_correct_share": {
+     "mean": 0.023957661609780172,
+     "ci95": [
+      0.0013469827586206906,
+      0.05094232366959639
+     ],
+     "resolved": true
+    },
+    "not_proved_correct_share_floor": {
+     "mean": 0.021087311256746972,
+     "ci95": [
+      -0.0006252320196948047,
+      0.047611053285431276
+     ],
+     "resolved": false
+    },
+    "h2_pass1_gap": {
+     "mean": 0.018839171374764645,
+     "ci95": [
+      0.0018832391713748953,
+      0.03766478342749535
+     ],
+     "resolved": true
+    }
+   }
+  },
+  "summary": "results/main/summary.md",
+  "sensitivity_summary": "results/sens/summary.md",
+  "dedup": {
+   "3b-base": {
+    "rows": 618,
+    "unique": 552
+   },
+   "3b-rl": {
+    "rows": 618,
+    "unique": 541
+   },
+   "7b-base": {
+    "rows": 618,
+    "unique": 567
+   },
+   "7b-rl": {
+    "rows": 618,
+    "unique": 472
+   },
+   "7b-sft": {
+    "rows": 618,
+    "unique": 460
+   }
+  },
+  "reported_apart": "results/main/apart.json",
+  "note": "exploratory secondary contrasts: H1 resolved 2.4pp [0.1,5.1]; H1-floor not resolved 2.1pp [-0.1,4.8]; H2 resolved 1.9pp [0.2,3.8]"
  },
  "contamination": {
-  "status": "pending G0"
+  "status": "complete: 0 overlap rows over all eight dataset files (statements vs specs primary; code vs references secondary)",
+  "evidence": "results/main/contamination/overlaps.csv + summary.json"
  },
  "blind40": {
-  "status": "pending G0"
+  "status": "packets drawn; labels pending (operator pushes results/main/blind40/labels.csv to branch 'operator'; A20 Part E polls every 30 min)",
+  "key_sha256": "cdb4a18bd1dc38abf126f4a904fec1297812b681f60da105636145829692c317",
+  "key_backup": "~/runs/blind40_key.backup.json (same sha256 verified 2026-10-21, A6)",
+  "packets": "results/main/blind40/packet/ (blind to arm/model/family/index)",
+  "labels_template": "results/main/blind40/labels_template.csv"
  },
  "amendments": [
   {
@@ -281,6 +556,27 @@
    "pending": [
     "7B shakedown + overlap probe + projection (A17 item 10 reporting: steady-state tok/s separate from load; no-cut only if <=9h steady-state)"
    ]
+  },
+  {
+   "id": "A18",
+   "received": "18 Oct 2026 ~23:50 +08 (operator reply to the A17 report)",
+   "phase_at_receipt": "Phase 6/7 boundary (pre-G0)",
+   "decision": "items 1-7 analysis fixes + \u00a78 conditional G0 (C1-C5) executed autonomously overnight 18-19 Oct; G0 tag g0-prereg + OTS stamp; Phase 8 + Phase 10 ran without further messages",
+   "evidence": "koder/docs/brief-spark-addendum-A18.md; notes/LOG.md A18 \u00a78 chain entries"
+  },
+  {
+   "id": "A19",
+   "received": "20 Oct 2026 ~23:00 +08 at the A18 \u00a78 G2 stop",
+   "phase_at_receipt": "Phase 10 (G2 stop)",
+   "decision": "operator: primary preserved with 2 pinned G2 waivers; A19 \u00a72 typo alias (G2 gate only); 3B sensitivity regeneration (cap 3072/mml 5120)",
+   "evidence": "PREREG-A19.md (+ .ots, upgraded to Bitcoin attestations 21 Oct)"
+  },
+  {
+   "id": "A20",
+   "received": "21 Oct 2026 (operator present ~1 h, then unattended until 31 Oct 2026)",
+   "phase_at_receipt": "after Phase 10 + A19 complete; G3 decision carried: 'G3 pass, start GRPO' (effective after Part A + Part B pushed)",
+   "scope": "Part A close-out; Part B PREREG-A20 (Phase 9 GRPO W/S + E1 + extension setting); Part C run order; Part D heartbeat every 6 h; Part E blind-40 unblinding from branch 'operator'",
+   "constraints": "push only to spark; never touch operator branch except reading results/main/blind40/labels.csv via git show; scorer/ and pinned scoring/ unchanged; no weights or key in git; heavy work stops 30 Oct 20:00 +08"
   }
  ],
  "chain": {

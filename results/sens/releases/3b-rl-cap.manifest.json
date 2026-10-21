@@ -1,0 +1,30 @@
+{
+ "arm": "3b-rl-cap",
+ "files": [
+  {
+   "file": "3b-rl-cap_rtllm.jsonl",
+   "rows": 150,
+   "sha256": "609dd03b635eb1ec56c5544ea9cecff8f8dd25e8b37409ecc65614e914913746",
+   "truncated": 2,
+   "extracted": 148,
+   "module_name_ok": 145
+  },
+  {
+   "file": "3b-rl-cap_ve.jsonl",
+   "rows": 468,
+   "sha256": "89000c11d67445d145d9f0b51b44d46306fbaf98b256e551d0048d1ec632722c",
+   "truncated": 12,
+   "extracted": 456,
+   "module_name_ok": 449
+  }
+ ],
+ "rows_total": 618,
+ "truncated_total": 14,
+ "extraction_rate": 0.9773,
+ "module_name_ok_rate": 0.9612,
+ "completion_tokens": {
+  "mean": 759,
+  "max": 3072
+ },
+ "release_tar_sha256": "fb3ef315fe78dc7fff8e6567acfcd6086010b437c82746cd8e1fcc02ddcbca3c"
+}
