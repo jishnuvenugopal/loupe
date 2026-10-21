@@ -1633,3 +1633,17 @@ key: /home/unnitools/runs/blind40_key.json (outside the repo; commit only its sh
 - 2026-10-21 14:59 — [a20] heartbeat ots upgrade PREREG.md.ots: Success! Timestamp complete
 - 2026-10-21 14:59 — [a20] heartbeat ots upgrade PREREG-A19.md.ots: Success! Timestamp complete
 - 2026-10-21 14:59 — [a20] heartbeat ots upgrade PREREG-A20.md.ots: Failed! Timestamp not complete
+
+## 2026-10-21 15:26 — operator instruction: keep the machine awake through 31 Oct
+Three independent layers now in force (all verified live):
+1. GNOME auto-suspend disabled: sleep-inactive-ac-type 'nothing' (timeout 0),
+   sleep-inactive-battery-type 'nothing' (timeout 0) — idle-dim only dims the screen.
+2. a20-supervisor holds a systemd sleep:idle BLOCK inhibitor (pid 833127) for the
+   whole run (launched by a20/supervisor.py at startup).
+3. NEW a20/keepawake.sh under tmux session 'keepawake': an independent, auto-restarting
+   systemd-inhibit holder with a FULL sleep:shutdown:idle BLOCK — the machine cannot
+   suspend from any initiator even if the supervisor dies between heartbeats.
+Also verified: no sleep/suspend systemd timers, no suspend cron entries, no battery
+(mains-powered; upower 'on-battery: no'), sleep.target/suspend.target inactive.
+a20/keepawake.sh is operator-requested housekeeping, not part of the PREREG-A20 pinned
+pipeline; no pinned file changed.
