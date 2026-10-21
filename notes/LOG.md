@@ -1608,3 +1608,22 @@ key: /home/unnitools/runs/blind40_key.json (outside the repo; commit only its sh
 - 2026-10-21 14:54 — [a20] grpo_brief_W: INCOMPLETE — rc=2 with no checkpoint to resume from
 - 2026-10-21 14:54 — [a20] grpo_brief_S: starting (steps=100 lr=1e-06 resume=none)
 - 2026-10-21 14:54 — [a20] grpo_brief_S: INCOMPLETE — rc=2 with no checkpoint to resume from
+- 2026-10-21 14:54 — e1: generating e1-base/ve (T=0.2, top_p=0.95, n=3, max_tokens=2048, mml=4096)
+
+## 2026-10-21 14:55–15:15 — A20 launch post-mortem: two supervisor defects fixed (pin superseded)
+- First supervisor launch: both brief GRPO arms failed INSTANTLY (rc=2, pip usage dump) —
+  docker_train_cmd nested shlex-quoted 'bash -lc "..."' inside the single-quoted
+  'sg docker -c "..."' and the quoting collapsed. The supervisor handled it per the A20
+  rules (marked both runs incomplete with reason, no checkpoint existed, moved on) and
+  started E1 base generation out of order; I stopped it (docker kill; no rows lost —
+  generation writes only at batch end) and killed the supervisor to repair.
+- Fixes (a20/supervisor.py only): (1) the full docker invocation now goes through a
+  generated script file ~/runs/a20_cmd_<run>.sh invoked as: sg docker -c "bash <script>"
+  (no nested quoting; bash -n verified; disk/mem now true availables: 3.4T / 117 G);
+  (2) free_disk_mem reported the USED memory and the USE-% as "free" — now df Avail and
+  free 'available'; heartbeat labels updated to "disk avail / mem avail".
+- PIN SUPERSESSION (PREREG-A20.md stays byte-identical to its OTS stamp): a20/supervisor.py
+  pinned ed9773421cfdd3fb1e94ad98d35dffcfb7376637dd90c40a0161ce0dbe91c6e2 -> 0b7c6b348ccb924dfaf2dccd878975cd4fc37fdf665c3fc0ea3f98e8f4972c74.
+  No other pinned file changed; grpo/, e1/, scoring/, scorer/ untouched by this fix.
+- The 14:54 heartbeat (#1) and the two "incomplete" status commits are the honest record
+  of the false start; brief W/S will rerun from scratch (status != done) in the right order.

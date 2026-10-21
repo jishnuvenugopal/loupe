@@ -132,12 +132,12 @@ def gpu_util():
 def free_disk_mem():
     try:
         d = subprocess.run(["df", "-h", "/"], capture_output=True, text=True,
-                           timeout=30).stdout.splitlines()[1].split()[-2]
+                           timeout=30).stdout.splitlines()[1].split()[3]   # Avail
     except Exception:
         d = "?"
     try:
         m = subprocess.run(["free", "-g"], capture_output=True, text=True,
-                           timeout=30).stdout.splitlines()[1].split()[2]
+                           timeout=30).stdout.splitlines()[1].split()[6]   # available
     except Exception:
         m = "?"
     return d, m
@@ -187,12 +187,19 @@ def docker_train_cmd(setting, arm, steps, lr, resume=""):
              f"--adapter-sha-out /work/results/grpo/{name}_adapter.sha256.json "
              f"--metrics-out /work/results/grpo/{name}_metrics.json "
              + (f"--resume-from-checkpoint {resume}" if resume else ""))
-    return (f"sg docker -c 'docker run --rm --name a20_{name} --gpus all --ipc=host "
-            f"--ulimit memlock=-1 --ulimit stack=67108864 {mounts} "
-            f"-e EDA_BIN=/eda/oss-cad-suite/bin -e GRPO_WORK_DIR=/runs/grpo "
-            f"-e TZ=Asia/Singapore {IMAGE} "
-            f"bash -lc {shlex.quote(inner)}'"
-            f" > {RUNS}/{name}.train.log 2>&1")
+    # The full docker invocation goes through a script file: `sg docker -c '...'`
+    # is itself single-quoted, so any nested quoting of `bash -lc "..."` breaks
+    # (the first launch failed rc=2 on pip's usage dump exactly this way).
+    script = os.path.join(RUNS, f"a20_cmd_{name}.sh")
+    with open(script, "w") as f:
+        f.write("#!/usr/bin/env bash\n")
+        f.write(f"docker run --rm --name a20_{name} --gpus all --ipc=host "
+                f"--ulimit memlock=-1 --ulimit stack=67108864 {mounts} "
+                f"-e EDA_BIN=/eda/oss-cad-suite/bin -e GRPO_WORK_DIR=/runs/grpo "
+                f"-e TZ=Asia/Singapore {IMAGE} "
+                f"bash -lc {shlex.quote(inner)}\n")
+    os.chmod(script, 0o755)
+    return f"sg docker -c \"bash {script}\" > {RUNS}/{name}.train.log 2>&1"
 
 
 def latest_checkpoint(name):
@@ -406,7 +413,7 @@ def heartbeat_once():
     with state_lock:
         line = (f"{now().strftime('%Y-%m-%d %H:%M')} +08 | step: {state['part_c']} | "
                 f"run: {state['run']} | train step: {state['train_step']} | "
-                f"GPU: {gpu_util()} | disk free: {d} | mem free: {m} G | "
+                f"GPU: {gpu_util()} | disk avail: {d} | mem avail: {m} G | "
                 f"Part E: {state['part_e']} | last error: {state['last_error']}")
         state["heartbeats"] += 1
     hb = os.path.join(REPO, "notes/HEARTBEAT.md")
