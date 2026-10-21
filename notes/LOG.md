@@ -1678,3 +1678,4 @@ pipeline; no pinned file changed.
 - 2026-10-21 22:05 — e1: scoring done ok=True; report: python3 e1/report.py
 - 2026-10-21 22:05 — [a20] e1 run rc=0 arms=['base', 'w100', 's100']
 - 2026-10-21 22:06 — [a20] e1 report rc=0
+- 2026-10-21 22:06 — [a20] grpo_ext_W: starting (steps=300 lr=1e-05 resume=none)
