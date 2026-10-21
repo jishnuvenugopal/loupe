@@ -1,0 +1,12 @@
+{
+ "run_name": "smoke_W_lr5",
+ "arm": "W",
+ "steps": 2,
+ "lr": 1e-05,
+ "adapter_sha256": {
+  "tokenizer.json": "f7f96da3a872b5e901575b2067c744ad336c3a3d77a21584d20024557b1bd7f0",
+  "adapter_config.json": "acac2c24796c9df38b33f74257e787bc9fd0764d88846f3cc89f7b7859f20180",
+  "tokenizer_config.json": "61f7f97d627923f7a456573ea8c7b4b0c5da3ec72afc8bb02c1e7b336d5f038f",
+  "adapter_model.safetensors": "3301aeca57f7f3930aa55db251559aa3d1aa8e5436aa9f0425419c31daaf4732"
+ }
+}

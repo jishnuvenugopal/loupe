@@ -1570,3 +1570,32 @@ key: /home/unnitools/runs/blind40_key.json (outside the repo; commit only its sh
   the Phase-1b way with synthetic stdin lines against the correct remote URL:
   refs/tags/phase10-results -> exit 0; refs/tags/other-tag -> exit 1 "not allowed";
   refs/heads/main -> exit 1 "not allowed".
+- 2026-10-21 14:17 — e1: merging adapter /home/unnitools/runs/smoke_S_lr6/final_adapter -> /home/unnitools/runs/e1_models/smoke_s6
+- 2026-10-21 14:17 — e1: merge smoke_s6 rc=1 (log ~/runs/e1_merge_smoke_s6.log)
+- 2026-10-21 14:17 — e1: merge failed for smoke_s6 rc=1 — skipping arm
+- 2026-10-21 14:42 — e1: merging adapter /home/unnitools/runs/smoke_fix_W/final_adapter -> /home/unnitools/runs/e1_models/smoke_fixw
+- 2026-10-21 14:43 — e1: merge smoke_fixw rc=0 (log ~/runs/e1_merge_smoke_fixw.log)
+- 2026-10-21 14:43 — e1: generating e1-smoke_fixw/ve (T=0.2, top_p=0.95, n=1, max_tokens=2048, mml=4096)
+- 2026-10-21 14:44 — e1: e1-smoke_fixw/ve rc=0 log=/home/unnitools/runs/gen_e1_smoke/log_e1-smoke_fixw_ve.txt
+- 2026-10-21 14:44 — e1: generating e1-smoke_fixw/rtllm (T=0.2, top_p=0.95, n=1, max_tokens=2048, mml=4096)
+- 2026-10-21 14:46 — e1: e1-smoke_fixw/rtllm rc=0 log=/home/unnitools/runs/gen_e1_smoke/log_e1-smoke_fixw_rtllm.txt
+
+## 2026-10-21 13:00–15:10 — A20 Part B: Phase 9 + E1 code, smoke, PREREG-A20
+- Code built (grpo/train_grpo.py extended: --lr, --heldout-seed + pinned-list hard check,
+  10-step checkpoints, --resume-from-checkpoint, B2 CSV callback incl. both held-out rates;
+  new e1/{make_prompts,merge_adapter,run_e1,report}.py; new a20/{supervisor,plot,smoke.sh,
+  run_supervisor.sh}). scorer/ and scoring/ untouched; gen/gen_vllm.py untouched (E1 uses the
+  merge path). E1 prompt lists: prompts/built_e1/ VE 144 + RTLLM 33 from the committed gates.
+- Smoke (a20/smoke.sh): 4 runs (W/S x lr 1e-6/1e-5, 2 steps, callback-every 1, save-steps 1,
+  full 64-row held-out eval) + resume check + E1 path check. All four B6 checks PASS. Three
+  defects found and fixed pre-stamp: (1) TRL's end-of-train summary arrives via on_log and
+  wrote a duplicate empty-window final CSV row -> on_log now acts only on per-step logs
+  (smoke_fix_W proves the fix: step-2 row stays full); (2) merge container lacked peft ->
+  pip install peft==0.21.2 added; (3) E1 smoke mount shadowing -> gen dir mounted at /genout,
+  ~/runs at /runs. Facts: held-out eval ~6.5 min; step ~66-70 s; brief arm ~3.2 h, ext arm
+  ~8.5-9 h projected; reward wall 0.15 s/call (S); peak GPU ~43 GiB.
+- PREREG-A20.md written (settings, dataset pin: train_tb_filtered.jsonl rev 42823db...,
+  sha256 ca03fa1b..., 1149 rows; held-out 64 indices via random.Random(20261021) listed and
+  committed as grpo/heldout_indices.txt; B2 columns; KL null by construction (beta=0, entropy
+  logged); extension setting; E1 spec; run rules incl. deadline 30 Oct 20:00 +08 and the
+  between-jobs deadline check; 14 code+artifact pins verified file-by-file).
