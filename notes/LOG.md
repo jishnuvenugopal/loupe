@@ -1599,3 +1599,6 @@ key: /home/unnitools/runs/blind40_key.json (outside the repo; commit only its sh
   committed as grpo/heldout_indices.txt; B2 columns; KL null by construction (beta=0, entropy
   logged); extension setting; E1 spec; run rules incl. deadline 30 Oct 20:00 +08 and the
   between-jobs deadline check; 14 code+artifact pins verified file-by-file).
+- 2026-10-21 14:54 — [a20] supervisor up (pid 830881, inhibitor pid 830887); deadline 2026-10-30 20:00:00, end of mission 2026-10-31 23:59:00
+- 2026-10-21 14:54 — [a20] Part C starts: brief W -> brief S -> E1(base,w100,s100) -> ext W -> ext S -> E1(wext,sext) -> final
+- 2026-10-21 14:54 — [a20] grpo_brief_W: starting (steps=100 lr=1e-06 resume=none)
