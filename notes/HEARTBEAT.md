@@ -2,3 +2,4 @@
 2026-10-21 14:54 +08 | step: Part C GRPO brief setting | run: grpo_brief_W | train step: 0 | GPU: 0 %, [N/A] | disk free: 5% | mem free: 3 G | Part E: waiting for labels on origin/operator | last error: none
 2026-10-21 14:59 +08 | step: Part C GRPO brief setting | run: grpo_brief_W | train step: 0 | GPU: 0 %, [N/A] | disk avail: 3.4T | mem avail: 117 G | Part E: waiting for labels on origin/operator | last error: none
 2026-10-21 20:59 +08 | step: Part C GRPO brief setting | run: grpo_brief_S | train step: 80 | GPU: 96 %, [N/A] | disk avail: 3.4T | mem avail: 70 G | Part E: waiting for labels on origin/operator | last error: none
+2026-10-22 02:59 +08 | step: Part C GRPO ext setting | run: grpo_ext_W | train step: 140 | GPU: 0 %, [N/A] | disk avail: 3.3T | mem avail: 68 G | Part E: waiting for labels on origin/operator | last error: none
