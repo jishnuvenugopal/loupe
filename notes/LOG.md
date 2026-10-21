@@ -1648,3 +1648,4 @@ Also verified: no sleep/suspend systemd timers, no suspend cron entries, no batt
 a20/keepawake.sh is operator-requested housekeeping, not part of the PREREG-A20 pinned
 pipeline; no pinned file changed.
 - 2026-10-21 18:15 — [a20] grpo_brief_W: finished rc=0 in 3.28 h
+- 2026-10-21 18:16 — [a20] grpo_brief_S: starting (steps=100 lr=1e-06 resume=none)
