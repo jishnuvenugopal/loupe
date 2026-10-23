@@ -1,0 +1,13 @@
+{
+ "run": "grpo_ext_W",
+ "arm": "W",
+ "setting": "ext",
+ "steps": 300,
+ "lr": 1e-05,
+ "status": "done",
+ "resumes": 0,
+ "reason": "ok",
+ "csv_rows": 30,
+ "wall_h": 29.75,
+ "finished_at": "2026-10-23 03:51"
+}
