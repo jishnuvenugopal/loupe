@@ -1,0 +1,13 @@
+{
+ "run": "grpo_ext_S",
+ "arm": "S",
+ "setting": "ext",
+ "steps": 300,
+ "lr": 1e-05,
+ "status": "incomplete",
+ "resumes": 0,
+ "reason": "rc=1 with no checkpoint to resume from",
+ "csv_rows": 0,
+ "wall_h": 0.04,
+ "finished_at": "2026-10-25 04:03"
+}
