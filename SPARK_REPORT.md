@@ -262,3 +262,20 @@ running under tmux (`tmux attach -t overnight`); its stop paths will update this
 report again.
 
 STOP — waiting for G3 review ("G3 pass, start GRPO") and blind labels ("blind labels in")
+
+## 13. Phase 9 + E1 (A20)
+
+Completed 2026-10-29 04:21 +08 by a20/supervisor.py (PREREG-A20; exploratory — never feeds the primary results).
+
+Run status files: `results/grpo/*_status.json`; B2 CSVs + plots: `results/grpo/*.csv/.png`; adapter sha256 records: `results/grpo/*_adapter.sha256.json` (weights stay under `~/runs/`). E1: `results/e1/summary.md` + `stats.json` + `g2.json`, scores in `scores_e1/`, merged-model sha256 records in `results/e1/models/`.
+
+- **grpo_brief_S** (brief setting, arm S, steps 100, lr 1e-06): **done** (10 10-step logs, 0 resumes, 3.35 h; ok)
+- **grpo_brief_W** (brief setting, arm W, steps 100, lr 1e-06): **done** (10 10-step logs, 0 resumes, 3.28 h; ok)
+- **grpo_ext_S** (ext setting, arm S, steps 300, lr 1e-05): **incomplete** (0 10-step logs, 0 resumes, 0.04 h; rc=1 with no checkpoint to resume from)
+- **grpo_ext_W** (ext setting, arm W, steps 300, lr 1e-05): **done** (30 10-step logs, 0 resumes, 29.75 h; ok)
+- E1 report: `results/e1/summary.md` (per-arm table + contrasts + G2 flags, all exploratory).
+- Part E (blind-40 unblinding): waiting for labels on origin/operator.
+
+Heartbeats: `notes/HEARTBEAT.md` (every 6 h until 31 Oct). Heavy work stopped at/by the 30 Oct 20:00 deadline as required.
+
+STOP — Phase 9 + E1 done; waiting for the operator (31 Oct)
