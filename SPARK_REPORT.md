@@ -5,6 +5,15 @@ Updated 10 Nov 2026, 14:51 UTC+08 (A20 recovery; live status in §13).
 
 ## 1. Status
 
+**Blind-40 review BLOCKED (10 Nov, 19:46 +08):** the read-only provenance audit
+found that 33/40 packets display code from a different sample than the one selected.
+Do not label or submit `labels.csv` yet. Evidence: `notes/blind40_integrity_check.json`;
+reproducer: `a20/audit_blind40_inputs.py`. The frozen packet builder omits arm from
+its generation lookup key. Repair requires an explicit amendment; no frozen code,
+packets, draw, key, labels or primary results have been changed. Current GRPO/E1 work
+continues independently. The automatic label poll is still active, so do not publish
+labels on `operator` until the packet repair has been approved and verified.
+
 **Current A20 status:** see §13 and `spark_report.json.a20_recovery`.
 The entries below are the historical phase/gate record, not the current run status.
 

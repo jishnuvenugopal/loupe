@@ -1,0 +1,21 @@
+{
+  "checked_at": "2026-11-10T19:46:06+08:00",
+  "ok": false,
+  "key_hash_ok": true,
+  "packet_template_ids_match": true,
+  "labels_template_blank": true,
+  "labels_file_present": false,
+  "review_artifacts_unchanged_since_phase10": true,
+  "generation_manifest_files_verified": 10,
+  "packets": 40,
+  "code_matches_intended_sample": 7,
+  "code_mismatches_intended_sample": 33,
+  "unreadable_code_sections": 0,
+  "mapping_disclosed": false,
+  "review_artifacts_modified": [],
+  "source_sha256": {
+    "scoring/blind40.py": "c6688f39d4e12ea61bb9e65ffe5bcc96c8f88d311806e468d809e0637b7c06df",
+    "scoring/extract.py": "9f626ebc6808a0a140cbffbc3645bf9faaa003bfe605825c31edfb910b251b2a",
+    "a20/audit_blind40_inputs.py": "5b802e2dbc34673bc001e19e64cccda7e81b3627876613c48abf7123fe08626f"
+  }
+}

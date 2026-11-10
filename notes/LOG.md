@@ -4306,3 +4306,32 @@ pipeline; no pinned file changed.
   running behavior or require another handover. Latest test run: 14/14 pass,
   results/e1/recovery_tests.txt. koder scratch gate clean; pre-existing .ots.bak
   files and koder/docs/brief-spark-addendum-A18.md remain untracked and untouched.
+
+## 2026-11-10 19:46 — parallel-work request: blind-40 integrity audit fails
+- Operator asked what inputs are needed and authorized useful parallel work.
+  Existing training remains active (same container/trainer; checkpoint 150/300 at
+  19:36, 15 B2 rows, no resumes). No second heavy job was started.
+- Read-only readiness checks: 40 packet IDs exactly match the blank template;
+  packet/template/manifests unchanged from phase10-results; all 40 freeze pins pass;
+  operator branch absent, no labels.csv. No labels or unblinding were generated.
+- A source-provenance audit found 33/40 displayed generated-code sections do NOT
+  match their selected sample. Seven match, zero unreadable sections. All ten
+  generation files hash-match committed manifests; the private key hash matches
+  KEY_SHA256. Key contents/attribution remained in memory and were never printed,
+  committed or copied into the evidence.
+- Evidence/reproducer: `PYTHONDONTWRITEBYTECODE=1 nice -n 10 ~/.venvs/host/bin/python
+  a20/audit_blind40_inputs.py --out notes/blind40_integrity_check.json` exits 1
+  intentionally for this finding. The new audit is operational/read-only; no
+  frozen code or review artifact was edited. An independent in-memory synthetic
+  check of the frozen gen_rows function reduced two different arms sharing a
+  task/index to one lookup entry, reproducing the cause without new evaluation.
+- Cause: frozen scoring/blind40.py gen_rows keys by (bench, task_id, sample_idx),
+  omitting arm; draw() uses the same incomplete lookup. Multiple primary arms
+  overwrite one another. Existing packet completeness/blindness checks did not
+  test this provenance invariant. Primary scores/results were not edited.
+- STOP on blind-review preparation: explicit operator amendment approval required
+  before changing this frozen file or repairing packets. Proposed scope: include
+  arm in lookup + collision regression, repair from immutable original generations,
+  preserve all 40 IDs/draw/key and primary results, re-audit before labeling.
+  GRPO/E1 continue independently. Reports and HANDOFF warn not to submit labels
+  while the automatic Part E poll is active and packets remain invalid.

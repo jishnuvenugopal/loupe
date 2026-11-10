@@ -1,5 +1,25 @@
 # HANDOFF — continuation notes for the next session
 
+## New blocking finding (10 Nov 2026, 19:46 +08)
+
+**Do not label or submit blind-40 labels yet.** A read-only audit matched each
+packet's displayed code to the intended original generation using the verified key
+internally (no mapping disclosed). **33/40 do not match.** All ten generation files
+match their committed manifests; the packets/key/template are the original draw.
+Root cause: frozen `scoring/blind40.py:gen_rows` and its caller omit arm from the
+lookup identity, allowing different arms to overwrite the same task/sample index.
+Evidence: `notes/blind40_integrity_check.json`; reproduce with
+`python a20/audit_blind40_inputs.py` (expected exit 1 while unrepaired).
+A synthetic two-arm collision was also reproduced without evaluating any samples.
+
+Await operator approval for a narrow amendment: fix the lookup, add a cross-arm
+regression, repair packet code from the original generations while preserving all
+40 IDs, the exact draw/key and all primary data; then verify every packet before
+human labeling. **No frozen file or packet has been changed.** The current GRPO/E1
+job continues; checkpoint 150/300 was recorded at 19:36 with zero resumes. The
+existing Part E poll is still active: the operator must not publish labels until
+repair is approved and verified. Do not let a later A20 success erase this blocker.
+
 Repo: `~/rtl-strict-eval`, branch `spark`, private
 `jishnuvenugopal/rte-strict-eval`. DGX Spark `spark-cff9` (aarch64, GB10).
 
