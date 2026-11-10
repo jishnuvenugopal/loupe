@@ -9,20 +9,35 @@
  "reason": "adopted live container; training not restarted",
  "container_id": "1bef63a94802e5a3187d97ea9bd8c88398c8e8ff89cd76de897550919b39dd0a",
  "started_at": "2026-11-10T06:33:39.836176506Z",
- "adopted_at": "2026-11-10T14:50:55",
+ "adopted_at": "2026-11-10T21:31:39",
  "previous_attempt": {
   "run": "grpo_ext_S",
   "arm": "S",
   "setting": "ext",
   "steps": 300,
   "lr": 1e-05,
-  "status": "incomplete",
+  "status": "running",
   "resumes": 0,
-  "reason": "rc=1 with no checkpoint to resume from",
-  "csv_rows": 0,
-  "wall_h": 0.04,
-  "finished_at": "2026-10-25 04:03"
+  "reason": "adopted live container; training not restarted",
+  "container_id": "1bef63a94802e5a3187d97ea9bd8c88398c8e8ff89cd76de897550919b39dd0a",
+  "started_at": "2026-11-10T06:33:39.836176506Z",
+  "adopted_at": "2026-11-10T14:50:55",
+  "previous_attempt": {
+   "run": "grpo_ext_S",
+   "arm": "S",
+   "setting": "ext",
+   "steps": 300,
+   "lr": 1e-05,
+   "status": "incomplete",
+   "resumes": 0,
+   "reason": "rc=1 with no checkpoint to resume from",
+   "csv_rows": 0,
+   "wall_h": 0.04,
+   "finished_at": "2026-10-25 04:03"
+  },
+  "csv_rows": 20,
+  "wall_h": 6.85
  },
  "csv_rows": 20,
- "wall_h": 6.85
+ "wall_h": 6.97
 }
