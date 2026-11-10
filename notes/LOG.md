@@ -4252,3 +4252,5 @@ pipeline; no pinned file changed.
   §13 -> STOP -> addendum -> idle (heartbeats + Part E poll continue).
   Driver: a20/continue_after_outage.py (not part of the PREREG-A20 pinned set; it only
   imports it; logged here and in HANDOFF.md).
+- 2026-11-10 14:33 — [a20] continuation driver up (pid 3515236): ext_S (300 steps, lr 1e-5) -> E1 all arms -> re-finalise. New deadline 2026-11-14 20:00:00, end of mission 2026-11-15 23:59:00.
+- 2026-11-10 14:33 — [a20] grpo_ext_S: starting (steps=300 lr=1e-05 resume=none)
