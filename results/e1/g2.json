@@ -31,6 +31,22 @@
   "g2_threshold": 0.95,
   "g2_pass": false
  },
+ "e1-sext_rtllm.jsonl": {
+  "file": "/home/unnitools/runs/gen_e1/e1-sext_rtllm.jsonl",
+  "samples": 99,
+  "extract_and_name_ok": 95,
+  "share": 0.9596,
+  "g2_threshold": 0.95,
+  "g2_pass": true
+ },
+ "e1-sext_ve.jsonl": {
+  "file": "/home/unnitools/runs/gen_e1/e1-sext_ve.jsonl",
+  "samples": 432,
+  "extract_and_name_ok": 403,
+  "share": 0.9329,
+  "g2_threshold": 0.95,
+  "g2_pass": false
+ },
  "e1-w100_rtllm.jsonl": {
   "file": "/home/unnitools/runs/gen_e1/e1-w100_rtllm.jsonl",
   "samples": 99,

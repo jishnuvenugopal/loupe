@@ -4414,3 +4414,20 @@ pipeline; no pinned file changed.
 - 2026-11-11 00:58 — e1 G2 e1-wext_rtllm.jsonl: rc=0 share=0.9798 (exploratory: reported as-is, no waivers)
 - 2026-11-11 00:58 — e1 G2 e1-wext_ve.jsonl: rc=1 share=0.9491 (exploratory: reported as-is, no waivers)
 - 2026-11-11 01:10 — e1: scoring done ok=True; report: python3 e1/report.py
+- 2026-11-11 01:10 — e1: merging adapter /home/unnitools/runs/grpo_ext_S/final_adapter -> /home/unnitools/runs/e1_models/sext
+- 2026-11-11 01:10 — e1: merge sext rc=0 (log ~/runs/e1_merge_sext.log)
+- 2026-11-11 01:10 — e1: generating e1-sext/ve (T=0.2, top_p=0.95, n=3, max_tokens=2048, mml=4096)
+- 2026-11-11 01:13 — e1: e1-sext/ve rc=0 log=/home/unnitools/runs/gen_e1/log_e1-sext_ve.txt
+- 2026-11-11 01:13 — e1: generating e1-sext/rtllm (T=0.2, top_p=0.95, n=3, max_tokens=2048, mml=4096)
+- 2026-11-11 01:15 — e1: e1-sext/rtllm rc=0 log=/home/unnitools/runs/gen_e1/log_e1-sext_rtllm.txt
+- 2026-11-11 01:15 — e1 G2 e1-base_rtllm.jsonl: rc=1 share=0.9091 (exploratory: reported as-is, no waivers)
+- 2026-11-11 01:15 — e1 G2 e1-base_ve.jsonl: rc=1 share=0.9259 (exploratory: reported as-is, no waivers)
+- 2026-11-11 01:15 — e1 G2 e1-s100_rtllm.jsonl: rc=1 share=0.9192 (exploratory: reported as-is, no waivers)
+- 2026-11-11 01:15 — e1 G2 e1-s100_ve.jsonl: rc=1 share=0.919 (exploratory: reported as-is, no waivers)
+- 2026-11-11 01:15 — e1 G2 e1-sext_rtllm.jsonl: rc=0 share=0.9596 (exploratory: reported as-is, no waivers)
+- 2026-11-11 01:15 — e1 G2 e1-sext_ve.jsonl: rc=1 share=0.9329 (exploratory: reported as-is, no waivers)
+- 2026-11-11 01:15 — e1 G2 e1-w100_rtllm.jsonl: rc=1 share=0.8788 (exploratory: reported as-is, no waivers)
+- 2026-11-11 01:15 — e1 G2 e1-w100_ve.jsonl: rc=1 share=0.9306 (exploratory: reported as-is, no waivers)
+- 2026-11-11 01:15 — e1 G2 e1-wext_rtllm.jsonl: rc=0 share=0.9798 (exploratory: reported as-is, no waivers)
+- 2026-11-11 01:15 — e1 G2 e1-wext_ve.jsonl: rc=1 share=0.9491 (exploratory: reported as-is, no waivers)
+- 2026-11-11 01:27 — e1: scoring done ok=True; report: python3 e1/report.py

@@ -1,0 +1,36 @@
+
+module comparator_4bit (
+    input wire [3:0] A,
+    input wire [3:0] B,
+    output reg A_greater,
+    output reg A_equal,
+    output reg A_less
+);
+
+    always @(*) begin
+        
+        reg [3:0] result = A - B;
+
+        
+        reg borrow = result[3];
+
+        
+        if (borrow) begin
+            
+            A_less = 1'b1;
+            A_greater = 1'b0;
+            A_equal = 1'b0;
+        end else if (result != 0) begin
+            
+            A_less = 1'b0;
+            A_greater = 1'b1;
+            A_equal = 1'b0;
+        end else begin
+            
+            A_less = 1'b0;
+            A_greater = 1'b0;
+            A_equal = 1'b1;
+        end
+    end
+
+endmodule

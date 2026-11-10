@@ -1,0 +1,22 @@
+
+module TopModule (
+    input  [2:0] a,
+    input  [2:0] b,
+    output reg [2:0] out_or_bitwise,
+    output reg [2:0] out_or_logical,
+    output reg [5:0] out_not
+);
+
+    
+    assign out_or_bitwise = a | b;
+
+    
+    assign out_or_logical = a || b;
+
+    
+    assign out_not[5:3] = ~b;
+
+    
+    assign out_not[0:2] = ~a;
+
+endmodule
