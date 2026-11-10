@@ -46,5 +46,21 @@
   "share": 0.9306,
   "g2_threshold": 0.95,
   "g2_pass": false
+ },
+ "e1-wext_rtllm.jsonl": {
+  "file": "/home/unnitools/runs/gen_e1/e1-wext_rtllm.jsonl",
+  "samples": 99,
+  "extract_and_name_ok": 97,
+  "share": 0.9798,
+  "g2_threshold": 0.95,
+  "g2_pass": true
+ },
+ "e1-wext_ve.jsonl": {
+  "file": "/home/unnitools/runs/gen_e1/e1-wext_ve.jsonl",
+  "samples": 432,
+  "extract_and_name_ok": 410,
+  "share": 0.9491,
+  "g2_threshold": 0.95,
+  "g2_pass": false
  }
 }

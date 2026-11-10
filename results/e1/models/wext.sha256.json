@@ -1,0 +1,14 @@
+{
+ "base": "/models-hf/hub/models--Qwen--Qwen2.5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a",
+ "adapter": "/runs/grpo_ext_W/final_adapter",
+ "out": "/runs/e1_models/wext",
+ "dtype": "bfloat16 (merged)",
+ "files_sha256": {
+  "chat_template.jinja": "cd8e9439f0570856fd70470bf8889ebd8b5d1107207f67a5efb46e342330527f",
+  "config.json": "23a7e3c76c47d63755ea084cf59d6b907d216ff96bf0643e9b5c2abc6fa9629f",
+  "generation_config.json": "1a628a5775bc69cde01c6749a531150ca4d3189652c618a174f7077923acf3b1",
+  "model.safetensors": "b91bbc1c22c16ada60919705d6e16143243ad24876502d8aae785e5f34005e9a",
+  "tokenizer.json": "3fd169731d2cbde95e10bf356d66d5997fd885dd8dbb6fb4684da3f23b2585d8",
+  "tokenizer_config.json": "4d8ad3fe9729e37338fae50bac94ff03cb915071eb886b937077114e874dfa06"
+ }
+}

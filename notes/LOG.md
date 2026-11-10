@@ -4395,3 +4395,22 @@ pipeline; no pinned file changed.
   attestation is claimed. Evidence: notes/a21_ots_upgrade.txt. The previously
   stamped A21 document is unchanged; retry the stamp upgrade later.
 - 2026-11-11 00:53 — [a20] grpo_ext_S: adopted run done; ok
+- 2026-11-11 00:53 — [a20] retired superseded paused supervisor 3515236 after training exit
+- 2026-11-11 00:53 — [a20] E1 base: exact generation/scoring identities verified — resume skip
+- 2026-11-11 00:53 — [a20] E1 w100: exact generation/scoring identities verified — resume skip
+- 2026-11-11 00:53 — [a20] E1 s100: exact generation/scoring identities verified — resume skip
+- 2026-11-11 00:53 — e1: merging adapter /home/unnitools/runs/grpo_ext_W/final_adapter -> /home/unnitools/runs/e1_models/wext
+- 2026-11-11 00:54 — e1: merge wext rc=0 (log ~/runs/e1_merge_wext.log)
+- 2026-11-11 00:54 — e1: generating e1-wext/ve (T=0.2, top_p=0.95, n=3, max_tokens=2048, mml=4096)
+- 2026-11-11 00:56 — e1: e1-wext/ve rc=0 log=/home/unnitools/runs/gen_e1/log_e1-wext_ve.txt
+- 2026-11-11 00:56 — e1: generating e1-wext/rtllm (T=0.2, top_p=0.95, n=3, max_tokens=2048, mml=4096)
+- 2026-11-11 00:58 — e1: e1-wext/rtllm rc=0 log=/home/unnitools/runs/gen_e1/log_e1-wext_rtllm.txt
+- 2026-11-11 00:58 — e1 G2 e1-base_rtllm.jsonl: rc=1 share=0.9091 (exploratory: reported as-is, no waivers)
+- 2026-11-11 00:58 — e1 G2 e1-base_ve.jsonl: rc=1 share=0.9259 (exploratory: reported as-is, no waivers)
+- 2026-11-11 00:58 — e1 G2 e1-s100_rtllm.jsonl: rc=1 share=0.9192 (exploratory: reported as-is, no waivers)
+- 2026-11-11 00:58 — e1 G2 e1-s100_ve.jsonl: rc=1 share=0.919 (exploratory: reported as-is, no waivers)
+- 2026-11-11 00:58 — e1 G2 e1-w100_rtllm.jsonl: rc=1 share=0.8788 (exploratory: reported as-is, no waivers)
+- 2026-11-11 00:58 — e1 G2 e1-w100_ve.jsonl: rc=1 share=0.9306 (exploratory: reported as-is, no waivers)
+- 2026-11-11 00:58 — e1 G2 e1-wext_rtllm.jsonl: rc=0 share=0.9798 (exploratory: reported as-is, no waivers)
+- 2026-11-11 00:58 — e1 G2 e1-wext_ve.jsonl: rc=1 share=0.9491 (exploratory: reported as-is, no waivers)
+- 2026-11-11 01:10 — e1: scoring done ok=True; report: python3 e1/report.py
