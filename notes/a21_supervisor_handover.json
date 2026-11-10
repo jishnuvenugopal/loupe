@@ -1,0 +1,14 @@
+{
+  "checked_at": "2026-11-10T21:34:17+08:00",
+  "old_supervisor_pid": 3563814,
+  "new_supervisor_pid": 645785,
+  "tmux": "a20-recovery-a21",
+  "trainer_pid_unchanged": 3515354,
+  "container_id_unchanged": "1bef63a94802e5a3187d97ea9bd8c88398c8e8ff89cd76de897550919b39dd0a",
+  "container_started_at_unchanged": "2026-11-10T06:33:39.836176506Z",
+  "training_resumes": 0,
+  "original_paused_supervisor_preserved": 3515236,
+  "latest_csv_step": 200,
+  "freeze_ok": true,
+  "pin_count": 43
+}

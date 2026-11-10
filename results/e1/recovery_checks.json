@@ -1,13 +1,25 @@
 {
- "checked_at": "2026-11-10T14:50:54",
+ "checked_at": "2026-11-10T21:31:39",
  "freeze": {
   "ok": true,
   "errors": [],
   "pins": [
    {
+    "path": "PREREG-A21.md",
+    "expected": "3c624e6a5c2a531dcf20d0e91c75a67996ac46a537d17db06d88e4f95cc4b2a4",
+    "actual": "3c624e6a5c2a531dcf20d0e91c75a67996ac46a537d17db06d88e4f95cc4b2a4",
+    "ok": true
+   },
+   {
     "path": "a20/plot.py",
     "expected": "9ac87621a45363f0a99371dbbbe14f7969a28ea45374ecced18dbbc72c41cc1f",
     "actual": "9ac87621a45363f0a99371dbbbe14f7969a28ea45374ecced18dbbc72c41cc1f",
+    "ok": true
+   },
+   {
+    "path": "a20/repair_blind40_packets.py",
+    "expected": "add22f2ed1bbb8958c731c50488b6516f131f551590f9f7b212122f3c82c6d6b",
+    "actual": "add22f2ed1bbb8958c731c50488b6516f131f551590f9f7b212122f3c82c6d6b",
     "ok": true
    },
    {
@@ -26,6 +38,12 @@
     "path": "a20/supervisor.py",
     "expected": "0b7c6b348ccb924dfaf2dccd878975cd4fc37fdf665c3fc0ea3f98e8f4972c74",
     "actual": "0b7c6b348ccb924dfaf2dccd878975cd4fc37fdf665c3fc0ea3f98e8f4972c74",
+    "ok": true
+   },
+   {
+    "path": "a20/test_blind40_packet_repair.py",
+    "expected": "ffd021c14950c110463402e568258294e859e29a2f8d4361a0e7871a951e008e",
+    "actual": "ffd021c14950c110463402e568258294e859e29a2f8d4361a0e7871a951e008e",
     "ok": true
    },
    {
@@ -198,8 +216,8 @@
    },
    {
     "path": "scoring/blind40.py",
-    "expected": "c6688f39d4e12ea61bb9e65ffe5bcc96c8f88d311806e468d809e0637b7c06df",
-    "actual": "c6688f39d4e12ea61bb9e65ffe5bcc96c8f88d311806e468d809e0637b7c06df",
+    "expected": "acfe8185446c0636b835766574bd125992eb457935d8d7d0c43e29d700c85ad3",
+    "actual": "acfe8185446c0636b835766574bd125992eb457935d8d7d0c43e29d700c85ad3",
     "ok": true
    },
    {

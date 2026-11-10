@@ -62,7 +62,8 @@ def report_state(status, detail):
                "`results/grpo/`; E1 scores in `scores_e1/` and report in `results/e1/summary.md`.", "",
                "The October DNS outage left extended-S untrained and extended E1 absent.",
                "The 10 Nov recovery adopts the live training job without restarting it;",
-               "the frozen trainer, reward, prompts, sampling, scorer and analysis are unchanged.",
+               "training, reward, prompts, sampling, scorer and statistical analysis are unchanged.",
+               "The blind-review packet lookup is repaired under the approved A21 amendment.",
                "Checks require exact sample identities: 432 VE + 99 RTLLM, and 531 scores per arm.", "",
                f"Heavy-work deadline: {sup.DEADLINE} +08; heartbeat/label-poll window ends",
                f"{sup.END_OF_MISSION} +08. Blind-40 status: {sup.state['part_e']}.", ""]

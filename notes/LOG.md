@@ -4366,3 +4366,31 @@ pipeline; no pinned file changed.
   terminal remain untouched. No second heavy job is started.
 - 2026-11-10 21:31 — [a20] corrected continuation up (pid 645785); fail-closed E1 checks; attach=1bef63a94802e5a3187d97ea9bd8c88398c8e8ff89cd76de897550919b39dd0a
 - 2026-11-10 21:31 — [a20] adopting live container 1bef63a94802e5a3187d97ea9bd8c88398c8e8ff89cd76de897550919b39dd0a: training PID/optimizer untouched
+- 2026-11-10 21:31 — [a20] heartbeat ots upgrade PREREG.md.ots: Success! Timestamp complete
+- 2026-11-10 21:32 — [a20] heartbeat ots upgrade PREREG-A19.md.ots: Success! Timestamp complete
+- 2026-11-10 21:32 — [a20] heartbeat ots upgrade PREREG-A20.md.ots: Success! Timestamp complete
+- 2026-11-10 21:34 — A21 applied and independently verified. The amendment/source
+  commit 3d5ae54 was pushed and PREREG-A21.md was OTS-stamped before packet data
+  changed. notes/a21_packet_repair.json records exactly 33 code-section edits,
+  all 40 scrub checks passed, identical before/after hashes for 3,301 protected
+  artifacts, unchanged key bytes and no redraw. Independent audit now finds 40/40
+  correct source matches, zero mismatches or unreadable sections:
+  notes/blind40_integrity_after_a21.json. A repeat preview plans zero edits
+  (notes/a21_packet_idempotence.json). No labels or unblinding were generated.
+- Full git diff --check warns about trailing whitespace INSIDE verbatim generated
+  code in repaired packet data. It is intentionally preserved to match the source
+  generations; no normalization is authorized. Source/docs check excluding packet
+  data passes. Other primary results/scores/draw metadata still match phase10-results.
+- Supervisory handover verified: old active wrapper 3563814 retired, new wrapper
+  645785 in tmux a20-recovery-a21 loaded the exact A21 exception (43 pins pass).
+  Original trainer 3515354, container ID/start time, original Docker client 3515249,
+  paused parent 3515236 and zero-resume budget preserved. No training restart or
+  second heavy job. Evidence: notes/a21_supervisor_handover.json; current checkpoint
+  200/300. All 20 regression tests pass after the final operational report update.
+- Blind-40 review is now READY: operator can label current packet files in parallel
+  with training and publish results/main/blind40/labels.csv on operator. Reports and
+  HANDOFF updated; old failure evidence retained; no model attribution/key exposed.
+- 2026-11-10 21:35 — `ots upgrade PREREG-A21.md.ots` reports pending Bitcoin
+  confirmation from all four calendars (exit 1, expected while pending); no complete
+  attestation is claimed. Evidence: notes/a21_ots_upgrade.txt. The previously
+  stamped A21 document is unchanged; retry the stamp upgrade later.

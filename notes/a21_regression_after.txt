@@ -1,30 +1,30 @@
-test_draw_displays_code_from_the_selected_arm (test_blind40_packet_repair.CrossArmPackets.test_draw_displays_code_from_the_selected_arm) ... /home/unnitools/rtl-strict-eval/scoring/blind40.py:68: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/tmpf4yq3mgr/scores.jsonl' mode='r' encoding='utf-8'>
+test_draw_displays_code_from_the_selected_arm (test_blind40_packet_repair.CrossArmPackets.test_draw_displays_code_from_the_selected_arm) ... /home/unnitools/rtl-strict-eval/scoring/blind40.py:68: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/tmpf2jkabwi/scores.jsonl' mode='r' encoding='utf-8'>
   rows += [json.loads(l) for l in open(p, encoding="utf-8")]
 ResourceWarning: Enable tracemalloc to get the object allocation traceback
-/home/unnitools/rtl-strict-eval/scoring/blind40.py:140: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/tmpf4yq3mgr/gen.jsonl' mode='r' encoding='utf-8'>
+/home/unnitools/rtl-strict-eval/scoring/blind40.py:140: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/tmpf2jkabwi/gen.jsonl' mode='r' encoding='utf-8'>
   for l in open(p, encoding="utf-8"):
 ResourceWarning: Enable tracemalloc to get the object allocation traceback
-/home/unnitools/rtl-strict-eval/scoring/blind40.py:233: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/tmpf4yq3mgr/out/packet/b40_0663.md' mode='w' encoding='UTF-8'>
+/home/unnitools/rtl-strict-eval/scoring/blind40.py:233: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/tmpf2jkabwi/out/packet/b40_0663.md' mode='w' encoding='UTF-8'>
   open(os.path.join(out_dir, "packet", f"{pid}.md"), "w").write(md)
 ResourceWarning: Enable tracemalloc to get the object allocation traceback
-/home/unnitools/rtl-strict-eval/scoring/blind40.py:233: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/tmpf4yq3mgr/out/packet/b40_4242.md' mode='w' encoding='UTF-8'>
+/home/unnitools/rtl-strict-eval/scoring/blind40.py:233: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/tmpf2jkabwi/out/packet/b40_4242.md' mode='w' encoding='UTF-8'>
   open(os.path.join(out_dir, "packet", f"{pid}.md"), "w").write(md)
 ResourceWarning: Enable tracemalloc to get the object allocation traceback
-/home/unnitools/rtl-strict-eval/scoring/blind40.py:237: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/tmpf4yq3mgr/synthetic_key.json' mode='w' encoding='UTF-8'>
+/home/unnitools/rtl-strict-eval/scoring/blind40.py:237: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/tmpf2jkabwi/synthetic_key.json' mode='w' encoding='UTF-8'>
   json.dump(key, open(key_path, "w"), indent=1)
 ResourceWarning: Enable tracemalloc to get the object allocation traceback
-/home/unnitools/rtl-strict-eval/scoring/blind40.py:240: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/tmpf4yq3mgr/out/draw_meta.json' mode='w' encoding='UTF-8'>
+/home/unnitools/rtl-strict-eval/scoring/blind40.py:240: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/tmpf2jkabwi/out/draw_meta.json' mode='w' encoding='UTF-8'>
   json.dump(meta, open(os.path.join(out_dir, "draw_meta.json"), "w"), indent=1)
 ResourceWarning: Enable tracemalloc to get the object allocation traceback
 ok
-test_lookup_is_independent_of_arm_file_order (test_blind40_packet_repair.CrossArmPackets.test_lookup_is_independent_of_arm_file_order) ... /home/unnitools/rtl-strict-eval/scoring/blind40.py:140: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/tmps254k3zw/gen.jsonl' mode='r' encoding='utf-8'>
+test_lookup_is_independent_of_arm_file_order (test_blind40_packet_repair.CrossArmPackets.test_lookup_is_independent_of_arm_file_order) ... /home/unnitools/rtl-strict-eval/scoring/blind40.py:140: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/tmpak23axya/gen.jsonl' mode='r' encoding='utf-8'>
   for l in open(p, encoding="utf-8"):
 ResourceWarning: Enable tracemalloc to get the object allocation traceback
-/home/unnitools/rtl-strict-eval/scoring/blind40.py:140: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/tmps254k3zw/reversed.jsonl' mode='r' encoding='utf-8'>
+/home/unnitools/rtl-strict-eval/scoring/blind40.py:140: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/tmpak23axya/reversed.jsonl' mode='r' encoding='utf-8'>
   for l in open(p, encoding="utf-8"):
 ResourceWarning: Enable tracemalloc to get the object allocation traceback
 ok
-test_lookup_retains_two_arms_with_same_task_and_index (test_blind40_packet_repair.CrossArmPackets.test_lookup_retains_two_arms_with_same_task_and_index) ... /home/unnitools/rtl-strict-eval/scoring/blind40.py:140: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/tmpr3m99phb/gen.jsonl' mode='r' encoding='utf-8'>
+test_lookup_retains_two_arms_with_same_task_and_index (test_blind40_packet_repair.CrossArmPackets.test_lookup_retains_two_arms_with_same_task_and_index) ... /home/unnitools/rtl-strict-eval/scoring/blind40.py:140: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/tmp4j2la0k8/gen.jsonl' mode='r' encoding='utf-8'>
   for l in open(p, encoding="utf-8"):
 ResourceWarning: Enable tracemalloc to get the object allocation traceback
 ok

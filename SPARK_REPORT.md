@@ -1,18 +1,18 @@
 # SPARK REPORT — strict re-scoring, DGX Spark lane
 
-Updated 10 Nov 2026, 14:51 UTC+08 (A20 recovery; live status in §13).
+Updated 10 Nov 2026, 21:29 UTC+08 (A21 packet repair; live training status in §13).
 `jishnuvenugopal/rte-strict-eval` (PRIVATE), branch `spark`, tag `scorer-v1` pushed.
 
 ## 1. Status
 
-**Blind-40 review BLOCKED (10 Nov, 19:46 +08):** the read-only provenance audit
-found that 33/40 packets display code from a different sample than the one selected.
-Do not label or submit `labels.csv` yet. Evidence: `notes/blind40_integrity_check.json`;
-reproducer: `a20/audit_blind40_inputs.py`. The frozen packet builder omits arm from
-its generation lookup key. Repair requires an explicit amendment; no frozen code,
-packets, draw, key, labels or primary results have been changed. Current GRPO/E1 work
-continues independently. The automatic label poll is still active, so do not publish
-labels on `operator` until the packet repair has been approved and verified.
+**Blind-40 review READY after approved A21 repair (10 Nov, 21:29 +08).**
+All 40 packets now display the intended sample's code and pass the existing blinding
+check. Only 33 generated-code sections changed; IDs, draw/key bytes, template,
+non-code packet sections and primary scores/results are unchanged. No labels or
+unblinding were generated. Use the current `results/main/blind40/packet/` files and
+`labels_template.csv`; submit completed `labels.csv` on the `operator` branch.
+Evidence: `PREREG-A21.md`, `notes/a21_packet_repair.json`, and
+`notes/blind40_integrity_after_a21.json`. The original failure evidence is retained.
 
 **Current A20 status:** see §13 and `spark_report.json.a20_recovery`.
 The entries below are the historical phase/gate record, not the current run status.
@@ -277,7 +277,7 @@ STOP — waiting for G3 review ("G3 pass, start GRPO") and blind labels ("blind 
 
 ## 13. Phase 9 + E1 (A20)
 
-Updated 2026-11-10T14:50:54 +08. **RUNNING**.
+Updated 2026-11-10T21:31:39 +08. **RUNNING**.
 
 Extended-S training is in progress. E1 remains incomplete; no completion claim is made.
 
@@ -287,7 +287,8 @@ Evidence: `results/e1/recovery_checks.json`; GRPO status/CSV/adapter hashes in
 
 The October DNS outage left extended-S untrained and extended E1 absent.
 The 10 Nov recovery adopts the live training job without restarting it;
-the frozen trainer, reward, prompts, sampling, scorer and analysis are unchanged.
+training, reward, prompts, sampling, scorer and statistical analysis are unchanged.
+The blind-review packet lookup is repaired under the approved A21 amendment.
 Checks require exact sample identities: 432 VE + 99 RTLLM, and 531 scores per arm.
 
 Heavy-work deadline: 2026-11-14 20:00:00 +08; heartbeat/label-poll window ends

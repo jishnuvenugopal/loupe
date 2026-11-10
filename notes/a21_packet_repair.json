@@ -1,0 +1,24 @@
+{
+  "checked_at": "2026-11-10T21:28:51+08:00",
+  "mode": "applied",
+  "ok": true,
+  "packets": 40,
+  "changed_or_planned": 33,
+  "before_mismatches": 33,
+  "after_matches": 40,
+  "after_mismatches": 0,
+  "non_code_sections_match_original": true,
+  "blindness_scrub_passed": 40,
+  "protected_before": {
+    "sha256": "d4a30458b6bdfe636c29d9a2f349ba4d58bfe6fbe2253a2e240be2189457eab6",
+    "files": 3301
+  },
+  "protected_after": {
+    "sha256": "d4a30458b6bdfe636c29d9a2f349ba4d58bfe6fbe2253a2e240be2189457eab6",
+    "files": 3301
+  },
+  "key_bytes_unchanged": true,
+  "draw_reexecuted": false,
+  "mapping_disclosed": false,
+  "builder_sha256": "acfe8185446c0636b835766574bd125992eb457935d8d7d0c43e29d700c85ad3"
+}

@@ -586,19 +586,23 @@
   "stop": "STOP \u2014 waiting for G3 review (\"G3 pass, start GRPO\") and blind labels (\"blind labels in\")"
  },
  "blind40_review": {
-  "status": "blocked_pending_packet_repair_amendment",
-  "checked_at": "2026-11-10T19:46:06+08:00",
+  "status": "ready_for_human_labels_after_A21",
+  "checked_at": "2026-11-10T21:28:52+08:00",
   "packets": 40,
-  "code_mismatches_intended_sample": 33,
-  "evidence": "notes/blind40_integrity_check.json",
+  "code_mismatches_before_repair": 33,
+  "code_mismatches_intended_sample": 0,
+  "evidence": "notes/blind40_integrity_after_a21.json",
+  "repair_receipt": "notes/a21_packet_repair.json",
+  "amendment": "PREREG-A21.md",
   "audit_script": "a20/audit_blind40_inputs.py",
-  "frozen_code_changed": false,
+  "frozen_code_changed": true,
+  "amended_file": "scoring/blind40.py (arm-aware packet lookup only, per A21)",
   "key_disclosed": false,
-  "operator_action": "Approve a narrowly scoped packet-builder repair amendment before labeling; do not publish labels while the existing automatic poll is active.",
-  "training_action": "Continue existing GRPO/E1 job; no new concurrent heavy workload."
+  "operator_action": "Label the current 40 packets and publish results/main/blind40/labels.csv on operator; preserve all IDs and use the five permitted labels.",
+  "training_action": "Existing GRPO/E1 job continues with unchanged settings and training process."
  },
  "a20_recovery": {
-  "updated_at": "2026-11-10T14:50:54",
+  "updated_at": "2026-11-10T21:31:39",
   "status": "running",
   "detail": "Extended-S training is in progress. E1 remains incomplete; no completion claim is made.",
   "evidence": "results/e1/recovery_checks.json",
