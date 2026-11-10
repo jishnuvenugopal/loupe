@@ -4364,3 +4364,5 @@ pipeline; no pinned file changed.
   refresh reports. Reload only the supervisory process to accept A21 pins; original
   training container/PID/start time/resume budget and its original paused-parent
   terminal remain untouched. No second heavy job is started.
+- 2026-11-10 21:31 — [a20] corrected continuation up (pid 645785); fail-closed E1 checks; attach=1bef63a94802e5a3187d97ea9bd8c88398c8e8ff89cd76de897550919b39dd0a
+- 2026-11-10 21:31 — [a20] adopting live container 1bef63a94802e5a3187d97ea9bd8c88398c8e8ff89cd76de897550919b39dd0a: training PID/optimizer untouched
