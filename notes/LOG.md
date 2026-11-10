@@ -4228,3 +4228,27 @@ pipeline; no pinned file changed.
 - 2026-11-08 05:01 — [a20] push failed (attempt 147): fatal: unable to access 'https://github.com/jishnuvenugopal/rte-strict-eval.git/': Could not resolve host: github.com — retrying in 600s (backoff, up to 24h)
 - 2026-11-08 05:11 — [a20] PUSH FAILED for 24h, giving up this push (A20 heartbeat: ots upgrade completed for PREREG-A20.md.ots): fatal: unable to access 'https://github.com/jishnuvenugopal/rte-strict-eval.git/': Could not resolve host: github.com
 - 2026-11-08 05:11 — [a20] supervisor exiting (end of mission)
+
+## 2026-11-10 14:30–14:45 — operator returns ("continue what's left"): outage post-mortem + continuation
+- Network post-mortem: DNS to the outside dead ~22 Oct 09:00 -> 8 Nov 05:00 (heartbeat #5
+  onward all show "Could not resolve host"; pypi.org equally dead inside containers).
+  Everything the supervisor could still do, it did: ext_W completed (30 logs, 29.75 h);
+  pushes queued locally with 24h backoff each and were flushed 10 Nov (6977dca..8fda0e3 +
+  post-mission log tail); ots upgrades completed (PREREG-A20.md.ots now has 2 Bitcoin
+  attestations); heartbeats continued to 31 Oct 23:59; supervisor exited 8 Nov 05:11 per
+  its mission end. keepawake tmux alive throughout.
+- Two outage casualties: (1) grpo_ext_S — its 25 Oct 04:03 attempt died at birth
+  (pip install name-resolution failure; no checkpoint; correctly marked incomplete,
+  0 resumes); (2) the ext-setting E1 was a HOLLOW OK — the merge container's pip install
+  failed the same way, run_e1's skip path then produced rc=0 "ok" with nothing generated
+  (no e1-wext/sext files; scores_e1 unchanged since 27 Oct). Diagnosed now; the
+  continuation driver adds hard completeness checks (531 samples/arm + scores present)
+  so a hollow ok cannot recur silently.
+- Part E: branch `operator` does not exist on the remote — labels were never pushed;
+  nothing to unblind. Key sha256 re-verified against KEY_SHA256 before this check.
+- Continuation launched (operator instruction supersedes the October deadline; pinned
+  code reused via import, only DEADLINE/END_OF_MISSION constants monkey-patched to
+  14/15 Nov): grpo_ext_S 300 steps -> E1 all five arms -> strip+re-append SPARK_REPORT
+  §13 -> STOP -> addendum -> idle (heartbeats + Part E poll continue).
+  Driver: a20/continue_after_outage.py (not part of the PREREG-A20 pinned set; it only
+  imports it; logged here and in HANDOFF.md).
