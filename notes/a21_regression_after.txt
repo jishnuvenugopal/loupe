@@ -1,0 +1,52 @@
+test_draw_displays_code_from_the_selected_arm (test_blind40_packet_repair.CrossArmPackets.test_draw_displays_code_from_the_selected_arm) ... /home/unnitools/rtl-strict-eval/scoring/blind40.py:68: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/tmpf4yq3mgr/scores.jsonl' mode='r' encoding='utf-8'>
+  rows += [json.loads(l) for l in open(p, encoding="utf-8")]
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/home/unnitools/rtl-strict-eval/scoring/blind40.py:140: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/tmpf4yq3mgr/gen.jsonl' mode='r' encoding='utf-8'>
+  for l in open(p, encoding="utf-8"):
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/home/unnitools/rtl-strict-eval/scoring/blind40.py:233: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/tmpf4yq3mgr/out/packet/b40_0663.md' mode='w' encoding='UTF-8'>
+  open(os.path.join(out_dir, "packet", f"{pid}.md"), "w").write(md)
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/home/unnitools/rtl-strict-eval/scoring/blind40.py:233: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/tmpf4yq3mgr/out/packet/b40_4242.md' mode='w' encoding='UTF-8'>
+  open(os.path.join(out_dir, "packet", f"{pid}.md"), "w").write(md)
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/home/unnitools/rtl-strict-eval/scoring/blind40.py:237: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/tmpf4yq3mgr/synthetic_key.json' mode='w' encoding='UTF-8'>
+  json.dump(key, open(key_path, "w"), indent=1)
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/home/unnitools/rtl-strict-eval/scoring/blind40.py:240: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/tmpf4yq3mgr/out/draw_meta.json' mode='w' encoding='UTF-8'>
+  json.dump(meta, open(os.path.join(out_dir, "draw_meta.json"), "w"), indent=1)
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+ok
+test_lookup_is_independent_of_arm_file_order (test_blind40_packet_repair.CrossArmPackets.test_lookup_is_independent_of_arm_file_order) ... /home/unnitools/rtl-strict-eval/scoring/blind40.py:140: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/tmps254k3zw/gen.jsonl' mode='r' encoding='utf-8'>
+  for l in open(p, encoding="utf-8"):
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/home/unnitools/rtl-strict-eval/scoring/blind40.py:140: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/tmps254k3zw/reversed.jsonl' mode='r' encoding='utf-8'>
+  for l in open(p, encoding="utf-8"):
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+ok
+test_lookup_retains_two_arms_with_same_task_and_index (test_blind40_packet_repair.CrossArmPackets.test_lookup_retains_two_arms_with_same_task_and_index) ... /home/unnitools/rtl-strict-eval/scoring/blind40.py:140: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/tmpr3m99phb/gen.jsonl' mode='r' encoding='utf-8'>
+  for l in open(p, encoding="utf-8"):
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+ok
+test_missing_or_duplicate_sections_are_rejected (test_blind40_packet_repair.PacketSectionRepair.test_missing_or_duplicate_sections_are_rejected) ... ok
+test_only_generated_code_changes (test_blind40_packet_repair.PacketSectionRepair.test_only_generated_code_changes) ... ok
+test_replacement_is_idempotent (test_blind40_packet_repair.PacketSectionRepair.test_replacement_is_idempotent) ... ok
+test_nonzero_exit_resumes_same_settings_at_most_twice (test_recovery.AdoptionChecks.test_nonzero_exit_resumes_same_settings_at_most_twice) ... ok
+test_readoption_preserves_exhausted_resume_budget (test_recovery.AdoptionChecks.test_readoption_preserves_exhausted_resume_budget) ... ok
+test_wrong_container_is_not_adopted (test_recovery.AdoptionChecks.test_wrong_container_is_not_adopted) ... ok
+test_zero_exit_without_final_artifacts_is_incomplete (test_recovery.AdoptionChecks.test_zero_exit_without_final_artifacts_is_incomplete) ... ok
+test_deadline_blocks_new_work (test_recovery.ChainChecks.test_deadline_blocks_new_work) ... ok
+test_pin_drift_blocks_e1 (test_recovery.ChainChecks.test_pin_drift_blocks_e1) ... ok
+test_report_blocked_does_not_claim_done (test_recovery.ChainChecks.test_report_blocked_does_not_claim_done) ... ok
+test_zero_exit_with_missing_outputs_blocks_report (test_recovery.ChainChecks.test_zero_exit_with_missing_outputs_blocks_report) ... ok
+test_duplicate_replacing_missing_row_same_total_is_rejected (test_recovery.SampleChecks.test_duplicate_replacing_missing_row_same_total_is_rejected) ... ok
+test_exact_432_plus_99_and_combined_531 (test_recovery.SampleChecks.test_exact_432_plus_99_and_combined_531) ... ok
+test_malformed_record (test_recovery.SampleChecks.test_malformed_record) ... ok
+test_missing_extra_and_bad_provenance (test_recovery.SampleChecks.test_missing_extra_and_bad_provenance) ... ok
+test_missing_training_artifacts_are_not_success (test_recovery.SampleChecks.test_missing_training_artifacts_are_not_success) ... ok
+test_score_file_must_have_exact_coverage_and_provenance (test_recovery.SampleChecks.test_score_file_must_have_exact_coverage_and_provenance) ... ok
+
+----------------------------------------------------------------------
+Ran 20 tests in 0.025s
+
+OK

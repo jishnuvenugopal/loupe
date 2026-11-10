@@ -15,6 +15,9 @@ BENCH_TASKS = {"ve": 144, "rtllm": 33}
 SUPERSESSIONS = {
     "scoring/extract.py": "9f626ebc6808a0a140cbffbc3645bf9faaa003bfe605825c31edfb910b251b2a",
     "a20/supervisor.py": "0b7c6b348ccb924dfaf2dccd878975cd4fc37fdf665c3fc0ea3f98e8f4972c74",
+    # Operator-approved A21: packet provenance only; no other analysis changes.
+    "scoring/blind40.py": "acfe8185446c0636b835766574bd125992eb457935d8d7d0c43e29d700c85ad3",
+    "PREREG-A21.md": "3c624e6a5c2a531dcf20d0e91c75a67996ac46a537d17db06d88e4f95cc4b2a4",
 }
 
 
@@ -30,7 +33,7 @@ def freeze_check(repo):
     """Check all explicit file pins, the scorer tree and stamped document bytes."""
     repo = Path(repo)
     pins = {}
-    for doc in ("PREREG.md", "PREREG-A19.md", "PREREG-A20.md"):
+    for doc in ("PREREG.md", "PREREG-A19.md", "PREREG-A20.md", "PREREG-A21.md"):
         text = (repo / doc).read_text()
         for name, digest in re.findall(
                 r"`([^`\n]+)`\s*(?:—\s*|sha256\s*)?`([a-f0-9]{64})`", text):
@@ -50,8 +53,9 @@ def freeze_check(repo):
     errors = [f"pin mismatch: {r['path']}" for r in records if not r["ok"]]
     for ref, paths in (("scorer-v1", ["scorer"]),
                        ("phase10-results", ["scoring", "deep", "tests"])):
+        # The A21 exception is still checked byte-for-byte against its new pin above.
         p = subprocess.run(["git", "-C", str(repo), "diff", "--quiet", ref, "--", *paths,
-                            ":(exclude)scorer/__pycache__"])
+                            ":(exclude)scorer/__pycache__", ":(exclude)scoring/blind40.py"])
         if p.returncode:
             errors.append(f"frozen tree differs from {ref}: {paths}")
     for doc, ref in (("PREREG.md", "g0-prereg"),

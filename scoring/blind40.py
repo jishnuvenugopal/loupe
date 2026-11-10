@@ -134,12 +134,12 @@ def spec_text(bench, task):
 
 
 def gen_rows(paths):
-    """task lookup: (bench, task_id, sample_idx) -> gen row (for the code)."""
+    """A21: (arm, bench, task_id, sample_idx) -> gen row; never mix arms."""
     g = {}
     for p in paths:
         for l in open(p, encoding="utf-8"):
             r = json.loads(l)
-            g[(r["bench"], r["task_id"], r["sample_idx"])] = r
+            g[(r["arm"], r["bench"], r["task_id"], r["sample_idx"])] = r
     return g
 
 
@@ -217,7 +217,7 @@ def draw(scores_paths, gen_paths, dedup_path, out_dir, key_path, cex_dir, n_draw
             "ids": {}}
     for pid_num, r in zip(ids, picked):
         pid = f"b40_{pid_num:04d}"
-        g = gens.get((r["bench"], r["task_id"], r["sample_idx"]), {})
+        g = gens.get((r["arm"], r["bench"], r["task_id"], r["sample_idx"]), {})
         from extract import extract_record
         ex = extract_record(g.get("completion", ""), r["bench"], r["task_id"])
         cex_p = os.path.join(cex_dir, r["arm"], f'{r["task_id"]}__{r["sample_idx"]}.txt')

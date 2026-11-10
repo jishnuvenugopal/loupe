@@ -4338,3 +4338,29 @@ pipeline; no pinned file changed.
 - 2026-11-10 20:51 — [a20] heartbeat ots upgrade PREREG.md.ots: Success! Timestamp complete
 - 2026-11-10 20:51 — [a20] heartbeat ots upgrade PREREG-A19.md.ots: Success! Timestamp complete
 - 2026-11-10 20:51 — [a20] heartbeat ots upgrade PREREG-A20.md.ots: Success! Timestamp complete
+
+## 2026-11-10 21:19 onward — operator approves narrow blind-40 repair (A21)
+- Operator replied `yes` to the explicit packet-repair amendment proposal. Scope:
+  fix the lookup, add a cross-arm regression, repair existing packet code sections
+  from original generations, preserve IDs/draw/key/primary results, then re-audit.
+- Frozen scoring/blind40.py changed only at gen_rows' dictionary key and draw's
+  lookup key (add arm), plus the explanatory docstring. Old pin c6688f39... ->
+  acfe8185446c0636b835766574bd125992eb457935d8d7d0c43e29d700c85ad3.
+  PREREG-A21.md records the post-generation amendment; old preregistrations/stamps
+  are untouched. The recovery checker accepts only this exact new hash and still
+  checks every other frozen file; the amended document and repair/test scripts
+  are pinned as well. No scorer/statistical calculation changed.
+- Regression evidence: notes/a21_regression_before.txt records three expected
+  cross-arm failures before the fix. notes/a21_regression_after.txt records all
+  20 tests passing afterwards (six A21 + fourteen prior recovery tests).
+  Existing ResourceWarnings in the frozen writer are not altered by this scope.
+- Preview a20/repair_blind40_packets.py: exactly 33 planned section-3 edits;
+  all 40 proposed packets pass the existing blindness scrub; unchanged non-code
+  sections match phase10-results; 3,301 protected tracked artifacts have identical
+  aggregate hashes; key bytes unchanged. Evidence: notes/a21_packet_preview.json.
+  The repair does not call draw(), generate a label, or output attribution.
+- Plan: commit/push A21 source/tests and stamp the new document before packet edits;
+  apply only the existing code-section repairs, independently audit all 40, then
+  refresh reports. Reload only the supervisory process to accept A21 pins; original
+  training container/PID/start time/resume budget and its original paused-parent
+  terminal remain untouched. No second heavy job is started.

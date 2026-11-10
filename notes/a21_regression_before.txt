@@ -1,0 +1,66 @@
+test_draw_displays_code_from_the_selected_arm (test_blind40_packet_repair.CrossArmPackets.test_draw_displays_code_from_the_selected_arm) ... /home/unnitools/rtl-strict-eval/scoring/blind40.py:68: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/tmp38mlf1m5/scores.jsonl' mode='r' encoding='utf-8'>
+  rows += [json.loads(l) for l in open(p, encoding="utf-8")]
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/home/unnitools/rtl-strict-eval/scoring/blind40.py:140: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/tmp38mlf1m5/gen.jsonl' mode='r' encoding='utf-8'>
+  for l in open(p, encoding="utf-8"):
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/home/unnitools/rtl-strict-eval/scoring/blind40.py:233: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/tmp38mlf1m5/out/packet/b40_0663.md' mode='w' encoding='UTF-8'>
+  open(os.path.join(out_dir, "packet", f"{pid}.md"), "w").write(md)
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/home/unnitools/rtl-strict-eval/scoring/blind40.py:233: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/tmp38mlf1m5/out/packet/b40_4242.md' mode='w' encoding='UTF-8'>
+  open(os.path.join(out_dir, "packet", f"{pid}.md"), "w").write(md)
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/home/unnitools/rtl-strict-eval/scoring/blind40.py:237: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/tmp38mlf1m5/synthetic_key.json' mode='w' encoding='UTF-8'>
+  json.dump(key, open(key_path, "w"), indent=1)
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/home/unnitools/rtl-strict-eval/scoring/blind40.py:240: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/tmp38mlf1m5/out/draw_meta.json' mode='w' encoding='UTF-8'>
+  json.dump(meta, open(os.path.join(out_dir, "draw_meta.json"), "w"), indent=1)
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+FAIL
+test_lookup_is_independent_of_arm_file_order (test_blind40_packet_repair.CrossArmPackets.test_lookup_is_independent_of_arm_file_order) ... /home/unnitools/rtl-strict-eval/scoring/blind40.py:140: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/tmpi28cow6b/gen.jsonl' mode='r' encoding='utf-8'>
+  for l in open(p, encoding="utf-8"):
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/home/unnitools/rtl-strict-eval/scoring/blind40.py:140: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/tmpi28cow6b/reversed.jsonl' mode='r' encoding='utf-8'>
+  for l in open(p, encoding="utf-8"):
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+FAIL
+test_lookup_retains_two_arms_with_same_task_and_index (test_blind40_packet_repair.CrossArmPackets.test_lookup_retains_two_arms_with_same_task_and_index) ... /home/unnitools/rtl-strict-eval/scoring/blind40.py:140: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/tmpdu5dwdhz/gen.jsonl' mode='r' encoding='utf-8'>
+  for l in open(p, encoding="utf-8"):
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+FAIL
+
+======================================================================
+FAIL: test_draw_displays_code_from_the_selected_arm (test_blind40_packet_repair.CrossArmPackets.test_draw_displays_code_from_the_selected_arm)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/unnitools/rtl-strict-eval/a20/test_blind40_packet_repair.py", line 60, in test_draw_displays_code_from_the_selected_arm
+    self.assertEqual(code, expected[meta["arm"]])
+AssertionError: 'module TopModule; // value 1\nendmodule' != 'module TopModule; // value 0\nendmodule'
+- module TopModule; // value 1
+?                            ^
++ module TopModule; // value 0
+?                            ^
+  endmodule
+
+
+======================================================================
+FAIL: test_lookup_is_independent_of_arm_file_order (test_blind40_packet_repair.CrossArmPackets.test_lookup_is_independent_of_arm_file_order)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/unnitools/rtl-strict-eval/a20/test_blind40_packet_repair.py", line 40, in test_lookup_is_independent_of_arm_file_order
+    self.assertEqual(B.gen_rows([str(self.gen)]), B.gen_rows([str(reversed_gen)]))
+AssertionError: {('ve[39 chars]etic-b', 'bench': 've', 'task_id': 'synthetic_[76 chars]le'}} != {('ve[39 chars]etic-a', 'bench': 've', 'task_id': 'synthetic_[76 chars]le'}}
+Diff is 755 characters long. Set self.maxDiff to None to see it.
+
+======================================================================
+FAIL: test_lookup_retains_two_arms_with_same_task_and_index (test_blind40_packet_repair.CrossArmPackets.test_lookup_retains_two_arms_with_same_task_and_index)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/unnitools/rtl-strict-eval/a20/test_blind40_packet_repair.py", line 32, in test_lookup_retains_two_arms_with_same_task_and_index
+    self.assertEqual(len(rows), 2)
+AssertionError: 1 != 2
+
+----------------------------------------------------------------------
+Ran 3 tests in 0.005s
+
+FAILED (failures=3)
