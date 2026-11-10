@@ -1,0 +1,2 @@
+step,mean_reward,kl,entropy,mean_completion_length,zero_advantage_rate,heldout_tb_pass_rate,heldout_strict_pass_rate,lr,wall_s,timestamp
+10,0.0296875,,0.4802112150937319,503.3890625,0.85,0.046875,0.03125,1e-05,1239.8,2026-11-10 14:55:27
