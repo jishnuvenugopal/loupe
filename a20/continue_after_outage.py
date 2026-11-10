@@ -73,7 +73,7 @@ def report_state(status, detail):
     path = Path(REPO) / "SPARK_REPORT.md"
     text = path.read_text()
     text = re.sub(r"^## 13\. Phase 9 \+ E1 \(A20\).*", "", text, flags=re.M | re.S)
-    path.write_text(text.rstrip() + "\n\n" + "\n".join(section) + "\n")
+    path.write_text(text.rstrip() + "\n\n" + "\n".join(section).rstrip() + "\n")
 
 
 def run_e1_checked(checks):

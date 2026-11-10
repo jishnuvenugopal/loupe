@@ -1,9 +1,12 @@
 # SPARK REPORT — strict re-scoring, DGX Spark lane
 
-Updated 21 Oct 2026, 02:50 UTC+08 (A18 overnight chain).
+Updated 10 Nov 2026, 14:51 UTC+08 (A20 recovery; live status in §13).
 `jishnuvenugopal/rte-strict-eval` (PRIVATE), branch `spark`, tag `scorer-v1` pushed.
 
 ## 1. Status
+
+**Current A20 status:** see §13 and `spark_report.json.a20_recovery`.
+The entries below are the historical phase/gate record, not the current run status.
 
 - [13:10] **A20** (operator, 21 Oct): `G3 pass, start GRPO` — effective once Part A
   (this close-out) and Part B (PREREG-A20 + Phase 9/E1 code + smoke, stamped) are
@@ -265,17 +268,18 @@ STOP — waiting for G3 review ("G3 pass, start GRPO") and blind labels ("blind 
 
 ## 13. Phase 9 + E1 (A20)
 
-Completed 2026-10-29 04:21 +08 by a20/supervisor.py (PREREG-A20; exploratory — never feeds the primary results).
+Updated 2026-11-10T14:50:54 +08. **RUNNING**.
 
-Run status files: `results/grpo/*_status.json`; B2 CSVs + plots: `results/grpo/*.csv/.png`; adapter sha256 records: `results/grpo/*_adapter.sha256.json` (weights stay under `~/runs/`). E1: `results/e1/summary.md` + `stats.json` + `g2.json`, scores in `scores_e1/`, merged-model sha256 records in `results/e1/models/`.
+Extended-S training is in progress. E1 remains incomplete; no completion claim is made.
 
-- **grpo_brief_S** (brief setting, arm S, steps 100, lr 1e-06): **done** (10 10-step logs, 0 resumes, 3.35 h; ok)
-- **grpo_brief_W** (brief setting, arm W, steps 100, lr 1e-06): **done** (10 10-step logs, 0 resumes, 3.28 h; ok)
-- **grpo_ext_S** (ext setting, arm S, steps 300, lr 1e-05): **incomplete** (0 10-step logs, 0 resumes, 0.04 h; rc=1 with no checkpoint to resume from)
-- **grpo_ext_W** (ext setting, arm W, steps 300, lr 1e-05): **done** (30 10-step logs, 0 resumes, 29.75 h; ok)
-- E1 report: `results/e1/summary.md` (per-arm table + contrasts + G2 flags, all exploratory).
-- Part E (blind-40 unblinding): waiting for labels on origin/operator.
+This continuation is exploratory and does not change the primary study.
+Evidence: `results/e1/recovery_checks.json`; GRPO status/CSV/adapter hashes in
+`results/grpo/`; E1 scores in `scores_e1/` and report in `results/e1/summary.md`.
 
-Heartbeats: `notes/HEARTBEAT.md` (every 6 h until 31 Oct). Heavy work stopped at/by the 30 Oct 20:00 deadline as required.
+The October DNS outage left extended-S untrained and extended E1 absent.
+The 10 Nov recovery adopts the live training job without restarting it;
+the frozen trainer, reward, prompts, sampling, scorer and analysis are unchanged.
+Checks require exact sample identities: 432 VE + 99 RTLLM, and 531 scores per arm.
 
-STOP — Phase 9 + E1 done; waiting for the operator (31 Oct)
+Heavy-work deadline: 2026-11-14 20:00:00 +08; heartbeat/label-poll window ends
+2026-11-15 23:59:00 +08. Blind-40 status: waiting for labels on origin/operator.

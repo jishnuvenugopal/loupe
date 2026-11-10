@@ -31,8 +31,11 @@ def adopt(sup, container_id):
     started = datetime.datetime.fromisoformat(state["StartedAt"].replace("Z", "+00:00"))
     path = Path(sup.GRPO_DIR) / f"{name}_status.json"
     old = json.loads(path.read_text()) if path.exists() else {}
+    resumes = old.get("resumes", 0)
+    if type(resumes) is not int or not 0 <= resumes <= 2:
+        raise RuntimeError("invalid recorded resume count; refusing to reset it")
     record = {"run": name, "arm": "S", "setting": "ext", "steps": 300, "lr": 1e-5,
-              "status": "running", "resumes": 0, "reason": "adopted live container; training not restarted",
+              "status": "running", "resumes": resumes, "reason": "adopted live container; training not restarted",
               "container_id": container_id, "started_at": state["StartedAt"],
               "adopted_at": datetime.datetime.now().isoformat(timespec="seconds"),
               "previous_attempt": old}

@@ -1,71 +1,71 @@
 # HANDOFF — continuation notes for the next session
 
-You are the engineering agent on this DGX Spark (`spark-cff9`, aarch64, GB10,
-128 GB unified). Repo: `~/rtl-strict-eval`, branch `spark` of
-`jishnuvenugopal/rte-strict-eval` (private). Frozen: tag `scorer-v1` (`4e49950`),
-tag `g0-prereg` (`f8f23aa`), tag `phase10-results` (`611e13a`), the pinned
-`scoring/` analysis sha256s in PREREG, and the `grpo/`+`e1/`+`a20/` sha256s in
-PREREG-A20.md (a20/supervisor.py superseded once, 21 Oct, logged in
-notes/LOG.md).
+Repo: `~/rtl-strict-eval`, branch `spark`, private
+`jishnuvenugopal/rte-strict-eval`. DGX Spark `spark-cff9` (aarch64, GB10).
 
-## Where things stand (10 Nov 2026, ~14:40 +08)
+## Current state (10 Nov 2026, 14:51 +08)
 
-- **Primary study (Phases 0–10 + A19): COMPLETE** — `results/main/summary.md`,
-  sensitivity `results/sens/summary.md`, G2 final `results/main/g2.txt`, G1b
-  pass, blind-40 packets drawn (key on this machine only).
-- **The A20 unattended window ran 21–31 Oct.** DNS to the outside died
-  ~22 Oct 09:00 and returned ~8 Nov 05:00. The supervisor behaved per design:
-  brief W (3.28 h) + brief S (3.35 h) + ext W (29.75 h) done with all 10-step
-  CSVs; pushes queued locally during the outage and flushed 10 Nov
-  (`6977dca..8fda0e3`); `ots` upgrades all complete (A20 stamp: 2 Bitcoin
-  attestations); heartbeats every 6 h through 31 Oct 23:59.
-- **Two outage casualties, being fixed now** (operator: "continue what's
-  left", 10 Nov): `grpo_ext_S` died at birth (pip could not reach PyPI; 0
-  checkpoints) and the ext-setting E1 was a hollow ok (merge pip failure →
-  run_e1 skip path → "ok" with nothing generated). Diagnosis + hard checks:
-  `a20/continue_after_outage.py`.
+- Main study + A19 are recorded complete: `results/main/summary.md`,
+  `results/sens/summary.md`, `results/main/g2.txt`, tag `phase10-results`.
+- A20 brief-W, brief-S and extended-W finished. The October DNS outage left
+  extended-S untrained and extended E1 absent; see `notes/LOG.md`.
+- Operator requested a status report and then explicitly approved continuation
+  (`yes`) in this session. **Extended-S training remains live**, launched at
+  14:33 before this session, same container and training PID throughout handover.
+- Active supervisor: **tmux `a20-recovery`**, PID **3563814**.
+  Log: `~/runs/a20_recovery.log`. Trainer: PID **3515354**, container
+  `a20_grpo_ext_S` (ID starts `1bef63a94802`). Training log:
+  `~/runs/grpo_ext_S.train.log`; checkpoint/adapter files stay under `~/runs/`.
+- **Old supervisor PID 3515236 in tmux `a20` is deliberately SIGSTOP-paused.**
+  Do NOT resume it or close that pane while training is live: keeping its tty
+  open avoids a hangup reaching the old Docker client. The new driver retires
+  that paused supervisor after the adopted training exits. Only `a20-recovery`
+  actively supervises work. Independent tmux `keepawake` is still running.
 
-## What is running
+## What changed (unfrozen operational code only)
 
-- `tmux attach -t a20` — `a20/continue_after_outage.py`: reuses the pinned
-  supervisor machinery via import (only DEADLINE/END_OF_MISSION constants
-  monkey-patched to 14/15 Nov): grpo_ext_S 300 steps (~30 h expected — ext_W
-  took 29.75 h as rewards improve and formal checks lengthen) → E1 on all
-  five arms with hard completeness checks (531 samples/arm) → strip + re-append
-  SPARK_REPORT §13 → STOP line → addendum → idle.
-- `tmux attach -t keepawake` — independent sleep:shutdown:idle block inhibitor
-  (still up since 21 Oct).
-- Heartbeats continue every 6 h; the Part E poll every 30 min watches for
-  `results/main/blind40/labels.csv` on branch `operator` (still nothing there).
+Commit `dc6443f` fixes the 10-Nov recovery wrapper and adds adoption/validation
+helpers plus regressions under `a20/`. The old wrapper demanded 531 rows in
+*each* benchmark file and then finalized even on failure. The corrected wrapper:
 
-## If you wake up and something is wrong
+1. adopts the live container (no training restart);
+2. preserves the pre-registered limit of two checkpoint resumes with unchanged
+   settings; checks all 30 B2 rows and the final adapter/metrics before E1;
+3. requires exact generation identities (432 VE + 99 RTLLM) and 531 score
+   identities per arm, plus seeds, prompt hashes and scorer provenance;
+4. checks pins before scoring, subprocess results and all-arm report coverage;
+5. never writes a success report when validation fails. Errors block downstream
+   jobs and update `SPARK_REPORT.md` §13 / `spark_report.json.a20_recovery`.
 
-- `tail -40 notes/LOG.md`, `tail -6 notes/HEARTBEAT.md`,
-  `tail -50 ~/runs/a20_supervisor.log` (the continuation logs there too),
-  `tmux attach -t a20`.
-- A crash mid-ext_S: checkpoints every 10 steps under `~/runs/grpo_ext_S/`;
-  rerun `a20/continue_after_outage.py` in tmux — every step is resumable
-  (run_grpo resumes from the last checkpoint at most twice, statuses gate the
-  order, E1/gen/scoring all skip completed work). Never change hyperparameters,
-  data, seeds or the reward to make a run finish.
-- ext_S already 'done' but E1 missing: the driver still runs the E1 +
-  re-finalise steps; just relaunch it.
+Evidence: `results/e1/recovery_checks.json` (40 pins pass; base/w100/s100
+complete; wext/sext absent at startup), `results/e1/recovery_tests.txt`
+(14 tests pass), `results/grpo/grpo_ext_S_status.json` (running; prior failed
+attempt retained). No frozen training/scoring/generation/analysis file changed.
 
-## Standing cautions (unchanged)
+## Next work / restart safety
 
-- Rules §2 absolute: push only to `spark` (+ allowed tags); no force-push/ref
-  deletion; no koder/, weights, adapters, checkpoints, the blind-40 key or
-  anything under `~/runs/` in the repo; no numbers without file pointers; pin
-  mismatches reported, never substituted.
-- `scorer/` and the pinned `scoring/` analysis code never change; `grpo/`,
-  `e1/`, `a20/` are frozen at their PREREG-A20 sha256s (documented supersessions
-  only). PREREG-A20.md is OTS-stamped: its bytes never change.
-- Freeze checks before any scoring run: `git diff --quiet scorer-v1 -- scorer
-  tests ':(exclude)scorer/__pycache__'` AND `sha256sum -c
-  results/pilot_repro/SCORER_SHA256`.
-- The blind-40 key (`~/runs/blind40_key.json` + `.backup.json`) never leaves
-  this machine; only `KEY_SHA256` is committed.
+- The active driver finishes extended-S → E1 missing arms → exact checks →
+  E1 report and final status. Existing valid base/w100/s100 outputs are reused.
+- Heavy-work deadline remains **14 Nov 20:00 +08**; heartbeat/Part E polling
+  ends **15 Nov 23:59 +08**, as set by the prior continuation.
+- Blind-40 labels remain pending on `operator:results/main/blind40/labels.csv`.
+  The key never leaves this machine. No labels were fabricated or unblinded.
+- **Do not launch another driver while one is live.** A lock protects corrected
+  drivers, but the old paused process predates that lock. If the new driver dies,
+  inspect process/container/checkpoint state first; use `--attach-container` only
+  for the verified live container. Running without that flag refuses to restart
+  an unfinished job from scratch. Do not reset resume counts or change settings.
+- Nonzero training exits automatically resume from a checkpoint at most twice.
+  Missing artifacts, monitoring errors, pin drift or exhausted retries stop the
+  downstream chain for operator review. Never bypass the checks to finish a run.
 
-First commands to orient yourself:
-  tmux attach -t a20        # (detach: Ctrl-b d)
-  tail -6 notes/HEARTBEAT.md && tail -20 notes/LOG.md && tail -20 ~/runs/a20_supervisor.log
+## Standing cautions
+
+Frozen: `scorer-v1`, the analysis pins (A19 extractor supersession), and PREREG-A20
+pins (21-Oct supervisor supersession documented in `notes/LOG.md`). Stamped
+preregistration bytes never change. No primary result changes from exploratory
+A20 work. Push only through the existing hook to private `origin/spark` and
+allowed tags; no force-push. Never push koder/, blind key, weights or ~/runs/.
+
+Pre-existing untracked `PREREG-A19.md.ots.bak` and `PREREG-A20.md.ots.bak` were
+preserved. Logs and GRPO status/CSV files can change asynchronously during training.

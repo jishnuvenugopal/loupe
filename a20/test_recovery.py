@@ -164,6 +164,28 @@ class AdoptionChecks(unittest.TestCase):
             self.assertEqual(rec["resumes"], 2)
             self.assertEqual(rec["status"], "incomplete")
 
+    @patch.object(adopt_training, "docker")
+    @patch.object(adopt_training, "training_check", return_value={"ok": False, "errors": []})
+    @patch.object(adopt_training.subprocess, "Popen")
+    def test_readoption_preserves_exhausted_resume_budget(self, popen, _, docker):
+        with tempfile.TemporaryDirectory() as d:
+            p = Path(d)
+            (p / "results/grpo").mkdir(parents=True)
+            status = p / "results/grpo/grpo_ext_S_status.json"
+            status.write_text(json.dumps({"resumes": 2, "status": "running"}))
+            docker.side_effect = ["/a20_grpo_ext_S abc", json.dumps({
+                "Running": True, "StartedAt": "2026-11-10T06:33:39Z"})]
+            proc = popen.return_value
+            proc.poll.return_value = 0
+            proc.returncode = 0
+            proc.communicate.return_value = ("1\n", "")
+            sup = types.SimpleNamespace(REPO=d, RUNS=d, GRPO_DIR=str(p / "results/grpo"),
+                                        csv_rows=Mock(return_value=1), set_state=Mock(), log=Mock(),
+                                        commit_push=Mock(), plot=Mock(), docker_train_cmd=Mock())
+            self.assertFalse(adopt_training.adopt(sup, "abc"))
+            sup.docker_train_cmd.assert_not_called()
+            self.assertEqual(json.loads(status.read_text())["resumes"], 2)
+
     @patch.object(adopt_training, "docker", return_value="/unrelated abc")
     @patch.object(adopt_training.subprocess, "Popen")
     def test_wrong_container_is_not_adopted(self, popen, _):

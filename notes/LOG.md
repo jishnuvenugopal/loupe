@@ -4292,3 +4292,17 @@ pipeline; no pinned file changed.
   the old tmux terminal and avoids forwarding a hangup to the live Docker client.
 - 2026-11-10 14:50 — [a20] corrected continuation up (pid 3563814); fail-closed E1 checks; attach=1bef63a94802e5a3187d97ea9bd8c88398c8e8ff89cd76de897550919b39dd0a
 - 2026-11-10 14:50 — [a20] adopting live container 1bef63a94802e5a3187d97ea9bd8c88398c8e8ff89cd76de897550919b39dd0a: training PID/optimizer untouched
+- 2026-11-10 14:50 — [a20] heartbeat ots upgrade PREREG.md.ots: Success! Timestamp complete
+- 2026-11-10 14:51 — [a20] heartbeat ots upgrade PREREG-A19.md.ots: Success! Timestamp complete
+- 2026-11-10 14:51 — [a20] heartbeat ots upgrade PREREG-A20.md.ots: Success! Timestamp complete
+- 2026-11-10 14:53 — Handover verified: supervisor 3563814 in tmux a20-recovery is
+  waiting on the original container; trainer PID 3515354 and container start time
+  remain unchanged. Old supervisor 3515236 is paused (T), not supervising; keepawake
+  remains active. New runtime checks passed all 40 pins and confirmed the three
+  existing E1 arms; reports now explicitly say RUNNING, not done.
+- 2026-11-10 14:53 — Added a restart-safety regression preserving an already-used
+  resume budget when re-adopting after a supervisor crash (never reset it to zero).
+  The present adopted job started with zero resumes, so this does not change its
+  running behavior or require another handover. Latest test run: 14/14 pass,
+  results/e1/recovery_tests.txt. koder scratch gate clean; pre-existing .ots.bak
+  files and koder/docs/brief-spark-addendum-A18.md remain untracked and untouched.
