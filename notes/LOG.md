@@ -4431,3 +4431,4 @@ pipeline; no pinned file changed.
 - 2026-11-11 01:15 — e1 G2 e1-wext_rtllm.jsonl: rc=0 share=0.9798 (exploratory: reported as-is, no waivers)
 - 2026-11-11 01:15 — e1 G2 e1-wext_ve.jsonl: rc=1 share=0.9491 (exploratory: reported as-is, no waivers)
 - 2026-11-11 01:27 — e1: scoring done ok=True; report: python3 e1/report.py
+- 2026-11-11 01:29 — [a20] STOP — Phase 9 + E1 complete; waiting for operator review and blind-40 labels

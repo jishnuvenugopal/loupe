@@ -277,9 +277,9 @@ STOP — waiting for G3 review ("G3 pass, start GRPO") and blind labels ("blind 
 
 ## 13. Phase 9 + E1 (A20)
 
-Updated 2026-11-10T21:31:39 +08. **RUNNING**.
+Updated 2026-11-11T01:29:14 +08. **DONE**.
 
-Extended-S training is in progress. E1 remains incomplete; no completion claim is made.
+Extended-S passed the final-artifact checks. All five E1 arms have exact generation/scoring coverage and the E1 report was regenerated successfully.
 
 This continuation is exploratory and does not change the primary study.
 Evidence: `results/e1/recovery_checks.json`; GRPO status/CSV/adapter hashes in
@@ -293,3 +293,5 @@ Checks require exact sample identities: 432 VE + 99 RTLLM, and 531 scores per ar
 
 Heavy-work deadline: 2026-11-14 20:00:00 +08; heartbeat/label-poll window ends
 2026-11-15 23:59:00 +08. Blind-40 status: waiting for labels on origin/operator.
+
+STOP — Phase 9 + E1 complete; waiting for operator review and blind-40 labels.

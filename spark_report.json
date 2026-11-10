@@ -602,9 +602,9 @@
   "training_action": "Existing GRPO/E1 job continues with unchanged settings and training process."
  },
  "a20_recovery": {
-  "updated_at": "2026-11-10T21:31:39",
-  "status": "running",
-  "detail": "Extended-S training is in progress. E1 remains incomplete; no completion claim is made.",
+  "updated_at": "2026-11-11T01:29:14",
+  "status": "done",
+  "detail": "Extended-S passed the final-artifact checks. All five E1 arms have exact generation/scoring coverage and the E1 report was regenerated successfully.",
   "evidence": "results/e1/recovery_checks.json",
   "heavy_deadline": "2026-11-14T20:00:00",
   "mission_end": "2026-11-15T23:59:00"

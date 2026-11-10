@@ -1274,5 +1274,428 @@
    }
   },
   "driver_rc": 0
+ },
+ "e1": {
+  "ok": true,
+  "arms": {
+   "base": {
+    "ve": {
+     "ok": true,
+     "rows": 432,
+     "expected": 432,
+     "missing": 0,
+     "duplicates": 0,
+     "errors": [],
+     "path": "/home/unnitools/runs/gen_e1/e1-base_ve.jsonl"
+    },
+    "rtllm": {
+     "ok": true,
+     "rows": 99,
+     "expected": 99,
+     "missing": 0,
+     "duplicates": 0,
+     "errors": [],
+     "path": "/home/unnitools/runs/gen_e1/e1-base_rtllm.jsonl"
+    },
+    "scores": {
+     "ok": true,
+     "rows": 531,
+     "expected": 531,
+     "missing": 0,
+     "duplicates": 0,
+     "errors": [],
+     "path": "/home/unnitools/rtl-strict-eval/scores_e1/e1-base.jsonl"
+    },
+    "ok": true
+   },
+   "w100": {
+    "ve": {
+     "ok": true,
+     "rows": 432,
+     "expected": 432,
+     "missing": 0,
+     "duplicates": 0,
+     "errors": [],
+     "path": "/home/unnitools/runs/gen_e1/e1-w100_ve.jsonl"
+    },
+    "rtllm": {
+     "ok": true,
+     "rows": 99,
+     "expected": 99,
+     "missing": 0,
+     "duplicates": 0,
+     "errors": [],
+     "path": "/home/unnitools/runs/gen_e1/e1-w100_rtllm.jsonl"
+    },
+    "scores": {
+     "ok": true,
+     "rows": 531,
+     "expected": 531,
+     "missing": 0,
+     "duplicates": 0,
+     "errors": [],
+     "path": "/home/unnitools/rtl-strict-eval/scores_e1/e1-w100.jsonl"
+    },
+    "ok": true
+   },
+   "s100": {
+    "ve": {
+     "ok": true,
+     "rows": 432,
+     "expected": 432,
+     "missing": 0,
+     "duplicates": 0,
+     "errors": [],
+     "path": "/home/unnitools/runs/gen_e1/e1-s100_ve.jsonl"
+    },
+    "rtllm": {
+     "ok": true,
+     "rows": 99,
+     "expected": 99,
+     "missing": 0,
+     "duplicates": 0,
+     "errors": [],
+     "path": "/home/unnitools/runs/gen_e1/e1-s100_rtllm.jsonl"
+    },
+    "scores": {
+     "ok": true,
+     "rows": 531,
+     "expected": 531,
+     "missing": 0,
+     "duplicates": 0,
+     "errors": [],
+     "path": "/home/unnitools/rtl-strict-eval/scores_e1/e1-s100.jsonl"
+    },
+    "ok": true
+   },
+   "wext": {
+    "ve": {
+     "ok": true,
+     "rows": 432,
+     "expected": 432,
+     "missing": 0,
+     "duplicates": 0,
+     "errors": [],
+     "path": "/home/unnitools/runs/gen_e1/e1-wext_ve.jsonl"
+    },
+    "rtllm": {
+     "ok": true,
+     "rows": 99,
+     "expected": 99,
+     "missing": 0,
+     "duplicates": 0,
+     "errors": [],
+     "path": "/home/unnitools/runs/gen_e1/e1-wext_rtllm.jsonl"
+    },
+    "scores": {
+     "ok": true,
+     "rows": 531,
+     "expected": 531,
+     "missing": 0,
+     "duplicates": 0,
+     "errors": [],
+     "path": "/home/unnitools/rtl-strict-eval/scores_e1/e1-wext.jsonl"
+    },
+    "ok": true
+   },
+   "sext": {
+    "ve": {
+     "ok": true,
+     "rows": 432,
+     "expected": 432,
+     "missing": 0,
+     "duplicates": 0,
+     "errors": [],
+     "path": "/home/unnitools/runs/gen_e1/e1-sext_ve.jsonl"
+    },
+    "rtllm": {
+     "ok": true,
+     "rows": 99,
+     "expected": 99,
+     "missing": 0,
+     "duplicates": 0,
+     "errors": [],
+     "path": "/home/unnitools/runs/gen_e1/e1-sext_rtllm.jsonl"
+    },
+    "scores": {
+     "ok": true,
+     "rows": 531,
+     "expected": 531,
+     "missing": 0,
+     "duplicates": 0,
+     "errors": [],
+     "path": "/home/unnitools/rtl-strict-eval/scores_e1/e1-sext.jsonl"
+    },
+    "ok": true
+   }
+  }
+ },
+ "report": {
+  "ok": true,
+  "path": "results/e1/stats.json"
+ },
+ "freeze_after_e1": {
+  "ok": true,
+  "errors": [],
+  "pins": [
+   {
+    "path": "PREREG-A21.md",
+    "expected": "3c624e6a5c2a531dcf20d0e91c75a67996ac46a537d17db06d88e4f95cc4b2a4",
+    "actual": "3c624e6a5c2a531dcf20d0e91c75a67996ac46a537d17db06d88e4f95cc4b2a4",
+    "ok": true
+   },
+   {
+    "path": "a20/plot.py",
+    "expected": "9ac87621a45363f0a99371dbbbe14f7969a28ea45374ecced18dbbc72c41cc1f",
+    "actual": "9ac87621a45363f0a99371dbbbe14f7969a28ea45374ecced18dbbc72c41cc1f",
+    "ok": true
+   },
+   {
+    "path": "a20/repair_blind40_packets.py",
+    "expected": "add22f2ed1bbb8958c731c50488b6516f131f551590f9f7b212122f3c82c6d6b",
+    "actual": "add22f2ed1bbb8958c731c50488b6516f131f551590f9f7b212122f3c82c6d6b",
+    "ok": true
+   },
+   {
+    "path": "a20/run_supervisor.sh",
+    "expected": "ce6cfef844b8e331968cf59014227941fbdad2a1816075365a9f8d6044d40b3f",
+    "actual": "ce6cfef844b8e331968cf59014227941fbdad2a1816075365a9f8d6044d40b3f",
+    "ok": true
+   },
+   {
+    "path": "a20/smoke.sh",
+    "expected": "f87b1692a26fe844aab3929198c237fece2e73692016803b7594fc8a5a8cdbef",
+    "actual": "f87b1692a26fe844aab3929198c237fece2e73692016803b7594fc8a5a8cdbef",
+    "ok": true
+   },
+   {
+    "path": "a20/supervisor.py",
+    "expected": "0b7c6b348ccb924dfaf2dccd878975cd4fc37fdf665c3fc0ea3f98e8f4972c74",
+    "actual": "0b7c6b348ccb924dfaf2dccd878975cd4fc37fdf665c3fc0ea3f98e8f4972c74",
+    "ok": true
+   },
+   {
+    "path": "a20/test_blind40_packet_repair.py",
+    "expected": "ffd021c14950c110463402e568258294e859e29a2f8d4361a0e7871a951e008e",
+    "actual": "ffd021c14950c110463402e568258294e859e29a2f8d4361a0e7871a951e008e",
+    "ok": true
+   },
+   {
+    "path": "deep/analyze.py",
+    "expected": "879e02f3ed5212b0ca772a8d474060cfac33e2c4253d2eab0618f42ad4fd061f",
+    "actual": "879e02f3ed5212b0ca772a8d474060cfac33e2c4253d2eab0618f42ad4fd061f",
+    "ok": true
+   },
+   {
+    "path": "deep/common.py",
+    "expected": "2406798642f7aa2178163a63f4efd7a12d1eeecfe808f31b054c72e0989e5eb9",
+    "actual": "2406798642f7aa2178163a63f4efd7a12d1eeecfe808f31b054c72e0989e5eb9",
+    "ok": true
+   },
+   {
+    "path": "deep/fault_grade.py",
+    "expected": "1938d1019a58f1cad3c3ce2432cb327fd5c2ae77f2644f7a56084602abcf80ef",
+    "actual": "1938d1019a58f1cad3c3ce2432cb327fd5c2ae77f2644f7a56084602abcf80ef",
+    "ok": true
+   },
+   {
+    "path": "deep/run_deep.py",
+    "expected": "9e1c3e30464f43ef60f234a266c40cf1c68d258dde314613f352c14effc76163",
+    "actual": "9e1c3e30464f43ef60f234a266c40cf1c68d258dde314613f352c14effc76163",
+    "ok": true
+   },
+   {
+    "path": "deep/spec_oracle.py",
+    "expected": "d133f91be4c4cc358614c5db2676e9a4ba3586d2c7c92832e59749629977aad6",
+    "actual": "d133f91be4c4cc358614c5db2676e9a4ba3586d2c7c92832e59749629977aad6",
+    "ok": true
+   },
+   {
+    "path": "deep/ve_gate.py",
+    "expected": "a55ce91cd26b0c32e04c9b4e0a79980af27817252e5f11464f4b718888a63af2",
+    "actual": "a55ce91cd26b0c32e04c9b4e0a79980af27817252e5f11464f4b718888a63af2",
+    "ok": true
+   },
+   {
+    "path": "e1/make_prompts.py",
+    "expected": "77b59dbd41ff293abf593196382b9cb4bce6200a021ed35a39fe11c54e530fdc",
+    "actual": "77b59dbd41ff293abf593196382b9cb4bce6200a021ed35a39fe11c54e530fdc",
+    "ok": true
+   },
+   {
+    "path": "e1/merge_adapter.py",
+    "expected": "635c92a62bda3996b09a9bc5e3367e5cd23f23a039de3571f2342d35f874d9c8",
+    "actual": "635c92a62bda3996b09a9bc5e3367e5cd23f23a039de3571f2342d35f874d9c8",
+    "ok": true
+   },
+   {
+    "path": "e1/report.py",
+    "expected": "7aca060129ecb99ec951dc8d90b8075d96fac6fcc9c9820d87c2004b8a9c5c44",
+    "actual": "7aca060129ecb99ec951dc8d90b8075d96fac6fcc9c9820d87c2004b8a9c5c44",
+    "ok": true
+   },
+   {
+    "path": "e1/run_e1.py",
+    "expected": "93d5c442f227cdd965b7783bf6392822420db5a7733e19adf59d2eac4ddf7b6f",
+    "actual": "93d5c442f227cdd965b7783bf6392822420db5a7733e19adf59d2eac4ddf7b6f",
+    "ok": true
+   },
+   {
+    "path": "grpo/heldout_indices.txt",
+    "expected": "f3f42290aa20228b8d01e9d5446f06853414e454826dafdd2aa62d405a4742f0",
+    "actual": "f3f42290aa20228b8d01e9d5446f06853414e454826dafdd2aa62d405a4742f0",
+    "ok": true
+   },
+   {
+    "path": "grpo/reward.py",
+    "expected": "3d4ae0fb2d0cd6a5549bbbdb704e8770f8e00815e1cc50d477407d9ec25ce5d4",
+    "actual": "3d4ae0fb2d0cd6a5549bbbdb704e8770f8e00815e1cc50d477407d9ec25ce5d4",
+    "ok": true
+   },
+   {
+    "path": "grpo/train_grpo.py",
+    "expected": "e63269855d6a3d97f83428c687e3c22f7076eab9051c871e9fe691e81e2841fe",
+    "actual": "e63269855d6a3d97f83428c687e3c22f7076eab9051c871e9fe691e81e2841fe",
+    "ok": true
+   },
+   {
+    "path": "prompts/SHA256SUMS",
+    "expected": "a0d465913ab1ca7e772002a4ca90ccdb61084dccf856452181dfcb83abae6f3c",
+    "actual": "a0d465913ab1ca7e772002a4ca90ccdb61084dccf856452181dfcb83abae6f3c",
+    "ok": true
+   },
+   {
+    "path": "prompts/built_e1/SHA256SUMS",
+    "expected": "b5ea72f79926d461abc6ecf2770656da4c2991d579265fc57f9e77b7584668d2",
+    "actual": "b5ea72f79926d461abc6ecf2770656da4c2991d579265fc57f9e77b7584668d2",
+    "ok": true
+   },
+   {
+    "path": "prompts/built_e1/verireason_gated_rtllm.jsonl",
+    "expected": "01fa84dd30072431c6692886ac2d8cb01e95cdb38e826cba078c339604b727bb",
+    "actual": "01fa84dd30072431c6692886ac2d8cb01e95cdb38e826cba078c339604b727bb",
+    "ok": true
+   },
+   {
+    "path": "prompts/built_e1/verireason_gated_ve.jsonl",
+    "expected": "fa0cf9b57441fbc7f5cc45bcf83e6110062e30c424cececb434fe71973a06381",
+    "actual": "fa0cf9b57441fbc7f5cc45bcf83e6110062e30c424cececb434fe71973a06381",
+    "ok": true
+   },
+   {
+    "path": "results/e1/models/smoke_fixw.sha256.json",
+    "expected": "dcf33a5ea525b971b29ff80efdf0d569dee567b8c7d8a3e23dbfa687b5cf3f5e",
+    "actual": "dcf33a5ea525b971b29ff80efdf0d569dee567b8c7d8a3e23dbfa687b5cf3f5e",
+    "ok": true
+   },
+   {
+    "path": "results/e1/smoke_gen_rows.txt",
+    "expected": "7eada4aa8523c105639fd60981f5328c2be92156547e84ee04c69b3d0fb69709",
+    "actual": "7eada4aa8523c105639fd60981f5328c2be92156547e84ee04c69b3d0fb69709",
+    "ok": true
+   },
+   {
+    "path": "results/grpo/smoke/README.md",
+    "expected": "49c92817e37f08b18ef8a27d1340726f946290d4b68789abefaf3442c212333d",
+    "actual": "49c92817e37f08b18ef8a27d1340726f946290d4b68789abefaf3442c212333d",
+    "ok": true
+   },
+   {
+    "path": "results/grpo/smoke/smoke_fix_W.csv",
+    "expected": "14d8a45f2b45f483b12a6c3cbb4b49a37d578c9d19b22f458de1dee89e7e17e2",
+    "actual": "14d8a45f2b45f483b12a6c3cbb4b49a37d578c9d19b22f458de1dee89e7e17e2",
+    "ok": true
+   },
+   {
+    "path": "results/grpo/smoke/smoke_fix_W_adapter.sha256.json",
+    "expected": "9c176095396e6227f71ce85e328d139e1ba461fa1653d5c4513d0458b83e184e",
+    "actual": "9c176095396e6227f71ce85e328d139e1ba461fa1653d5c4513d0458b83e184e",
+    "ok": true
+   },
+   {
+    "path": "results/grpo/smoke/smoke_fix_W_metrics.json",
+    "expected": "f28ebf28b2a76b36bd79c5c858113b1d8ef477f8f61870a3d7a839003843c7d1",
+    "actual": "f28ebf28b2a76b36bd79c5c858113b1d8ef477f8f61870a3d7a839003843c7d1",
+    "ok": true
+   },
+   {
+    "path": "results/pilot_repro/SCORER_SHA256",
+    "expected": "3428447f263d36e741a00d8d8a6bb50c4929a32b033b5e080ce43eb1f76d484e",
+    "actual": "3428447f263d36e741a00d8d8a6bb50c4929a32b033b5e080ce43eb1f76d484e",
+    "ok": true
+   },
+   {
+    "path": "scorer/depth.yaml",
+    "expected": "31066e55ad5d985a7f1c3cdce5486263ab523a6cf255b19e5476817cad237cc7",
+    "actual": "31066e55ad5d985a7f1c3cdce5486263ab523a6cf255b19e5476817cad237cc7",
+    "ok": true
+   },
+   {
+    "path": "scorer/pilot_llm_outputs.py",
+    "expected": "db54992d44c490b45e1cb6c9a346fab68f14a310bcc823d20955818568759da8",
+    "actual": "db54992d44c490b45e1cb6c9a346fab68f14a310bcc823d20955818568759da8",
+    "ok": true
+   },
+   {
+    "path": "scorer/rtllm_audit.py",
+    "expected": "d0eefed097601f7424cd7ad0ec77ef8d05c004812a3b5d4669eef901e4244191",
+    "actual": "d0eefed097601f7424cd7ad0ec77ef8d05c004812a3b5d4669eef901e4244191",
+    "ok": true
+   },
+   {
+    "path": "scorer/score.py",
+    "expected": "14d39dfdad52ffd57aec628355b9cee2d09001e330096dbe0c8cf8986977df52",
+    "actual": "14d39dfdad52ffd57aec628355b9cee2d09001e330096dbe0c8cf8986977df52",
+    "ok": true
+   },
+   {
+    "path": "scoring/blind40.py",
+    "expected": "acfe8185446c0636b835766574bd125992eb457935d8d7d0c43e29d700c85ad3",
+    "actual": "acfe8185446c0636b835766574bd125992eb457935d8d7d0c43e29d700c85ad3",
+    "ok": true
+   },
+   {
+    "path": "scoring/contamination.py",
+    "expected": "b362c1576c8a62d454538834fa04dc33b97b4676a0b0e4b103dbc84accf27f49",
+    "actual": "b362c1576c8a62d454538834fa04dc33b97b4676a0b0e4b103dbc84accf27f49",
+    "ok": true
+   },
+   {
+    "path": "scoring/dedup.py",
+    "expected": "fb2fe4ce1f186197459e786557c45898d51355d56d2d619499422cfd2d86e423",
+    "actual": "fb2fe4ce1f186197459e786557c45898d51355d56d2d619499422cfd2d86e423",
+    "ok": true
+   },
+   {
+    "path": "scoring/extract.py",
+    "expected": "9f626ebc6808a0a140cbffbc3645bf9faaa003bfe605825c31edfb910b251b2a",
+    "actual": "9f626ebc6808a0a140cbffbc3645bf9faaa003bfe605825c31edfb910b251b2a",
+    "ok": true
+   },
+   {
+    "path": "scoring/run_scoring.py",
+    "expected": "2ea7f37583db9320627510dade425545216cb90c31ea7f04832cf45020f4268a",
+    "actual": "2ea7f37583db9320627510dade425545216cb90c31ea7f04832cf45020f4268a",
+    "ok": true
+   },
+   {
+    "path": "scoring/showcex.py",
+    "expected": "51d4b2cbabe7127b7de56a2ef68552222f8a42294938dc4ed1b45e56e9ef058f",
+    "actual": "51d4b2cbabe7127b7de56a2ef68552222f8a42294938dc4ed1b45e56e9ef058f",
+    "ok": true
+   },
+   {
+    "path": "scoring/stats.py",
+    "expected": "f4c74a74df1a0974794b3b4d4da189caef9d51ba94e57cda2c2edaa3bbb0120b",
+    "actual": "f4c74a74df1a0974794b3b4d4da189caef9d51ba94e57cda2c2edaa3bbb0120b",
+    "ok": true
+   },
+   {
+    "path": "tests/test_a19_extract_alias.py",
+    "expected": "b8b4e6fe546220c7555a9af3b6c8f4a1cfed7d1e9013ea8205b6fe0f99fb8e69",
+    "actual": "b8b4e6fe546220c7555a9af3b6c8f4a1cfed7d1e9013ea8205b6fe0f99fb8e69",
+    "ok": true
+   }
+  ]
  }
 }
