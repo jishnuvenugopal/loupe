@@ -4394,3 +4394,4 @@ pipeline; no pinned file changed.
   confirmation from all four calendars (exit 1, expected while pending); no complete
   attestation is claimed. Evidence: notes/a21_ots_upgrade.txt. The previously
   stamped A21 document is unchanged; retry the stamp upgrade later.
+- 2026-11-11 00:53 — [a20] grpo_ext_S: adopted run done; ok

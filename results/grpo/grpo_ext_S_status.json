@@ -4,9 +4,9 @@
  "setting": "ext",
  "steps": 300,
  "lr": 1e-05,
- "status": "running",
+ "status": "done",
  "resumes": 0,
- "reason": "adopted live container; training not restarted",
+ "reason": "ok",
  "container_id": "1bef63a94802e5a3187d97ea9bd8c88398c8e8ff89cd76de897550919b39dd0a",
  "started_at": "2026-11-10T06:33:39.836176506Z",
  "adopted_at": "2026-11-10T21:31:39",
@@ -39,5 +39,11 @@
   "wall_h": 6.85
  },
  "csv_rows": 30,
- "wall_h": 10.32
+ "wall_h": 10.33,
+ "exit_code": 0,
+ "artifact_check": {
+  "ok": true,
+  "errors": []
+ },
+ "finished_at": "2026-11-11 00:53"
 }
