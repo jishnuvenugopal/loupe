@@ -4254,3 +4254,39 @@ pipeline; no pinned file changed.
   imports it; logged here and in HANDOFF.md).
 - 2026-11-10 14:33 — [a20] continuation driver up (pid 3515236): ext_S (300 steps, lr 1e-5) -> E1 all arms -> re-finalise. New deadline 2026-11-14 20:00:00, end of mission 2026-11-15 23:59:00.
 - 2026-11-10 14:33 — [a20] grpo_ext_S: starting (steps=300 lr=1e-05 resume=none)
+- 2026-11-10 14:33 — [a20] heartbeat ots upgrade PREREG.md.ots: Success! Timestamp complete
+- 2026-11-10 14:33 — [a20] heartbeat ots upgrade PREREG-A19.md.ots: Success! Timestamp complete
+- 2026-11-10 14:33 — [a20] heartbeat ots upgrade PREREG-A20.md.ots: Success! Timestamp complete
+
+## 2026-11-10 — operator-approved recovery verification and supervisory handover
+- Operator asked for status before proceeding; status was reported and operator replied
+  `yes`. Existing extended-S training was already active (started 14:33 +08). No new
+  model run was launched by this session.
+- Read-only checks: `sha256sum -c results/pilot_repro/SCORER_SHA256` passed all 10
+  entries. `a20/recovery_checks.py:freeze_check` passed 40 file pins plus frozen-tree
+  and stamped-document checks. The extractor A19 supersession and supervisor
+  21-Oct supersession match their documented hashes; scorer bytecode exclusions are
+  the existing policy, not a new waiver. Container RepoDigest matches the PREREG pin.
+- Live E1 validation: base/w100/s100 each have exactly 432 VE + 99 RTLLM generations
+  and 531 scores, with exact identities, seeds, prompt hashes and scorer provenance.
+  Neither extended arm has generation/scoring files yet. No new E1 scoring was run.
+- Found two defects in the UNFROZEN 10-Nov recovery driver: `e1_complete` demanded
+  531 rows in each benchmark file instead of 432/99 and only checked score-file
+  existence; finalization then claimed done regardless of that result. Fixed only
+  operational recovery files under a20/. Frozen grpo/, e1/, scorer/, scoring/, deep/,
+  test pins, prompts and preregistration bytes remain unchanged.
+- Recovery now gates finalization on exact per-sample coverage/provenance, subprocess
+  success, training final artifacts and all-arm report coverage. It adopts the live
+  container, keeps the pre-registered two checkpoint resumes at most, and does not
+  restart a checkpointed run from scratch. Logs/status preserve the failed October
+  attempt. The 14/15-Nov deadline constants from the prior continuation are unchanged.
+- Regression command: `PYTHONDONTWRITEBYTECODE=1 ~/.venvs/host/bin/python -m unittest
+  discover -s a20 -p test_recovery.py -v` — 13 tests passed, including hollow success,
+  duplicate/missing identities, deadline/pin drift, failed artifact checks and resume
+  limit/settings. Runtime evidence will be in results/e1/recovery_checks.json.
+- The pip apache-tvm-ffi warning also appears verbatim in the completed brief-S and
+  extended-W logs; no package-version substitution was made during this session.
+- Handover plan: pause ONLY old supervisor PID 3515236 (not its process group, Docker
+  client or trainer), attach the corrected supervisor to the existing container,
+  then retire the paused old supervisor only after training exits. This preserves
+  the old tmux terminal and avoids forwarding a hangup to the live Docker client.

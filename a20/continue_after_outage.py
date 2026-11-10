@@ -1,140 +1,212 @@
 #!/usr/bin/env python3
-"""a20/continue_after_outage.py — continuation driver (10 Nov 2026; operator:
-"continue what's left").
+"""Unfrozen operational continuation after the October network outage.
 
-Why this exists: DNS to the outside was dead ~22 Oct 09:00 → 8 Nov 05:00 +08.
-The supervisor finished its mission (ended 31 Oct 23:59, process exit 8 Nov
-05:11) with two gaps, both caused by the outage, both handled per the A20
-rules at the time:
-  - grpo_ext_S: its 25 Oct 04:03 attempt died at birth (pip install could not
-    reach PyPI; no checkpoint; marked incomplete, 0 resumes).
-  - The ext-setting E1 never actually generated: the merge container's pip
-    install failed the same way, and run_e1's skip-path then reported "ok"
-    with nothing done (hollow-ok — diagnosed 10 Nov; this driver adds hard
-    existence checks so it cannot recur silently).
-Everything else completed: brief W (3.28 h) and S (3.35 h), ext W (29.75 h,
-30 logs), E1 on base/w100/s100, ots upgrades (A20 stamp has 2 Bitcoin
-attestations), heartbeats to 31 Oct 23:59, all commits pushed by 8 Nov 05:11
-backlog flush on 10 Nov.
-
-This driver reuses the PREREG-A20-pinned code verbatim via import; only the
-module-level deadline constants are monkey-patched (no pinned file changes):
-  DEADLINE       → 2026-11-14 20:00 +08 (new heavy-work stop; the 30 Oct one
-                   governed the October unattended window and is superseded by
-                   the operator's live instruction to continue)
-  END_OF_MISSION → 2026-11-15 23:59 +08 (heartbeats + the Part E label poll
-                   continue meanwhile)
-
-Steps: grpo_ext_S (300 steps, lr 1e-5) → E1 all five arms (base/w100/s100
-resume-skip; wext/sext new) with hard checks → strip the superseded
-SPARK_REPORT §13 → final_steps (fresh §13 + STOP) → continuation addendum →
-idle until end of mission.
+Uses the pinned GRPO/E1 machinery without editing it. The operator approved
+continuation on 10 Nov, with the existing 14/15 Nov deadlines unchanged.
+--attach-container adopts the live extended-S job without restarting training.
+Downstream work fails closed on missing outputs, pin drift or failed commands.
 """
+import argparse
 import datetime
-import glob
+import fcntl
+import importlib.util
 import json
 import os
+from pathlib import Path
 import re
+import signal
 import subprocess
 import threading
 import time
 
+from adopt_training import adopt, docker
+from recovery_checks import ARMS, BENCH_TASKS, e1_check, freeze_check, training_check
+
 REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-import importlib.util
 spec = importlib.util.spec_from_file_location("a20sup", os.path.join(REPO, "a20/supervisor.py"))
 sup = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(sup)
-
-# operator instruction (this session, 10 Nov 2026) supersedes the October deadline
 sup.DEADLINE = datetime.datetime(2026, 11, 14, 20, 0)
 sup.END_OF_MISSION = datetime.datetime(2026, 11, 15, 23, 59)
-
-E1_ARMS = ["base", "w100", "s100", "wext", "sext"]
-
-
-def arm_dirs(arm):
-    return [os.path.join(sup.RUNS, "gen_e1", f"e1-{arm}_{b}.jsonl") for b in ("ve", "rtllm")]
+E1_ARMS = list(ARMS)
+CHECK_PATH = Path(REPO) / "results/e1/recovery_checks.json"
 
 
-def e1_complete(arm):
-    for f in arm_dirs(arm):
-        if not os.path.isfile(f):
-            return False
-        n = sum(1 for _ in open(f))
-        if n < 531:  # (144 + 33) x n=3
-            return False
-    return os.path.isfile(os.path.join(REPO, f"scores_e1/e1-{arm}.jsonl"))
+def write_json(path, value):
+    path = Path(path)
+    path.parent.mkdir(parents=True, exist_ok=True)
+    tmp = path.with_suffix(path.suffix + ".tmp")
+    tmp.write_text(json.dumps(value, indent=1) + "\n")
+    tmp.replace(path)
 
 
-def strip_section13():
-    p = os.path.join(REPO, "SPARK_REPORT.md")
-    txt = open(p).read()
-    m = re.search(r"^## 13\. Phase 9 \+ E1 \(A20\).*$", txt, re.S | re.M)
-    if m:
-        open(p, "w").write(txt[:m.start()].rstrip() + "\n")
-        sup.log("continuation: superseded SPARK_REPORT §13 stripped "
-                "(preserved in git history; final_steps appends a fresh one)")
+def require(check, stage):
+    if not check["ok"]:
+        raise RuntimeError(f"{stage} failed — see results/e1/recovery_checks.json")
 
 
-def addendum():
-    p = os.path.join(REPO, "SPARK_REPORT.md")
-    with open(p, "a") as f:
-        f.write(
-            "\n### Continuation addendum (10–12 Nov 2026)\n\n"
-            "The §13 line above about the 30 Oct 20:00 deadline describes the October\n"
-            "unattended window. DNS to the outside was dead ~22 Oct 09:00 → 8 Nov 05:00,\n"
-            "which left grpo_ext_S untrained (its single attempt died at birth on\n"
-            "pip-install name resolution; no checkpoint) and the ext-setting E1 never\n"
-            "generated (the merge container failed the same way; the run_e1 skip path\n"
-            "then reported a hollow 'ok' — diagnosed and hard-checked on 10 Nov).\n"
-            "On the operator's instruction (\"continue what's left\", 10 Nov), the\n"
-            "pinned machinery was re-run via a20/continue_after_outage.py with only the\n"
-            "deadline constants extended: grpo_ext_S trained, E1 completed for all five\n"
-            "arms, and this report re-finalised. Heartbeats and the Part E poll ran\n"
-            "throughout; the blind-40 labels never arrived on `operator`.\n")
+def report_state(status, detail):
+    """Never write 'done' just because a subprocess returned zero."""
+    stamp = datetime.datetime.now().isoformat(timespec="seconds")
+    record = {"updated_at": stamp, "status": status, "detail": detail,
+              "evidence": "results/e1/recovery_checks.json",
+              "heavy_deadline": sup.DEADLINE.isoformat(),
+              "mission_end": sup.END_OF_MISSION.isoformat()}
+    report = Path(REPO) / "spark_report.json"
+    data = json.loads(report.read_text())
+    data["a20_recovery"] = record
+    write_json(report, data)
+    section = ["## 13. Phase 9 + E1 (A20)", "", f"Updated {stamp} +08. **{status.upper()}**.", "",
+               detail, "", "This continuation is exploratory and does not change the primary study.",
+               "Evidence: `results/e1/recovery_checks.json`; GRPO status/CSV/adapter hashes in",
+               "`results/grpo/`; E1 scores in `scores_e1/` and report in `results/e1/summary.md`.", "",
+               "The October DNS outage left extended-S untrained and extended E1 absent.",
+               "The 10 Nov recovery adopts the live training job without restarting it;",
+               "the frozen trainer, reward, prompts, sampling, scorer and analysis are unchanged.",
+               "Checks require exact sample identities: 432 VE + 99 RTLLM, and 531 scores per arm.", "",
+               f"Heavy-work deadline: {sup.DEADLINE} +08; heartbeat/label-poll window ends",
+               f"{sup.END_OF_MISSION} +08. Blind-40 status: {sup.state['part_e']}.", ""]
+    if status == "done":
+        section.append("STOP — Phase 9 + E1 complete; waiting for operator review and blind-40 labels.")
+    elif status == "blocked":
+        section.append("STOP — A20 recovery blocked; waiting for operator review. No downstream jobs started.")
+    path = Path(REPO) / "SPARK_REPORT.md"
+    text = path.read_text()
+    text = re.sub(r"^## 13\. Phase 9 \+ E1 \(A20\).*", "", text, flags=re.M | re.S)
+    path.write_text(text.rstrip() + "\n\n" + "\n".join(section) + "\n")
+
+
+def run_e1_checked(checks):
+    if sup.past_deadline():
+        raise RuntimeError("extended heavy-work deadline reached before E1")
+    checks["freeze_before_e1"] = freeze_check(REPO)
+    write_json(CHECK_PATH, checks)
+    require(checks["freeze_before_e1"], "freeze before E1")
+    # Each launch of the frozen driver is one arm, so the deadline is checked
+    # between arms. A running arm is allowed to finish at its natural end.
+    for arm, run in (("base", None), ("w100", "grpo_brief_W"), ("s100", "grpo_brief_S"),
+                     ("wext", "grpo_ext_W"), ("sext", "grpo_ext_S")):
+        if sup.past_deadline():
+            raise RuntimeError(f"extended heavy-work deadline reached before E1 {arm}")
+        current = e1_check(REPO, sup.RUNS, [arm])["arms"][arm]
+        if current["ok"]:
+            sup.log(f"E1 {arm}: exact generation/scoring identities verified — resume skip")
+            continue
+        checks[f"freeze_before_{arm}"] = freeze_check(REPO)
+        write_json(CHECK_PATH, checks)
+        require(checks[f"freeze_before_{arm}"], f"freeze before E1 {arm}")
+        args = [sup.PYV, str(Path(REPO) / "e1/run_e1.py"), "--arms", arm]
+        if run and not (current["ve"]["ok"] and current["rtllm"]["ok"]):
+            adapter = sup.adapter_source(run)
+            if not adapter:
+                raise RuntimeError(f"no adapter for E1 {arm}; refusing hollow success")
+            args += ["--merge", f"{arm}:{adapter}"]
+        sup.set_state(part_c="Part C E1", run=f"e1:{arm}", train_step="-")
+        p = subprocess.run(args, cwd=REPO)
+        checks[f"e1_{arm}"] = e1_check(REPO, sup.RUNS, [arm])
+        checks[f"e1_{arm}"]["driver_rc"] = p.returncode
+        write_json(CHECK_PATH, checks)
+        if p.returncode:
+            raise RuntimeError(f"E1 driver failed for {arm}: rc={p.returncode}")
+        require(checks[f"e1_{arm}"], f"E1 {arm} completeness")
+        sup.commit_push(["results/e1", "scores_e1", "notes/LOG.md"],
+                        f"A20 E1 {arm}: exact generation and score identities verified")
+    checks["e1"] = e1_check(REPO, sup.RUNS)
+    write_json(CHECK_PATH, checks)
+    require(checks["e1"], "all-arm E1 completeness")
+    p = subprocess.run([sup.PYV, str(Path(REPO) / "e1/report.py")], cwd=REPO)
+    if p.returncode:
+        raise RuntimeError(f"E1 report failed: rc={p.returncode}")
+    stats = json.loads((Path(REPO) / "results/e1/stats.json").read_text())
+    if set(stats["arms"]) != {f"e1-{a}" for a in ARMS}:
+        raise RuntimeError("E1 report does not contain exactly the five expected arms")
+    for arm, cells in stats["arms"].items():
+        if set(cells) != set(BENCH_TASKS) or any(
+                cells[b]["point"]["tasks"] != n for b, n in BENCH_TASKS.items()):
+            raise RuntimeError(f"incomplete benchmark coverage in E1 report: {arm}")
+    expected_files = {f"e1-{a}_{b}.jsonl" for a in ARMS for b in BENCH_TASKS}
+    g2 = stats.get("g2") or {}
+    if set(g2) != expected_files or any(not isinstance(v, dict) or "share" not in v for v in g2.values()):
+        raise RuntimeError("E1 report lacks extraction checks for every generation file")
+    checks["report"] = {"ok": True, "path": "results/e1/stats.json"}
+    checks["freeze_after_e1"] = freeze_check(REPO)
+    write_json(CHECK_PATH, checks)
+    require(checks["freeze_after_e1"], "freeze after E1")
+
+
+def retire_paused_supervisor(pid):
+    """After training exits, retire only the explicitly superseded, paused driver."""
+    proc = Path(f"/proc/{pid}")
+    if not proc.exists():
+        return
+    cmd = (proc / "cmdline").read_bytes().split(b"\0")
+    state = (proc / "stat").read_text().rsplit(") ", 1)[1].split()[0]
+    if pid == os.getpid() or state not in ("T", "t") or not any(
+            arg.endswith(b"a20/continue_after_outage.py") for arg in cmd):
+        raise RuntimeError("refusing to retire an unexpected/non-paused process")
+    os.kill(pid, signal.SIGTERM)
+    os.kill(pid, signal.SIGCONT)
+    sup.log(f"retired superseded paused supervisor {pid} after training exit")
 
 
 def main():
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--attach-container", help="full ID of the live a20_grpo_ext_S container")
+    ap.add_argument("--retire-supervisor-pid", type=int,
+                    help="paused old driver to retire only after the adopted training exits")
+    args = ap.parse_args()
+    if args.retire_supervisor_pid and not args.attach_container:
+        ap.error("--retire-supervisor-pid requires --attach-container")
+    os.chdir(REPO)
+    # Only one corrected continuation process may supervise or launch work.
+    lock = open(Path(sup.RUNS) / "a20_recovery.lock", "w")
+    fcntl.flock(lock, fcntl.LOCK_EX | fcntl.LOCK_NB)
+    checks = {"checked_at": datetime.datetime.now().isoformat(timespec="seconds"),
+              "freeze": freeze_check(REPO), "e1_before": e1_check(REPO, sup.RUNS)}
+    write_json(CHECK_PATH, checks)
+    require(checks["freeze"], "startup freeze")
     inhib = sup.run_inhibit()
-    sup.log("continuation driver up (pid %d): ext_S (300 steps, lr 1e-5) -> E1 all arms "
-            "-> re-finalise. New deadline %s, end of mission %s."
-            % (os.getpid(), sup.DEADLINE, sup.END_OF_MISSION))
+    sup.log(f"corrected continuation up (pid {os.getpid()}); fail-closed E1 checks; "
+            f"attach={args.attach_container or 'none'}")
+    sup.set_state(part_c="recovery preflight")
+    report_state("running", "Extended-S training is in progress. E1 remains incomplete; no completion claim is made.")
     threading.Thread(target=sup.heartbeat_loop, daemon=False, name="heartbeat").start()
     threading.Thread(target=sup.epoll_loop, daemon=False, name="epoll").start()
-
-    # 1. the run the outage killed
-    sup.run_grpo("ext", "S", 300, 1e-5)
-
-    # 2. E1 on every arm (brief pass resume-skips; wext/sext are new)
-    merges = []
-    for arm, run in (("w100", "grpo_brief_W"), ("s100", "grpo_brief_S"),
-                     ("wext", "grpo_ext_W"), ("sext", "grpo_ext_S")):
-        src = sup.adapter_source(run)
-        if src:
-            merges.append(f"{arm}:{src}")
+    try:
+        if args.attach_container:
+            trained = adopt(sup, args.attach_container)
+            if args.retire_supervisor_pid:
+                retire_paused_supervisor(args.retire_supervisor_pid)
+            if not trained:
+                raise RuntimeError("adopted training did not finish successfully; downstream work blocked")
         else:
-            sup.log(f"continuation: no adapter for {arm} ({run}) — E1 will lack this arm")
-    sup.run_e1(E1_ARMS, merges)
-    missing = [a for a in E1_ARMS if not e1_complete(a)]
-    if missing:
-        sup.set_state(last_error=f"E1 incomplete for: {', '.join(missing)}")
-        sup.log(f"E1 HARD CHECK: incomplete arms: {missing} (reported as-is; see LOG)")
-    else:
-        sup.log("E1 HARD CHECK: all five arms complete (531 samples each, scored)")
-
-    # 3. re-finalise (fresh §13 + STOP), then the addendum
-    strip_section13()
-    sup.final_steps()
-    addendum()
-    sup.commit_push(["SPARK_REPORT.md", "notes/LOG.md"],
-                    "A20 continuation: addendum (outage timeline, hard checks, final state)")
-
-    # 4. idle for Parts D/E until the extended mission end
-    sup.set_state(part_c="idle (Parts D/E only)", run="-", train_step="-")
+            # A rerun must never silently restart an existing checkpointed job.
+            live = docker("ps", "-q", "--filter", "name=^/a20_grpo_ext_S$")
+            if live:
+                raise RuntimeError("extended-S is live; use --attach-container, never launch a duplicate")
+            status = json.loads((Path(sup.GRPO_DIR) / "grpo_ext_S_status.json").read_text())
+            if status.get("status") != "done":
+                raise RuntimeError("extended-S is not done; inspect checkpoints before any restart")
+        checks["training"] = training_check(REPO, sup.RUNS)
+        write_json(CHECK_PATH, checks)
+        require(checks["training"], "extended-S training artifacts")
+        run_e1_checked(checks)
+        report_state("done", "Extended-S passed the final-artifact checks. All five E1 arms have exact "
+                     "generation/scoring coverage and the E1 report was regenerated successfully.")
+        sup.log("STOP — Phase 9 + E1 complete; waiting for operator review and blind-40 labels")
+        sup.set_state(part_c="idle (Parts D/E only)", run="-", train_step="-")
+    except Exception as e:
+        checks["error"] = str(e)
+        write_json(CHECK_PATH, checks)
+        sup.log(f"RECOVERY BLOCKED: {e}")
+        sup.set_state(part_c="blocked — operator review", last_error=str(e))
+        report_state("blocked", str(e))
+    sup.commit_push(["SPARK_REPORT.md", "spark_report.json", "results/e1/recovery_checks.json", "notes/LOG.md"],
+                    "A20 recovery: verified final state (or explicit blocking failure)")
     while datetime.datetime.now() < sup.END_OF_MISSION:
         time.sleep(60)
     sup.heartbeat_once()
-    sup.log("continuation driver exiting (end of extended mission)")
+    sup.log("corrected continuation exiting (extended mission end)")
     inhib.terminate()
 
 

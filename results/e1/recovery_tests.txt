@@ -1,0 +1,18 @@
+test_nonzero_exit_resumes_same_settings_at_most_twice (test_recovery.AdoptionChecks.test_nonzero_exit_resumes_same_settings_at_most_twice) ... ok
+test_wrong_container_is_not_adopted (test_recovery.AdoptionChecks.test_wrong_container_is_not_adopted) ... ok
+test_zero_exit_without_final_artifacts_is_incomplete (test_recovery.AdoptionChecks.test_zero_exit_without_final_artifacts_is_incomplete) ... ok
+test_deadline_blocks_new_work (test_recovery.ChainChecks.test_deadline_blocks_new_work) ... ok
+test_pin_drift_blocks_e1 (test_recovery.ChainChecks.test_pin_drift_blocks_e1) ... ok
+test_report_blocked_does_not_claim_done (test_recovery.ChainChecks.test_report_blocked_does_not_claim_done) ... ok
+test_zero_exit_with_missing_outputs_blocks_report (test_recovery.ChainChecks.test_zero_exit_with_missing_outputs_blocks_report) ... ok
+test_duplicate_replacing_missing_row_same_total_is_rejected (test_recovery.SampleChecks.test_duplicate_replacing_missing_row_same_total_is_rejected) ... ok
+test_exact_432_plus_99_and_combined_531 (test_recovery.SampleChecks.test_exact_432_plus_99_and_combined_531) ... ok
+test_malformed_record (test_recovery.SampleChecks.test_malformed_record) ... ok
+test_missing_extra_and_bad_provenance (test_recovery.SampleChecks.test_missing_extra_and_bad_provenance) ... ok
+test_missing_training_artifacts_are_not_success (test_recovery.SampleChecks.test_missing_training_artifacts_are_not_success) ... ok
+test_score_file_must_have_exact_coverage_and_provenance (test_recovery.SampleChecks.test_score_file_must_have_exact_coverage_and_provenance) ... ok
+
+----------------------------------------------------------------------
+Ran 13 tests in 0.011s
+
+OK
