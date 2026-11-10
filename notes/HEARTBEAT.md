@@ -10,3 +10,4 @@
 2026-11-10 14:50 +08 | step: recovery preflight | run: - | train step: - | GPU: 96 %, [N/A] | disk avail: 3.3T | mem avail: 67 G | Part E: waiting for labels on origin/operator | last error: none
 2026-11-10 20:51 +08 | step: Part C GRPO ext setting (adopted) | run: grpo_ext_S | train step: 180 | GPU: 0 %, [N/A] | disk avail: 3.3T | mem avail: 59 G | Part E: waiting for labels on origin/operator | last error: none
 2026-11-10 21:31 +08 | step: recovery preflight | run: - | train step: - | GPU: 0 %, [N/A] | disk avail: 3.3T | mem avail: 67 G | Part E: waiting for labels on origin/operator | last error: none
+2026-11-11 03:32 +08 | step: idle (Parts D/E only) | run: - | train step: - | GPU: 0 %, [N/A] | disk avail: 3.3T | mem avail: 117 G | Part E: waiting for labels on origin/operator | last error: git fetch origin operator failed: fatal: unable to access 'https://github.com/jishnuvenugopal/rte-strict-eval.git/': Could not resolve host: github.com
