@@ -1,0 +1,41 @@
+id,label
+b40_0018,real bug
+b40_0230,real bug
+b40_1031,real bug
+b40_1318,real bug
+b40_1494,real bug
+b40_1501,real bug
+b40_1528,real bug
+b40_1786,allowed by spec
+b40_2044,allowed by spec
+b40_2334,unclear
+b40_3130,real bug
+b40_3329,allowed by spec
+b40_3632,allowed by spec
+b40_3909,real bug
+b40_3996,real bug
+b40_4712,allowed by spec
+b40_4769,real bug
+b40_4938,reference wrong
+b40_5194,allowed by spec
+b40_5243,reference wrong
+b40_5328,real bug
+b40_5451,unclear
+b40_5458,reference wrong
+b40_6306,allowed by spec
+b40_6534,allowed by spec
+b40_7290,allowed by spec
+b40_7339,unclear
+b40_8016,reference wrong
+b40_8086,real bug
+b40_8322,reference wrong
+b40_8852,real bug
+b40_8896,allowed by spec
+b40_8965,real bug
+b40_8969,unclear
+b40_8989,real bug
+b40_9031,allowed by spec
+b40_9298,allowed by spec
+b40_9627,real bug
+b40_9769,unclear
+b40_9882,real bug

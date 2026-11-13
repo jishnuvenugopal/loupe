@@ -1,0 +1,87 @@
+{
+  "schema_version": 1,
+  "deviation_id": "blind40-ai-2026-11-12",
+  "status": "approved_for_exploratory_use",
+  "recorded_at": "2026-11-12T08:37:00+08:00",
+  "timestamp_basis": "local decision record; not externally timestamped",
+  "decision_record": "protocol-deviation.md",
+  "authorization": {
+    "authority": "operator instruction in this session",
+    "adopt_exact_ai_labels": true,
+    "record_human_to_ai_deviation": true,
+    "submit_to_watched_path": false,
+    "push": false,
+    "unblind": false,
+    "publish": false,
+    "read_or_disclose_key": false
+  },
+  "timing": {
+    "classification": "post_hoc_deviation",
+    "labels_completed_before_approval": true,
+    "label_counts_disclosed_before_approval": true,
+    "aggregate_study_results_available_to_reviewer": true,
+    "submission_or_unblinding_requested_by_this_decision": false
+  },
+  "labels": {
+    "file": "labels.ai.csv",
+    "sha256": "570eac0376dcacdab317d22c51ac31206ddbe802388cdc5cff33895d44055468",
+    "bytes": 843,
+    "rows": 40,
+    "columns": ["id", "label"],
+    "source_local_labelling_commit": "c828ecc2cf228b8c676fed79af52a49816afc439",
+    "counts": {
+      "real bug": 18,
+      "reference wrong": 5,
+      "allowed by spec": 12,
+      "unclear": 5,
+      "scorer artefact": 0
+    },
+    "later_revisions_require_new_version_and_approval": true
+  },
+  "sources": {
+    "repository_url": "https://github.com/jishnuvenugopal/rte-strict-eval",
+    "packet_revision": "00a5aef7e36ca2b8d27da9a8f4241e216df83d54",
+    "packet_directory": "results/main/blind40/packet",
+    "template_path": "results/main/blind40/labels_template.csv",
+    "original_prereg_path": "PREREG.md",
+    "original_prereg_sha256": "eec18735d7787e6ddcb04d84b66446f02f22189b6e7909a882ed02889fb98179",
+    "original_prereg_matches_g0_tag": true
+  },
+  "rating": {
+    "method": "AI-generated exploratory adjudication",
+    "ai_review_sessions": 1,
+    "human_raters": 0,
+    "model_id_reported_by_labelling_harness": "gpt-6-astra",
+    "hidden_key_accessed_by_reviewer": false,
+    "arm_mapping_accessed_by_reviewer": false,
+    "fresh_isolated_reviewer": false,
+    "independent_second_rater": false,
+    "reasoning_record": "ai-review.md",
+    "witness_verifier": "verify_ai_review.py",
+    "targeted_checks_passed": 40,
+    "targeted_checks_are_global_correctness_proofs": false
+  },
+  "reporting": {
+    "required_heading": "Exploratory AI adjudication — protocol deviation",
+    "must_disclose": [
+      "planned single-author human adjudication was not performed",
+      "operator adopted the AI labels after labelling and aggregate findings were available",
+      "reviewer had aggregate study context but did not access the hidden key or arm mapping",
+      "five unclear labels retained in the 40-row set",
+      "AI-rating error and correlated biases remain possible",
+      "Wilson intervals do not capture rating error or blinding limitations"
+    ],
+    "primary_results_changed": false,
+    "frozen_prereg_changed": false,
+    "frozen_scoring_or_analysis_changed": false
+  },
+  "downstream": {
+    "delivery_receipt": null,
+    "spark_reporting_ready_receipt": null,
+    "submission_commit": null,
+    "push_or_unblind_approval": null,
+    "watched_label_path_created_in_local_work_clone": false,
+    "remote_state_rechecked": false,
+    "a20_csv_only_delivery_is_not_sufficient_provenance": true
+  }
+}

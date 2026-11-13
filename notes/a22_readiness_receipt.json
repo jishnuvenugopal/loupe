@@ -1,0 +1,72 @@
+{
+  "schema_version": 1,
+  "status": "reporting_ready_local_only",
+  "recorded_at": "2026-11-13T12:40:00+08:00",
+  "recorded_by": "DGX Spark session (spark-cff9), A22 readiness step only",
+  "deviation_id": "blind40-ai-2026-11-12",
+  "packet_revision": "00a5aef7e36ca2b8d27da9a8f4241e216df83d54",
+  "adopted_csv": {
+    "path": "results/main/blind40/labels.ai.csv",
+    "sha256": "570eac0376dcacdab317d22c51ac31206ddbe802388cdc5cff33895d44055468",
+    "bytes": 843,
+    "rows": 40,
+    "counts": {
+      "real bug": 18,
+      "reference wrong": 5,
+      "allowed by spec": 12,
+      "unclear": 5,
+      "scorer artefact": 0
+    },
+    "unclear_labels_retained": 5,
+    "quarantined_ai_filename_only": true
+  },
+  "git_state": {
+    "local_starting_head": "00a5aef7e36ca2b8d27da9a8f4241e216df83d54",
+    "local_starting_head_equals_pinned_remote_spark_head": true,
+    "current_local_branch": "spark",
+    "repo": "jishnuvenugopal/rte-strict-eval (checkout /home/unnitools/rtl-strict-eval)"
+  },
+  "new_files": [
+    "AMENDMENT-A22.md",
+    "a22/report.py",
+    "a22/test_report.py",
+    "results/main/blind40/protocol-deviation.md",
+    "results/main/blind40/labels.ai.provenance.json",
+    "results/main/blind40/labels.ai.csv",
+    "notes/a22_readiness_tests.txt",
+    "notes/a22_readiness_receipt.json"
+  ],
+  "tests": {
+    "command": "python3 -m py_compile a22/report.py a22/test_report.py && python3 a22/report.py && python3 -W error::ResourceWarning a22/test_report.py -v",
+    "result": "PASS",
+    "summary": "24/24 unittest cases passed; py_compile passed; default read-only bundle check passed; captured in notes/a22_readiness_tests.txt",
+    "synthetic_only": true,
+    "real_key_used": false,
+    "real_unblinded_json_used": false,
+    "originating_targeted_checks_note": "The 40 targeted RTL witness checks were reported by the originating review (ai-review.md / verify_ai_review.py); A22 did not reproduce them and verifies artifact identity and reporting behavior only. Targeted tests are not global correctness proofs or independent replication."
+  },
+  "safety_confirmations": {
+    "watched_labels_csv_absent": "results/main/blind40/labels.csv does not exist in the worktree after this step",
+    "real_unblinded_json_absent": "results/main/blind40/unblinded.json does not exist in the worktree after this step",
+    "real_key_or_mapping_read": false,
+    "summary_md_modified": false,
+    "primary_or_frozen_files_modified": false,
+    "existing_tracked_files_in_this_commit": 0,
+    "process_stopped_or_restarted": false,
+    "operator_branch_touched": false,
+    "pushed": false,
+    "ots_operation_performed": false,
+    "unblinding_invoked": false,
+    "epoll_once_or_pinned_unblind_called": false
+  },
+  "legacy_part_e_process_evidence": {
+    "observed_at": "2026-11-13 12:28 +08 (read-only checks; nothing was signalled, stopped or restarted)",
+    "tmux_sessions_listed": "none (tmux ls returned no sessions)",
+    "supervisor_processes_found": "none; PIDs named in HANDOFF.md (recovery supervisor 645785, trainer 3515354, paused original supervisor 3515236) are not present in the process table, and no supervisor/epoll/blind40 process was found",
+    "recovery_log_last_entry": "2026-11-11 11:17 +08 in ~/runs/a20_recovery.log: 'push succeeded on attempt 50: A20 heartbeat #2' followed by successful OTS upgrades of PREREG.md.ots, PREREG-A19.md.ots, PREREG-A20.md.ots — consistent with local HEAD commit 00a5aef 'A20 heartbeat #2'",
+    "heartbeat_file_last_entry": "2026-11-11 03:32 +08 in notes/HEARTBEAT.md: step 'idle (Parts D/E only)', last error: git fetch origin operator failed — Could not resolve host: github.com (DNS failure)",
+    "polling_deadline_documents": "Pinned a20/supervisor.py at this revision has END_OF_MISSION 2026-10-31 23:59; HANDOFF.md records heartbeat/label polling ending 15 Nov 2026 23:59 +08. The divergence is reported as-is; no claim is made that polling is alive or dead beyond the process evidence above, and live polling/DNS must be rechecked before any later delivery."
+  },
+  "later_delivery_prerequisites": "Any later delivery requires separate explicit operator approval and must: (1) first safely stop/disable legacy A20 Part E (never let it consume this AI set or write the 'Single rater (the study author)' summary); (2) deliver only the quarantined .ai bundle (labels.ai.csv / labels.ai.provenance.json / protocol-deviation.md), never a watched-path labels.csv copy; (3) invoke only the pinned scoring/blind40.py --unblind with --labels results/main/blind40/labels.ai.csv and the real key after that separate approval; (4) render exclusively through a22/report.py, never A20 unblind_section_text; (5) revalidate the exact CSV hash/template order and recheck live polling/DNS and expiry state before delivery. This receipt is not that approval.",
+  "authorization_boundary": "This readiness receipt authorizes nothing beyond the local commit of the new A22 files listed above. No push, no watched-path submission, no unblinding, no real key access, no publication, no process stop/restart, no change to existing results or frozen code."
+}

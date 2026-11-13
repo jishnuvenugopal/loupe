@@ -1,0 +1,50 @@
+A22 readiness tests — exploratory AI blind-40 adjudication (provenance/reporting only)
+Date: 2026-11-13 12:36 +0800 | Host: spark-cff9 | Repo: /home/unnitools/rtl-strict-eval | Branch: spark @ 00a5aef7e36ca2b8d27da9a8f4241e216df83d54
+
+Synthetic fixtures and temporary directories only. The real key (~/runs/blind40_key.json) was never read; no unblinding was invoked; no watched/real-result path was written. The originating review's 40 targeted RTL witness checks (ai-review.md / verify_ai_review.py) were REPORTED there and are NOT reproduced here; A22 verifies artifact identity and reporting behavior only.
+
+== Command: python3 -m py_compile a22/report.py a22/test_report.py ==
+PASS: py_compile exited 0 (a22/__pycache__ removed afterwards and kept out of Git)
+
+== Command: python3 a22/report.py  (default = read-only bundle check) ==
+A22 bundle check: PASS (labels.ai.csv identity, template order, vocabulary, counts, sidecar binding, rating honesty, frozen-study flags, required heading/disclosure)
+exit code: 0
+
+== Command: python3 -W error::ResourceWarning a22/test_report.py -v  (24 tests) ==
+test_blank_label_fails (__main__.A22BundleTests.test_blank_label_fails) ... ok
+test_extra_id_fails (__main__.A22BundleTests.test_extra_id_fails) ... ok
+test_missing_id_fails (__main__.A22BundleTests.test_missing_id_fails) ... ok
+test_missing_required_disclosure_fails (__main__.A22BundleTests.test_missing_required_disclosure_fails) ... ok
+test_missing_required_heading_fails (__main__.A22BundleTests.test_missing_required_heading_fails) ... ok
+test_missing_sidecar_fails (__main__.A22BundleTests.test_missing_sidecar_fails) ... ok
+test_one_byte_csv_mutation_fails_hash (__main__.A22BundleTests.test_one_byte_csv_mutation_fails_hash) ... ok
+test_sidecar_frozen_analysis_changed_fails (__main__.A22BundleTests.test_sidecar_frozen_analysis_changed_fails) ... ok
+test_sidecar_human_rater_fails (__main__.A22BundleTests.test_sidecar_human_rater_fails) ... ok
+test_sidecar_key_access_fails (__main__.A22BundleTests.test_sidecar_key_access_fails) ... ok
+test_sidecar_primary_results_changed_fails (__main__.A22BundleTests.test_sidecar_primary_results_changed_fails) ... ok
+test_swapped_id_order_fails (__main__.A22BundleTests.test_swapped_id_order_fails) ... ok
+test_unknown_label_fails (__main__.A22BundleTests.test_unknown_label_fails) ... ok
+test_valid_repo_bundle_passes (__main__.A22BundleTests.test_valid_repo_bundle_passes) ... ok
+test_wrong_class_count_fails (__main__.A22BundleTests.test_wrong_class_count_fails) ... ok
+test_wrong_packet_revision_fails (__main__.A22BundleTests.test_wrong_packet_revision_fails) ... ok
+test_prohibited_phrases_absent (__main__.A22RenderTests.test_prohibited_phrases_absent) ... ok
+test_refuses_to_read_watched_or_real_paths (__main__.A22RenderTests.test_refuses_to_read_watched_or_real_paths) ... ok
+test_refuses_to_write_watched_names (__main__.A22RenderTests.test_refuses_to_write_watched_names) ... ok
+test_rejects_malformed_fixtures (__main__.A22RenderTests.test_rejects_malformed_fixtures) ... ok
+test_render_fails_closed_on_invalid_bundle (__main__.A22RenderTests.test_render_fails_closed_on_invalid_bundle) ... ok
+test_render_from_path_and_explicit_out_in_tmp (__main__.A22RenderTests.test_render_from_path_and_explicit_out_in_tmp) ... ok
+test_valid_fixture_renders_required_content (__main__.A22RenderTests.test_valid_fixture_renders_required_content) ... ok
+test_watched_paths_absent_and_summary_unchanged (__main__.A22RenderTests.test_watched_paths_absent_and_summary_unchanged) ... ok
+
+----------------------------------------------------------------------
+Ran 24 tests in 0.023s
+
+OK
+A22 bundle check: PASS (labels.ai.csv identity, template order, vocabulary, counts, sidecar binding, rating honesty, frozen-study flags, required heading/disclosure)
+exit code: 0
+
+== Post-test verification ==
+PASS: watched label path results/main/blind40/labels.csv ABSENT
+PASS: real unblinded output results/main/blind40/unblinded.json ABSENT
+PASS: results/main/summary.md unchanged vs HEAD
+adopted CSV: 843 bytes, sha256 570eac0376dcacdab317d22c51ac31206ddbe802388cdc5cff33895d44055468
