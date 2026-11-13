@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "status": "delivered_and_pushed",
+  "recorded_at": "2026-11-13T15:49:00+08:00",
+  "recorded_by": "A22 delivery session on operator Mac (fresh clone), under the operator\u2019s explicit A22 delivery authorization",
+  "deviation_id": "blind40-ai-2026-11-12",
+  "packet_revision": "00a5aef7e36ca2b8d27da9a8f4241e216df83d54",
+  "adopted_csv": {
+    "path": "results/main/blind40/labels.ai.csv",
+    "sha256": "570eac0376dcacdab317d22c51ac31206ddbe802388cdc5cff33895d44055468",
+    "bytes": 843,
+    "rows": 40,
+    "counts": {
+      "real bug": 18,
+      "reference wrong": 5,
+      "allowed by spec": 12,
+      "unclear": 5,
+      "scorer artefact": 0
+    },
+    "reverified_before_unblind": true
+  },
+  "unblinded_ai_json": {
+    "path": "results/main/blind40/unblinded.ai.json",
+    "sha256": "1ffd53842f255b3d2047f983452cd996851101e25631028b23edd34099cb6884",
+    "produced_by": "python3 scoring/blind40.py --unblind --key ~/runs/blind40_key.json --labels results/main/blind40/labels.ai.csv --out-dir ~/runs/a22_delivery_stage (staged outside the repo, then copied to the quarantined .ai path)"
+  },
+  "key_handling": {
+    "key_sha256_matched_KEY_SHA256": true,
+    "key_contents_displayed_copied_or_committed": false,
+    "key_read_only_by_pinned_unblind_command": true
+  },
+  "render": {
+    "renderer": "a22/report.py --render results/main/blind40/unblinded.ai.json --out /tmp/a22_section.md",
+    "fail_closed_validation": "n=40, five-label vocabulary, overall counts vs sidecar (5 unclear, 0 scorer artefact), per-family sums",
+    "hand_edited": false
+  },
+  "splice": "results/main/summary.md: span from \"## Blind sample of 40\" to end of file (195-byte placeholder) replaced byte-exact with the rendered A22 section; git diff confirmed no other span changed; required heading/disclosure present once; no prohibited phrase; git diff --check clean",
+  "delivery_commit": {
+    "sha": "3df21ce396aa5174be7530fe87537f66e1f2d1b3",
+    "committed_at": "2026-11-13T15:48:11+08:00",
+    "files": [
+      "results/main/blind40/unblinded.ai.json",
+      "results/main/summary.md"
+    ]
+  },
+  "records_commit_note": "This receipt, the sidecar downstream fields, and the HANDOFF A22 status block ride in the commit directly on top of delivery_commit (a commit cannot embed its own SHA); the pushed tip is that records commit. Both commit messages begin \"A22 delivery:\" and the union of the two commits touches exactly the five authorized files.",
+  "push_verification": {
+    "method": "git ls-remote origin refs/heads/spark",
+    "pre_push_remote_head": "5d700ce5589e3f5f6d1c5996ca59b56dd3311af9",
+    "verified_post_push": "remote spark head advanced to the delivery records tip and matches local HEAD; ls-remote output shown in the delivering session close-out"
+  },
+  "legacy_part_e_gate": {
+    "spark_audit_receipt": "spark-audit-A22-receipt.txt (read-only audit, 2026-11-13): SPARK_HANDOFF_READY - no a20/a20-recovery-a21/keepawake tmux sessions, no supervisor.py/a20_recovery/epoll processes, no cron/systemd auto-restart paths, watched paths absent, no side effects",
+    "local_mac_checks": "no matching tmux sessions or processes; nothing stopped, started, or disabled anywhere"
+  },
+  "confirmations": {
+    "watched_labels_csv_created": false,
+    "watched_unblinded_json_created": false,
+    "operator_branch_fetched_created_or_pushed": false,
+    "ots_operations": false,
+    "process_stopped_or_started": false,
+    "primary_results_contrasts_scorer_analysis_preregs_draw_packets_or_key_handling_changed": false,
+    "epoll_once_unblind_section_text_or_any_a20_path_called": false,
+    "pre_existing_unrelated_spark_changes": "untouched in the Spark worktree per audit; fresh clone carried none of them"
+  }
+}

@@ -76,12 +76,12 @@
     "frozen_scoring_or_analysis_changed": false
   },
   "downstream": {
-    "delivery_receipt": null,
-    "spark_reporting_ready_receipt": null,
-    "submission_commit": null,
-    "push_or_unblind_approval": null,
+    "delivery_receipt": "notes/a22_delivery_receipt.json",
+    "spark_reporting_ready_receipt": "notes/a22_readiness_receipt.json @ 5d700ce5589e3f5f6d1c5996ca59b56dd3311af9",
+    "submission_commit": "3df21ce396aa5174be7530fe87537f66e1f2d1b3",
+    "push_or_unblind_approval": "operator A22 delivery authorization message (delivery brief pasted in full in the delivering session), 2026-11-13",
     "watched_label_path_created_in_local_work_clone": false,
-    "remote_state_rechecked": false,
+    "remote_state_rechecked": true,
     "a20_csv_only_delivery_is_not_sufficient_provenance": true
   }
 }

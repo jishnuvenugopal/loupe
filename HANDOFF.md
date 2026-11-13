@@ -3,6 +3,20 @@
 Repo: `~/rtl-strict-eval`, private `jishnuvenugopal/rte-strict-eval`, branch
 `spark`. DGX Spark `spark-cff9` (aarch64, GB10).
 
+## A22 status (13 Nov 2026) — exploratory AI blind-40 DELIVERED
+
+- Delivery commit `3df21ce396aa5174be7530fe87537f66e1f2d1b3` (2026-11-13T15:48:11+08:00):
+  `results/main/blind40/unblinded.ai.json` + A22-rendered blind-40 section in
+  `results/main/summary.md`. Receipt `notes/a22_delivery_receipt.json`, sidecar
+  downstream fields, and this block ride in the records commit directly on top.
+- Adopted labels `results/main/blind40/labels.ai.csv` SHA-256 `570eac0376dcacdab317d22c51ac31206ddbe802388cdc5cff33895d44055468`
+  (843 B, 40 rows, 18 real bug / 5 reference wrong / 12 allowed by spec /
+  5 unclear / 0 scorer artefact); `unblinded.ai.json` SHA-256 `1ffd53842f255b3d2047f983452cd996851101e25631028b23edd34099cb6884`.
+- Post hoc exploratory deviation `blind40-ai-2026-11-12`; rendered only via
+  `a22/report.py`. Primary results unchanged; watched `labels.csv` /
+  `unblinded.json` were never created; no `operator` branch; A20 Part E path
+  not invoked (Spark audit 13 Nov: no live legacy supervisors or auto-restart).
+
 ## Current state (10 Nov 2026, 21:32 +08)
 
 - Main study + A19 recorded complete: `results/main/summary.md`,
