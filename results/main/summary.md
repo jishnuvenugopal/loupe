@@ -53,7 +53,50 @@ accu, LIFObuffer (RTLLM #25/#26 reference bugs), RAM, square_wave (#16/#23): `re
 
 `results/main/contamination/overlaps.csv` + `summary.json` (rules in PREREG Analysis plan).
 
-## Blind sample of 40
+## Exploratory AI adjudication — protocol deviation
 
-`results/main/blind40/` — packets blind to arm/model/family/index; key outside the repo, only `KEY_SHA256` committed; labels pending (operator message `blind labels in`).
+> The planned single-author human adjudication was replaced, with operator approval on 12 Nov 2026 after AI labelling was completed, by one AI-generated review. No independent human rater assessed these 40 packets. The reviewer did not access the hidden arm key but had prior aggregate study context. The five unclear labels were retained. These exploratory labels do not change the pre-registered primary results.
 
+**Provenance (decision `blind40-ai-2026-11-12`):** labels from AI-generated exploratory adjudication (harness-reported model `gpt-6-astra`); zero independent human raters assessed these 40 packets. Adopted artifact `results/main/blind40/labels.ai.csv` (SHA-256 `570eac0376dcacdab317d22c51ac31206ddbe802388cdc5cff33895d44055468`, 843 bytes, 40 rows) at packet revision `00a5aef7e36ca2b8d27da9a8f4241e216df83d54`. Machine-readable provenance: `results/main/blind40/labels.ai.provenance.json`. The five unclear labels were retained.
+
+Overall (n = 40):
+
+| class | n | share % [Wilson 95% CI] |
+|---|---|---|
+| real bug | 18 | 45.0 [30.7, 60.2] |
+| reference wrong | 5 | 12.5 [5.5, 26.1] |
+| allowed by spec | 12 | 30.0 [18.1, 45.4] |
+| unclear | 5 | 12.5 [5.5, 26.1] |
+| scorer artefact | 0 | 0.0 [0.0, 8.8] |
+
+Per family (every class row shown, including zero counts):
+
+| family | class | n | share % [Wilson 95% CI] |
+|---|---|---|---|
+| codev-base (n=7) | real bug | 4 | 57.1 [25.0, 84.2] |
+| codev-base (n=7) | reference wrong | 1 | 14.3 [2.6, 51.3] |
+| codev-base (n=7) | allowed by spec | 2 | 28.6 [8.2, 64.1] |
+| codev-base (n=7) | unclear | 0 | 0.0 [0.0, 35.4] |
+| codev-base (n=7) | scorer artefact | 0 | 0.0 [0.0, 35.4] |
+| codev-distill (n=11) | real bug | 5 | 45.5 [21.3, 72.0] |
+| codev-distill (n=11) | reference wrong | 0 | 0.0 [0.0, 25.9] |
+| codev-distill (n=11) | allowed by spec | 5 | 45.5 [21.3, 72.0] |
+| codev-distill (n=11) | unclear | 1 | 9.1 [1.6, 37.7] |
+| codev-distill (n=11) | scorer artefact | 0 | 0.0 [0.0, 25.9] |
+| codev-rl (n=16) | real bug | 4 | 25.0 [10.2, 49.5] |
+| codev-rl (n=16) | reference wrong | 4 | 25.0 [10.2, 49.5] |
+| codev-rl (n=16) | allowed by spec | 4 | 25.0 [10.2, 49.5] |
+| codev-rl (n=16) | unclear | 4 | 25.0 [10.2, 49.5] |
+| codev-rl (n=16) | scorer artefact | 0 | 0.0 [0.0, 19.4] |
+| verireason-instruct (n=3) | real bug | 3 | 100.0 [43.9, 100.0] |
+| verireason-instruct (n=3) | reference wrong | 0 | 0.0 [0.0, 56.1] |
+| verireason-instruct (n=3) | allowed by spec | 0 | 0.0 [0.0, 56.1] |
+| verireason-instruct (n=3) | unclear | 0 | 0.0 [0.0, 56.1] |
+| verireason-instruct (n=3) | scorer artefact | 0 | 0.0 [0.0, 56.1] |
+| verireason-rl (n=3) | real bug | 2 | 66.7 [20.8, 93.9] |
+| verireason-rl (n=3) | reference wrong | 0 | 0.0 [0.0, 56.1] |
+| verireason-rl (n=3) | allowed by spec | 1 | 33.3 [6.1, 79.2] |
+| verireason-rl (n=3) | unclear | 0 | 0.0 [0.0, 56.1] |
+| verireason-rl (n=3) | scorer artefact | 0 | 0.0 [0.0, 56.1] |
+
+**Limitations:** the Wilson 95% intervals above describe this selected 40-packet sample only. They do not account for AI-rating error, correlated judgments, aggregate-context exposure, or blinding limitations. These are selected-sample exploratory shares, not estimates for any wider population and not changes to the pre-registered primary results. Targeted simulation observations behind individual labels are not global correctness proofs, independent replication, or inter-rater agreement.
