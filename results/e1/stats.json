@@ -220,6 +220,116 @@
     ]
    }
   },
+  "e1-sext": {
+   "rtllm": {
+    "point": {
+     "tasks": 33,
+     "samples": 99,
+     "official_pass_count": 27,
+     "proved_correct_count": 21,
+     "correct_within_d_count": 21,
+     "official_pass_at_1": 0.2727272727272727,
+     "strict_pass_at_1": 0.21212121212121213,
+     "strict_within_d_pass_at_1": 0.21212121212121213,
+     "not_proved_correct_share": 0.2222222222222222,
+     "not_correct_within_d_share": 0.2222222222222222,
+     "proved_wrong_share": 0.1111111111111111,
+     "classes": {
+      "different": 3,
+      "bounded-only": 0,
+      "timeout": 0,
+      "error": 3,
+      "vacuous": 0
+     },
+     "vacuous_passes": 0,
+     "official_pass_at_1_all_tasks": 0.2727272727272727
+    },
+    "ci95": {
+     "official_pass_at_1": [
+      0.1414141414141414,
+      0.4141414141414142
+     ],
+     "strict_pass_at_1": [
+      0.09090909090909091,
+      0.3434343434343434
+     ],
+     "strict_within_d_pass_at_1": [
+      0.09090909090909091,
+      0.3434343434343434
+     ],
+     "not_proved_correct_share": [
+      0.037037037037037035,
+      0.4838709677419355
+     ],
+     "not_correct_within_d_share": [
+      0.037037037037037035,
+      0.4838709677419355
+     ],
+     "proved_wrong_share": [
+      0.0,
+      0.2692307692307692
+     ]
+    },
+    "ci95_all_tasks": [
+     0.1414141414141414,
+     0.4141414141414142
+    ]
+   },
+   "ve": {
+    "point": {
+     "tasks": 144,
+     "samples": 432,
+     "official_pass_count": 84,
+     "proved_correct_count": 81,
+     "correct_within_d_count": 81,
+     "official_pass_at_1": 0.19444444444444445,
+     "strict_pass_at_1": 0.1875,
+     "strict_within_d_pass_at_1": 0.1875,
+     "not_proved_correct_share": 0.03571428571428571,
+     "not_correct_within_d_share": 0.03571428571428571,
+     "proved_wrong_share": 0.0,
+     "classes": {
+      "different": 0,
+      "bounded-only": 0,
+      "timeout": 0,
+      "error": 3,
+      "vacuous": 0
+     },
+     "vacuous_passes": 0,
+     "official_pass_at_1_all_tasks": 0.19444444444444445
+    },
+    "ci95": {
+     "official_pass_at_1": [
+      0.1412037037037037,
+      0.25000000000000006
+     ],
+     "strict_pass_at_1": [
+      0.13425925925925924,
+      0.2430555555555556
+     ],
+     "strict_within_d_pass_at_1": [
+      0.13425925925925924,
+      0.2430555555555556
+     ],
+     "not_proved_correct_share": [
+      0.0,
+      0.0975609756097561
+     ],
+     "not_correct_within_d_share": [
+      0.0,
+      0.0975609756097561
+     ],
+     "proved_wrong_share": [
+      0.0,
+      0.0
+     ]
+    },
+    "ci95_all_tasks": [
+     0.1412037037037037,
+     0.25000000000000006
+    ]
+   }
+  },
   "e1-w100": {
    "rtllm": {
     "point": {
@@ -327,6 +437,116 @@
     "ci95_all_tasks": [
      0.05787037037037038,
      0.13425925925925927
+    ]
+   }
+  },
+  "e1-wext": {
+   "rtllm": {
+    "point": {
+     "tasks": 33,
+     "samples": 99,
+     "official_pass_count": 24,
+     "proved_correct_count": 19,
+     "correct_within_d_count": 19,
+     "official_pass_at_1": 0.24242424242424243,
+     "strict_pass_at_1": 0.1919191919191919,
+     "strict_within_d_pass_at_1": 0.1919191919191919,
+     "not_proved_correct_share": 0.20833333333333334,
+     "not_correct_within_d_share": 0.20833333333333334,
+     "proved_wrong_share": 0.08333333333333333,
+     "classes": {
+      "different": 2,
+      "bounded-only": 0,
+      "timeout": 0,
+      "error": 3,
+      "vacuous": 0
+     },
+     "vacuous_passes": 0,
+     "official_pass_at_1_all_tasks": 0.24242424242424243
+    },
+    "ci95": {
+     "official_pass_at_1": [
+      0.12121212121212122,
+      0.3838383838383838
+     ],
+     "strict_pass_at_1": [
+      0.0707070707070707,
+      0.3333333333333333
+     ],
+     "strict_within_d_pass_at_1": [
+      0.0707070707070707,
+      0.3333333333333333
+     ],
+     "not_proved_correct_share": [
+      0.038461538461538464,
+      0.5
+     ],
+     "not_correct_within_d_share": [
+      0.038461538461538464,
+      0.5
+     ],
+     "proved_wrong_share": [
+      0.0,
+      0.25
+     ]
+    },
+    "ci95_all_tasks": [
+     0.12121212121212122,
+     0.3838383838383838
+    ]
+   },
+   "ve": {
+    "point": {
+     "tasks": 144,
+     "samples": 432,
+     "official_pass_count": 75,
+     "proved_correct_count": 70,
+     "correct_within_d_count": 70,
+     "official_pass_at_1": 0.1736111111111111,
+     "strict_pass_at_1": 0.16203703703703703,
+     "strict_within_d_pass_at_1": 0.16203703703703703,
+     "not_proved_correct_share": 0.06666666666666667,
+     "not_correct_within_d_share": 0.06666666666666667,
+     "proved_wrong_share": 0.013333333333333334,
+     "classes": {
+      "different": 1,
+      "bounded-only": 0,
+      "timeout": 0,
+      "error": 4,
+      "vacuous": 0
+     },
+     "vacuous_passes": 0,
+     "official_pass_at_1_all_tasks": 0.1736111111111111
+    },
+    "ci95": {
+     "official_pass_at_1": [
+      0.12268518518518517,
+      0.22916666666666663
+     ],
+     "strict_pass_at_1": [
+      0.1111111111111111,
+      0.2152777777777778
+     ],
+     "strict_within_d_pass_at_1": [
+      0.1111111111111111,
+      0.2152777777777778
+     ],
+     "not_proved_correct_share": [
+      0.011627906976744186,
+      0.14492753623188406
+     ],
+     "not_correct_within_d_share": [
+      0.011627906976744186,
+      0.14492753623188406
+     ],
+     "proved_wrong_share": [
+      0.0,
+      0.04477611940298507
+     ]
+    },
+    "ci95_all_tasks": [
+     0.12268518518518517,
+     0.22916666666666663
     ]
    }
   }
@@ -451,6 +671,126 @@
      "resolved": false
     }
    }
+  },
+  "wext_minus_base": {
+   "arm_a": "e1-wext",
+   "arm_b": "e1-base",
+   "ve": {
+    "official_pass_at_1": {
+     "mean": 0.05516597222222222,
+     "ci95": [
+      0.016203703703703734,
+      0.09722222222222218
+     ],
+     "resolved": true
+    },
+    "not_proved_correct_share": {
+     "mean": 0.04775772723537114,
+     "ci95": [
+      -0.023809523809523808,
+      0.13333333333333333
+     ],
+     "resolved": false
+    }
+   },
+   "rtllm": {
+    "official_pass_at_1": {
+     "mean": 0.09117878787878787,
+     "ci95": [
+      0.010101010101010083,
+      0.19191919191919196
+     ],
+     "resolved": true
+    },
+    "not_proved_correct_share": {
+     "mean": -0.05907959303716233,
+     "ci95": [
+      -0.3311036789297659,
+      0.17532467532467533
+     ],
+     "resolved": false
+    }
+   }
+  },
+  "sext_minus_base": {
+   "arm_a": "e1-sext",
+   "arm_b": "e1-base",
+   "ve": {
+    "official_pass_at_1": {
+     "mean": 0.0762726851851852,
+     "ci95": [
+      0.03240740740740741,
+      0.12268518518518529
+     ],
+     "resolved": true
+    },
+    "not_proved_correct_share": {
+     "mean": 0.016612259935545066,
+     "ci95": [
+      -0.045454545454545456,
+      0.08641975308641975
+     ],
+     "resolved": false
+    }
+   },
+   "rtllm": {
+    "official_pass_at_1": {
+     "mean": 0.12188383838383839,
+     "ci95": [
+      0.01010101010101011,
+      0.2424242424242425
+     ],
+     "resolved": true
+    },
+    "not_proved_correct_share": {
+     "mean": -0.05312675332609611,
+     "ci95": [
+      -0.35947712418300654,
+      0.23030303030303031
+     ],
+     "resolved": false
+    }
+   }
+  },
+  "sext_minus_wext": {
+   "arm_a": "e1-sext",
+   "arm_b": "e1-wext",
+   "ve": {
+    "official_pass_at_1": {
+     "mean": 0.021106712962962983,
+     "ci95": [
+      -0.011574074074074098,
+      0.05324074074074078
+     ],
+     "resolved": false
+    },
+    "not_proved_correct_share": {
+     "mean": -0.031145467299826073,
+     "ci95": [
+      -0.07587502936340146,
+      0.0
+     ],
+     "resolved": false
+    }
+   },
+   "rtllm": {
+    "official_pass_at_1": {
+     "mean": 0.03070505050505051,
+     "ci95": [
+      -0.040404040404040414,
+      0.12121212121212122
+     ],
+     "resolved": false
+    },
+    "not_proved_correct_share": {
+     "mean": 0.005921475196325883,
+     "ci95": [
+      -0.2444444444444444,
+      0.2564102564102564
+     ],
+     "resolved": false
+    }
+   }
   }
  },
  "n_resamples": 10000,
@@ -487,6 +827,22 @@
    "g2_threshold": 0.95,
    "g2_pass": false
   },
+  "e1-sext_rtllm.jsonl": {
+   "file": "/home/unnitools/runs/gen_e1/e1-sext_rtllm.jsonl",
+   "samples": 99,
+   "extract_and_name_ok": 95,
+   "share": 0.9596,
+   "g2_threshold": 0.95,
+   "g2_pass": true
+  },
+  "e1-sext_ve.jsonl": {
+   "file": "/home/unnitools/runs/gen_e1/e1-sext_ve.jsonl",
+   "samples": 432,
+   "extract_and_name_ok": 403,
+   "share": 0.9329,
+   "g2_threshold": 0.95,
+   "g2_pass": false
+  },
   "e1-w100_rtllm.jsonl": {
    "file": "/home/unnitools/runs/gen_e1/e1-w100_rtllm.jsonl",
    "samples": 99,
@@ -500,6 +856,22 @@
    "samples": 432,
    "extract_and_name_ok": 402,
    "share": 0.9306,
+   "g2_threshold": 0.95,
+   "g2_pass": false
+  },
+  "e1-wext_rtllm.jsonl": {
+   "file": "/home/unnitools/runs/gen_e1/e1-wext_rtllm.jsonl",
+   "samples": 99,
+   "extract_and_name_ok": 97,
+   "share": 0.9798,
+   "g2_threshold": 0.95,
+   "g2_pass": true
+  },
+  "e1-wext_ve.jsonl": {
+   "file": "/home/unnitools/runs/gen_e1/e1-wext_ve.jsonl",
+   "samples": 432,
+   "extract_and_name_ok": 410,
+   "share": 0.9491,
    "g2_threshold": 0.95,
    "g2_pass": false
   }
