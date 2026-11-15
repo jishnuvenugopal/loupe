@@ -1,0 +1,29 @@
+name: verify
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install numpy
+        run: python -m pip install numpy==2.4.2
+      - name: Recompute the headline table and compare the README tables with the data
+        run: python verify/check.py
+      - name: ASD-STE100 mechanical checks (README and docs)
+        run: python verify/ste_lint.py README.md docs/how-it-works.md docs/ai-workflow.md docs/lab-notebook.md
+      - name: Unit tests that need no EDA tools
+        run: |
+          python tests/test_a18_stats.py
+          python tests/test_a19_extract_alias.py
+          python a22/test_report.py

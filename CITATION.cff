@@ -1,0 +1,22 @@
+cff-version: 1.2.0
+message: "If you use Loupe, please cite it as below."
+title: "Loupe: a closer look at AI-written chip designs that pass their tests"
+abstract: >-
+  Strict re-scoring of LLM-generated Verilog on RTLLM v2.1 and VerilogEval v2.
+  Each official testbench pass gets a formal proof class against the reference
+  design (unbounded proof, bounded only, proved wrong, unknown). Pre-registered
+  and timestamped with OpenTimestamps (Bitcoin block 972099) before scoring.
+authors:
+  - family-names: Venugopal
+    given-names: Jishnu
+type: software
+license: Apache-2.0
+repository-code: "https://github.com/jishnuvenugopal/loupe"
+version: "1.0.0"
+date-released: "2026-11-15"
+keywords:
+  - LLM evaluation
+  - Verilog
+  - formal verification
+  - benchmarks
+  - reinforcement learning
