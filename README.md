@@ -6,6 +6,13 @@
 ![licence](https://img.shields.io/badge/code-Apache--2.0-blue)
 ![plan](https://img.shields.io/badge/analysis%20plan-pre--registered-green)
 
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/img/overview-dark.svg">
+  <img alt="Summary card. Five AI models write chip designs for 206 tasks. The benchmark test gives each design a pass or a fail. For each pass, formal tools look for a proof. On RTLLM, 27.5% to 36.0% of the passes have no proof, and 20.0% to 33.3% have a witness. On VerilogEval, at most 4.7% have no proof, and at most 2.4% have a witness. An exploratory AI review of 40 cases found 18 real bugs." src="docs/img/overview-light.svg" width="100%">
+</picture>
+
+**Read this page in three ways:** the 30-second summary below, [the numbers](#what-loupe-found), or [how AI agents ran this study](#how-the-ai-workflow-stayed-honest). The method: [`docs/how-it-works.md`](docs/how-it-works.md). The system: [`docs/architecture.md`](docs/architecture.md).
+
 <!-- ste:begin -->
 
 ## In 30 seconds
@@ -24,6 +31,11 @@ A teacher must mark a page of 100 sums. The teacher checks only five sums. If th
 Chip tests work in a similar way. A chip is a machine of very small switches. Today, people ask AI to write the plans for chips. A benchmark gives the AI a task, and a short test tries some inputs. If the outputs look right, the AI gets a point.
 
 A loupe is the small lens that a jeweller uses to look closely at a stone. This project is a loupe for that point. It uses a math tool that looks at every input, at every clock step. The tool can say "these two designs always do the same thing". Or it can show one exact case where they differ. We call that case a witness, and anybody can replay it.
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/img/eli5-dark.svg">
+  <img alt="Two copies of a page of 100 sums. The benchmark test checks five sums, misses three wrong sums and gives a gold star. Loupe checks every sum and finds the three wrong sums. Each wrong sum is a witness that you can replay." src="docs/img/eli5-light.svg" width="100%">
+</picture>
 
 ## Why this matters
 
@@ -224,6 +236,19 @@ This project also tests a method. Can AI agents run a careful study in a field t
 6. Write down every amendment, also the ones that weaken the study.
 7. Keep the failures in the log: three restarts, a file race, and a network outage.
 
+Each practice leaves a file that you can check:
+
+| Practice | Where to see it |
+|---|---|
+| Frozen scorer, hash-checked before each run | `scorer/`, tag `scorer-v1` |
+| Pinned prompts and models | `prompts/SHA256SUMS`, `models.yaml` |
+| One structured row per sample | `scores/` |
+| Unattended-run supervisor, heartbeats, retry limits | `a20/supervisor.py`, `notes/HEARTBEAT.md` |
+| Handoff notes and receipts between sessions | `HANDOFF.md`, `notes/` |
+| CI: recompute, number check, prose lint, tests, figure check | `.github/workflows/verify.yml` |
+
+The system in layers: [`docs/architecture.md`](docs/architecture.md).
+
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="docs/img/agent-loop-dark.svg">
   <img alt="Swimlane: I write a brief; an agent works until a gate, writes a stop line and waits; I decide; the agent records a numbered amendment and continues. Plan review before the data and an independent recompute after it." src="docs/img/agent-loop-light.svg" width="100%">
@@ -237,6 +262,11 @@ The full story is in [`docs/ai-workflow.md`](docs/ai-workflow.md).
 - **The date of the plan:** Bitcoin block 972099 holds the OpenTimestamps proof of `PREREG.md`. The header time of that block is 10:49 (UTC+08) on 19 Oct 2026. The main generation run started at 10:52, and the scorer started after 18:09. Block header times can be wrong by up to about two hours. So the proof is certain for "before the scorer ran", and probable for "before generation".
 - **The witnesses:** Each proved-wrong pass has a trace in [`results/main/cex/`](results/main/cex/).
 - **The upstream reports:** RTLLM issues #25 and #26 are open. On 15 Nov 2026 they had no reply.
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/img/evidence-chain-dark.svg">
+  <img alt="Chain of five steps, each with a check. A number in the README comes from the statistics file; CI compares every table number with the data. The statistics come from one row per sample; new code recomputes every point estimate. Each row names the scorer commit and hash. The generated designs have a manifest with hashes. The pinned inputs are in the frozen plan, which has a timestamp. Each proved-wrong pass also has a witness trace." src="docs/img/evidence-chain-light.svg" width="100%">
+</picture>
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="docs/img/timeline-dark.svg">
@@ -269,6 +299,7 @@ To check the timestamp, give `PREREG.md` and `PREREG.md.ots` to the [OpenTimesta
 | `grpo/`, `e1/` | The small training test and its evaluation |
 | `notes/` | The raw run log and receipts (see [`docs/lab-notebook.md`](docs/lab-notebook.md)) |
 | [`docs/how-it-works.md`](docs/how-it-works.md) | The method in detail, for RTL and evaluation readers |
+| [`docs/architecture.md`](docs/architecture.md) | The system: who does what, with which tools, and what checks the work |
 | [`docs/credits.md`](docs/credits.md) | Credits, upstream reports and related work |
 | `docs/img/` | The figures and the script that draws them (`make_figures.py`) |
 

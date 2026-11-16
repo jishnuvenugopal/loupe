@@ -1,0 +1,94 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="660" viewBox="0 0 1000 660" role="img" aria-labelledby="t d">
+<title id="t">The system in one picture</title>
+<desc id="d">Five layers. The author gives a question, a brief for each session, a decision at each gate and numbered amendments. AI agent sessions on a DGX Spark and on a Mac do the work. They run vLLM, Icarus, Verilator, Yosys, SymbiYosys, TRL and OpenTimestamps. The record in git holds the plan and proofs, pinned inputs, per-sample scores, tables, witnesses, the log and receipts. The checks read the record: scorer hash, gates, plan review, recompute and CI.</desc>
+<defs><marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#c3c2b7"/></marker></defs>
+<rect x="0.5" y="0.5" width="999" height="659" rx="14" fill="#1a1a19" stroke="#3a3a37"/>
+<text x="30" y="38" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="19" font-weight="700" fill="#f0efec" text-anchor="start">The system in one picture</text>
+<text x="30" y="60" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="13" font-weight="400" fill="#c3c2b7" text-anchor="start">People decide, agents work, tools give evidence, git keeps the record, checks read the record.</text>
+<rect x="20" y="78" width="960" height="86" rx="12" fill="#1d2b3d"/>
+<text x="34" y="98" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="11.5" font-weight="700" fill="#3987e5" text-anchor="start">THE AUTHOR</text>
+<rect x="35.0" y="106" width="225" height="50" rx="10" fill="#242422" stroke="#3a3a37" stroke-width="1"/>
+<text x="47.0" y="127" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="13" font-weight="650" fill="#f0efec" text-anchor="start">Question and rules</text>
+<text x="47.0" y="144" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="11.5" font-weight="400" fill="#c3c2b7" text-anchor="start">what to measure, what counts</text>
+<rect x="270.0" y="106" width="225" height="50" rx="10" fill="#242422" stroke="#3a3a37" stroke-width="1"/>
+<text x="282.0" y="127" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="13" font-weight="650" fill="#f0efec" text-anchor="start">Brief for each session</text>
+<text x="282.0" y="144" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="11.5" font-weight="400" fill="#c3c2b7" text-anchor="start">goal, pins, gates, stop rules</text>
+<rect x="505.0" y="106" width="225" height="50" rx="10" fill="#242422" stroke="#3a3a37" stroke-width="1"/>
+<text x="517.0" y="127" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="13" font-weight="650" fill="#f0efec" text-anchor="start">Decision at each gate</text>
+<text x="517.0" y="144" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="11.5" font-weight="400" fill="#c3c2b7" text-anchor="start">approve, change or stop</text>
+<rect x="740.0" y="106" width="225" height="50" rx="10" fill="#242422" stroke="#3a3a37" stroke-width="1"/>
+<text x="752.0" y="127" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="13" font-weight="650" fill="#f0efec" text-anchor="start">Numbered amendments</text>
+<text x="752.0" y="144" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="11.5" font-weight="400" fill="#c3c2b7" text-anchor="start">A13 to A22, each with a reason</text>
+<rect x="20" y="196" width="960" height="86" rx="12" fill="#1d2b3d"/>
+<text x="34" y="216" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="11.5" font-weight="700" fill="#3987e5" text-anchor="start">AI AGENT SESSIONS</text>
+<rect x="35.5" y="224" width="303" height="50" rx="10" fill="#242422" stroke="#3a3a37" stroke-width="1"/>
+<text x="47.5" y="245" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="13" font-weight="650" fill="#f0efec" text-anchor="start">On the DGX Spark</text>
+<text x="47.5" y="262" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="11.5" font-weight="400" fill="#c3c2b7" text-anchor="start">scorer, generation, statistics, reports</text>
+<rect x="348.5" y="224" width="303" height="50" rx="10" fill="#242422" stroke="#3a3a37" stroke-width="1"/>
+<text x="360.5" y="245" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="13" font-weight="650" fill="#f0efec" text-anchor="start">On the Mac</text>
+<text x="360.5" y="262" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="11.5" font-weight="400" fill="#c3c2b7" text-anchor="start">briefs, plan review, recompute, write-up</text>
+<rect x="661.5" y="224" width="303" height="50" rx="10" fill="#242422" stroke="#3a3a37" stroke-width="1"/>
+<text x="673.5" y="245" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="13" font-weight="650" fill="#f0efec" text-anchor="start">One review session</text>
+<text x="673.5" y="262" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="11.5" font-weight="400" fill="#c3c2b7" text-anchor="start">labels for the blind sample of 40</text>
+<rect x="20" y="314" width="960" height="86" rx="12" fill="#1d2b3d"/>
+<text x="34" y="334" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="11.5" font-weight="700" fill="#3987e5" text-anchor="start">TOOLS</text>
+<rect x="35.0" y="342" width="178" height="50" rx="10" fill="#242422" stroke="#3a3a37" stroke-width="1"/>
+<text x="47.0" y="363" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="13" font-weight="650" fill="#f0efec" text-anchor="start">vLLM</text>
+<text x="47.0" y="380" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="11.5" font-weight="400" fill="#c3c2b7" text-anchor="start">runs the five checkpoints</text>
+<rect x="223.0" y="342" width="178" height="50" rx="10" fill="#242422" stroke="#3a3a37" stroke-width="1"/>
+<text x="235.0" y="363" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="13" font-weight="650" fill="#f0efec" text-anchor="start">Icarus, Verilator</text>
+<text x="235.0" y="380" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="11.5" font-weight="400" fill="#c3c2b7" text-anchor="start">simulate the testbench</text>
+<rect x="411.0" y="342" width="178" height="50" rx="10" fill="#242422" stroke="#3a3a37" stroke-width="1"/>
+<text x="423.0" y="363" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="13" font-weight="650" fill="#f0efec" text-anchor="start">Yosys, SymbiYosys</text>
+<text x="423.0" y="380" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="11.5" font-weight="400" fill="#c3c2b7" text-anchor="start">prove, or find a witness</text>
+<rect x="599.0" y="342" width="178" height="50" rx="10" fill="#242422" stroke="#3a3a37" stroke-width="1"/>
+<text x="611.0" y="363" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="13" font-weight="650" fill="#f0efec" text-anchor="start">TRL (GRPO)</text>
+<text x="611.0" y="380" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="11.5" font-weight="400" fill="#c3c2b7" text-anchor="start">the small training test</text>
+<rect x="787.0" y="342" width="178" height="50" rx="10" fill="#242422" stroke="#3a3a37" stroke-width="1"/>
+<text x="799.0" y="363" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="13" font-weight="650" fill="#f0efec" text-anchor="start">OpenTimestamps</text>
+<text x="799.0" y="380" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="11.5" font-weight="400" fill="#c3c2b7" text-anchor="start">dates the frozen plan</text>
+<rect x="20" y="432" width="960" height="86" rx="12" fill="#1d2b3d"/>
+<text x="34" y="452" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="11.5" font-weight="700" fill="#3987e5" text-anchor="start">THE RECORD IN GIT</text>
+<rect x="35.0" y="460" width="178" height="50" rx="10" fill="#242422" stroke="#3a3a37" stroke-width="1"/>
+<text x="47.0" y="481" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="13" font-weight="650" fill="#f0efec" text-anchor="start">Plan and proofs</text>
+<text x="47.0" y="498" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="11" font-weight="400" fill="#c3c2b7" text-anchor="start">PREREG*.md + .ots</text>
+<rect x="223.0" y="460" width="178" height="50" rx="10" fill="#242422" stroke="#3a3a37" stroke-width="1"/>
+<text x="235.0" y="481" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="13" font-weight="650" fill="#f0efec" text-anchor="start">Pinned inputs</text>
+<text x="235.0" y="498" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="11" font-weight="400" fill="#c3c2b7" text-anchor="start">prompts/, models.yaml</text>
+<rect x="411.0" y="460" width="178" height="50" rx="10" fill="#242422" stroke="#3a3a37" stroke-width="1"/>
+<text x="423.0" y="481" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="13" font-weight="650" fill="#f0efec" text-anchor="start">Per-sample scores</text>
+<text x="423.0" y="498" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="11" font-weight="400" fill="#c3c2b7" text-anchor="start">scores/*.jsonl</text>
+<rect x="599.0" y="460" width="178" height="50" rx="10" fill="#242422" stroke="#3a3a37" stroke-width="1"/>
+<text x="611.0" y="481" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="13" font-weight="650" fill="#f0efec" text-anchor="start">Tables and witnesses</text>
+<text x="611.0" y="498" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="11" font-weight="400" fill="#c3c2b7" text-anchor="start">results/</text>
+<rect x="787.0" y="460" width="178" height="50" rx="10" fill="#242422" stroke="#3a3a37" stroke-width="1"/>
+<text x="799.0" y="481" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="13" font-weight="650" fill="#f0efec" text-anchor="start">Log and receipts</text>
+<text x="799.0" y="498" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="11" font-weight="400" fill="#c3c2b7" text-anchor="start">notes/, HANDOFF.md</text>
+<rect x="20" y="550" width="960" height="86" rx="12" fill="#1d2b3d"/>
+<text x="34" y="570" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="11.5" font-weight="700" fill="#3987e5" text-anchor="start">CHECKS</text>
+<rect x="35.0" y="578" width="178" height="50" rx="10" fill="#242422" stroke="#3a3a37" stroke-width="1"/>
+<text x="47.0" y="599" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="13" font-weight="650" fill="#f0efec" text-anchor="start">Scorer hash</text>
+<text x="47.0" y="616" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="11.5" font-weight="400" fill="#c3c2b7" text-anchor="start">before each scorer run</text>
+<rect x="223.0" y="578" width="178" height="50" rx="10" fill="#242422" stroke="#3a3a37" stroke-width="1"/>
+<text x="235.0" y="599" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="13" font-weight="650" fill="#f0efec" text-anchor="start">Gates</text>
+<text x="235.0" y="616" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="11.5" font-weight="400" fill="#c3c2b7" text-anchor="start">a stop line at each one</text>
+<rect x="411.0" y="578" width="178" height="50" rx="10" fill="#242422" stroke="#3a3a37" stroke-width="1"/>
+<text x="423.0" y="599" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="13" font-weight="650" fill="#f0efec" text-anchor="start">Plan review</text>
+<text x="423.0" y="616" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="11.5" font-weight="400" fill="#c3c2b7" text-anchor="start">before the data existed</text>
+<rect x="599.0" y="578" width="178" height="50" rx="10" fill="#242422" stroke="#3a3a37" stroke-width="1"/>
+<text x="611.0" y="599" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="13" font-weight="650" fill="#f0efec" text-anchor="start">Recompute</text>
+<text x="611.0" y="616" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="11.5" font-weight="400" fill="#c3c2b7" text-anchor="start">second machine, new code</text>
+<rect x="787.0" y="578" width="178" height="50" rx="10" fill="#242422" stroke="#3a3a37" stroke-width="1"/>
+<text x="799.0" y="599" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="13" font-weight="650" fill="#f0efec" text-anchor="start">CI on each push</text>
+<text x="799.0" y="616" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="11.5" font-weight="400" fill="#c3c2b7" text-anchor="start">numbers, figures, tests</text>
+<path d="M330,168 L330,193" fill="none" stroke="#c3c2b7" stroke-width="1.6" marker-end="url(#arr)"/>
+<text x="340" y="184.5" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="11.5" font-weight="600" fill="#c3c2b7" text-anchor="start">brief, decisions</text>
+<path d="M620,192 L620,167" fill="none" stroke="#c3c2b7" stroke-width="1.6" marker-end="url(#arr)"/>
+<text x="630" y="183.5" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="11.5" font-weight="600" fill="#c3c2b7" text-anchor="start">stop line, evidence</text>
+<path d="M480,286 L480,311" fill="none" stroke="#c3c2b7" stroke-width="1.6" marker-end="url(#arr)"/>
+<text x="490" y="302.5" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="11.5" font-weight="600" fill="#c3c2b7" text-anchor="start">run the tools</text>
+<path d="M480,404 L480,429" fill="none" stroke="#c3c2b7" stroke-width="1.6" marker-end="url(#arr)"/>
+<text x="490" y="420.5" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="11.5" font-weight="600" fill="#c3c2b7" text-anchor="start">write files, commit</text>
+<path d="M480,546 L480,521" fill="none" stroke="#c3c2b7" stroke-width="1.6" marker-end="url(#arr)"/>
+<text x="490" y="537.5" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="11.5" font-weight="600" fill="#c3c2b7" text-anchor="start">read and compare</text>
+</svg>

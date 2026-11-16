@@ -1,0 +1,69 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="592" viewBox="0 0 1000 592" role="img" aria-labelledby="t d">
+<title id="t">From a number on this page back to the raw data</title>
+<desc id="d">Chain of five steps, each with a check. A number in the README comes from the statistics file; CI compares every table number with the data. The statistics come from one row per sample; new code recomputes every point estimate. Each row names the scorer commit and hash. The generated designs have a manifest with hashes. The pinned inputs are in the frozen plan, which has a timestamp. Each proved-wrong pass also has a witness trace.</desc>
+<defs><marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#52514e"/></marker></defs>
+<rect x="0.5" y="0.5" width="999" height="591" rx="14" fill="#fcfcfb" stroke="#dcdad3"/>
+<text x="30" y="38" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="19" font-weight="700" fill="#0b0b0b" text-anchor="start">From a number on this page back to the raw data</text>
+<text x="30" y="60" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="13" font-weight="400" fill="#52514e" text-anchor="start">Each step is a file in this repository, and each step has a check.</text>
+<text x="30" y="88" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="11.5" font-weight="700" fill="#2a78d6" text-anchor="start">THE CHAIN</text>
+<text x="470" y="88" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="11.5" font-weight="700" fill="#2a78d6" text-anchor="start">THE CHECK ON THAT STEP</text>
+<rect x="30" y="98" width="400" height="60" rx="10" fill="#f3f2ee" stroke="#dcdad3" stroke-width="1"/>
+<circle cx="58" cy="128.0" r="13" fill="none" stroke="#2a78d6" stroke-width="2"/>
+<text x="58" y="133.0" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#0b0b0b" text-anchor="middle">1</text>
+<text x="84" y="124" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="14.5" font-weight="650" fill="#0b0b0b" text-anchor="start">A number on this page</text>
+<text x="84" y="144" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="11.5" font-weight="400" fill="#52514e" text-anchor="start">README.md, for example 33.3 [17.1, 50.6]</text>
+<line x1="431" y1="128.0" x2="469" y2="128.0" stroke="#8a8880" stroke-width="1.6" stroke-dasharray="4 4"/>
+<rect x="470" y="98" width="500" height="60" rx="10" fill="#f3f2ee" stroke="#dcdad3" stroke-width="1"/>
+<rect x="470" y="98" width="8" height="60" rx="4" fill="#0ca30c"/>
+<text x="494" y="124" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="13.5" font-weight="600" fill="#0b0b0b" text-anchor="start">CI compares every table number with the data files</text>
+<text x="494" y="144" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="11.5" font-weight="400" fill="#52514e" text-anchor="start">verify/check.py, on each push</text>
+<path d="M230,160 L230,176" fill="none" stroke="#52514e" stroke-width="1.6" marker-end="url(#arr)"/>
+<rect x="30" y="178" width="400" height="60" rx="10" fill="#f3f2ee" stroke="#dcdad3" stroke-width="1"/>
+<circle cx="58" cy="208.0" r="13" fill="none" stroke="#2a78d6" stroke-width="2"/>
+<text x="58" y="213.0" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#0b0b0b" text-anchor="middle">2</text>
+<text x="84" y="204" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="14.5" font-weight="650" fill="#0b0b0b" text-anchor="start">The statistics</text>
+<text x="84" y="224" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="11.5" font-weight="400" fill="#52514e" text-anchor="start">results/main/stats.json</text>
+<line x1="431" y1="208.0" x2="469" y2="208.0" stroke="#8a8880" stroke-width="1.6" stroke-dasharray="4 4"/>
+<rect x="470" y="178" width="500" height="60" rx="10" fill="#f3f2ee" stroke="#dcdad3" stroke-width="1"/>
+<rect x="470" y="178" width="8" height="60" rx="4" fill="#0ca30c"/>
+<text x="494" y="204" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="13.5" font-weight="600" fill="#0b0b0b" text-anchor="start">New code recomputes every point estimate from the scores</text>
+<text x="494" y="224" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="11.5" font-weight="400" fill="#52514e" text-anchor="start">verify/recompute.py</text>
+<path d="M230,240 L230,256" fill="none" stroke="#52514e" stroke-width="1.6" marker-end="url(#arr)"/>
+<rect x="30" y="258" width="400" height="60" rx="10" fill="#f3f2ee" stroke="#dcdad3" stroke-width="1"/>
+<circle cx="58" cy="288.0" r="13" fill="none" stroke="#2a78d6" stroke-width="2"/>
+<text x="58" y="293.0" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#0b0b0b" text-anchor="middle">3</text>
+<text x="84" y="284" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="14.5" font-weight="650" fill="#0b0b0b" text-anchor="start">One row per sample</text>
+<text x="84" y="304" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="11.5" font-weight="400" fill="#52514e" text-anchor="start">scores/&lt;arm&gt;.jsonl</text>
+<line x1="431" y1="288.0" x2="469" y2="288.0" stroke="#8a8880" stroke-width="1.6" stroke-dasharray="4 4"/>
+<rect x="470" y="258" width="500" height="60" rx="10" fill="#f3f2ee" stroke="#dcdad3" stroke-width="1"/>
+<rect x="470" y="258" width="8" height="60" rx="4" fill="#0ca30c"/>
+<text x="494" y="284" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="13.5" font-weight="600" fill="#0b0b0b" text-anchor="start">Each row names the scorer commit and the scorer hash</text>
+<text x="494" y="304" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="11.5" font-weight="400" fill="#52514e" text-anchor="start">scorer/, frozen at tag scorer-v1</text>
+<path d="M230,320 L230,336" fill="none" stroke="#52514e" stroke-width="1.6" marker-end="url(#arr)"/>
+<rect x="30" y="338" width="400" height="60" rx="10" fill="#f3f2ee" stroke="#dcdad3" stroke-width="1"/>
+<circle cx="58" cy="368.0" r="13" fill="none" stroke="#2a78d6" stroke-width="2"/>
+<text x="58" y="373.0" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#0b0b0b" text-anchor="middle">4</text>
+<text x="84" y="364" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="14.5" font-weight="650" fill="#0b0b0b" text-anchor="start">The generated designs</text>
+<text x="84" y="384" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="11.5" font-weight="400" fill="#52514e" text-anchor="start">results/main/releases/*.tar.gz</text>
+<line x1="431" y1="368.0" x2="469" y2="368.0" stroke="#8a8880" stroke-width="1.6" stroke-dasharray="4 4"/>
+<rect x="470" y="338" width="500" height="60" rx="10" fill="#f3f2ee" stroke="#dcdad3" stroke-width="1"/>
+<rect x="470" y="338" width="8" height="60" rx="4" fill="#0ca30c"/>
+<text x="494" y="364" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="13.5" font-weight="600" fill="#0b0b0b" text-anchor="start">A manifest holds the hash of each output file</text>
+<text x="494" y="384" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="11.5" font-weight="400" fill="#52514e" text-anchor="start">gen/manifests/</text>
+<path d="M230,400 L230,416" fill="none" stroke="#52514e" stroke-width="1.6" marker-end="url(#arr)"/>
+<rect x="30" y="418" width="400" height="60" rx="10" fill="#f3f2ee" stroke="#dcdad3" stroke-width="1"/>
+<circle cx="58" cy="448.0" r="13" fill="none" stroke="#2a78d6" stroke-width="2"/>
+<text x="58" y="453.0" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#0b0b0b" text-anchor="middle">5</text>
+<text x="84" y="444" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="14.5" font-weight="650" fill="#0b0b0b" text-anchor="start">The pinned inputs</text>
+<text x="84" y="464" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="11.5" font-weight="400" fill="#52514e" text-anchor="start">prompts/, models.yaml, benchmark commits</text>
+<line x1="431" y1="448.0" x2="469" y2="448.0" stroke="#8a8880" stroke-width="1.6" stroke-dasharray="4 4"/>
+<rect x="470" y="418" width="500" height="60" rx="10" fill="#f3f2ee" stroke="#dcdad3" stroke-width="1"/>
+<rect x="470" y="418" width="8" height="60" rx="4" fill="#0ca30c"/>
+<text x="494" y="444" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="13.5" font-weight="600" fill="#0b0b0b" text-anchor="start">The frozen plan names the pins and has a timestamp</text>
+<text x="494" y="464" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="11.5" font-weight="400" fill="#52514e" text-anchor="start">PREREG.md + PREREG.md.ots</text>
+<text x="242" y="172.0" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="11.5" font-weight="600" fill="#52514e" text-anchor="start">comes from</text>
+<rect x="30" y="500" width="940" height="66" rx="10" fill="#f3f2ee" stroke="#dcdad3" stroke-width="1"/>
+<rect x="30" y="500" width="8" height="66" rx="4" fill="#d03b3b"/>
+<text x="54" y="527" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="14.5" font-weight="650" fill="#0b0b0b" text-anchor="start">A proved-wrong pass has one more link: the witness</text>
+<text x="54" y="548" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="400" fill="#52514e" text-anchor="start">results/main/cex/ holds the input trace. Replay it, and the design and the reference give different outputs.</text>
+</svg>

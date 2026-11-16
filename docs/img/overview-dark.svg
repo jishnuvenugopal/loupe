@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="640" viewBox="0 0 1000 640" role="img" aria-labelledby="t d">
+<title id="t">Loupe in one picture</title>
+<desc id="d">Summary card. Five AI models write chip designs for 206 tasks. The benchmark test gives each design a pass or a fail. For each pass, formal tools look for a proof. On RTLLM, 27.5% to 36.0% of the passes have no proof, and 20.0% to 33.3% have a witness. On VerilogEval, at most 4.7% of the passes have no proof, and at most 2.4% have a witness. An exploratory AI review of 40 cases found 18 real bugs.</desc>
+<defs><marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#c3c2b7"/></marker></defs>
+<rect x="0.5" y="0.5" width="999" height="639" rx="14" fill="#1a1a19" stroke="#3a3a37"/>
+<circle cx="57" cy="50" r="11" fill="none" stroke="#3987e5" stroke-width="3"/>
+<path d="M64.9,57.9 L73.7,66.7" stroke="#3987e5" stroke-width="3.6" stroke-linecap="round"/>
+<text x="86" y="59" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="22" font-weight="700" fill="#3987e5" text-anchor="start">LOUPE</text>
+<text x="44" y="118" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="44" font-weight="700" fill="#f0efec" text-anchor="start">A test says “pass”.</text>
+<text x="44" y="170" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="44" font-weight="700" fill="#f0efec" text-anchor="start">Is the design proved correct?</text>
+<line x1="62" y1="222" x2="62" y2="318" stroke="#3a3a37" stroke-width="3"/>
+<circle cx="62" cy="222" r="17" fill="#1a1a19" stroke="#3987e5" stroke-width="2.5"/>
+<text x="62" y="229" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="20" font-weight="700" fill="#f0efec" text-anchor="middle">1</text>
+<text x="98" y="232" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="28" font-weight="400" fill="#f0efec" text-anchor="start">Five AI models write chip designs for 206 tasks.</text>
+<circle cx="62" cy="270" r="17" fill="#1a1a19" stroke="#3987e5" stroke-width="2.5"/>
+<text x="62" y="277" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="20" font-weight="700" fill="#f0efec" text-anchor="middle">2</text>
+<text x="98" y="280" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="28" font-weight="400" fill="#f0efec" text-anchor="start">The benchmark test gives each design a pass or a fail.</text>
+<circle cx="62" cy="318" r="17" fill="#1a1a19" stroke="#3987e5" stroke-width="2.5"/>
+<text x="62" y="325" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="20" font-weight="700" fill="#f0efec" text-anchor="middle">3</text>
+<text x="98" y="328" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="28" font-weight="400" fill="#f0efec" text-anchor="start">For each pass, formal tools look for a proof.</text>
+<rect x="44" y="352" width="912" height="92" rx="10" fill="#242422" stroke="#3a3a37" stroke-width="1"/>
+<rect x="44" y="352" width="10" height="92" rx="5" fill="#e66767"/>
+<text x="76" y="414" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="46" font-weight="700" fill="#f0efec" text-anchor="start">27.5% to 36.0%</text>
+<text x="452" y="392" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="27" font-weight="650" fill="#f0efec" text-anchor="start">of RTLLM passes have no proof</text>
+<text x="452" y="426" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="26" font-weight="400" fill="#c3c2b7" text-anchor="start">Floor: 20.0% to 33.3% have a witness</text>
+<rect x="44" y="456" width="912" height="92" rx="10" fill="#242422" stroke="#3a3a37" stroke-width="1"/>
+<rect x="44" y="456" width="10" height="92" rx="5" fill="#0ca30c"/>
+<text x="76" y="518" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="46" font-weight="700" fill="#f0efec" text-anchor="start">at most 4.7%</text>
+<text x="452" y="496" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="27" font-weight="650" fill="#f0efec" text-anchor="start">of VerilogEval passes have no proof</text>
+<text x="452" y="530" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="26" font-weight="400" fill="#c3c2b7" text-anchor="start">Floor: at most 2.4% have a witness</text>
+<text x="44" y="586" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="26" font-weight="400" fill="#c3c2b7" text-anchor="start">A difference from the reference is not always a bug:</text>
+<text x="44" y="618" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="26" font-weight="400" fill="#c3c2b7" text-anchor="start">an exploratory AI review of 40 cases found 18 real bugs.</text>
+</svg>

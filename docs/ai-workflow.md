@@ -13,6 +13,13 @@ I am an AI engineer, not an RTL engineer. AI agents wrote most of the code and r
 | AI agent sessions | Mac | Run briefs, plan reviews, independent recompute, this write-up |
 | One AI review session | Offline blind packets | The exploratory labels for the blind sample of 40 |
 
+## One session, close up
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="img/agent-session-dark.svg">
+  <img alt="One AI agent session. The brief, the frozen plan and the record so far go in. The session reads the context, writes code, runs the tools, checks each exit condition and writes results and a report. Commits, structured results, a stop line and a handoff note come out. A gate, a hash check, a sample count, a retry limit and a heartbeat stop or watch the session." src="img/agent-session-light.svg" width="100%">
+</picture>
+
 ## The loop
 
 <picture>
@@ -64,6 +71,20 @@ After the primary results, an agent on a second machine recomputed them with new
 - The ends of the intervals differ by at most 2.4 points, from the different seed.
 
 That code is now [`verify/recompute.py`](../verify/recompute.py), and CI runs it on each push.
+
+## The words
+
+This study uses its own words. This table maps them to the common words for the same ideas.
+
+| In this study | The common word |
+|---|---|
+| Brief | Task specification, with pins and gates |
+| Gate | Human-in-the-loop approval point |
+| Stop line | Status report that blocks further work |
+| Amendment | Change to the plan, with a number and a reason |
+| Session | One agent run |
+| Heartbeat | Liveness signal from an unattended run |
+| Recompute | Independent verification of a result |
 
 ## What went wrong, and stayed in the record
 

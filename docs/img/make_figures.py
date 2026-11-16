@@ -1,9 +1,10 @@
 #!/usr/bin/env python3
 """Draw the README figures as SVG, in a light and a dark version.
 
-The results chart reads its numbers from results/main/stats.json, so the
-figure cannot drift from the data. The other figures restate facts from
-README.md, docs/how-it-works.md and docs/ai-workflow.md.
+The results chart, the summary card and the evidence chain read their numbers
+from results/main/stats.json and results/main/blind40/unblinded.ai.json, so
+those figures cannot drift from the data. The other figures restate facts from
+README.md and the pages in docs/.
 
     python3 docs/img/make_figures.py           # write docs/img/*.svg
     python3 docs/img/make_figures.py --check   # exit 1 if a file is stale
@@ -278,14 +279,337 @@ def loop(t):
                "plan review before the data and an independent recompute after it.")
 
 
+# ---------- helpers for figures 5 to 9 ----------
+
+def lane(y, h, name, t):
+    return [f'<rect x="20" y="{y}" width="960" height="{h}" rx="12" fill="{t["soft"]}"/>',
+            text(34, y + 20, name, t, 11.5, 700, "accent")]
+
+
+def mini(x, y, w, title, sub, t, mono_sub=False):
+    return [box(x, y, w, 50, t), text(x + 12, y + 21, title, t, 13, 650),
+            text(x + 12, y + 38, sub, t, 11 if mono_sub else 11.5, 400, "ink2", mono=mono_sub)]
+
+
+def row_of(cards, y, t, mono_sub=False):
+    n = len(cards)
+    cw = (930 - 10 * (n - 1)) // n
+    x0 = 20 + (960 - n * cw - 10 * (n - 1)) / 2
+    out = []
+    for i, (ti, sub) in enumerate(cards):
+        out += mini(x0 + i * (cw + 10), y, cw, ti, sub, t, mono_sub)
+    return out
+
+
+
+def lens(cx, cy, r, t, sw=2.4):
+    k = r * 0.72
+    return [f'<circle cx="{cx}" cy="{cy}" r="{r}" fill="none" stroke="{t["accent"]}" stroke-width="{sw}"/>',
+            f'<path d="M{cx + k:.1f},{cy + k:.1f} L{cx + k + r * 0.8:.1f},{cy + k + r * 0.8:.1f}" '
+            f'stroke="{t["accent"]}" stroke-width="{sw + 0.6:.1f}" stroke-linecap="round"/>']
+
+
+# ---------- figure 5: the summary card (from data) ----------
+
+def overview(t, stats, blind, tasks):
+    # The type is large on purpose: this card must stay readable at phone width.
+    W, H = 1000, 640
+    pct = lambda v: f"{100 * v:.1f}%"  # noqa: E731
+    rt = [stats["arms"][a]["rtllm"]["point"] for a in ARMS]
+    ve = [stats["arms"][a]["ve"]["point"] for a in ARMS]
+    npc = [p["not_proved_correct_share"] for p in rt]
+    floor = [p["proved_wrong_share"] for p in rt]
+    ve_npc = max(p["not_proved_correct_share"] for p in ve)
+    ve_floor = max(p["proved_wrong_share"] for p in ve)
+    bugs, n = blind["overall"]["real bug"]["count"], blind["n"]
+    b = lens(57, 50, 11, t, 3)
+    b += [text(86, 59, "LOUPE", t, 22, 700, "accent"),
+          text(44, 118, "A test says “pass”.", t, 44, 700),
+          text(44, 170, "Is the design proved correct?", t, 44, 700)]
+    steps = [f"Five AI models write chip designs for {tasks} tasks.",
+             "The benchmark test gives each design a pass or a fail.",
+             "For each pass, formal tools look for a proof."]
+    sy = 222
+    b.append(f'<line x1="62" y1="{sy}" x2="62" y2="{sy + 96}" stroke="{t["line"]}" stroke-width="3"/>')
+    for i, s in enumerate(steps):
+        y = sy + i * 48
+        b.append(f'<circle cx="62" cy="{y}" r="17" fill="{t["bg"]}" stroke="{t["accent"]}" '
+                 f'stroke-width="2.5"/>')
+        b.append(text(62, y + 7, str(i + 1), t, 20, 700, "ink", "middle"))
+        b.append(text(98, y + 10, s, t, 28, 400))
+
+    def row(y, col, big, l1, l2):
+        return [box(44, y, 912, 92, t),
+                f'<rect x="44" y="{y}" width="10" height="92" rx="5" fill="{t[col]}"/>',
+                text(76, y + 62, big, t, 46, 700),
+                text(452, y + 40, l1, t, 27, 650),
+                text(452, y + 74, l2, t, 26, 400, "ink2")]
+
+    b += row(352, "bad", f"{pct(min(npc))} to {pct(max(npc))}", "of RTLLM passes have no proof",
+             f"Floor: {pct(min(floor))} to {pct(max(floor))} have a witness")
+    b += row(456, "good", f"at most {pct(ve_npc)}", "of VerilogEval passes have no proof",
+             f"Floor: at most {pct(ve_floor)} have a witness")
+    b.append(text(44, 586, "A difference from the reference is not always a bug:", t, 26, 400, "ink2"))
+    b.append(text(44, 618, f"an exploratory AI review of {n} cases found {bugs} real bugs.",
+                  t, 26, 400, "ink2"))
+    return svg(W, H, t, b, "Loupe in one picture",
+               f"Summary card. Five AI models write chip designs for {tasks} tasks. The benchmark "
+               "test gives each design a pass or a fail. For each pass, formal tools look for a "
+               "proof. "
+               f"On RTLLM, {pct(min(npc))} to {pct(max(npc))} of the passes have no proof, and "
+               f"{pct(min(floor))} to {pct(max(floor))} have a witness. On VerilogEval, at most "
+               f"{pct(ve_npc)} of the passes have no proof, and at most {pct(ve_floor)} have a "
+               f"witness. An exploratory AI review of {n} cases found {bugs} real bugs.")
+
+
+# ---------- figure 6: the system in layers ----------
+
+def architecture(t):
+    W, bh, gap, y0 = 1000, 86, 32, 78
+    b = [text(30, 38, "The system in one picture", t, 19, 700),
+         text(30, 60, "People decide, agents work, tools give evidence, git keeps the record, "
+              "checks read the record.", t, 13, 400, "ink2")]
+    layers = [
+        ("THE AUTHOR", False,
+         [("Question and rules", "what to measure, what counts"),
+          ("Brief for each session", "goal, pins, gates, stop rules"),
+          ("Decision at each gate", "approve, change or stop"),
+          ("Numbered amendments", "A13 to A22, each with a reason")]),
+        ("AI AGENT SESSIONS", False,
+         [("On the DGX Spark", "scorer, generation, statistics, reports"),
+          ("On the Mac", "briefs, plan review, recompute, write-up"),
+          ("One review session", "labels for the blind sample of 40")]),
+        ("TOOLS", False,
+         [("vLLM", "runs the five checkpoints"),
+          ("Icarus, Verilator", "simulate the testbench"),
+          ("Yosys, SymbiYosys", "prove, or find a witness"),
+          ("TRL (GRPO)", "the small training test"),
+          ("OpenTimestamps", "dates the frozen plan")]),
+        ("THE RECORD IN GIT", True,
+         [("Plan and proofs", "PREREG*.md + .ots"),
+          ("Pinned inputs", "prompts/, models.yaml"),
+          ("Per-sample scores", "scores/*.jsonl"),
+          ("Tables and witnesses", "results/"),
+          ("Log and receipts", "notes/, HANDOFF.md")]),
+        ("CHECKS", False,
+         [("Scorer hash", "before each scorer run"),
+          ("Gates", "a stop line at each one"),
+          ("Plan review", "before the data existed"),
+          ("Recompute", "second machine, new code"),
+          ("CI on each push", "numbers, figures, tests")]),
+    ]
+    ys = [y0 + i * (bh + gap) for i in range(len(layers))]
+    for y, (name, mono, cards) in zip(ys, layers):
+        b += lane(y, bh, name, t)
+        b += row_of(cards, y + 28, t, mono)
+
+    def link(x, ya, yb, label):
+        return [arrow(f"M{x},{ya} L{x},{yb}", t),
+                text(x + 10, (ya + yb) / 2 + 4, label, t, 11.5, 600, "ink2")]
+
+    b += link(330, ys[0] + bh + 4, ys[1] - 3, "brief, decisions")
+    b += link(620, ys[1] - 4, ys[0] + bh + 3, "stop line, evidence")
+    b += link(480, ys[1] + bh + 4, ys[2] - 3, "run the tools")
+    b += link(480, ys[2] + bh + 4, ys[3] - 3, "write files, commit")
+    b += link(480, ys[4] - 4, ys[3] + bh + 3, "read and compare")
+    return svg(W, ys[-1] + bh + 24, t, b, "The system in one picture",
+               "Five layers. The author gives a question, a brief for each session, a decision at "
+               "each gate and numbered amendments. AI agent sessions on a DGX Spark and on a Mac do "
+               "the work. They run vLLM, Icarus, Verilator, Yosys, SymbiYosys, TRL and "
+               "OpenTimestamps. The record in git holds the plan and proofs, pinned inputs, "
+               "per-sample scores, tables, witnesses, the log and receipts. The checks read the "
+               "record: scorer hash, gates, plan review, recompute and CI.")
+
+
+# ---------- figure 7: the evidence chain ----------
+
+def evidence(t, stats):
+    W, y0, rh, gap = 1000, 98, 60, 20
+    a = stats["arms"]["7b-rl"]["rtllm"]
+    lo, hi = a["ci95"]["not_proved_correct_share"]
+    ex = f"{100 * a['point']['not_proved_correct_share']:.1f} [{100 * lo:.1f}, {100 * hi:.1f}]"
+    b = [text(30, 38, "From a number on this page back to the raw data", t, 19, 700),
+         text(30, 60, "Each step is a file in this repository, and each step has a check.",
+              t, 13, 400, "ink2"),
+         text(30, 88, "THE CHAIN", t, 11.5, 700, "accent"),
+         text(470, 88, "THE CHECK ON THAT STEP", t, 11.5, 700, "accent")]
+    rows = [("A number on this page", f"README.md, for example {ex}",
+             "CI compares every table number with the data files", "verify/check.py, on each push"),
+            ("The statistics", "results/main/stats.json",
+             "New code recomputes every point estimate from the scores", "verify/recompute.py"),
+            ("One row per sample", "scores/<arm>.jsonl",
+             "Each row names the scorer commit and the scorer hash", "scorer/, frozen at tag scorer-v1"),
+            ("The generated designs", "results/main/releases/*.tar.gz",
+             "A manifest holds the hash of each output file", "gen/manifests/"),
+            ("The pinned inputs", "prompts/, models.yaml, benchmark commits",
+             "The frozen plan names the pins and has a timestamp", "PREREG.md + PREREG.md.ots")]
+    for i, (ti, path, chk, where) in enumerate(rows):
+        y = y0 + i * (rh + gap)
+        b.append(box(30, y, 400, rh, t))
+        b.append(f'<circle cx="58" cy="{y + rh / 2}" r="13" fill="none" stroke="{t["accent"]}" '
+                 f'stroke-width="2"/>')
+        b.append(text(58, y + rh / 2 + 5, str(i + 1), t, 13, 700, "ink", "middle"))
+        b.append(text(84, y + 26, ti, t, 14.5, 650))
+        b.append(text(84, y + 46, path, t, 11.5, 400, "ink2", mono=True))
+        b.append(f'<line x1="431" y1="{y + rh / 2}" x2="469" y2="{y + rh / 2}" stroke="{t["muted"]}" '
+                 f'stroke-width="1.6" stroke-dasharray="4 4"/>')
+        b.append(box(470, y, 500, rh, t))
+        b.append(f'<rect x="470" y="{y}" width="8" height="{rh}" rx="4" fill="{t["good"]}"/>')
+        b.append(text(494, y + 26, chk, t, 13.5, 600))
+        b.append(text(494, y + 46, where, t, 11.5, 400, "ink2", mono=True))
+        if i < len(rows) - 1:
+            b.append(arrow(f"M230,{y + rh + 2} L230,{y + rh + gap - 2}", t))
+    b.append(text(242, y0 + rh + gap / 2 + 4, "comes from", t, 11.5, 600, "ink2"))
+    wy = y0 + len(rows) * (rh + gap) + 2
+    b.append(box(30, wy, 940, 66, t))
+    b.append(f'<rect x="30" y="{wy}" width="8" height="66" rx="4" fill="{t["bad"]}"/>')
+    b.append(text(54, wy + 27, "A proved-wrong pass has one more link: the witness", t, 14.5, 650))
+    b.append(text(54, wy + 48, "results/main/cex/ holds the input trace. Replay it, and the design "
+                  "and the reference give different outputs.", t, 12.5, 400, "ink2"))
+    return svg(W, wy + 66 + 26, t, b, "From a number on this page back to the raw data",
+               "Chain of five steps, each with a check. A number in the README comes from the "
+               "statistics file; CI compares every table number with the data. The statistics come "
+               "from one row per sample; new code recomputes every point estimate. Each row names "
+               "the scorer commit and hash. The generated designs have a manifest with hashes. The "
+               "pinned inputs are in the frozen plan, which has a timestamp. Each proved-wrong pass "
+               "also has a witness trace.")
+
+
+# ---------- figure 8: one agent session ----------
+
+def session(t):
+    W, y0, ch, g = 1000, 98, 70, 12
+    b = [text(30, 38, "One agent session: what goes in, what comes out, what stops it", t, 19, 700),
+         text(30, 60, "Each session starts from written files, and it must leave written files.",
+              t, 13, 400, "ink2")]
+    for x, name in ((30, "IN: THE CONTEXT"), (360, "THE SESSION"), (690, "OUT: THE RECORD")):
+        b.append(text(x, 88, name, t, 11.5, 700, "accent"))
+    ins = [("The brief", ["goal, pins, gates, stop rules"]),
+           ("The frozen plan", ["PREREG.md and its amendments"]),
+           ("The record so far", ["HANDOFF.md, notes/LOG.md"])]
+    outs = [("Commits on the run branch", ["code, results, reports"]),
+            ("Structured results", ["JSONL scores, JSON results, receipts"]),
+            ("Stop line and handoff note", ["what happened, what needs a decision"])]
+    for i in range(3):
+        y = y0 + i * (ch + g)
+        b += card(30, y, 280, ch, ins[i][0], ins[i][1], t)
+        b += card(690, y, 280, ch, outs[i][0], outs[i][1], t)
+        b.append(arrow(f"M312,{y + ch / 2} L357,{y + ch / 2}", t))
+        b.append(arrow(f"M642,{y + ch / 2} L687,{y + ch / 2}", t))
+    sh = 3 * ch + 2 * g
+    b.append(box(360, y0, 280, sh, t, "soft", "accent", 12, 1.5))
+    b.append(text(380, y0 + 32, "AI agent session", t, 16, 700))
+    work = ["1   Reads the context", "2   Writes code and runs the tools",
+            "3   Checks each exit condition", "4   Writes the results and a report"]
+    b += lines(380, y0 + 62, work, t, 13.5, 24, "ink")
+    b.append(f'<line x1="380" y1="{y0 + 154}" x2="620" y2="{y0 + 154}" stroke="{t["line"]}" '
+             f'stroke-width="1"/>')
+    b.append(text(380, y0 + 176, "TOOLS", t, 11, 700, "muted"))
+    b += lines(380, y0 + 196, ["shell, git, vLLM, TRL", "Icarus, Verilator, Yosys, SymbiYosys"],
+               t, 12.5, 18, "ink2")
+    ly = y0 + sh + 24
+    b += lane(ly, 88, "WHAT STOPS OR WATCHES A SESSION", t)
+    b += row_of([("A gate", "stop line, then wait"),
+                 ("A hash check", "frozen scorer, same hash"),
+                 ("A sample count", "every sample must exist"),
+                 ("A retry limit", "unattended run: 2 restarts"),
+                 ("A heartbeat", "unattended run: every 6 h")], ly + 28, t)
+    return svg(W, ly + 88 + 24, t, b, "One agent session",
+               "An AI agent session receives the brief, the frozen plan and the record so far. It "
+               "reads the context, writes code, runs the tools, checks each exit condition and "
+               "writes results and a report. It leaves commits, structured results, a stop line "
+               "and a handoff note. A gate, a hash check, a sample count, a retry limit and a "
+               "heartbeat stop or watch the session.")
+
+
+# ---------- figure 9: the picture for the five-year-old ----------
+
+SEEN = {(1, 2), (3, 7), (5, 4), (6, 8), (8, 1)}     # the five sums that the teacher checks
+WRONG = {(2, 5), (4, 1), (7, 6)}                    # wrong sums; the teacher checks none of them
+STAR = [(0, -20), (4.9, -6.8), (19, -6.2), (8, 2.6), (11.8, 16.2), (0, 8.4), (-11.8, 16.2),
+        (-8, 2.6), (-19, -6.2), (-4.9, -6.8)]
+
+
+def page(x0, y0, all_sums, t):
+    out, ticks, crosses = [], [], []
+    for r in range(10):
+        for c in range(10):
+            x, y = x0 + c * 24, y0 + r * 24
+            if (r, c) in WRONG and all_sums:
+                out.append(f'<rect x="{x}" y="{y}" width="20" height="20" rx="4" fill="{t["bad"]}"/>')
+                crosses.append(f"M{x + 6},{y + 6} L{x + 14},{y + 14} M{x + 14},{y + 6} L{x + 6},{y + 14}")
+            elif (r, c) in WRONG:
+                out.append(f'<rect x="{x}" y="{y}" width="20" height="20" rx="4" fill="{t["bad"]}" '
+                           f'fill-opacity="0.25" stroke="{t["line"]}"/>')
+            elif all_sums or (r, c) in SEEN:
+                out.append(f'<rect x="{x}" y="{y}" width="20" height="20" rx="4" fill="{t["bg"]}" '
+                           f'stroke="{t["good"]}" stroke-width="1.6"/>')
+                ticks.append(f"M{x + 5},{y + 10} L{x + 9},{y + 14} L{x + 15},{y + 6}")
+            else:
+                out.append(f'<rect x="{x}" y="{y}" width="20" height="20" rx="4" fill="{t["bg"]}" '
+                           f'stroke="{t["line"]}"/>')
+    out.append(f'<path d="{" ".join(ticks)}" fill="none" stroke="{t["good"]}" stroke-width="2" '
+               f'stroke-linecap="round" stroke-linejoin="round"/>')
+    if crosses:
+        out.append(f'<path d="{" ".join(crosses)}" fill="none" stroke="{t["bg"]}" stroke-width="2.2" '
+                   f'stroke-linecap="round"/>')
+    return out
+
+
+def key(x, y, kind, s, t):
+    fill = {"ok": t["bg"], "miss": t["bad"], "bad": t["bad"], "none": t["bg"]}[kind]
+    stroke = {"ok": t["good"], "miss": t["line"], "bad": t["bad"], "none": t["line"]}[kind]
+    op = ' fill-opacity="0.25"' if kind == "miss" else ""
+    return [f'<rect x="{x}" y="{y - 12}" width="14" height="14" rx="3" fill="{fill}"{op} '
+            f'stroke="{stroke}" stroke-width="1.4"/>', text(x + 24, y, s, t, 12.5, 400, "ink2")]
+
+
+def eli5(t):
+    W, H = 1000, 424
+    b = [text(30, 38, "A gold star is not a proof", t, 19, 700),
+         text(30, 60, "The same page of 100 sums, with two ways to check it.", t, 13, 400, "ink2")]
+    for x, name in ((30, "THE BENCHMARK TEST: CHECKS A FEW SUMS"), (508, "LOUPE: CHECKS EVERY SUM")):
+        b.append(box(x, 78, 462, 300, t))
+        b.append(text(x + 22, 104, name, t, 11.5, 700, "accent"))
+    b += page(52, 120, False, t)
+    b += page(530, 120, True, t)
+    pts = " ".join(f"{334 + dx:.1f},{146 + dy:.1f}" for dx, dy in STAR)
+    b.append(f'<polygon points="{pts}" fill="{t["warn"]}"/>')
+    b.append(text(364, 143, "Gold star", t, 16, 700))
+    b.append(text(364, 161, "the test says pass", t, 12.5, 400, "ink2"))
+    b += key(316, 204, "ok", "5 sums checked", t)
+    b += key(316, 230, "none", "92 sums not checked", t)
+    b += key(316, 256, "miss", "3 wrong sums, not seen", t)
+    b += lens(806, 140, 13, t, 3)
+    b.append(text(842, 143, "No gold star", t, 16, 700))
+    b.append(text(842, 161, "proof, or a witness", t, 12.5, 400, "ink2"))
+    b += key(794, 204, "ok", "97 sums proved right", t)
+    b += key(794, 230, "bad", "3 sums proved wrong", t)
+    b += lines(790, 262, ["Each red sum is a witness:", "replay it to see the bug."], t, 12.5, 17)
+    b.append(text(30, H - 22, "In the study, a sum is one input to a chip design. A formal tool "
+                  "checks all inputs, at every clock step.", t, 12.5, 400, "ink2"))
+    return svg(W, H, t, b, "A gold star is not a proof",
+               "Two copies of a page of 100 sums. The benchmark test checks five sums, misses three "
+               "wrong sums and gives a gold star. Loupe checks every sum and finds the three wrong "
+               "sums. Each wrong sum is a witness that you can replay.")
+
+
 def build():
     stats = json.load(open(os.path.join(ROOT, "results", "main", "stats.json")))
+    blind = json.load(open(os.path.join(ROOT, "results", "main", "blind40", "unblinded.ai.json")))
+    man = json.load(open(os.path.join(ROOT, "gen", "manifests", "7b-rl.json")))
+    tasks = sum(f["rows"] for f in man["files"]) // 3  # three samples per task
     out = {}
     for mode, t in THEMES.items():
         out[f"pipeline-{mode}.svg"] = pipeline(t)
         out[f"results-{mode}.svg"] = results(t, stats)
         out[f"timeline-{mode}.svg"] = timeline(t)
         out[f"agent-loop-{mode}.svg"] = loop(t)
+        out[f"overview-{mode}.svg"] = overview(t, stats, blind, tasks)
+        out[f"architecture-{mode}.svg"] = architecture(t)
+        out[f"evidence-chain-{mode}.svg"] = evidence(t, stats)
+        out[f"agent-session-{mode}.svg"] = session(t)
+        out[f"eli5-{mode}.svg"] = eli5(t)
     return out
 
 

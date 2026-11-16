@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="468" viewBox="0 0 1000 468" role="img" aria-labelledby="t d">
+<title id="t">One agent session</title>
+<desc id="d">An AI agent session receives the brief, the frozen plan and the record so far. It reads the context, writes code, runs the tools, checks each exit condition and writes results and a report. It leaves commits, structured results, a stop line and a handoff note. A gate, a hash check, a sample count, a retry limit and a heartbeat stop or watch the session.</desc>
+<defs><marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#c3c2b7"/></marker></defs>
+<rect x="0.5" y="0.5" width="999" height="467" rx="14" fill="#1a1a19" stroke="#3a3a37"/>
+<text x="30" y="38" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="19" font-weight="700" fill="#f0efec" text-anchor="start">One agent session: what goes in, what comes out, what stops it</text>
+<text x="30" y="60" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="13" font-weight="400" fill="#c3c2b7" text-anchor="start">Each session starts from written files, and it must leave written files.</text>
+<text x="30" y="88" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="11.5" font-weight="700" fill="#3987e5" text-anchor="start">IN: THE CONTEXT</text>
+<text x="360" y="88" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="11.5" font-weight="700" fill="#3987e5" text-anchor="start">THE SESSION</text>
+<text x="690" y="88" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="11.5" font-weight="700" fill="#3987e5" text-anchor="start">OUT: THE RECORD</text>
+<rect x="30" y="98" width="280" height="70" rx="10" fill="#242422" stroke="#3a3a37" stroke-width="1"/>
+<text x="46" y="126" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="15" font-weight="650" fill="#f0efec" text-anchor="start">The brief</text>
+<text x="46" y="148" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="400" fill="#c3c2b7" text-anchor="start">goal, pins, gates, stop rules</text>
+<rect x="690" y="98" width="280" height="70" rx="10" fill="#242422" stroke="#3a3a37" stroke-width="1"/>
+<text x="706" y="126" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="15" font-weight="650" fill="#f0efec" text-anchor="start">Commits on the run branch</text>
+<text x="706" y="148" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="400" fill="#c3c2b7" text-anchor="start">code, results, reports</text>
+<path d="M312,133.0 L357,133.0" fill="none" stroke="#c3c2b7" stroke-width="1.6" marker-end="url(#arr)"/>
+<path d="M642,133.0 L687,133.0" fill="none" stroke="#c3c2b7" stroke-width="1.6" marker-end="url(#arr)"/>
+<rect x="30" y="180" width="280" height="70" rx="10" fill="#242422" stroke="#3a3a37" stroke-width="1"/>
+<text x="46" y="208" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="15" font-weight="650" fill="#f0efec" text-anchor="start">The frozen plan</text>
+<text x="46" y="230" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="400" fill="#c3c2b7" text-anchor="start">PREREG.md and its amendments</text>
+<rect x="690" y="180" width="280" height="70" rx="10" fill="#242422" stroke="#3a3a37" stroke-width="1"/>
+<text x="706" y="208" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="15" font-weight="650" fill="#f0efec" text-anchor="start">Structured results</text>
+<text x="706" y="230" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="400" fill="#c3c2b7" text-anchor="start">JSONL scores, JSON results, receipts</text>
+<path d="M312,215.0 L357,215.0" fill="none" stroke="#c3c2b7" stroke-width="1.6" marker-end="url(#arr)"/>
+<path d="M642,215.0 L687,215.0" fill="none" stroke="#c3c2b7" stroke-width="1.6" marker-end="url(#arr)"/>
+<rect x="30" y="262" width="280" height="70" rx="10" fill="#242422" stroke="#3a3a37" stroke-width="1"/>
+<text x="46" y="290" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="15" font-weight="650" fill="#f0efec" text-anchor="start">The record so far</text>
+<text x="46" y="312" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="400" fill="#c3c2b7" text-anchor="start">HANDOFF.md, notes/LOG.md</text>
+<rect x="690" y="262" width="280" height="70" rx="10" fill="#242422" stroke="#3a3a37" stroke-width="1"/>
+<text x="706" y="290" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="15" font-weight="650" fill="#f0efec" text-anchor="start">Stop line and handoff note</text>
+<text x="706" y="312" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="400" fill="#c3c2b7" text-anchor="start">what happened, what needs a decision</text>
+<path d="M312,297.0 L357,297.0" fill="none" stroke="#c3c2b7" stroke-width="1.6" marker-end="url(#arr)"/>
+<path d="M642,297.0 L687,297.0" fill="none" stroke="#c3c2b7" stroke-width="1.6" marker-end="url(#arr)"/>
+<rect x="360" y="98" width="280" height="234" rx="12" fill="#1d2b3d" stroke="#3987e5" stroke-width="1.5"/>
+<text x="380" y="130" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="16" font-weight="700" fill="#f0efec" text-anchor="start">AI agent session</text>
+<text x="380" y="160" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="13.5" font-weight="400" fill="#f0efec" text-anchor="start">1   Reads the context</text>
+<text x="380" y="184" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="13.5" font-weight="400" fill="#f0efec" text-anchor="start">2   Writes code and runs the tools</text>
+<text x="380" y="208" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="13.5" font-weight="400" fill="#f0efec" text-anchor="start">3   Checks each exit condition</text>
+<text x="380" y="232" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="13.5" font-weight="400" fill="#f0efec" text-anchor="start">4   Writes the results and a report</text>
+<line x1="380" y1="252" x2="620" y2="252" stroke="#3a3a37" stroke-width="1"/>
+<text x="380" y="274" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="11" font-weight="700" fill="#8f8e86" text-anchor="start">TOOLS</text>
+<text x="380" y="294" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="400" fill="#c3c2b7" text-anchor="start">shell, git, vLLM, TRL</text>
+<text x="380" y="312" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="400" fill="#c3c2b7" text-anchor="start">Icarus, Verilator, Yosys, SymbiYosys</text>
+<rect x="20" y="356" width="960" height="88" rx="12" fill="#1d2b3d"/>
+<text x="34" y="376" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="11.5" font-weight="700" fill="#3987e5" text-anchor="start">WHAT STOPS OR WATCHES A SESSION</text>
+<rect x="35.0" y="384" width="178" height="50" rx="10" fill="#242422" stroke="#3a3a37" stroke-width="1"/>
+<text x="47.0" y="405" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="13" font-weight="650" fill="#f0efec" text-anchor="start">A gate</text>
+<text x="47.0" y="422" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="11.5" font-weight="400" fill="#c3c2b7" text-anchor="start">stop line, then wait</text>
+<rect x="223.0" y="384" width="178" height="50" rx="10" fill="#242422" stroke="#3a3a37" stroke-width="1"/>
+<text x="235.0" y="405" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="13" font-weight="650" fill="#f0efec" text-anchor="start">A hash check</text>
+<text x="235.0" y="422" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="11.5" font-weight="400" fill="#c3c2b7" text-anchor="start">frozen scorer, same hash</text>
+<rect x="411.0" y="384" width="178" height="50" rx="10" fill="#242422" stroke="#3a3a37" stroke-width="1"/>
+<text x="423.0" y="405" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="13" font-weight="650" fill="#f0efec" text-anchor="start">A sample count</text>
+<text x="423.0" y="422" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="11.5" font-weight="400" fill="#c3c2b7" text-anchor="start">every sample must exist</text>
+<rect x="599.0" y="384" width="178" height="50" rx="10" fill="#242422" stroke="#3a3a37" stroke-width="1"/>
+<text x="611.0" y="405" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="13" font-weight="650" fill="#f0efec" text-anchor="start">A retry limit</text>
+<text x="611.0" y="422" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="11.5" font-weight="400" fill="#c3c2b7" text-anchor="start">unattended run: 2 restarts</text>
+<rect x="787.0" y="384" width="178" height="50" rx="10" fill="#242422" stroke="#3a3a37" stroke-width="1"/>
+<text x="799.0" y="405" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="13" font-weight="650" fill="#f0efec" text-anchor="start">A heartbeat</text>
+<text x="799.0" y="422" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="11.5" font-weight="400" fill="#c3c2b7" text-anchor="start">unattended run: every 6 h</text>
+</svg>
