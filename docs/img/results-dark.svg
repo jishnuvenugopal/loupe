@@ -1,0 +1,92 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="500" viewBox="0 0 1000 500" role="img" aria-labelledby="t d">
+<title id="t">Passes without a proof, by checkpoint</title>
+<desc id="d">Bar chart. RTLLM: 27.5 to 36.0 percent of official passes are not proved correct; the proved-wrong floor is 20.0 to 33.3 percent. VerilogEval: at most 4.7 percent. The README tables hold every number with its interval.</desc>
+<defs><marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#c3c2b7"/></marker></defs>
+<rect x="0.5" y="0.5" width="999" height="499" rx="14" fill="#1a1a19" stroke="#3a3a37"/>
+<text x="30" y="38" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="19" font-weight="700" fill="#f0efec" text-anchor="start">Passes without a proof, by checkpoint</text>
+<text x="30" y="60" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="13" font-weight="400" fill="#c3c2b7" text-anchor="start">Share of official testbench passes. Same scale in both panels.</text>
+<rect x="30" y="73" width="22" height="12" rx="3" fill="#184f95"/>
+<text x="60" y="84" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="400" fill="#f0efec" text-anchor="start">Not proved correct (primary)</text>
+<rect x="260" y="73" width="22" height="12" rx="3" fill="#86b6ef"/>
+<text x="290" y="84" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="400" fill="#f0efec" text-anchor="start">Proved wrong, with a witness (the floor)</text>
+<path d="M560,79 L582,79 M560,74 L560,84 M582,74 L582,84" stroke="#cde2fb" stroke-width="1.6"/>
+<text x="590" y="84" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="400" fill="#f0efec" text-anchor="start">95% interval of the primary share</text>
+<text x="30" y="116" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="14" font-weight="700" fill="#f0efec" text-anchor="start">RTLLM v2.1  (33 headline designs)</text>
+<line x1="100.0" y1="124" x2="100.0" y2="412" stroke="#3a3a37" stroke-width="1"/>
+<text x="100.0" y="430" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="11.5" font-weight="400" fill="#8f8e86" text-anchor="middle">0%</text>
+<line x1="223.33333333333331" y1="124" x2="223.33333333333331" y2="412" stroke="#3a3a37" stroke-width="1"/>
+<text x="223.33333333333331" y="430" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="11.5" font-weight="400" fill="#8f8e86" text-anchor="middle">25%</text>
+<line x1="346.66666666666663" y1="124" x2="346.66666666666663" y2="412" stroke="#3a3a37" stroke-width="1"/>
+<text x="346.66666666666663" y="430" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="11.5" font-weight="400" fill="#8f8e86" text-anchor="middle">50%</text>
+<line x1="470.0" y1="124" x2="470.0" y2="412" stroke="#3a3a37" stroke-width="1"/>
+<text x="470.0" y="430" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="11.5" font-weight="400" fill="#8f8e86" text-anchor="middle">75%</text>
+<text x="30" y="146" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="13" font-weight="600" fill="#f0efec" text-anchor="start">7b-rl</text>
+<rect x="100" y="132" width="164.4" height="18" rx="4" fill="#184f95"/>
+<rect x="100" y="137" width="164.4" height="8" rx="3" fill="#86b6ef"/>
+<path d="M184.2,155 L349.7,155 M184.2,151 L184.2,159 M349.7,151 L349.7,159" stroke="#cde2fb" stroke-width="1.6" fill="none"/>
+<text x="100" y="174" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12" font-weight="700" fill="#f0efec" text-anchor="start">33.3%</text>
+<text x="144" y="174" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#c3c2b7" text-anchor="start">floor 33.3%</text>
+<text x="30" y="202" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="13" font-weight="600" fill="#f0efec" text-anchor="start">7b-sft</text>
+<rect x="100" y="188" width="141.0" height="18" rx="4" fill="#184f95"/>
+<rect x="100" y="193" width="141.0" height="8" rx="3" fill="#86b6ef"/>
+<path d="M169.6,211 L322.0,211 M169.6,207 L169.6,215 M322.0,207 L322.0,215" stroke="#cde2fb" stroke-width="1.6" fill="none"/>
+<text x="100" y="230" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12" font-weight="700" fill="#f0efec" text-anchor="start">28.6%</text>
+<text x="144" y="230" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#c3c2b7" text-anchor="start">floor 28.6%</text>
+<text x="30" y="258" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="13" font-weight="600" fill="#f0efec" text-anchor="start">7b-base</text>
+<rect x="100" y="244" width="135.7" height="18" rx="4" fill="#184f95"/>
+<rect x="100" y="249" width="111.0" height="8" rx="3" fill="#86b6ef"/>
+<path d="M156.1,267 L339.6,267 M156.1,263 L156.1,271 M339.6,263 L339.6,271" stroke="#cde2fb" stroke-width="1.6" fill="none"/>
+<text x="100" y="286" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12" font-weight="700" fill="#f0efec" text-anchor="start">27.5%</text>
+<text x="144" y="286" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#c3c2b7" text-anchor="start">floor 22.5%</text>
+<text x="30" y="314" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="13" font-weight="600" fill="#f0efec" text-anchor="start">3b-rl</text>
+<rect x="100" y="300" width="174.1" height="18" rx="4" fill="#184f95"/>
+<rect x="100" y="305" width="130.6" height="8" rx="3" fill="#86b6ef"/>
+<path d="M166.7,323 L392.3,323 M166.7,319 L166.7,327 M392.3,319 L392.3,327" stroke="#cde2fb" stroke-width="1.6" fill="none"/>
+<text x="100" y="342" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12" font-weight="700" fill="#f0efec" text-anchor="start">35.3%</text>
+<text x="144" y="342" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#c3c2b7" text-anchor="start">floor 26.5%</text>
+<text x="30" y="370" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="13" font-weight="600" fill="#f0efec" text-anchor="start">3b-base</text>
+<rect x="100" y="356" width="177.6" height="18" rx="4" fill="#184f95"/>
+<rect x="100" y="361" width="98.7" height="8" rx="3" fill="#86b6ef"/>
+<path d="M149.3,379 L445.3,379 M149.3,375 L149.3,383 M445.3,375 L445.3,383" stroke="#cde2fb" stroke-width="1.6" fill="none"/>
+<text x="100" y="398" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12" font-weight="700" fill="#f0efec" text-anchor="start">36.0%</text>
+<text x="144" y="398" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#c3c2b7" text-anchor="start">floor 20.0%</text>
+<text x="520" y="116" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="14" font-weight="700" fill="#f0efec" text-anchor="start">VerilogEval v2  (144 gated tasks)</text>
+<line x1="590.0" y1="124" x2="590.0" y2="412" stroke="#3a3a37" stroke-width="1"/>
+<text x="590.0" y="430" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="11.5" font-weight="400" fill="#8f8e86" text-anchor="middle">0%</text>
+<line x1="713.3333333333334" y1="124" x2="713.3333333333334" y2="412" stroke="#3a3a37" stroke-width="1"/>
+<text x="713.3333333333334" y="430" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="11.5" font-weight="400" fill="#8f8e86" text-anchor="middle">25%</text>
+<line x1="836.6666666666666" y1="124" x2="836.6666666666666" y2="412" stroke="#3a3a37" stroke-width="1"/>
+<text x="836.6666666666666" y="430" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="11.5" font-weight="400" fill="#8f8e86" text-anchor="middle">50%</text>
+<line x1="960.0" y1="124" x2="960.0" y2="412" stroke="#3a3a37" stroke-width="1"/>
+<text x="960.0" y="430" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="11.5" font-weight="400" fill="#8f8e86" text-anchor="middle">75%</text>
+<text x="520" y="146" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="13" font-weight="600" fill="#f0efec" text-anchor="start">7b-rl</text>
+<rect x="590" y="132" width="10.1" height="18" rx="4" fill="#184f95"/>
+<rect x="590" y="137" width="8.4" height="8" rx="3" fill="#86b6ef"/>
+<path d="M591.6,155 L611.6,155 M591.6,151 L591.6,159 M611.6,151 L611.6,159" stroke="#cde2fb" stroke-width="1.6" fill="none"/>
+<text x="590" y="174" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12" font-weight="700" fill="#f0efec" text-anchor="start">2.0%</text>
+<text x="634" y="174" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#c3c2b7" text-anchor="start">floor 1.7%</text>
+<text x="520" y="202" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="13" font-weight="600" fill="#f0efec" text-anchor="start">7b-sft</text>
+<rect x="590" y="188" width="2.0" height="18" rx="4" fill="#184f95"/>
+<rect x="590" y="193" width="2.0" height="8" rx="3" fill="#86b6ef"/>
+<path d="M590.0,211 L595.7,211 M590.0,207 L590.0,215 M595.7,207 L595.7,215" stroke="#cde2fb" stroke-width="1.6" fill="none"/>
+<text x="590" y="230" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12" font-weight="700" fill="#f0efec" text-anchor="start">0.4%</text>
+<text x="634" y="230" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#c3c2b7" text-anchor="start">floor 0.4%</text>
+<text x="520" y="258" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="13" font-weight="600" fill="#f0efec" text-anchor="start">7b-base</text>
+<rect x="590" y="244" width="23.3" height="18" rx="4" fill="#184f95"/>
+<rect x="590" y="249" width="11.7" height="8" rx="3" fill="#86b6ef"/>
+<path d="M597.3,267 L634.2,267 M597.3,263 L597.3,271 M634.2,263 L634.2,271" stroke="#cde2fb" stroke-width="1.6" fill="none"/>
+<text x="590" y="286" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12" font-weight="700" fill="#f0efec" text-anchor="start">4.7%</text>
+<text x="634" y="286" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#c3c2b7" text-anchor="start">floor 2.4%</text>
+<text x="520" y="314" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="13" font-weight="600" fill="#f0efec" text-anchor="start">3b-rl</text>
+<rect x="590" y="300" width="11.4" height="18" rx="4" fill="#184f95"/>
+<path d="M590.0,323 L627.6,323 M590.0,319 L590.0,327 M627.6,319 L627.6,327" stroke="#cde2fb" stroke-width="1.6" fill="none"/>
+<text x="590" y="342" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12" font-weight="700" fill="#f0efec" text-anchor="start">2.3%</text>
+<text x="634" y="342" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#c3c2b7" text-anchor="start">floor 0.0%</text>
+<text x="520" y="370" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="13" font-weight="600" fill="#f0efec" text-anchor="start">3b-base</text>
+<rect x="590" y="356" width="18.3" height="18" rx="4" fill="#184f95"/>
+<rect x="590" y="361" width="9.1" height="8" rx="3" fill="#86b6ef"/>
+<path d="M590.0,379 L637.0,379 M590.0,375 L590.0,383 M637.0,375 L637.0,383" stroke="#cde2fb" stroke-width="1.6" fill="none"/>
+<text x="590" y="398" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12" font-weight="700" fill="#f0efec" text-anchor="start">3.7%</text>
+<text x="634" y="398" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#c3c2b7" text-anchor="start">floor 1.9%</text>
+<text x="30" y="478" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#8f8e86" text-anchor="start">Source: results/main/stats.json (task-clustered bootstrap, 10,000 resamples). Five checkpoints, three samples per task.</text>
+</svg>

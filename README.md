@@ -42,9 +42,23 @@ AI will write a larger part of hardware design. The scores that train and select
 
 <!-- ste:end -->
 
+## How it works in one picture
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/img/pipeline-dark.svg">
+  <img alt="Pipeline: task text, five checkpoints, module extraction, official testbench, non-vacuity check, formal equivalence with the reference from reset, then one of four proof classes and gated statistics." src="docs/img/pipeline-light.svg" width="100%">
+</picture>
+
+The method in detail: [`docs/how-it-works.md`](docs/how-it-works.md).
+
 ## What Loupe found
 
 Five open-weight checkpoints, three samples per task. Strict metrics use only the tasks where the reference itself has a full proof: VerilogEval 144 tasks, RTLLM 37 designs, of which the headline uses 33 (four designs with reference problems are reported apart). Shares are of official passes. Intervals are 95% task-clustered bootstrap intervals (10,000 resamples) from the pre-registered analysis.
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/img/results-dark.svg">
+  <img alt="Bar chart of the share of official passes that are not proved correct, with the proved-wrong floor and the 95% interval, for five checkpoints on RTLLM and VerilogEval. The table below holds every number." src="docs/img/results-light.svg" width="100%">
+</picture>
 
 <!-- loupe:headline:begin -->
 | Model | Benchmark | Official passes | Official pass@1 % | Strict pass@1 % | Not proved correct % [95% CI] | Proved wrong % [95% CI] |
@@ -210,6 +224,11 @@ This project also tests a method. Can AI agents run a careful study in a field t
 6. Write down every amendment, also the ones that weaken the study.
 7. Keep the failures in the log: three restarts, a file race, and a network outage.
 
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/img/agent-loop-dark.svg">
+  <img alt="Swimlane: I write a brief; an agent works until a gate, writes a stop line and waits; I decide; the agent records a numbered amendment and continues. Plan review before the data and an independent recompute after it." src="docs/img/agent-loop-light.svg" width="100%">
+</picture>
+
 The full story is in [`docs/ai-workflow.md`](docs/ai-workflow.md).
 
 ## Check it yourself
@@ -218,6 +237,11 @@ The full story is in [`docs/ai-workflow.md`](docs/ai-workflow.md).
 - **The date of the plan:** Bitcoin block 972099 holds the OpenTimestamps proof of `PREREG.md`. The header time of that block is 10:49 (UTC+08) on 19 Oct 2026. The main generation run started at 10:52, and the scorer started after 18:09. Block header times can be wrong by up to about two hours. So the proof is certain for "before the scorer ran", and probable for "before generation".
 - **The witnesses:** Each proved-wrong pass has a trace in [`results/main/cex/`](results/main/cex/).
 - **The upstream reports:** RTLLM issues #25 and #26 are open. On 15 Nov 2026 they had no reply.
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/img/timeline-dark.svg">
+  <img alt="Timeline: scorer frozen 18 Oct; plan frozen and timestamped in Bitcoin block 972099 on 19 Oct; main generation; gate G2 stop and amendment A19; primary results 21 Oct; GRPO test; blind 40 unblinded with AI labels on 13 Nov." src="docs/img/timeline-light.svg" width="100%">
+</picture>
 
 <!-- ste:end -->
 
@@ -245,6 +269,16 @@ To check the timestamp, give `PREREG.md` and `PREREG.md.ots` to the [OpenTimesta
 | `grpo/`, `e1/` | The small training test and its evaluation |
 | `notes/` | The raw run log and receipts (see [`docs/lab-notebook.md`](docs/lab-notebook.md)) |
 | [`docs/how-it-works.md`](docs/how-it-works.md) | The method in detail, for RTL and evaluation readers |
+| [`docs/credits.md`](docs/credits.md) | Credits, upstream reports and related work |
+| `docs/img/` | The figures and the script that draws them (`make_figures.py`) |
+
+## Credits
+
+<!-- ste:begin -->
+
+Loupe uses two public benchmarks, open-weight models from three teams, and open-source EDA and machine learning tools. Other people reported RTLLM problems before me. Two designs that the headline leaves out match their open reports. [`docs/credits.md`](docs/credits.md) names all of this work, with links. It also lists related work that I checked before the analysis plan froze.
+
+<!-- ste:end -->
 
 ## Licences and citation
 

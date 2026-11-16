@@ -100,6 +100,11 @@ The plan fixed the first four views before the main run. Amendment A19 added the
 
 ## Timeline
 
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="img/timeline-dark.svg">
+  <img alt="Timeline of the scorer freeze, plan freeze, main run, gate stop, primary results, GRPO test and unblinding." src="img/timeline-light.svg" width="100%">
+</picture>
+
 | Date (UTC+08) | Event |
 |---|---|
 | 18 Oct 2026, 14:41 | Scorer frozen: tag `scorer-v1` |

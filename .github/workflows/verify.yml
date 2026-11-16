@@ -21,7 +21,9 @@ jobs:
       - name: Recompute the headline table and compare the README tables with the data
         run: python verify/check.py
       - name: ASD-STE100 mechanical checks (README and docs)
-        run: python verify/ste_lint.py README.md docs/how-it-works.md docs/ai-workflow.md docs/lab-notebook.md
+        run: python verify/ste_lint.py README.md docs/how-it-works.md docs/ai-workflow.md docs/lab-notebook.md docs/credits.md
+      - name: Figures match the data and the figure script
+        run: python docs/img/make_figures.py --check
       - name: Unit tests that need no EDA tools
         run: |
           python tests/test_a18_stats.py

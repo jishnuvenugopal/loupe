@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="380" viewBox="0 0 1000 380" role="img" aria-labelledby="t d">
+<title id="t">The order of events</title>
+<desc id="d">Timeline: scorer frozen 18 Oct; plan frozen and timestamped in Bitcoin block 972099 on 19 Oct; main generation 19 Oct; gate G2 stop and amendment A19; primary results 21 Oct; GRPO test to 11 Nov; blind 40 unblinded with AI labels on 13 Nov.</desc>
+<defs><marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#c3c2b7"/></marker></defs>
+<rect x="0.5" y="0.5" width="999" height="379" rx="14" fill="#1a1a19" stroke="#3a3a37"/>
+<text x="30" y="38" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="19" font-weight="700" fill="#f0efec" text-anchor="start">The order of events</text>
+<text x="30" y="60" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="13" font-weight="400" fill="#c3c2b7" text-anchor="start">The plan and the scorer were frozen before the main data existed. All times UTC+08, 2026.</text>
+<line x1="70" y1="190" x2="910" y2="190" stroke="#3a3a37" stroke-width="3"/>
+<line x1="100.0" y1="190" x2="100.0" y2="164" stroke="#3a3a37" stroke-width="1.5"/>
+<circle cx="100.0" cy="190" r="8" fill="#1a1a19" stroke="#3987e5" stroke-width="3"/>
+<text x="100.0" y="103" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12" font-weight="700" fill="#3987e5" text-anchor="middle">18 Oct 14:41</text>
+<text x="100.0" y="121" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="14" font-weight="700" fill="#f0efec" text-anchor="middle">Scorer frozen</text>
+<text x="100.0" y="139" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#c3c2b7" text-anchor="middle">tag scorer-v1</text>
+<line x1="230.0" y1="190" x2="230.0" y2="216" stroke="#3a3a37" stroke-width="1.5"/>
+<circle cx="230.0" cy="190" r="8" fill="#1a1a19" stroke="#3987e5" stroke-width="3"/>
+<text x="230.0" y="236" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12" font-weight="700" fill="#3987e5" text-anchor="middle">19 Oct 10:41</text>
+<text x="230.0" y="254" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="14" font-weight="700" fill="#f0efec" text-anchor="middle">Plan frozen</text>
+<text x="230.0" y="272" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#c3c2b7" text-anchor="middle">tag g0-prereg; proof in</text>
+<text x="230.0" y="288" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#c3c2b7" text-anchor="middle">Bitcoin block 972099</text>
+<line x1="360.0" y1="190" x2="360.0" y2="164" stroke="#3a3a37" stroke-width="1.5"/>
+<circle cx="360.0" cy="190" r="8" fill="#1a1a19" stroke="#c3c2b7" stroke-width="3"/>
+<text x="360.0" y="86" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12" font-weight="700" fill="#3987e5" text-anchor="middle">19 Oct 10:52</text>
+<text x="360.0" y="104" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="14" font-weight="700" fill="#f0efec" text-anchor="middle">Main generation</text>
+<text x="360.0" y="122" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#c3c2b7" text-anchor="middle">7.28 h on one DGX Spark;</text>
+<text x="360.0" y="138" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#c3c2b7" text-anchor="middle">scorer after 18:09</text>
+<line x1="490.0" y1="190" x2="490.0" y2="216" stroke="#3a3a37" stroke-width="1.5"/>
+<circle cx="490.0" cy="190" r="8" fill="#1a1a19" stroke="#fab219" stroke-width="3"/>
+<text x="490.0" y="236" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12" font-weight="700" fill="#3987e5" text-anchor="middle">19–20 Oct</text>
+<text x="490.0" y="254" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="14" font-weight="700" fill="#f0efec" text-anchor="middle">Gate G2 stop</text>
+<text x="490.0" y="272" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#c3c2b7" text-anchor="middle">3B arms wait 29 h;</text>
+<text x="490.0" y="288" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#c3c2b7" text-anchor="middle">amendment A19</text>
+<line x1="620.0" y1="190" x2="620.0" y2="164" stroke="#3a3a37" stroke-width="1.5"/>
+<circle cx="620.0" cy="190" r="8" fill="#1a1a19" stroke="#0ca30c" stroke-width="3"/>
+<text x="620.0" y="86" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12" font-weight="700" fill="#3987e5" text-anchor="middle">21 Oct 02:50</text>
+<text x="620.0" y="104" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="14" font-weight="700" fill="#f0efec" text-anchor="middle">Primary results</text>
+<text x="620.0" y="122" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#c3c2b7" text-anchor="middle">tag phase10-results</text>
+<text x="620.0" y="138" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#c3c2b7" text-anchor="middle">on the 12:28 commit</text>
+<line x1="750.0" y1="190" x2="750.0" y2="216" stroke="#3a3a37" stroke-width="1.5"/>
+<circle cx="750.0" cy="190" r="8" fill="#1a1a19" stroke="#8f8e86" stroke-width="3"/>
+<text x="750.0" y="236" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12" font-weight="700" fill="#3987e5" text-anchor="middle">21 Oct–11 Nov</text>
+<text x="750.0" y="254" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="14" font-weight="700" fill="#f0efec" text-anchor="middle">GRPO test</text>
+<text x="750.0" y="272" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#c3c2b7" text-anchor="middle">small, exploratory</text>
+<line x1="880.0" y1="190" x2="880.0" y2="164" stroke="#3a3a37" stroke-width="1.5"/>
+<circle cx="880.0" cy="190" r="8" fill="#1a1a19" stroke="#8f8e86" stroke-width="3"/>
+<text x="880.0" y="86" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12" font-weight="700" fill="#3987e5" text-anchor="middle">13 Nov</text>
+<text x="880.0" y="104" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="14" font-weight="700" fill="#f0efec" text-anchor="middle">Blind 40 unblinded</text>
+<text x="880.0" y="122" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#c3c2b7" text-anchor="middle">AI labels: amendment</text>
+<text x="880.0" y="138" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#c3c2b7" text-anchor="middle">A22, a deviation</text>
+<text x="30" y="358" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#8f8e86" text-anchor="start">Block header times can be off by about two hours: the proof is certain for “before the scorer ran” and probable for “before generation”.</text>
+</svg>

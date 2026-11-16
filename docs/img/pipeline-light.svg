@@ -1,0 +1,73 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="520" viewBox="0 0 1000 520" role="img" aria-labelledby="t d">
+<title id="t">How Loupe scores one sample</title>
+<desc id="d">Pipeline: task text, five checkpoints, module extraction, official testbench, non-vacuity check, formal equivalence with the reference from reset, then one of four proof classes and gated statistics.</desc>
+<defs><marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#52514e"/></marker></defs>
+<rect x="0.5" y="0.5" width="999" height="519" rx="14" fill="#fcfcfb" stroke="#dcdad3"/>
+<text x="30" y="38" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="19" font-weight="700" fill="#0b0b0b" text-anchor="start">How Loupe scores one sample</text>
+<text x="30" y="60" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="13" font-weight="400" fill="#52514e" text-anchor="start">Each official pass gets exactly one proof class from the frozen scorer (tag scorer-v1).</text>
+<text x="30" y="80" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="11.5" font-weight="700" fill="#2a78d6" text-anchor="start">1  GENERATE</text>
+<text x="355" y="80" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="11.5" font-weight="700" fill="#2a78d6" text-anchor="start">2  CHECK</text>
+<text x="680" y="80" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="11.5" font-weight="700" fill="#2a78d6" text-anchor="start">3  CLASSIFY AND COUNT</text>
+<rect x="30" y="92" width="290" height="92" rx="10" fill="#f3f2ee" stroke="#dcdad3" stroke-width="1"/>
+<text x="46" y="120" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="15" font-weight="650" fill="#0b0b0b" text-anchor="start">Task text</text>
+<text x="46" y="142" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="400" fill="#52514e" text-anchor="start">RTLLM v2.1: 50 designs</text>
+<text x="46" y="159" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="400" fill="#52514e" text-anchor="start">VerilogEval v2: 156 tasks</text>
+<rect x="30" y="214" width="290" height="92" rx="10" fill="#f3f2ee" stroke="#dcdad3" stroke-width="1"/>
+<text x="46" y="242" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="15" font-weight="650" fill="#0b0b0b" text-anchor="start">5 open-weight checkpoints</text>
+<text x="46" y="264" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="400" fill="#52514e" text-anchor="start">vLLM 0.21.0, one DGX Spark</text>
+<text x="46" y="281" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="400" fill="#52514e" text-anchor="start">3 samples per task, fixed seeds</text>
+<rect x="30" y="336" width="290" height="92" rx="10" fill="#f3f2ee" stroke="#dcdad3" stroke-width="1"/>
+<text x="46" y="364" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="15" font-weight="650" fill="#0b0b0b" text-anchor="start">Extract the Verilog module</text>
+<text x="46" y="386" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="400" fill="#52514e" text-anchor="start">Gate G2: 95% or more of outputs</text>
+<text x="46" y="403" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="400" fill="#52514e" text-anchor="start">must hold a usable module</text>
+<path d="M175.0,184 L175.0,212" fill="none" stroke="#52514e" stroke-width="1.6" marker-end="url(#arr)"/>
+<path d="M175.0,306 L175.0,334" fill="none" stroke="#52514e" stroke-width="1.6" marker-end="url(#arr)"/>
+<rect x="355" y="92" width="290" height="92" rx="10" fill="#f3f2ee" stroke="#dcdad3" stroke-width="1"/>
+<text x="371" y="120" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="15" font-weight="650" fill="#0b0b0b" text-anchor="start">Official testbench</text>
+<text x="371" y="142" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="400" fill="#52514e" text-anchor="start">Icarus Verilog</text>
+<text x="371" y="159" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="400" fill="#52514e" text-anchor="start">fail: not counted as a pass</text>
+<rect x="355" y="214" width="290" height="92" rx="10" fill="#f3f2ee" stroke="#dcdad3" stroke-width="1"/>
+<text x="371" y="242" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="15" font-weight="650" fill="#0b0b0b" text-anchor="start">Non-vacuity check</text>
+<text x="371" y="264" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="400" fill="#52514e" text-anchor="start">A flag, not a class:</text>
+<text x="371" y="281" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="400" fill="#52514e" text-anchor="start">a vacuous pass keeps its class</text>
+<rect x="355" y="336" width="290" height="92" rx="10" fill="#f3f2ee" stroke="#dcdad3" stroke-width="1"/>
+<text x="371" y="364" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="15" font-weight="650" fill="#0b0b0b" text-anchor="start">Formal equivalence</text>
+<text x="371" y="386" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="400" fill="#52514e" text-anchor="start">Design vs reference, from reset</text>
+<text x="371" y="403" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="400" fill="#52514e" text-anchor="start">Yosys + SymbiYosys: BMC, PDR, k-ind.</text>
+<path d="M500.0,184 L500.0,212" fill="none" stroke="#52514e" stroke-width="1.6" marker-end="url(#arr)"/>
+<path d="M500.0,306 L500.0,334" fill="none" stroke="#52514e" stroke-width="1.6" marker-end="url(#arr)"/>
+<path d="M320,382 C340,382 335,138 353,138" fill="none" stroke="#52514e" stroke-width="1.6" marker-end="url(#arr)"/>
+<text x="508.0" y="202" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12" font-weight="600" fill="#52514e" text-anchor="start">pass</text>
+<rect x="680" y="92" width="290" height="56" rx="10" fill="#f3f2ee" stroke="#dcdad3" stroke-width="1"/>
+<rect x="680" y="92" width="8" height="56" rx="4" fill="#0ca30c"/>
+<circle cx="712" cy="120.0" r="12" fill="none" stroke="#0ca30c" stroke-width="2"/>
+<text x="712" y="125.0" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="14" font-weight="700" fill="#0b0b0b" text-anchor="middle">✓</text>
+<text x="736" y="116" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="13.5" font-weight="700" fill="#0b0b0b" text-anchor="start">UNBOUNDED-EQ</text>
+<text x="736" y="135" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="400" fill="#52514e" text-anchor="start">Proved correct, for all time</text>
+<rect x="680" y="158" width="290" height="56" rx="10" fill="#f3f2ee" stroke="#dcdad3" stroke-width="1"/>
+<rect x="680" y="158" width="8" height="56" rx="4" fill="#eda100"/>
+<circle cx="712" cy="186.0" r="12" fill="none" stroke="#eda100" stroke-width="2"/>
+<text x="712" y="191.0" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="14" font-weight="700" fill="#0b0b0b" text-anchor="middle">≈</text>
+<text x="736" y="182" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="13.5" font-weight="700" fill="#0b0b0b" text-anchor="start">BMC-N-EQ-ONLY</text>
+<text x="736" y="201" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="400" fill="#52514e" text-anchor="start">Matches to depth d (10) only</text>
+<rect x="680" y="224" width="290" height="56" rx="10" fill="#f3f2ee" stroke="#dcdad3" stroke-width="1"/>
+<rect x="680" y="224" width="8" height="56" rx="4" fill="#d03b3b"/>
+<circle cx="712" cy="252.0" r="12" fill="none" stroke="#d03b3b" stroke-width="2"/>
+<text x="712" y="257.0" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="14" font-weight="700" fill="#0b0b0b" text-anchor="middle">✗</text>
+<text x="736" y="248" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="13.5" font-weight="700" fill="#0b0b0b" text-anchor="start">DIFFERENT</text>
+<text x="736" y="267" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="400" fill="#52514e" text-anchor="start">Proved wrong, with a witness</text>
+<rect x="680" y="290" width="290" height="56" rx="10" fill="#f3f2ee" stroke="#dcdad3" stroke-width="1"/>
+<rect x="680" y="290" width="8" height="56" rx="4" fill="#8a8880"/>
+<circle cx="712" cy="318.0" r="12" fill="none" stroke="#8a8880" stroke-width="2"/>
+<text x="712" y="323.0" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="14" font-weight="700" fill="#0b0b0b" text-anchor="middle">?</text>
+<text x="736" y="314" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="13.5" font-weight="700" fill="#0b0b0b" text-anchor="start">UNKNOWN</text>
+<text x="736" y="333" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="400" fill="#52514e" text-anchor="start">Timeout (60 s) or engine error</text>
+<path d="M645,382 C665,382 660,221 678,221" fill="none" stroke="#52514e" stroke-width="1.6" marker-end="url(#arr)"/>
+<path d="M825.0,358 L825.0,380" fill="none" stroke="#52514e" stroke-width="1.6" marker-end="url(#arr)"/>
+<rect x="680" y="382" width="290" height="104" rx="10" fill="#f3f2ee" stroke="#dcdad3" stroke-width="1"/>
+<text x="696" y="410" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="15" font-weight="650" fill="#0b0b0b" text-anchor="start">Gated statistics</text>
+<text x="696" y="432" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="400" fill="#52514e" text-anchor="start">VerilogEval 144 tasks, RTLLM 37</text>
+<text x="696" y="449" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="400" fill="#52514e" text-anchor="start">(headline 33): reference proved first</text>
+<text x="696" y="466" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="400" fill="#52514e" text-anchor="start">Task-clustered bootstrap, 10,000 draws</text>
+<text x="30" y="498" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="400" fill="#52514e" text-anchor="start">Not proved correct = official passes without UNBOUNDED-EQ (primary).  Proved wrong = class DIFFERENT (the floor).</text>
+</svg>

@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="470" viewBox="0 0 1000 470" role="img" aria-labelledby="t d">
+<title id="t">How the work moved between me and the AI agents</title>
+<desc id="d">Swimlane: I write a brief; an agent works until a gate, writes a stop line and waits; I decide; the agent records a numbered amendment and continues. Guards: plan review before the data and an independent recompute after it.</desc>
+<defs><marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#c3c2b7"/></marker></defs>
+<rect x="0.5" y="0.5" width="999" height="469" rx="14" fill="#1a1a19" stroke="#3a3a37"/>
+<text x="30" y="38" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="19" font-weight="700" fill="#f0efec" text-anchor="start">How the work moved between me and the AI agents</text>
+<text x="30" y="60" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="13" font-weight="400" fill="#c3c2b7" text-anchor="start">An agent never moves past a gate on its own judgment.</text>
+<rect x="20" y="82" width="960" height="122" rx="12" fill="#1d2b3d"/>
+<text x="34" y="102" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="11.5" font-weight="700" fill="#3987e5" text-anchor="start">ME (THE AUTHOR)</text>
+<rect x="20" y="222" width="960" height="122" rx="12" fill="#1d2b3d"/>
+<text x="34" y="242" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="11.5" font-weight="700" fill="#3987e5" text-anchor="start">AI AGENTS</text>
+<rect x="36" y="108" width="144" height="92" rx="10" fill="#242422" stroke="#3a3a37" stroke-width="1"/>
+<text x="52" y="136" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="15" font-weight="650" fill="#f0efec" text-anchor="start">1  Brief</text>
+<text x="52" y="158" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="400" fill="#c3c2b7" text-anchor="start">Goal, pins, gates</text>
+<text x="52" y="175" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="400" fill="#c3c2b7" text-anchor="start">and stop rules</text>
+<rect x="192" y="248" width="144" height="92" rx="10" fill="#242422" stroke="#3a3a37" stroke-width="1"/>
+<text x="208" y="276" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="15" font-weight="650" fill="#f0efec" text-anchor="start">2  Work</text>
+<text x="208" y="298" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="400" fill="#c3c2b7" text-anchor="start">Until the next gate</text>
+<text x="208" y="315" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="400" fill="#c3c2b7" text-anchor="start">(code, runs, reports)</text>
+<rect x="348" y="248" width="144" height="92" rx="10" fill="#242422" stroke="#3a3a37" stroke-width="1"/>
+<text x="364" y="276" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="15" font-weight="650" fill="#f0efec" text-anchor="start">3  Stop line</text>
+<text x="364" y="298" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="400" fill="#c3c2b7" text-anchor="start">Write the evidence</text>
+<text x="364" y="315" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="400" fill="#c3c2b7" text-anchor="start">and wait</text>
+<rect x="504" y="108" width="144" height="92" rx="10" fill="#242422" stroke="#3a3a37" stroke-width="1"/>
+<text x="520" y="136" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="15" font-weight="650" fill="#f0efec" text-anchor="start">4  Decide</text>
+<text x="520" y="158" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="400" fill="#c3c2b7" text-anchor="start">Read the evidence;</text>
+<text x="520" y="175" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="400" fill="#c3c2b7" text-anchor="start">approve or change</text>
+<rect x="660" y="248" width="144" height="92" rx="10" fill="#242422" stroke="#3a3a37" stroke-width="1"/>
+<text x="676" y="276" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="15" font-weight="650" fill="#f0efec" text-anchor="start">5  Amendment</text>
+<text x="676" y="298" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="400" fill="#c3c2b7" text-anchor="start">Record it with a</text>
+<text x="676" y="315" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="400" fill="#c3c2b7" text-anchor="start">number (A13–A22)</text>
+<rect x="816" y="248" width="144" height="92" rx="10" fill="#242422" stroke="#3a3a37" stroke-width="1"/>
+<text x="832" y="276" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="15" font-weight="650" fill="#f0efec" text-anchor="start">6  Continue</text>
+<text x="832" y="298" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="400" fill="#c3c2b7" text-anchor="start">From that point</text>
+<text x="832" y="315" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="400" fill="#c3c2b7" text-anchor="start">only</text>
+<path d="M180,154.0 C200,154.0 172,294.0 190,294.0" fill="none" stroke="#c3c2b7" stroke-width="1.6" marker-end="url(#arr)"/>
+<path d="M336,294.0 L346,294.0" fill="none" stroke="#c3c2b7" stroke-width="1.6" marker-end="url(#arr)"/>
+<path d="M492,294.0 C512,294.0 484,154.0 502,154.0" fill="none" stroke="#c3c2b7" stroke-width="1.6" marker-end="url(#arr)"/>
+<path d="M648,154.0 C668,154.0 640,294.0 658,294.0" fill="none" stroke="#c3c2b7" stroke-width="1.6" marker-end="url(#arr)"/>
+<path d="M804,294.0 L814,294.0" fill="none" stroke="#c3c2b7" stroke-width="1.6" marker-end="url(#arr)"/>
+<path d="M888.0,340 L888.0,356 L264.0,356 L264.0,342" fill="none" stroke="#c3c2b7" stroke-width="1.6" stroke-dasharray="5 4" marker-end="url(#arr)"/>
+<text x="576.0" y="351" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="11.5" font-weight="600" fill="#c3c2b7" text-anchor="middle">next gate</text>
+<rect x="30" y="372" width="465" height="72" rx="10" fill="#242422" stroke="#3a3a37" stroke-width="1"/>
+<text x="46" y="400" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="15" font-weight="650" fill="#f0efec" text-anchor="start">Review before the data</text>
+<text x="46" y="422" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="400" fill="#c3c2b7" text-anchor="start">A second agent reviewed the plan: 12 problems, fixed as A17 and A18</text>
+<rect x="505" y="372" width="465" height="72" rx="10" fill="#242422" stroke="#3a3a37" stroke-width="1"/>
+<text x="521" y="400" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="15" font-weight="650" fill="#f0efec" text-anchor="start">Recompute after the data</text>
+<text x="521" y="422" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="400" fill="#c3c2b7" text-anchor="start">New code on a second machine: all 10 point estimates match</text>
+</svg>

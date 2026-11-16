@@ -15,6 +15,11 @@ I am an AI engineer, not an RTL engineer. AI agents wrote most of the code and r
 
 ## The loop
 
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="img/agent-loop-dark.svg">
+  <img alt="Swimlane of the brief, work, stop line, decision, amendment loop between the author and the AI agents." src="img/agent-loop-light.svg" width="100%">
+</picture>
+
 1. I write a brief with the goal, the pins and the gates.
 2. The agent works until it reaches a gate.
 3. At a gate, the agent writes a stop line and waits.
